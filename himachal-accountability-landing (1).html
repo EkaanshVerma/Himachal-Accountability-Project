@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<!--
+  Himachal Accountability Project — landing page
+  NOTE FOR EDITOR: two contact addresses below are placeholders —
+  search for "fieldteam@" and "report@" and swap in real addresses
+  before publishing. The "SAMPLE FIELD REPORT" card in the hero and
+  the "Example" marker on the Delay Index strip are illustrative
+  mock-ups, not live data — keep them labelled as such, or wire them
+  to a real feed if/when one exists.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Himachal Accountability Project — We track what's broken until it's fixed</title>
+<meta name="description" content="An independent, non-partisan civic platform that lets residents of Himachal Pradesh log broken infrastructure with GPS proof and photo evidence, and tracks how long it stays unresolved.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    /* Light (default) */
+    --paper:#ECEEDF;
+    --paper-deep:#DFE2CE;
+    --paper-line: rgba(30,42,34,0.14);
+    --ink:#1E2A22;
+    --ink-soft: rgba(30,42,34,0.68);
+    --ink-faint: rgba(30,42,34,0.42);
+    --slate:#283740;
+    --slate-deep:#1F2B32;
+    --cream:#F3F1E6;
+    --cream-soft: rgba(243,241,230,0.72);
+    --cream-faint: rgba(243,241,230,0.46);
+    --amber:#D98C3D;
+    --amber-deep:#B96B27;
+    --stamp:#A23B2E;
+    --sage:#5C7A52;
+    --line:#8FA083;
+    --maxw: 1180px;
+    --pad: clamp(24px, 6vw, 64px);
+    --section-pad: clamp(64px, 10vw, 120px);
+    /* header bg for theme transition */
+    --header-bg: rgba(236,238,223,0.92);
+  }
+
+  [data-theme="dark"]{
+    --paper:#111914;
+    --paper-deep:#182018;
+    --paper-line: rgba(180,200,170,0.12);
+    --ink:#D8E4D0;
+    --ink-soft: rgba(216,228,208,0.68);
+    --ink-faint: rgba(216,228,208,0.38);
+    --slate:#1A2830;
+    --slate-deep:#111D24;
+    --cream:#1E2A22;
+    --cream-soft: rgba(30,42,34,0.80);
+    --cream-faint: rgba(30,42,34,0.50);
+    --amber:#E09B50;
+    --amber-deep:#C87A30;
+    --stamp:#C4584A;
+    --sage:#7A9E6E;
+    --line:#5C7A52;
+    --header-bg: rgba(17,25,20,0.92);
+  }
+
+  /* smooth theme transition */
+  body, .site-header, .field-card, .pillar, .involve-card, .pitch-card, footer{
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: -1;
+    background-image: url('himachal_landing_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.08;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  [data-theme="dark"] body::before {
+    opacity: 0.045;
+  }
+  img, svg{ display:block; max-width:100%; }
+  a{ color: inherit; text-decoration: none; }
+
+  h1,h2,h3{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .mono{ font-family: 'IBM Plex Mono', monospace; }
+
+  .eyebrow{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--sage);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .eyebrow::before{
+    content:"";
+    width: 18px;
+    height: 1px;
+    background: var(--sage);
+    display:inline-block;
+  }
+  .eyebrow.on-dark{ color: #B7C9A8; }
+  .eyebrow.on-dark::before{ background: #B7C9A8; }
+
+  .wrap{
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 var(--pad);
+  }
+
+  :focus-visible{
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
+  }
+
+  /* ---------- header ---------- */
+  .site-header{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--header-bg);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--paper-line);
+  }
+  .header-inner{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 16px var(--pad);
+    max-width: var(--maxw);
+    margin: 0 auto;
+    gap: 20px;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap: 12px;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
+  }
+  .brand-mark{
+    width: 34px; height: 34px;
+    border: 1.5px solid var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    font-weight: 600;
+    flex-shrink:0;
+    letter-spacing: 0;
+  }
+  .brand-logo{
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 1.5px solid var(--ink);
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  .brand-text{ display:flex; flex-direction:column; line-height:1.15; }
+  .brand-text small{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:400;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+  }
+
+  .nav-links{
+    display:flex;
+    gap: 28px;
+    font-size: 0.88rem;
+    font-weight: 500;
+  }
+  .nav-links a{ position:relative; padding: 4px 0; color: var(--ink-soft); }
+  .nav-links a:hover{ color: var(--ink); }
+
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: 1.5px solid var(--ink);
+    padding: 11px 18px;
+    display:inline-flex;
+    align-items:center;
+    gap: 8px;
+    white-space: nowrap;
+    transition: background-color .15s ease, color .15s ease, transform .15s ease;
+    cursor:pointer;
+    background: transparent;
+  }
+  .btn-primary{ background: var(--ink); color: var(--cream); }
+  .btn-primary:hover{ background: var(--slate); transform: translateY(-1px); }
+  .btn-ghost:hover{ background: var(--ink); color: var(--cream); transform: translateY(-1px); }
+  .btn-on-dark{ border-color: var(--cream); color: var(--cream); }
+  .btn-on-dark:hover{ background: var(--cream); color: var(--ink); }
+
+  .nav-toggle{
+    display:none;
+    background:none;
+    border:1.5px solid var(--ink);
+    width: 38px; height: 38px;
+    align-items:center; justify-content:center;
+    cursor:pointer;
+  }
+  .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after{
+    content:"";
+    display:block;
+    width: 16px; height: 1.5px;
+    background: var(--ink);
+    position:relative;
+  }
+  .nav-toggle span::before{ position:absolute; top:-5px; }
+  .nav-toggle span::after{ position:absolute; top:5px; }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position: relative;
+    overflow: hidden;
+    padding-top: clamp(48px, 8vw, 88px);
+    padding-bottom: clamp(56px, 9vw, 96px);
+    border-bottom: 1px solid var(--paper-line);
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 0;
+    background-image: url('himachal_landing_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.30;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  [data-theme="dark"] .hero::before {
+    opacity: 0.18;
+  }
+  .contour-field{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    opacity: 0.55;
+    pointer-events:none;
+  }
+  .hero-grid{
+    position:relative;
+    z-index:1;
+    display:grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(32px, 5vw, 64px);
+    align-items: center;
+  }
+  .hero-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 22px;
+  }
+  .hero h1{
+    font-size: clamp(2.4rem, 5.6vw, 4.6rem);
+    line-height: 1.04;
+  }
+  .hero h1 .line{
+    display:block;
+    opacity:0;
+    transform: translateY(16px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .hero h1 .line.is-visible{ opacity:1; transform: translateY(0); }
+  .hero-sub{
+    margin-top: 22px;
+    max-width: 46ch;
+    font-size: 1.06rem;
+    color: var(--ink-soft);
+    opacity:0;
+    transform: translateY(10px);
+    transition: opacity .6s ease .15s, transform .6s ease .15s;
+  }
+  .hero-sub.is-visible{ opacity:1; transform:translateY(0); }
+  .hero-ctas{
+    margin-top: 34px;
+    display:flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    opacity:0;
+    transition: opacity .6s ease .25s;
+  }
+  .hero-ctas.is-visible{ opacity:1; }
+
+  /* field report card */
+  .field-card{
+    background: var(--cream);
+    border: 1px solid var(--ink);
+    padding: 22px;
+    position:relative;
+    opacity:0;
+    transform: translateX(18px);
+    transition: opacity .7s ease .2s, transform .7s ease .2s;
+  }
+  .field-card.is-visible{ opacity:1; transform:translateX(0); }
+  .field-card::before{
+    content:"";
+    position:absolute;
+    top: 10px; left:10px; right:10px; bottom:10px;
+    border: 1px dashed rgba(30,42,34,0.22);
+    pointer-events:none;
+  }
+  .field-card-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    border-bottom: 1px solid var(--paper-line);
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+  }
+  .field-card-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--stamp);
+    border: 1px solid var(--stamp);
+    padding: 3px 8px;
+  }
+  .field-card-id{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--ink-faint);
+  }
+  .field-card h3{
+    font-size: 1.18rem;
+    margin-bottom: 4px;
+  }
+  .field-meta{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 16px;
+    margin: 16px 0;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.76rem;
+  }
+  .field-meta dt{ color: var(--ink-faint); text-transform:uppercase; letter-spacing:0.07em; font-size:0.62rem; margin-bottom:2px;}
+  .field-meta dd{ margin:0; color: var(--ink); }
+
+  .photo-evidence{
+    border: 1px solid var(--paper-line);
+    background: var(--paper-deep);
+    height: 72px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding: 0 14px;
+    margin: 14px 0;
+    position:relative;
+  }
+  .photo-evidence svg{ width:22px; height:22px; flex-shrink:0; color: var(--ink-soft); }
+  .photo-evidence span{ font-family:'IBM Plex Mono', monospace; font-size:0.7rem; color: var(--ink-soft); }
+  .corner{ position:absolute; width:9px; height:9px; border: 1.4px solid var(--ink-faint); }
+  .corner.tl{ top:6px; left:6px; border-right:none; border-bottom:none; }
+  .corner.br{ bottom:6px; right:6px; border-left:none; border-top:none; }
+
+  .delay-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-top: 16px;
+  }
+  .delay-row .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+  }
+  .delay-count{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:600;
+    font-size: 1rem;
+  }
+  .heat-bar{
+    height: 6px;
+    background: var(--paper-deep);
+    margin-top: 8px;
+    position:relative;
+    overflow:hidden;
+  }
+  .heat-bar .fill{
+    position:absolute; inset:0 auto 0 0;
+    width: 0%;
+    background: linear-gradient(90deg, var(--sage), var(--amber));
+    transition: width 1.1s ease .6s;
+  }
+  .heat-bar .fill.is-visible{ width: 32%; }
+
+  .trust-strip{
+    border-top: 1px solid var(--paper-line);
+    border-bottom: 1px solid var(--paper-line);
+    background: var(--paper-deep);
+  }
+  .trust-strip .wrap{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 28px;
+    padding: 18px var(--pad);
+    justify-content: center;
+  }
+  .trust-pill{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display:flex;
+    align-items:center;
+    gap: 8px;
+  }
+  .trust-pill svg{ width:14px; height:14px; color: var(--sage); }
+
+  /* ---------- generic section ---------- */
+  .section{ padding: var(--section-pad) 0; }
+  .section-head{
+    max-width: 640px;
+    margin-bottom: clamp(40px, 6vw, 64px);
+  }
+  .section-head h2{ font-size: clamp(1.7rem, 3.6vw, 2.5rem); }
+  .section-head p{ margin-top:14px; color: var(--ink-soft); font-size: 1rem; max-width: 52ch; }
+
+  .reveal{
+    opacity:0;
+    transform: translateY(18px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .reveal.is-visible{ opacity:1; transform:translateY(0); }
+
+  /* ---------- pillars ---------- */
+  .pillars-grid{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--paper-line);
+    border: 1px solid var(--paper-line);
+  }
+  .pillar{
+    background: var(--paper);
+    padding: clamp(26px, 4vw, 38px);
+    display:flex;
+    flex-direction:column;
+    gap: 16px;
+  }
+  .pillar-top{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap: 16px;
+  }
+  .pillar-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.08em;
+  }
+  .pillar-icon{
+    width: 40px; height:40px;
+    border:1px solid var(--paper-line);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+    background: var(--paper-deep);
+  }
+  .pillar-icon svg{ width:22px; height:22px; color: var(--ink); }
+  .pillar h3{ font-size: 1.2rem; }
+  .pillar p{ color: var(--ink-soft); font-size: 0.96rem; margin:0; }
+
+  /* ---------- delay index (dark band) ---------- */
+  .band-dark{
+    background: #283740;
+    color: #F3F1E6;
+  }
+  .band-dark .section-head p{ color: rgba(243,241,230,0.72); }
+  .band-dark h2{ color: #F3F1E6; }
+  .band-dark .eyebrow{ color: #B7C9A8; }
+  .band-dark .eyebrow::before{ background: #B7C9A8; }
+  [data-theme="dark"] .band-dark{
+    background: #111D24;
+    color: #D8E4D0;
+  }
+  [data-theme="dark"] .band-dark .section-head p{ color: rgba(216,228,208,0.68); }
+  [data-theme="dark"] .band-dark h2{ color: #D8E4D0; }
+  [data-theme="dark"] .band-dark .eyebrow{ color: #7A9E6E; }
+  [data-theme="dark"] .band-dark .eyebrow::before{ background: #7A9E6E; }
+
+  .index-strip{
+    margin-top: 8px;
+    border: 1px solid rgba(243,241,230,0.22);
+  }
+  .index-row{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .index-seg{
+    padding: 18px 16px 20px;
+    border-right: 1px solid rgba(243,241,230,0.18);
+    position:relative;
+  }
+  .index-seg:last-child{ border-right:none; }
+  .index-seg .bar{ height: 8px; margin-bottom: 14px; }
+  .index-seg:nth-child(1) .bar{ background: #7C9A6E; }
+  .index-seg:nth-child(2) .bar{ background: var(--amber); }
+  .index-seg:nth-child(3) .bar{ background: var(--amber-deep); }
+  .index-seg:nth-child(4) .bar{ background: var(--stamp); }
+  .index-seg .months{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--cream-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+  }
+  .index-seg .stage{
+    font-size: 0.92rem;
+    font-weight: 500;
+  }
+  .index-marker{
+    position:absolute;
+    top: -28px;
+    left: 38%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.66rem;
+    color: var(--amber);
+    text-align:center;
+    white-space:nowrap;
+  }
+  .index-marker .pin{
+    width: 1px; height: 18px;
+    background: var(--amber);
+    margin: 4px auto 0;
+  }
+  .index-note{
+    margin-top: 46px;
+    font-size: 0.92rem;
+    color: var(--cream-soft);
+    max-width: 56ch;
+  }
+
+  /* ---------- pitch ---------- */
+  .pitch-card{
+    background: var(--cream);
+    border: 1px solid var(--ink);
+    padding: clamp(28px, 5vw, 48px);
+    position: relative;
+    max-width: 760px;
+  }
+  .pitch-stamp{
+    position:absolute;
+    top: 22px;
+    right: 24px;
+    width: 76px; height:76px;
+    border: 1.5px solid var(--stamp);
+    border-radius: 50%;
+    color: var(--stamp);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    transform: rotate(-8deg);
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.06em;
+    text-transform:uppercase;
+    line-height:1.25;
+    padding: 6px;
+  }
+  .pitch-card blockquote{
+    margin: 0;
+    font-size: 1.06rem;
+    line-height: 1.7;
+    color: var(--ink);
+    padding-right: 60px;
+  }
+  .pitch-card blockquote p{ margin: 0 0 14px; }
+  .pitch-card blockquote p:last-child{ margin-bottom:0; }
+  .pitch-foot{
+    margin-top: 22px;
+    padding-top: 16px;
+    border-top: 1px solid var(--paper-line);
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ---------- get involved ---------- */
+  .band-paper-deep{ background: var(--paper-deep); }
+  .involve-grid{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--gap);
+  }
+  .involve-card{
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    padding: clamp(26px, 4vw, 36px);
+    display:flex;
+    flex-direction:column;
+    height: 100%;
+  }
+  .involve-card .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--sage);
+    margin-bottom: 14px;
+  }
+  .involve-card h3{ font-size: 1.3rem; margin-bottom: 10px; }
+  .involve-card p{ color: var(--ink-soft); margin: 0 0 22px; flex-grow:1; }
+
+  /* ---------- footer ---------- */
+  footer{
+    background: var(--ink);
+    color: var(--cream-soft);
+    padding: 52px 0 30px;
+  }
+  .footer-top{
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid rgba(243,241,230,0.16);
+  }
+  .footer-brand{ max-width: 360px; }
+  .footer-brand .brand{ color: var(--cream); margin-bottom: 12px; }
+  .footer-brand .brand-mark{ border-color: var(--cream); color: var(--cream); }
+  .footer-brand .brand-logo{ border-color: var(--cream); }
+  .footer-brand p{ font-size: 0.9rem; color: var(--cream-faint); }
+  .footer-links{
+    display:flex;
+    gap: 36px;
+    flex-wrap: wrap;
+  }
+  .footer-links a{ font-size: 0.88rem; color: var(--cream-soft); }
+  .footer-links a:hover{ color: var(--cream); }
+  .footer-bottom{
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 22px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--cream-faint);
+    letter-spacing: 0.03em;
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 980px){
+    .hero-grid{ grid-template-columns: 1fr; }
+    .field-card{ max-width: 480px; }
+    .pillars-grid{ grid-template-columns: 1fr; }
+    .involve-grid{ grid-template-columns: 1fr; }
+  }
+  @media (max-width: 760px){
+    .nav-links{ display:none; }
+    .nav-toggle{ display:flex; }
+    .index-row{ grid-template-columns: repeat(2, 1fr); }
+    .index-seg:nth-child(2){ border-right:none; }
+    .index-seg:nth-child(1), .index-seg:nth-child(2){ border-bottom: 1px solid rgba(243,241,230,0.18); }
+    .index-marker{ display:none; }
+    .pitch-stamp{ position:static; transform:none; margin-bottom:18px; width:64px;height:64px; }
+    .pitch-card blockquote{ padding-right:0; }
+  }
+  @media (max-width: 540px){
+    .header-inner{ padding: 14px var(--pad); }
+    .brand-text small{ display:none; }
+    .field-meta{ grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  }
+
+  /* ---------- theme toggle ---------- */
+  .theme-toggle{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width: 38px; height: 38px;
+    background:none;
+    border: 1.5px solid var(--ink);
+    cursor:pointer;
+    flex-shrink:0;
+    transition: background 0.15s, border-color 0.15s;
+    color: var(--ink);
+  }
+  .theme-toggle:hover{ background: var(--ink); color: var(--cream); }
+  .theme-toggle:hover svg{ color: var(--cream); }
+  .theme-toggle svg{ width:16px; height:16px; pointer-events:none; }
+  .icon-sun{ display:none; }
+  .icon-moon{ display:block; }
+  [data-theme="dark"] .icon-sun{ display:block; }
+  [data-theme="dark"] .icon-moon{ display:none; }
+
+
+  /* index strip text — always light on dark band regardless of theme */
+  .band-dark .index-seg .months{ color: rgba(243,241,230,0.65); }
+  .band-dark .index-seg .stage{ color: #F3F1E6; }
+  .band-dark .index-note{ color: rgba(243,241,230,0.68); }
+  .band-dark .index-marker{ color: var(--amber); }
+  [data-theme="dark"] .band-dark .index-seg .months{ color: rgba(216,228,208,0.65); }
+  [data-theme="dark"] .band-dark .index-seg .stage{ color: #D8E4D0; }
+  [data-theme="dark"] .band-dark .index-note{ color: rgba(216,228,208,0.68); }
+
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#top" class="brand">
+      <img src="hap_logo.png" alt="HAP Logo" class="brand-logo">
+      <span class="brand-text">
+        Himachal Accountability Project
+        <small>Public Ledger &middot; Himachal Pradesh</small>
+      </span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/dashboard.html" style="color: var(--amber); font-weight: 600;">Dashboard</a>
+      <a href="/donate.html" style="color: var(--stamp); font-weight: 600;">Support Us</a>
+      <a href="#pillars">Pillars</a>
+      <a href="#delay-index">Delay Index</a>
+      <a href="#pitch">The Pitch</a>
+      <a href="#get-involved">Get Involved</a>
+    </nav>
+    <a href="https://tally.so/r/A76O8B" target="_blank" class="btn btn-primary">Report an issue</a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+    </button>
+    <button class="nav-toggle" aria-label="Toggle menu" id="navToggle"><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <svg class="contour-field" id="contourField" preserveAspectRatio="none" aria-hidden="true"></svg>
+    <div class="wrap hero-grid">
+      <div>
+        <div class="hero-tag">Independent &middot; Non-partisan &middot; Data-driven</div>
+        <h1>
+          <span class="line">Bad Roads.</span>
+          <span class="line">Dry Taps.</span>
+          <span class="line">Dark Streets.</span>
+        </h1>
+        <p class="hero-sub">We log the where, the when, and the proof for broken public infrastructure across Himachal Pradesh — and keep the file open until the department closes it.</p>
+        <div class="hero-ctas">
+          <a href="https://tally.so/r/A76O8B" target="_blank" class="btn btn-primary">Report an issue</a>
+          <a href="/dashboard.html" class="btn btn-ghost" style="border-color: var(--amber); color: var(--amber);">View Dashboard</a>
+          <a href="/donate.html" class="btn btn-ghost" style="border-color: var(--stamp); color: var(--stamp);">Support Us</a>
+        </div>
+      </div>
+
+      <div class="field-card" id="fieldCard">
+        <div class="field-card-head">
+          <span class="field-card-label">Illustrative field report</span>
+          <span class="field-card-id mono">REF · HP-14-0392</span>
+        </div>
+        <h3>Retaining wall collapse — Link Road</h3>
+        <p style="margin:0; color:var(--ink-soft); font-size:0.92rem;">Reported by a resident, verified by neighbours.</p>
+
+        <dl class="field-meta">
+          <div><dt>Ward</dt><dd>14 · Kullu District</dd></div>
+          <div><dt>Coordinates</dt><dd>31.9570° N, 77.1090° E</dd></div>
+        </dl>
+
+        <div class="photo-evidence">
+          <span class="corner tl"></span><span class="corner br"></span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="1"/><path d="M8 7l1.5-3h5L16 7"/><circle cx="12" cy="13.5" r="3.2"/></svg>
+          <span>1 photo attached &middot; geotagged on capture</span>
+        </div>
+
+        <div class="delay-row">
+          <span class="label">Backlog Index</span>
+          <span class="delay-count mono" id="dayCount">0</span>
+        </div>
+        <div class="heat-bar"><div class="fill" id="heatFill"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="trust-strip">
+    <div class="wrap">
+      <span class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-4z"/></svg>Non-partisan by design</span>
+      <span class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>GPS-verified, every time</span>
+      <span class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 9h18M8 4v5"/></svg>Open to the public dashboard</span>
+    </div>
+  </div>
+
+  <!-- ===== PILLARS ===== -->
+  <section class="section" id="pillars">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">The framework</div>
+        <h2>Four ground rules for how this works</h2>
+        <p>Nothing on this platform is built to attack a person or a party. It's built to shorten the distance between a broken handpump and the department that can fix it.</p>
+      </div>
+
+      <div class="pillars-grid">
+        <div class="pillar reveal">
+          <div class="pillar-top">
+            <span class="pillar-num mono">PILLAR — 01</span>
+            <span class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><path d="M9 9l2 1.5-1 2 2.5 1-1 2.5" /></svg></span>
+          </div>
+          <h3>Citizen-centric utility</h3>
+          <p>Reporting a collapsed culvert or a dry tap shouldn't take a government form. Any resident can log an issue in minutes — no party affiliation, no office visit, no fee. It exists for the person waiting at the bus stop next to the pothole, not for any campaign.</p>
+        </div>
+
+        <div class="pillar reveal">
+          <div class="pillar-top">
+            <span class="pillar-num mono">PILLAR — 02</span>
+            <span class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8"/><path d="M12 4v3M12 17v3M4 12h3M17 12h3"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/></svg></span>
+          </div>
+          <h3>Radical transparency &amp; data accuracy</h3>
+          <p>Every report needs three things: a GPS pin, a ward, and a photograph — nothing less is accepted, nothing more is required. It lands directly on a public map that a resident, a journalist, and a department engineer all see in the same form.</p>
+        </div>
+
+        <div class="pillar reveal">
+          <div class="pillar-top">
+            <span class="pillar-num mono">PILLAR — 03</span>
+            <span class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V13M9.5 20V9M15 20V5M20.5 20v-7"/></svg></span>
+          </div>
+          <h3>Constructive administrative feedback</h3>
+          <p>The Critical Delay Index is a ward-level backlog tracker: every open report carries a running count of months since it was first logged. Entries sort automatically on the public dashboard — longest-pending issues surface first, by constituency and district, so resources follow the worst backlogs, not the loudest voices.</p>
+        </div>
+
+        <div class="pillar reveal">
+          <div class="pillar-top">
+            <span class="pillar-num mono">PILLAR — 04</span>
+            <span class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="2.2"/><circle cx="17" cy="7" r="2.2"/><circle cx="12" cy="17" r="2.2"/><path d="M8.6 8.4 10.4 15.2M15.4 8.4 13.6 15.2M9 7h6"/></svg></span>
+          </div>
+          <h3>Youth-led civic participation</h3>
+          <p>Most of the field reporting, photo verification, and social posts come from students and young residents who already carry a phone with a camera and a GPS chip. When an issue gets resolved, the post that follows is a thank-you to the department — not a target list.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DELAY INDEX ===== -->
+  <section class="section band-dark" id="delay-index">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow on-dark">The critical delay index</div>
+        <h2>Time pending, not blame assigned</h2>
+        <p>Every open report carries one number: months since it was first logged. That number sorts the public dashboard automatically, so the longest-ignored problems surface on their own.</p>
+      </div>
+
+      <div class="index-strip reveal">
+        <div class="index-row">
+          <div class="index-seg">
+            <div class="index-marker">Example: this report<div class="pin"></div></div>
+            <div class="bar"></div>
+            <div class="months">0–2 months</div>
+            <div class="stage">Logged</div>
+          </div>
+          <div class="index-seg">
+            <div class="bar"></div>
+            <div class="months">3–6 months</div>
+            <div class="stage">Watch</div>
+          </div>
+          <div class="index-seg">
+            <div class="bar"></div>
+            <div class="months">7–11 months</div>
+            <div class="stage">Escalate</div>
+          </div>
+          <div class="index-seg">
+            <div class="bar"></div>
+            <div class="months">12+ months</div>
+            <div class="stage">Critical</div>
+          </div>
+        </div>
+      </div>
+      <p class="index-note reveal">No issue is ever removed from the index for being old or inconvenient — it only moves when a department closes it out, with photo proof of the fix.</p>
+    </div>
+  </section>
+
+  <!-- ===== THE PITCH ===== -->
+  <section class="section" id="pitch">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">When someone asks what this is</div>
+        <h2>The line we hold</h2>
+        <p>This is the exact answer given to a journalist, a politician, or a fellowship coordinator who asks what the project actually is.</p>
+      </div>
+
+      <div class="pitch-card reveal">
+        <div class="pitch-stamp">On the<br>record</div>
+        <blockquote>
+          <p>We are a data-driven public utility. We do not support any political party, and we do not oppose any political party. We oppose bad roads, dry taps, and administrative delays.</p>
+          <p>Our goal is to use modern technology to help the government see real-time ground realities so that public funds are spent efficiently. We are simply here to help the system work faster and better for the people of Himachal.</p>
+        </blockquote>
+        <div class="pitch-foot">The Himachal Accountability Project — official position</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GET INVOLVED ===== -->
+  <section class="section band-paper-deep" id="get-involved">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Join the field team</div>
+        <h2>Two ways in</h2>
+        <p>Whether you've got one pothole to log or a weekend a month to give, there's a way to plug in.</p>
+      </div>
+
+      <div class="involve-grid">
+        <div class="involve-card reveal">
+          <span class="tag mono">For residents</span>
+          <h3>Report from your ward</h3>
+          <p>Have a broken streetlight, a collapsed drain, or a dry handpump to log? Submit your ward, pin code, and a photo via the form — it goes directly onto the public map. No login, no app, no email draft.</p>
+          <a class="btn btn-ghost" href="https://tally.so/r/A76O8B" target="_blank">Log your report via form <span style="font-size:0.72em;opacity:0.7">(60 sec, no login)</span></a>
+        </div>
+        <div class="involve-card reveal">
+          <span class="tag mono">For volunteers</span>
+          <h3>Verify, map, and post</h3>
+          <p>Students and young residents do most of the on-ground verification and the social posts that follow a fix. No experience required — just a phone and a Saturday morning.</p>
+          <a class="btn btn-ghost" href="mailto:fieldteam@himachalaccountability.org">Express interest</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#top" class="brand">
+          <img src="hap_logo.png" alt="HAP Logo" class="brand-logo">
+          Himachal Accountability Project
+        </a>
+        <p>We oppose bad roads, dry taps, and administrative delays — and nothing else. An independent citizen initiative, not affiliated with any political party or candidate.</p>
+      </div>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="#pillars">Pillars</a>
+        <a href="#delay-index">Delay Index</a>
+        <a href="#pitch">The Pitch</a>
+        <a href="#get-involved">Get Involved</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Himachal Accountability Project &middot; Himachal Pradesh</span>
+      <span>Verified by residents. Reviewed by no one's PR team.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // --- mobile nav toggle ---
+  var navToggle = document.getElementById('navToggle');
+  var navLinks = document.querySelector('.nav-links');
+  if(navToggle){
+    navToggle.addEventListener('click', function(){
+      var open = navLinks.style.display === 'flex';
+      navLinks.style.display = open ? 'none' : 'flex';
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.position = 'absolute';
+      navLinks.style.top = '100%';
+      navLinks.style.left = '0';
+      navLinks.style.right = '0';
+      navLinks.style.background = 'var(--paper)';
+      navLinks.style.padding = '18px var(--pad)';
+      navLinks.style.borderBottom = '1px solid var(--paper-line)';
+      navLinks.style.gap = '16px';
+    });
+  }
+
+  // --- contour field generator ---
+  (function(){
+    var svg = document.getElementById('contourField');
+    function build(){
+      var hero = document.querySelector('.hero');
+      var w = hero.clientWidth, h = hero.clientHeight;
+      svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+      svg.innerHTML = '';
+      var lines = 7;
+      for(var i=0; i<lines; i++){
+        var baseY = (h / lines) * i + 20;
+        var amp = 16 + (i % 3) * 10;
+        var freq = 0.006 + (i % 2) * 0.002;
+        var phase = i * 1.3;
+        var d = 'M0 ' + baseY;
+        var step = Math.max(8, w / 80);
+        for(var x=0; x<=w; x+=step){
+          var y = baseY + Math.sin(x * freq + phase) * amp + Math.sin(x*freq*2.3+phase) * (amp*0.3);
+          d += ' L' + x.toFixed(1) + ' ' + y.toFixed(1);
+        }
+        var path = document.createElementNS('http://www.w3.org/2000/svg','path');
+        path.setAttribute('d', d);
+        path.setAttribute('fill','none');
+        var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        path.setAttribute('stroke', i % 3 === 0 ? '#8FA083' : (isDark ? '#D8E4D0' : '#1E2A22'));
+        path.setAttribute('stroke-width','1');
+        path.setAttribute('stroke-opacity', i % 3 === 0 ? '0.5' : '0.12');
+        svg.appendChild(path);
+
+        if(!reduceMotion){
+          var len = path.getTotalLength();
+          path.style.strokeDasharray = len;
+          path.style.strokeDashoffset = len;
+          path.style.transition = 'stroke-dashoffset 1.6s cubic-bezier(.4,0,.2,1) ' + (i*0.09) + 's';
+          requestAnimationFrame(function(p){ return function(){ p.style.strokeDashoffset = 0; }; }(path));
+        }
+      }
+    }
+    build();
+    window.addEventListener('resize', build);
+  })();
+
+  // --- hero load sequence ---
+  window.addEventListener('load', function(){
+    document.querySelectorAll('.hero h1 .line').forEach(function(el, i){
+      setTimeout(function(){ el.classList.add('is-visible'); }, 120 + i*120);
+    });
+    setTimeout(function(){ document.querySelector('.hero-sub').classList.add('is-visible'); }, 420);
+    setTimeout(function(){ document.querySelector('.hero-ctas').classList.add('is-visible'); }, 560);
+    setTimeout(function(){
+      document.getElementById('fieldCard').classList.add('is-visible');
+      document.getElementById('heatFill').classList.add('is-visible');
+      var target = 14, el = document.getElementById('dayCount'), start = null;
+      if(reduceMotion){ el.textContent = target; return; }
+      function step(ts){
+        if(start === null) start = ts;
+        var p = Math.min(1, (ts - start) / 900);
+        el.textContent = Math.round(p * target);
+        if(p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }, 300);
+  });
+
+  // --- scroll reveal ---
+  var revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window && !reduceMotion){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('is-visible'); });
+  }
+
+  // --- theme toggle ---
+  (function(){
+    var toggle = document.getElementById('themeToggle');
+    var root = document.documentElement;
+    // respect system preference on first load
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if(prefersDark){ root.setAttribute('data-theme','dark'); }
+    if(toggle){
+      toggle.addEventListener('click', function(){
+        var isDark = root.getAttribute('data-theme') === 'dark';
+        root.setAttribute('data-theme', isDark ? 'light' : 'dark');
+      });
+    }
+  })();
+
+</script>
+
+</body>
+</html>

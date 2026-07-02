@@ -1,0 +1,1767 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support the Work — Himachal Accountability Project</title>
+  <meta name="description"
+    content="Fund independent civic journalism and grievance tracking across Himachal Pradesh. Every rupee goes directly into field operations, data infrastructure, and community reporters.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --paper: #ECEEDF;
+      --paper-deep: #DFE2CE;
+      --paper-line: rgba(30, 42, 34, 0.14);
+      --ink: #1E2A22;
+      --ink-soft: rgba(30, 42, 34, 0.68);
+      --ink-faint: rgba(30, 42, 34, 0.42);
+      --slate: #283740;
+      --slate-deep: #1F2B32;
+      --cream: #F3F1E6;
+      --amber-val: #D98C3D;
+      --amber-deep-val: #B96B27;
+      --stamp: #A23B2E;
+      --sage: #5C7A52;
+
+      --bg: var(--paper);
+      --bg2: var(--cream);
+      --bg3: var(--paper-deep);
+      --bg4: rgba(30, 42, 34, 0.06);
+      --bg5: rgba(30, 42, 34, 0.12);
+      --border: var(--paper-line);
+      --border2: rgba(30, 42, 34, 0.22);
+      --border3: var(--ink);
+      --text: var(--ink);
+      --text2: var(--ink-soft);
+      --text3: var(--ink-faint);
+      --red: var(--stamp);
+      --red-bg: rgba(162, 59, 46, 0.1);
+      --red-mid: rgba(162, 59, 46, 0.25);
+      --amber: var(--amber-val);
+      --amber-bg: rgba(217, 140, 61, 0.1);
+      --green: var(--sage);
+      --green-bg: rgba(92, 122, 82, 0.1);
+      --glass-bg: rgba(243, 241, 230, 0.88);
+      --glass-blur: blur(6px);
+      --transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+      --card-radius: 0px;
+    }
+
+    [data-theme="dark"] {
+      --paper: #111914;
+      --paper-deep: #182018;
+      --paper-line: rgba(180, 200, 170, 0.12);
+      --ink: #D8E4D0;
+      --ink-soft: rgba(216, 228, 208, 0.68);
+      --ink-faint: rgba(216, 228, 208, 0.38);
+      --slate: #1A2830;
+      --cream: #1E2A22;
+      --amber-val: #E09B50;
+      --amber-deep-val: #C87A30;
+      --stamp: #C4584A;
+      --sage: #7A9E6E;
+
+      --bg: var(--paper);
+      --bg2: var(--cream);
+      --bg3: var(--paper-deep);
+      --bg4: rgba(216, 228, 208, 0.08);
+      --bg5: rgba(216, 228, 208, 0.15);
+      --border: var(--paper-line);
+      --border2: rgba(216, 228, 208, 0.22);
+      --border3: var(--ink);
+      --text: var(--ink);
+      --text2: var(--ink-soft);
+      --text3: var(--ink-faint);
+      --red: var(--stamp);
+      --red-bg: rgba(196, 88, 74, 0.1);
+      --red-mid: rgba(196, 88, 74, 0.25);
+      --amber: var(--amber-val);
+      --amber-bg: rgba(224, 155, 80, 0.1);
+      --green: var(--sage);
+      --green-bg: rgba(122, 158, 110, 0.1);
+      --glass-bg: rgba(30, 42, 34, 0.88);
+    }
+
+    html,
+    body {
+      min-height: 100%;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      transition: var(--transition);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      background-image: url('himachal_landing_bg.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.05;
+      pointer-events: none;
+    }
+
+    [data-theme="dark"] body::before {
+      opacity: 0.03;
+    }
+
+    /* ── ANNOUNCEMENT BAR ── */
+    .ann-bar {
+      background: var(--red-bg);
+      border-bottom: 1px solid var(--red-mid);
+      padding: 8px 24px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--text3);
+      text-align: center;
+      letter-spacing: 0.03em;
+    }
+
+    .ann-bar b {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ── MASTHEAD ── */
+    .masthead {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: var(--transition);
+    }
+
+    .masthead-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border: 1.5px solid var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.62rem;
+      font-weight: 600;
+      flex-shrink: 0;
+      letter-spacing: 0;
+      transition: var(--transition);
+    }
+
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1.5px solid var(--ink);
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .brand-text small {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 400;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      color: var(--text3);
+      text-transform: uppercase;
+    }
+
+    .masthead-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1.5px solid var(--border3);
+      color: var(--text);
+      padding: 9px 16px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .btn-ghost:hover {
+      background: var(--text);
+      color: var(--bg2);
+    }
+
+    .btn-primary {
+      background: var(--text);
+      color: var(--bg2);
+      border: 1.5px solid var(--border3);
+      padding: 10px 20px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-primary:hover {
+      background: var(--red);
+      color: #fff;
+      border-color: var(--red);
+    }
+
+    .theme-toggle-btn {
+      background: transparent;
+      border: 1.5px solid var(--border3);
+      color: var(--text);
+      width: 38px;
+      height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .theme-toggle-btn:hover {
+      background: var(--text);
+      color: var(--bg2);
+    }
+
+    .theme-toggle-btn svg {
+      width: 18px;
+      height: 18px;
+      pointer-events: none;
+    }
+
+    .icon-sun {
+      display: none;
+    }
+
+    .icon-moon {
+      display: block;
+    }
+
+    [data-theme="light"] .icon-sun {
+      display: block;
+    }
+
+    [data-theme="light"] .icon-moon {
+      display: none;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      border-bottom: 1px solid var(--border2);
+      background: var(--bg2);
+      padding: 72px 24px 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 0;
+      background-image: url('himachal_landing_bg.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.12;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    [data-theme="dark"] .hero::before {
+      opacity: 0.07;
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media(max-width:900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+    }
+
+    .hero-eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-eyebrow::before {
+      content: "";
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--red);
+    }
+
+    .hero-h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(32px, 5vw, 54px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+
+    .hero-h1 em {
+      font-style: normal;
+      color: var(--red);
+    }
+
+    .hero-lead {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text2);
+      max-width: 540px;
+      margin-bottom: 36px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      padding-top: 28px;
+      border-top: 1px solid var(--border2);
+    }
+
+    .hs {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .hs-val {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .hs-lbl {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text3);
+    }
+
+    /* ── DONATION WIDGET ── */
+    .donate-widget {
+      background: var(--bg);
+      border: 1.5px solid var(--border3);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .dw-head {
+      background: var(--text);
+      color: var(--bg2);
+      padding: 16px 20px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .dw-live {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 9px;
+      opacity: 0.75;
+    }
+
+    .dw-live-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--bg2);
+      animation: blink 1.4s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0.2
+      }
+    }
+
+    .dw-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .dw-section-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text3);
+      margin-bottom: 8px;
+    }
+
+    .amount-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+
+    .amt-btn {
+      background: var(--bg3);
+      border: 1.5px solid var(--border2);
+      color: var(--text);
+      padding: 12px 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .amt-btn span {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 8px;
+      font-weight: 500;
+      color: var(--text3);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .amt-btn:hover,
+    .amt-btn.selected {
+      background: var(--text);
+      color: var(--bg2);
+      border-color: var(--text);
+    }
+
+    .amt-btn.selected span {
+      color: var(--bg3);
+    }
+
+    .custom-input-wrap {
+      border: 1.5px solid var(--border2);
+      background: var(--bg3);
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      gap: 6px;
+    }
+
+    .custom-input-wrap:focus-within {
+      border-color: var(--text);
+    }
+
+    .custom-prefix {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text3);
+    }
+
+    .custom-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 12px 0;
+    }
+
+    .custom-input::placeholder {
+      color: var(--text3);
+      font-weight: 500;
+    }
+
+    .frequency-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+
+    .freq-btn {
+      background: var(--bg3);
+      border: 1.5px solid var(--border2);
+      color: var(--text2);
+      padding: 10px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+    }
+
+    .freq-btn:hover,
+    .freq-btn.selected {
+      background: var(--text);
+      color: var(--bg2);
+      border-color: var(--text);
+    }
+
+    .dw-impact {
+      background: var(--green-bg);
+      border: 1px solid var(--green);
+      padding: 12px 14px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      color: var(--text2);
+      line-height: 1.5;
+    }
+
+    .dw-impact b {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .dw-impact em {
+      color: var(--green);
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .dw-cta {
+      background: var(--text);
+      color: var(--bg2);
+      border: 1.5px solid var(--text);
+      padding: 15px 20px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      width: 100%;
+    }
+
+    .dw-cta:hover {
+      background: var(--red);
+      border-color: var(--red);
+      color: #fff;
+    }
+
+    .dw-sub-note {
+      text-align: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      color: var(--text3);
+      letter-spacing: 0.04em;
+      padding: 0 20px 16px;
+    }
+
+    .dw-sub-note a {
+      color: var(--text3);
+      text-decoration: underline;
+    }
+
+    .progress-wrap {
+      padding: 16px 20px;
+      border-top: 1px solid var(--border2);
+    }
+
+    .progress-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      color: var(--text3);
+      letter-spacing: 0.06em;
+    }
+
+    .progress-labels b {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .progress-track {
+      height: 5px;
+      background: var(--bg4);
+      border: 1px solid var(--border2);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--text);
+      width: 67%;
+      transition: width 1s ease;
+    }
+
+    .progress-meta {
+      margin-top: 6px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      color: var(--text3);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .progress-meta b {
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 72px;
+    }
+
+    /* ── SECTION HEADING ── */
+    .section-eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-eyebrow::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border2);
+    }
+
+    .section-h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .section-lead {
+      font-size: 15px;
+      color: var(--text2);
+      line-height: 1.7;
+      max-width: 640px;
+    }
+
+    /* ── HOW MONEY IS USED ── */
+    .use-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 36px;
+    }
+
+    @media(max-width:720px) {
+      .use-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .use-card {
+      background: var(--bg2);
+      border: 1.5px solid var(--border3);
+      padding: 24px 22px;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .use-card::before {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      right: 8px;
+      bottom: 8px;
+      border: 1px dashed var(--border2);
+      pointer-events: none;
+      transition: var(--transition);
+    }
+
+    .use-card:hover::before {
+      border-color: var(--text);
+    }
+
+    .use-pct {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 42px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .use-pct sub {
+      font-size: 18px;
+      vertical-align: baseline;
+      color: var(--text3);
+      font-weight: 500;
+    }
+
+    .use-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .use-desc {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 12.5px;
+      color: var(--text2);
+      line-height: 1.6;
+    }
+
+    .use-bar {
+      height: 3px;
+      background: var(--border2);
+      margin-bottom: 18px;
+      overflow: hidden;
+    }
+
+    .use-bar-fill {
+      height: 100%;
+      background: var(--text);
+    }
+
+    /* ── WHAT YOUR MONEY DOES ── */
+    .impact-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1.5px solid var(--border3);
+      margin-top: 32px;
+      font-size: 13px;
+    }
+
+    .impact-table th {
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      padding: 12px 18px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text3);
+      text-align: left;
+    }
+
+    .impact-table td {
+      border: 1px solid var(--border);
+      padding: 14px 18px;
+      color: var(--text2);
+      vertical-align: top;
+      line-height: 1.5;
+      transition: var(--transition);
+    }
+
+    .impact-table tr:nth-child(even) td {
+      background: var(--bg3);
+    }
+
+    .impact-table tr:hover td {
+      background: var(--bg5);
+    }
+
+    .impact-table .amt {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .impact-table .tag {
+      display: inline-block;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 8px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 2px 7px;
+      border: 1px solid var(--border2);
+      color: var(--text3);
+      margin-bottom: 4px;
+    }
+
+    /* ── PRINCIPLES ── */
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    @media(max-width:640px) {
+      .principles-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .principle {
+      background: var(--bg2);
+      border: 1.5px solid var(--border3);
+      padding: 22px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      transition: var(--transition);
+    }
+
+    .principle:hover {
+      background: var(--bg3);
+    }
+
+    .principle-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--text3);
+      line-height: 1;
+      min-width: 32px;
+      flex-shrink: 0;
+    }
+
+    .principle-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .principle-body {
+      font-size: 12.5px;
+      color: var(--text2);
+      line-height: 1.6;
+    }
+
+    /* ── RECURRING SECTION ── */
+    .recurring-block {
+      background: var(--bg2);
+      border: 1.5px solid var(--border3);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+    }
+
+    @media(max-width:700px) {
+      .recurring-block {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .recurring-left {
+      padding: 40px 36px;
+      border-right: 1px solid var(--border2);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .recurring-right {
+      padding: 40px 36px;
+      background: var(--bg3);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    @media(max-width:700px) {
+      .recurring-left {
+        border-right: none;
+        border-bottom: 1px solid var(--border2);
+      }
+    }
+
+    .recurring-h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .recurring-body {
+      font-size: 13.5px;
+      color: var(--text2);
+      line-height: 1.7;
+    }
+
+    .recurring-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .recurring-item:last-child {
+      border-bottom: none;
+    }
+
+    .ri-icon {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text3);
+      background: var(--bg4);
+      border: 1px solid var(--border2);
+      padding: 4px 7px;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .ri-text {
+      font-size: 12.5px;
+      color: var(--text2);
+      line-height: 1.5;
+    }
+
+    .ri-text b {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ── TESTIMONIALS / QUOTES ── */
+    .quote-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    @media(max-width:720px) {
+      .quote-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .quote-card {
+      background: var(--bg2);
+      border: 1.5px solid var(--border3);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: var(--transition);
+    }
+
+    .quote-card:hover {
+      background: var(--bg3);
+    }
+
+    .quote-mark {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 36px;
+      line-height: 1;
+      color: var(--border2);
+      font-weight: 700;
+    }
+
+    .quote-text {
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--text2);
+      flex: 1;
+      font-style: italic;
+    }
+
+    .quote-attr {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text3);
+      padding-top: 12px;
+      border-top: 1px solid var(--border2);
+    }
+
+    .quote-attr span {
+      color: var(--text);
+    }
+
+    /* ── FINAL CTA STRIP ── */
+    .cta-strip {
+      background: var(--text);
+      color: var(--bg2);
+      padding: 56px 24px;
+      text-align: center;
+    }
+
+    .cta-strip-inner {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .cta-strip h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(24px, 4vw, 38px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--bg2);
+      margin-bottom: 14px;
+    }
+
+    .cta-strip p {
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.7;
+      margin-bottom: 32px;
+      opacity: 0.75;
+    }
+
+    [data-theme="dark"] .cta-strip p {
+      opacity: 0.6;
+    }
+
+    .cta-strip-btns {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .cta-inv {
+      background: var(--bg2);
+      color: var(--text);
+      border: 1.5px solid var(--bg2);
+      padding: 14px 28px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.2s;
+    }
+
+    .cta-inv:hover {
+      opacity: 0.85;
+    }
+
+    .cta-outline {
+      background: transparent;
+      color: var(--bg2);
+      border: 1.5px solid var(--bg2);
+      padding: 14px 28px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.2s;
+      opacity: 0.65;
+    }
+
+    .cta-outline:hover {
+      opacity: 1;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      border-top: 1px solid var(--border2);
+      background: var(--bg2);
+      padding: 28px 24px;
+      transition: var(--transition);
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-note {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      color: var(--text3);
+      letter-spacing: 0.04em;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      color: var(--text3);
+    }
+
+    .footer-links a {
+      color: var(--text3);
+      text-decoration: underline;
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="ann-bar">
+    <b>462 grievances logged.</b> &nbsp;11 districts covered. &nbsp;0 government responses received. &nbsp;
+    <b>This runs on reader support only.</b>
+  </div>
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="brand" href="/">
+        <img src="hap_logo.png" alt="HAP Logo" class="brand-logo">
+        <div class="brand-text">
+          Himachal Accountability Project
+          <small>Public Ledger &middot; Himachal Pradesh</small>
+        </div>
+      </a>
+      <div class="masthead-right">
+        <a href="/" class="btn-ghost">Home</a>
+        <a href="/dashboard.html" class="btn-ghost">Dashboard</a>
+        <button class="theme-toggle-btn" id="theme-toggle" title="Toggle theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-eyebrow">Support the work</div>
+        <h1 class="hero-h1">
+          This dashboard<br>costs money.<br>
+          <em>Power doesn't fund its own accountability.</em>
+        </h1>
+        <p class="hero-lead">
+          The Himachal Accountability Project runs on zero government grants, zero corporate money, and zero political
+          funding. Every field report, every district map, every grievance logged is paid for by citizens who believe
+          public administration should answer to the public.
+        </p>
+        <div class="hero-stats">
+          <div class="hs">
+            <div class="hs-val">462</div>
+            <div class="hs-lbl">Reports filed</div>
+          </div>
+          <div class="hs">
+            <div class="hs-val">11</div>
+            <div class="hs-lbl">Districts covered</div>
+          </div>
+          <div class="hs">
+            <div class="hs-val">₹0</div>
+            <div class="hs-lbl">Govt. funding received</div>
+          </div>
+          <div class="hs">
+            <div class="hs-val">0</div>
+            <div class="hs-lbl">Advertisers</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DONATION WIDGET -->
+      <div class="donate-widget">
+        <div class="dw-head">
+          <span>Make a contribution</span>
+          <div class="dw-live">
+            <div class="dw-live-dot"></div> SECURE
+          </div>
+        </div>
+        <div class="dw-body">
+          <div>
+            <div class="dw-section-label">Choose frequency</div>
+            <div class="frequency-row">
+              <button class="freq-btn" id="freq-once" onclick="selectFreq('once')">One-time</button>
+              <button class="freq-btn selected" id="freq-monthly" onclick="selectFreq('monthly')">Monthly ✦</button>
+            </div>
+          </div>
+          <div>
+            <div class="dw-section-label">Select amount</div>
+            <div class="amount-grid">
+              <button class="amt-btn" onclick="selectAmt(200, this)">₹200<span>one report</span></button>
+              <button class="amt-btn selected" onclick="selectAmt(500, this)">₹500<span>most popular</span></button>
+              <button class="amt-btn" onclick="selectAmt(1000, this)">₹1,000<span>field team day</span></button>
+              <button class="amt-btn" onclick="selectAmt(2500, this)">₹2,500<span>district survey</span></button>
+              <button class="amt-btn" onclick="selectAmt(5000, this)">₹5,000<span>RTI filing</span></button>
+              <button class="amt-btn" onclick="selectAmt(null, this)">Other<span>enter below</span></button>
+            </div>
+          </div>
+          <div>
+            <div class="dw-section-label">Or enter custom amount</div>
+            <div class="custom-input-wrap">
+              <span class="custom-prefix">₹</span>
+              <input class="custom-input" type="number" id="custom-amt" placeholder="Enter amount" min="1">
+            </div>
+          </div>
+          <div class="dw-impact" id="impact-box">
+            <b>₹500/month</b> funds <em>2–3 tehsil-level field visits</em> per month, plus server costs for the live
+            grievance tracker.
+          </div>
+        </div>
+        <a class="dw-cta" href="https://rzp.io/l/himachal-accountability" target="_blank" id="donate-btn">
+          Contribute ₹500 / month →
+        </a>
+        <div class="dw-sub-note">
+          Payments via Razorpay · UPI · Net banking · Cards<br>
+          No transaction fees deducted from your contribution.<br>
+          <a href="#transparency">See full fund usage breakdown ↓</a>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-labels">
+            <span><b>₹1,24,500</b> raised this quarter</span>
+            <span>Goal: ₹1,85,000</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+          <div class="progress-meta">
+            <span>67% to quarterly goal</span>
+            <span><b>38 monthly donors</b></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <!-- HOW MONEY IS USED -->
+    <section id="transparency">
+      <div class="section-eyebrow">Where it goes</div>
+      <h2 class="section-h2">Full breakdown of fund allocation</h2>
+      <p class="section-lead">
+        We publish our accounts quarterly. Every rupee is tracked, categorised, and reported. This is not optional — it
+        is the condition under which we accept your support.
+      </p>
+      <div class="use-grid">
+        <div class="use-card">
+          <div class="use-bar">
+            <div class="use-bar-fill" style="width:42%"></div>
+          </div>
+          <div class="use-pct">42<sub>%</sub></div>
+          <div class="use-title">Field Operations</div>
+          <div class="use-desc">Travel costs, per diem for community reporters, local fixer fees, and logistics for
+            on-ground data collection across 12 districts. This is the most expensive and most critical line item.</div>
+        </div>
+        <div class="use-card">
+          <div class="use-bar">
+            <div class="use-bar-fill" style="width:28%"></div>
+          </div>
+          <div class="use-pct">28<sub>%</sub></div>
+          <div class="use-title">Technology & Infrastructure</div>
+          <div class="use-desc">Server hosting, database maintenance, map tile costs, form infrastructure (Tally), and
+            ongoing development of the public grievance tracker and API endpoints.</div>
+        </div>
+        <div class="use-card">
+          <div class="use-bar">
+            <div class="use-bar-fill" style="width:18%"></div>
+          </div>
+          <div class="use-pct">18<sub>%</sub></div>
+          <div class="use-title">RTI & Legal Costs</div>
+          <div class="use-desc">Filing fees for Right to Information requests, legal review of government responses, and
+            escalation costs when departments fail to respond within statutory deadlines.</div>
+        </div>
+        <div class="use-card">
+          <div class="use-bar">
+            <div class="use-bar-fill" style="width:8%"></div>
+          </div>
+          <div class="use-pct">8<sub>%</sub></div>
+          <div class="use-title">Translation & Accessibility</div>
+          <div class="use-desc">Hindi translation of all public-facing content, audio summaries for low-literacy users,
+            and local language grievance form support for remote tehsils in Kinnaur, Lahaul, and Chamba.</div>
+        </div>
+        <div class="use-card">
+          <div class="use-bar">
+            <div class="use-bar-fill" style="width:4%"></div>
+          </div>
+          <div class="use-pct">4<sub>%</sub></div>
+          <div class="use-title">Payment Processing</div>
+          <div class="use-desc">Gateway fees, transaction charges, and banking costs. We absorb these entirely so that
+            100% of what you intend to give reaches the project. This figure is the actual cost, not a rounding error.
+          </div>
+        </div>
+        <div class="use-card" style="border-style:dashed; background:var(--bg3);">
+          <div class="use-pct" style="color:var(--text3)">0<sub>%</sub></div>
+          <div class="use-title" style="color:var(--text3)">Political donations, advertising, and undisclosed
+            sponsorships</div>
+          <div class="use-desc">We accept none of the above. This box exists to make the constraint explicit, not to
+            take credit for it.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPACT TABLE -->
+    <section>
+      <div class="section-eyebrow">Your contribution in concrete terms</div>
+      <h2 class="section-h2">What specific amounts actually fund</h2>
+      <p class="section-lead">
+        These are not estimates. They are based on actual costs incurred in Q1 2025 operations.
+      </p>
+      <table class="impact-table">
+        <thead>
+          <tr>
+            <th>Amount</th>
+            <th>What it funds</th>
+            <th>Category</th>
+            <th>Estimated impact</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="amt">₹100</td>
+            <td>Covers the Tally form submission cost for approximately 25 grievance entries, including storage and
+              timestamp verification.</td>
+            <td><span class="tag">Infrastructure</span></td>
+            <td>25 verified field records</td>
+          </tr>
+          <tr>
+            <td class="amt">₹200</td>
+            <td>One tehsil-level call verification — cross-checking a submitted grievance with a second local source
+              before publishing to the live map.</td>
+            <td><span class="tag">Field Ops</span></td>
+            <td>1 verified grievance report</td>
+          </tr>
+          <tr>
+            <td class="amt">₹500</td>
+            <td>One day of field time for a community reporter in a district town — travel, data collection, photo
+              documentation, and structured note submission.</td>
+            <td><span class="tag">Field Ops</span></td>
+            <td>8–12 new grievance entries</td>
+          </tr>
+          <tr>
+            <td class="amt">₹1,000</td>
+            <td>One RTI filing with the HP Public Works Department including postage, notarisation, and follow-up
+              tracking for 30 days.</td>
+            <td><span class="tag">RTI / Legal</span></td>
+            <td>1 official information request</td>
+          </tr>
+          <tr>
+            <td class="amt">₹2,500</td>
+            <td>Full district-level data sweep — two field days, 3–4 tehsils visited, photography, GPS tagging, and
+              structured data entry into the grievance database.</td>
+            <td><span class="tag">Field Ops</span></td>
+            <td>1 complete district update</td>
+          </tr>
+          <tr>
+            <td class="amt">₹5,000</td>
+            <td>One month of server and map tile costs for the live grievance tracker, keeping the public dashboard
+              operational and updated for all 12 districts.</td>
+            <td><span class="tag">Infrastructure</span></td>
+            <td>30 days of public data access</td>
+          </tr>
+          <tr>
+            <td class="amt">₹10,000</td>
+            <td>Funds a full constituency-level accountability audit — grievance mapping, RTI cross-reference, MLA
+              response tracking, and a published PDF report distributed to local press.</td>
+            <td><span class="tag">Research</span></td>
+            <td>1 published constituency report</td>
+          </tr>
+          <tr>
+            <td class="amt">₹25,000</td>
+            <td>Covers one quarter of Hindi translation and accessibility work, including audio summaries of the top 10
+              grievances per district for broadcast on community radio.</td>
+            <td><span class="tag">Accessibility</span></td>
+            <td>12 district audio reports</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- WHY MONTHLY -->
+    <section>
+      <div class="recurring-block">
+        <div class="recurring-left">
+          <div class="section-eyebrow" style="margin-bottom:0">Why monthly giving matters</div>
+          <div class="recurring-h3">Field teams need predictable funding. Reporting doesn't work on a one-time budget.
+          </div>
+          <p class="recurring-body">
+            The nature of infrastructure accountability is cumulative. A pothole reported in October needs follow-up in
+            January. An RTI filed in March needs a second-stage appeal in June. Monthly donors make this continuity
+            possible. One-time donations are welcome — but monthly giving is what keeps a reporter in the field rather
+            than the office.
+          </p>
+          <a href="https://rzp.io/l/himachal-accountability-monthly" target="_blank" class="btn-primary"
+            style="align-self:flex-start; margin-top:8px">
+            Start monthly giving →
+          </a>
+        </div>
+        <div class="recurring-right">
+          <div class="section-eyebrow" style="margin-bottom:4px">Monthly giving unlocks</div>
+          <div class="recurring-item">
+            <div class="ri-icon">01</div>
+            <div class="ri-text"><b>Quarterly transparency report</b> — detailed account of where every rupee was spent,
+              emailed directly to monthly donors before public release.</div>
+          </div>
+          <div class="recurring-item">
+            <div class="ri-icon">02</div>
+            <div class="ri-text"><b>Priority district requests</b> — monthly donors above ₹500/mo can flag a
+              constituency or tehsil for inclusion in the next field sweep.</div>
+          </div>
+          <div class="recurring-item">
+            <div class="ri-icon">03</div>
+            <div class="ri-text"><b>RTI result notifications</b> — when a government department responds (or fails to)
+              to a filed RTI, monthly donors receive the document first.</div>
+          </div>
+          <div class="recurring-item">
+            <div class="ri-icon">04</div>
+            <div class="ri-text"><b>Annual accountability letter</b> — a full year-end audit of the project, naming
+              every funder tier, every cost line, and every piece of data produced.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRINCIPLES -->
+    <section>
+      <div class="section-eyebrow">Editorial independence</div>
+      <h2 class="section-h2">What your donation does not buy</h2>
+      <p class="section-lead">
+        Independence is not a marketing claim. These are operational rules that govern how we work, enforced regardless
+        of donation size.
+      </p>
+      <div class="principles-grid">
+        <div class="principle">
+          <div class="principle-num">01</div>
+          <div>
+            <div class="principle-title">No donor influence on coverage</div>
+            <div class="principle-body">Your donation funds operations, not editorial direction. No donor — individual,
+              institutional, or anonymous — can request inclusion, exclusion, or framing of any grievance or
+              constituency.</div>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-num">02</div>
+          <div>
+            <div class="principle-title">No political party funding</div>
+            <div class="principle-body">We do not accept donations from registered political parties, candidates,
+              political trusts, or entities with declared party affiliations. This applies to all parties without
+              exception.</div>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-num">03</div>
+          <div>
+            <div class="principle-title">No government or public sector money</div>
+            <div class="principle-body">We do not accept CSR funds, government grants, municipal contracts, or funding
+              from public sector undertakings. Our accountability function requires that we owe nothing to the entities
+              we track.</div>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-num">04</div>
+          <div>
+            <div class="principle-title">All donors publicly disclosed above ₹10,000</div>
+            <div class="principle-body">Any single contribution above ₹10,000 will be listed by name (or organisation)
+              in our quarterly transparency report. Anonymity is not available above this threshold.</div>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-num">05</div>
+          <div>
+            <div class="principle-title">Raw data is always public</div>
+            <div class="principle-body">The underlying grievance dataset is freely downloadable regardless of your
+              donation status. We do not gate public interest information behind paywalls or donor tiers.</div>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-num">06</div>
+          <div>
+            <div class="principle-title">Donations are not tax-deductible</div>
+            <div class="principle-body">We are not a registered trust or Section 8 company. We will not claim 80G status
+              to attract funding we have not properly structured to receive. We are building that infrastructure — until
+              then, we are honest about what we are.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FROM THE FIELD -->
+    <section>
+      <div class="section-eyebrow">From the field</div>
+      <h2 class="section-h2">Why this work matters, in people's own words</h2>
+      <p class="section-lead">
+        These are from citizens who submitted grievances through the tracker. Names withheld; districts included.
+      </p>
+      <div class="quote-grid">
+        <div class="quote-card">
+          <div class="quote-mark">"</div>
+          <div class="quote-text">Maine teen baar PWD office ko complaint di. Teen baar gaye, teen baar bol diya 'hoga.'
+            Jab aapke form pe submit kiya, ek hafte mein patrakaaron ne dhyan diya. Pehli baar lagta hai kuch ho sakta
+            hai.</div>
+          <div class="quote-attr"><span>Resident</span> — Chamba district</div>
+        </div>
+        <div class="quote-card">
+          <div class="quote-mark">"</div>
+          <div class="quote-text">The PHC here hasn't had a doctor in four months. I submitted the report at 10pm on my
+            phone. By morning it was on the map. That's more visibility than four months of visiting the BDO office.
+          </div>
+          <div class="quote-attr"><span>ASHA worker</span> — Mandi district</div>
+        </div>
+        <div class="quote-card">
+          <div class="quote-mark">"</div>
+          <div class="quote-text">We are small shopkeepers. The bypass road has been blocked for eight months, our
+            customers cannot reach us. Nobody cared until this platform showed our problem next to our MLA's name on the
+            same screen.</div>
+          <div class="quote-attr"><span>Trader</span> — Bilaspur district</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FINAL CTA STRIP -->
+  <section class="cta-strip">
+    <div class="cta-strip-inner">
+      <h2>Every rupee is a demand for answers.</h2>
+      <p>This is not charity. It is infrastructure for civic pressure. Fund the tracker. Keep the data public. Make
+        administration visible.</p>
+      <div class="cta-strip-btns">
+        <a href="https://rzp.io/l/himachal-accountability" target="_blank" class="cta-inv">Contribute now →</a>
+        <a href="index.html" class="cta-outline">View the dashboard</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand" style="display:flex; align-items:center; gap:12px;">
+        <img src="hap_logo.png" alt="HAP Logo" class="brand-logo" style="width:30px; height:30px;">
+        <div class="footer-note">
+          © <span id="year"></span> Himachal Accountability Project · Not affiliated with any political party or government body
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/dashboard.html">Dashboard</a>
+        <a href="#">Transparency reports</a>
+        <a href="#">Data downloads</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Theme toggle & sync
+    const root = document.documentElement;
+    const stored = localStorage.getItem('hap-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    root.setAttribute('data-theme', stored);
+
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('hap-theme', next);
+    });
+
+    // Donation widget logic
+    let selectedAmt = 500;
+    let selectedFreq = 'monthly';
+
+    function selectFreq(f) {
+      selectedFreq = f;
+      document.querySelectorAll('.freq-btn').forEach(b => b.classList.remove('selected'));
+      document.getElementById('freq-' + f).classList.add('selected');
+      updateImpact();
+    }
+
+    function selectAmt(amt, btn) {
+      if (btn) {
+        document.querySelectorAll('.amt-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+      }
+      if (amt !== null) {
+        selectedAmt = amt;
+        document.getElementById('custom-amt').value = '';
+      }
+      updateImpact();
+    }
+
+    document.getElementById('custom-amt').addEventListener('input', function () {
+      const v = parseInt(this.value);
+      if (v > 0) {
+        selectedAmt = v;
+        document.querySelectorAll('.amt-btn').forEach(b => b.classList.remove('selected'));
+        updateImpact();
+      }
+    });
+
+    const IMPACT_MAP = [
+      [100, 'covers form submission costs for ~25 grievance records.'],
+      [200, 'funds one tehsil-level verification call — turning a raw report into a verified entry.'],
+      [500, 'funds one full field day for a community reporter — up to 12 new verified grievances.'],
+      [1000, 'covers one RTI filing including postage, notarisation, and 30-day tracking.'],
+      [2500, 'funds a complete district-level data sweep — 3–4 tehsils, full documentation.'],
+      [5000, 'keeps the live tracker online for one month across all 12 districts.'],
+      [10000, 'funds a full constituency accountability audit, including a press-ready PDF report.'],
+    ];
+
+    function updateImpact() {
+      const freq = selectedFreq === 'monthly' ? '/month' : ' one-time';
+      const label = `₹${selectedAmt.toLocaleString('en-IN')}${freq}`;
+      let desc = 'supports ongoing field operations and data infrastructure.';
+      for (const [threshold, text] of IMPACT_MAP) {
+        if (selectedAmt >= threshold) desc = text;
+      }
+      document.getElementById('impact-box').innerHTML =
+        `<b>${label}</b> ${desc}`;
+      document.getElementById('donate-btn').textContent =
+        `Contribute ${label} →`;
+    }
+
+    // Animate progress bar on load
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('progress-fill').style.width = '67%';
+      }, 300);
+      document.getElementById('year').textContent = new Date().getFullYear();
+      updateImpact();
+    });
+  </script>
+</body>
+
+</html>
