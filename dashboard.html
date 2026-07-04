@@ -883,6 +883,82 @@ a {
   text-align: right;
 }
 
+/* ─── MLA PERCEPTION ─── */
+.mper-list {
+  display: flex;
+  flex-direction: column;
+}
+.mper-item {
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  transition: var(--transition);
+}
+.mper-item:hover {
+  background: var(--bg3);
+}
+.mper-item:last-child {
+  border-bottom: none;
+}
+.mper-left {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+}
+.mper-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.mper-party {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8.5px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 0;
+  text-transform: uppercase;
+}
+.party-inc {
+  background: rgba(16, 185, 129, 0.12);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+.party-bjp {
+  background: rgba(245, 158, 11, 0.12);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+.mper-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9.5px;
+  color: var(--text4);
+}
+.mper-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+.mper-rating {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--red);
+}
+.mper-count {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  color: var(--text3);
+}
+
 /* ─── LEAFLET THEMING ─── */
 .leaflet-popup-content-wrapper {
   background: var(--bg2)!important;
@@ -1177,7 +1253,7 @@ a {
   <div class="stat-belt-inner">
     <div class="sc">
       <div class="sc-label">Total reports</div>
-      <div class="sc-val">462</div>
+      <div class="sc-val" id="stat-total-reports">462</div>
       <div class="sc-sub">verified field entries</div>
     </div>
     <div class="sc">
@@ -1192,7 +1268,7 @@ a {
     </div>
     <div class="sc">
       <div class="sc-label">Unresolved rate</div>
-      <div class="sc-val a">69%</div>
+      <div class="sc-val a" id="stat-unresolved-rate">69%</div>
       <div class="sc-sub">no admin response on file</div>
     </div>
   </div>
@@ -1252,6 +1328,14 @@ a {
           <div class="card-meta">% unaddressed</div>
         </div>
         <div class="neg-list" id="neglect-list"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-hd">
+          <div class="card-ttl">MLA Public Perception Index</div>
+          <div class="card-meta"><span id="perception-count">0</span> survey reports</div>
+        </div>
+        <div class="mper-list" id="perception-list"></div>
       </div>
 
     </div>
@@ -1315,14 +1399,14 @@ const HP_GEOJSON = {"type":"FeatureCollection","features":[{"type":"Feature","pr
 const DISTRICT_DATA = {
   "Shimla":        {count:87, top:"Roads",      cats:{roads:35,water:20,health:15,power:10,youth:7},  neglect:72},
   "Kangra":        {count:64, top:"Water",      cats:{roads:18,water:28,health:8,power:6,youth:4},   neglect:68},
-  "Mandi":         {count:58, top:"Roads",      cats:{roads:24,water:14,health:10,power:7,youth:3},  neglect:65},
-  "Solan":         {count:42, top:"Roads",      cats:{roads:18,water:9,health:6,power:7,youth:2},    neglect:71},
-  "Hamirpur":      {count:38, top:"Power",      cats:{roads:10,water:8,health:6,power:11,youth:3},   neglect:63},
-  "Una":           {count:35, top:"Youth/Jobs", cats:{roads:9,water:7,health:5,power:4,youth:10},    neglect:74},
+  "Mandi":         {count:59, top:"Roads",      cats:{roads:25,water:14,health:10,power:7,youth:3},  neglect:65},
+  "Solan":         {count:43, top:"Roads",      cats:{roads:19,water:9,health:6,power:7,youth:2},    neglect:71},
+  "Hamirpur":      {count:39, top:"Power",      cats:{roads:11,water:8,health:6,power:11,youth:3},   neglect:63},
+  "Una":           {count:37, top:"Youth/Jobs", cats:{roads:10,water:7,health:6,power:4,youth:10},    neglect:74},
   "Kullu":         {count:31, top:"Health",     cats:{roads:9,water:7,health:11,power:2,youth:2},    neglect:58},
   "Sirmaur":       {count:27, top:"Water",      cats:{roads:8,water:12,health:4,power:2,youth:1},    neglect:69},
   "Bilaspur":      {count:24, top:"Power",      cats:{roads:7,water:5,health:3,power:8,youth:1},     neglect:67},
-  "Chamba":        {count:19, top:"Roads",      cats:{roads:9,water:4,health:3,power:2,youth:1},     neglect:61},
+  "Chamba":        {count:20, top:"Roads",      cats:{roads:10,water:4,health:3,power:2,youth:1},    neglect:61},
   "Kinnaur":       {count:11, top:"Health",     cats:{roads:3,water:2,health:4,power:1,youth:1},     neglect:55},
   "Lahaul & Spiti":{count:6,  top:"Roads",      cats:{roads:3,water:1,health:1,power:1,youth:0},     neglect:50},
 };
@@ -1341,6 +1425,12 @@ const CONSTITUENCY_NEGLECT = [
 ];
 
 const FEED_ITEMS = [
+  {text:"Bharmour (Dharwala) — NH-154A collapsed at Dharwala after spring rain. Connects Bharmour/Holi region to health infrastructure. No repair done.",district:"Chamba",cat:"roads",time:"New"},
+  {text:"Nadaun (Majhin) — Broken road from Majhin Chowk to Majhin. Delayed and stalled PWD Gaushala road project.",district:"Hamirpur",cat:"roads",time:"New"},
+  {text:"Gagret — Gagret Civil Hospital work on hold for 5-7 years despite construction. Feuds over land demarcations.",district:"Una",cat:"health",time:"New"},
+  {text:"Haroli — Complete lack of footpaths, sidewalks, and dustbins in public market area. Pincode 174303.",district:"Una",cat:"roads",time:"New"},
+  {text:"Balh — Sarkaghat/Bhangrotu roads unrepaired since 2023 monsoon floods. Neglected by state and local bodies.",district:"Mandi",cat:"roads",time:"New"},
+  {text:"Kasauli — Encroachments on pavements make walking impossible. Cyclic path and village connectivity blocked.",district:"Solan",cat:"roads",time:"New"},
   {text:"NH-5 near Rampur — 3 km broken surface. Complaint filed Oct 2024, no response.",district:"Shimla",cat:"roads",time:"2m ago"},
   {text:"Dharamshala ward 4 — water supply cut 11 days. PWD office unreachable.",district:"Kangra",cat:"water",time:"9m ago"},
   {text:"Solan bus stand: daily 3-hour power cuts. HPSEBL complaint #4421 unresolved 6 weeks.",district:"Solan",cat:"power",time:"16m ago"},
@@ -1705,6 +1795,39 @@ document.getElementById("neglect-list").innerHTML=CONSTITUENCY_NEGLECT.map(m=>{
     </div>
   </div>`;
 }).join("");
+
+  // ---- DYNAMIC STATS ----
+  const totalReports = Object.values(DISTRICT_DATA).reduce((sum, d) => sum + d.count, 0);
+  document.getElementById("stat-total-reports").textContent = totalReports;
+  const avgNeglect = Math.round(Object.values(DISTRICT_DATA).reduce((sum, d) => sum + (d.neglect * d.count), 0) / totalReports);
+  document.getElementById("stat-unresolved-rate").textContent = avgNeglect + "%";
+
+  // ---- MLA PERCEPTION TRACKER ----
+  const MLA_PERCEPTION = [
+    {mla: "Sukhvinder Singh Sukhu", party: "inc", cons: "Nadaun", dist: "Hamirpur", voteAgain: "No", rating: 0, reports: 1},
+    {mla: "Dr. Janak Raj", party: "bjp", cons: "Bharmour", dist: "Chamba", voteAgain: "No", rating: 0, reports: 1},
+    {mla: "Mukesh Agnihotri", party: "inc", cons: "Haroli", dist: "Una", voteAgain: "No", rating: 0, reports: 1},
+    {mla: "Inder Singh Gandhi", party: "bjp", cons: "Balh", dist: "Mandi", voteAgain: "No", rating: 0, reports: 1},
+    {mla: "Chaitanya Sharma", party: "inc", cons: "Gagret", dist: "Una", voteAgain: "No", rating: 0, reports: 1},
+    {mla: "Vinod Sultanpuri", party: "inc", cons: "Kasauli", dist: "Solan", voteAgain: "No", rating: 0, reports: 1},
+  ];
+  const totalPerceptions = MLA_PERCEPTION.reduce((sum, m) => sum + m.reports, 0);
+  document.getElementById("perception-count").textContent = totalPerceptions;
+  document.getElementById("perception-list").innerHTML = MLA_PERCEPTION.map(m => {
+    return `<div class="mper-item">
+      <div class="mper-left">
+        <div class="mper-title">
+          ${m.mla}
+          <span class="mper-party party-${m.party}">${m.party.toUpperCase()}</span>
+        </div>
+        <div class="mper-meta">${m.cons} (${m.dist}) &nbsp;·&nbsp; vote again: <b>${m.voteAgain}</b></div>
+      </div>
+      <div class="mper-right">
+        <div class="mper-rating">${m.rating}% Approval</div>
+        <div class="mper-count">${m.reports} report${m.reports > 1 ? 's' : ''}</div>
+      </div>
+    </div>`;
+  }).join("");
 
 } // end initDashboard
 </script>
