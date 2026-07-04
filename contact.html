@@ -462,6 +462,46 @@ footer {
 [data-theme="dark"] .theme-toggle-btn .icon-sun { display: block; }
 [data-theme="dark"] .theme-toggle-btn .icon-moon { display: none; }
 
+/* Responsive navigation styles */
+@media (max-width: 1024px) {
+  .masthead-inner {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .masthead-left {
+    justify-content: center;
+    width: 100%;
+  }
+  .masthead-right {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+@media (max-width: 480px) {
+  .masthead {
+    padding: 12px 10px;
+  }
+  .brand-text small {
+    display: none;
+  }
+  .masthead-right {
+    gap: 4px;
+  }
+  .btn-ghost {
+    padding: 6px 6px;
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+  }
+  .btn-primary {
+    padding: 6px 8px;
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+  }
+}
+
 </style>
 </head>
 <body>
