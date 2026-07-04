@@ -394,38 +394,15 @@
   .corner.tl{ top:6px; left:6px; border-right:none; border-bottom:none; }
   .corner.br{ bottom:6px; right:6px; border-left:none; border-top:none; }
 
-  .delay-row{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-top: 16px;
+  #report-desc:focus { border-color: var(--sage); }
+  #loc-btn:hover { opacity: 0.85; }
+  #submit-report-btn:not(:disabled):hover {
+    background: transparent;
+    color: var(--ink);
   }
-  .delay-row .label{
-    font-family:'IBM Plex Mono', monospace;
-    font-size: 0.68rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--ink-faint);
+  #photo-upload-area:hover {
+    border-color: var(--sage);
   }
-  .delay-count{
-    font-family:'IBM Plex Mono', monospace;
-    font-weight:600;
-    font-size: 1rem;
-  }
-  .heat-bar{
-    height: 6px;
-    background: var(--paper-deep);
-    margin-top: 8px;
-    position:relative;
-    overflow:hidden;
-  }
-  .heat-bar .fill{
-    position:absolute; inset:0 auto 0 0;
-    width: 0%;
-    background: linear-gradient(90deg, var(--sage), var(--amber));
-    transition: width 1.1s ease .6s;
-  }
-  .heat-bar .fill.is-visible{ width: 32%; }
 
   .trust-strip{
     border-top: 1px solid var(--paper-line);
@@ -1034,28 +1011,76 @@
 
       <div class="field-card" id="fieldCard">
         <div class="field-card-head">
-          <span class="field-card-label">Illustrative field report</span>
-          <span class="field-card-id mono">REF · HP-14-0392</span>
+          <span class="field-card-label" style="border-color: var(--sage); color: var(--sage);">Report from your location</span>
+          <span class="field-card-id mono" id="report-ref">REF · —</span>
         </div>
-        <h3>Retaining wall collapse — Link Road</h3>
-        <p style="margin:0; color:var(--ink-soft); font-size:0.92rem;">Reported by a resident, verified by neighbours.</p>
 
-        <dl class="field-meta">
-          <div><dt>Ward</dt><dd>14 · Kullu District</dd></div>
-          <div><dt>Coordinates</dt><dd>31.9570° N, 77.1090° E</dd></div>
+        <!-- Step 1: Location -->
+        <div id="loc-section">
+          <button id="loc-btn" style="
+            width:100%; padding:14px; margin: 10px 0;
+            font-family:'IBM Plex Mono', monospace; font-size:0.78rem;
+            font-weight:600; text-transform:uppercase; letter-spacing:0.08em;
+            background: var(--sage); color: var(--cream); border:1px solid var(--sage);
+            cursor:pointer; transition: var(--transition); display:flex; align-items:center; justify-content:center; gap:8px;
+          ">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:16px;height:16px;">
+              <path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/>
+              <circle cx="12" cy="9" r="2.4"/>
+            </svg>
+            Enable Location
+          </button>
+          <p id="loc-status" style="margin:0; font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--ink-faint); text-align:center;"></p>
+        </div>
+
+        <!-- Location data display (hidden until location obtained) -->
+        <dl class="field-meta" id="loc-data" style="display:none;">
+          <div><dt>Location</dt><dd id="loc-name">Detecting…</dd></div>
+          <div><dt>Coordinates</dt><dd id="loc-coords">—</dd></div>
         </dl>
 
-        <div class="photo-evidence">
+        <!-- Photo upload -->
+        <div class="photo-evidence" id="photo-upload-area" style="cursor:pointer; flex-direction:column; height:auto; min-height:72px; padding:14px; gap:8px;">
           <span class="corner tl"></span><span class="corner br"></span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="1"/><path d="M8 7l1.5-3h5L16 7"/><circle cx="12" cy="13.5" r="3.2"/></svg>
-          <span>1 photo attached &middot; geotagged on capture</span>
+          <input type="file" id="photo-input" accept="image/*" capture="environment" style="display:none;">
+          <div id="photo-placeholder" style="display:flex; align-items:center; gap:10px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:22px;height:22px; flex-shrink:0; color:var(--ink-soft);">
+              <rect x="3" y="7" width="18" height="13" rx="1"/>
+              <path d="M8 7l1.5-3h5L16 7"/>
+              <circle cx="12" cy="13.5" r="3.2"/>
+            </svg>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:0.7rem; color:var(--ink-soft);">Tap to upload a photo of the issue</span>
+          </div>
+          <div id="photo-preview-container" style="display:none; width:100%; text-align:center;">
+            <img id="photo-preview" style="max-width:100%; max-height:180px; border:1px solid var(--paper-line); margin-bottom:6px;" alt="Photo preview">
+            <div style="display:flex; align-items:center; justify-content:center; gap:6px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.8" style="width:14px;height:14px;"><path d="M20 6 9 17l-5-5"/></svg>
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:0.68rem; color:var(--sage);">Photo attached</span>
+            </div>
+          </div>
         </div>
 
-        <div class="delay-row">
-          <span class="label">Backlog Index</span>
-          <span class="delay-count mono" id="dayCount">0</span>
-        </div>
-        <div class="heat-bar"><div class="fill" id="heatFill"></div></div>
+        <!-- Optional description -->
+        <textarea id="report-desc" placeholder="Describe the problem (optional)" style="
+          width:100%; min-height:70px; max-height:140px; resize:vertical;
+          padding:12px; margin:10px 0 0 0; box-sizing:border-box;
+          font-family:'IBM Plex Sans',sans-serif; font-size:0.88rem;
+          background: var(--paper-deep); color: var(--ink);
+          border:1px solid var(--paper-line); outline:none;
+          transition: border-color 0.2s;
+        "></textarea>
+
+        <!-- Submit -->
+        <button id="submit-report-btn" disabled style="
+          width:100%; padding:14px; margin-top:12px;
+          font-family:'IBM Plex Mono', monospace; font-size:0.78rem;
+          font-weight:600; text-transform:uppercase; letter-spacing:0.08em;
+          background: var(--ink); color: var(--cream); border:1px solid var(--ink);
+          cursor:pointer; transition: var(--transition); opacity:0.4;
+        ">Submit Report →</button>
+        <p style="margin:6px 0 0; font-family:'IBM Plex Mono',monospace; font-size:0.62rem; color:var(--ink-faint); text-align:center;">
+          Location &amp; photo required · Description optional
+        </p>
       </div>
     </div>
   </section>
@@ -1302,18 +1327,121 @@
     setTimeout(function(){ document.querySelector('.hero-ctas').classList.add('is-visible'); }, 560);
     setTimeout(function(){
       document.getElementById('fieldCard').classList.add('is-visible');
-      document.getElementById('heatFill').classList.add('is-visible');
-      var target = 14, el = document.getElementById('dayCount'), start = null;
-      if(reduceMotion){ el.textContent = target; return; }
-      function step(ts){
-        if(start === null) start = ts;
-        var p = Math.min(1, (ts - start) / 900);
-        el.textContent = Math.round(p * target);
-        if(p < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
     }, 300);
   });
+
+  // --- Interactive field report card ---
+  (function(){
+    var locBtn = document.getElementById('loc-btn');
+    var locStatus = document.getElementById('loc-status');
+    var locData = document.getElementById('loc-data');
+    var locName = document.getElementById('loc-name');
+    var locCoords = document.getElementById('loc-coords');
+    var photoArea = document.getElementById('photo-upload-area');
+    var photoInput = document.getElementById('photo-input');
+    var photoPlaceholder = document.getElementById('photo-placeholder');
+    var photoPreviewContainer = document.getElementById('photo-preview-container');
+    var photoPreview = document.getElementById('photo-preview');
+    var submitBtn = document.getElementById('submit-report-btn');
+    var reportRef = document.getElementById('report-ref');
+
+    var reportData = { lat: null, lng: null, locationName: '', photoFile: null, photoDataUrl: null };
+
+    // Generate a reference ID
+    var refId = 'HP-' + String(Math.floor(Math.random()*68) + 1).padStart(2,'0') + '-' + String(Math.floor(Math.random()*9000) + 1000);
+    reportRef.textContent = 'REF · ' + refId;
+
+    function checkReady() {
+      var ready = reportData.lat !== null && reportData.photoFile !== null;
+      submitBtn.disabled = !ready;
+      submitBtn.style.opacity = ready ? '1' : '0.4';
+    }
+
+    // Location
+    locBtn.addEventListener('click', function(){
+      if (!navigator.geolocation) {
+        locStatus.textContent = 'Geolocation is not supported by your browser.';
+        locStatus.style.color = 'var(--stamp)';
+        return;
+      }
+      locBtn.textContent = 'Detecting location…';
+      locBtn.style.opacity = '0.6';
+      locBtn.style.pointerEvents = 'none';
+
+      navigator.geolocation.getCurrentPosition(
+        function(pos) {
+          reportData.lat = pos.coords.latitude;
+          reportData.lng = pos.coords.longitude;
+          locCoords.textContent = pos.coords.latitude.toFixed(4) + '° N, ' + pos.coords.longitude.toFixed(4) + '° E';
+          locData.style.display = 'grid';
+          locBtn.style.display = 'none';
+          locStatus.textContent = '';
+
+          // Reverse geocode using free Nominatim API
+          fetch('https://nominatim.openstreetmap.org/reverse?format=json&lat=' + pos.coords.latitude + '&lon=' + pos.coords.longitude + '&zoom=14&addressdetails=1')
+            .then(function(r){ return r.json(); })
+            .then(function(data){
+              var parts = [];
+              var a = data.address || {};
+              if (a.village || a.town || a.city) parts.push(a.village || a.town || a.city);
+              if (a.county || a.state_district) parts.push(a.county || a.state_district);
+              if (a.state) parts.push(a.state);
+              locName.textContent = parts.length ? parts.join(', ') : (data.display_name || 'Location detected');
+            })
+            .catch(function(){
+              locName.textContent = 'Lat ' + pos.coords.latitude.toFixed(4) + ', Lng ' + pos.coords.longitude.toFixed(4);
+            });
+
+          checkReady();
+        },
+        function(err) {
+          locBtn.textContent = 'Enable Location';
+          locBtn.style.opacity = '1';
+          locBtn.style.pointerEvents = 'auto';
+          var msg = 'Location access denied. Please allow location access in your browser settings.';
+          if (err.code === 2) msg = 'Location unavailable. Please try again.';
+          if (err.code === 3) msg = 'Location request timed out. Please try again.';
+          locStatus.textContent = msg;
+          locStatus.style.color = 'var(--stamp)';
+        },
+        { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
+      );
+    });
+
+    // Photo upload
+    photoArea.addEventListener('click', function(){ photoInput.click(); });
+    photoInput.addEventListener('change', function(){
+      var file = this.files[0];
+      if (!file) return;
+      reportData.photoFile = file;
+
+      var reader = new FileReader();
+      reader.onload = function(e){
+        reportData.photoDataUrl = e.target.result;
+        photoPreview.src = e.target.result;
+        photoPlaceholder.style.display = 'none';
+        photoPreviewContainer.style.display = 'block';
+        checkReady();
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // Submit
+    submitBtn.addEventListener('click', function(){
+      if (submitBtn.disabled) return;
+      var desc = document.getElementById('report-desc').value.trim();
+      
+      // Build Tally URL with pre-filled data
+      var tallyUrl = 'https://tally.so/r/A76O8B';
+      var params = [];
+      if (reportData.lat) params.push('coordinates=' + encodeURIComponent(reportData.lat.toFixed(6) + ', ' + reportData.lng.toFixed(6)));
+      if (reportData.locationName) params.push('location=' + encodeURIComponent(document.getElementById('loc-name').textContent));
+      if (desc) params.push('description=' + encodeURIComponent(desc));
+      if (params.length) tallyUrl += '?' + params.join('&');
+
+      window.open(tallyUrl, '_blank');
+    });
+  })();
 
   // --- scroll reveal ---
   var revealEls = document.querySelectorAll('.reveal');
