@@ -1427,20 +1427,73 @@
     });
 
     // Submit
+    // Replace this URL with your deployed Google Apps Script web app URL
+    var WEBHOOK_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL';
+
     submitBtn.addEventListener('click', function(){
       if (submitBtn.disabled) return;
       var desc = document.getElementById('report-desc').value.trim();
       
-      // Build Tally URL with pre-filled data
-      var tallyUrl = 'https://tally.so/r/A76O8B';
-      var params = [];
-      if (reportData.lat) params.push('coordinates=' + encodeURIComponent(reportData.lat.toFixed(6) + ', ' + reportData.lng.toFixed(6)));
-      if (reportData.locationName) params.push('location=' + encodeURIComponent(document.getElementById('loc-name').textContent));
-      if (desc) params.push('description=' + encodeURIComponent(desc));
-      if (params.length) tallyUrl += '?' + params.join('&');
+      // Disable button immediately
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting…';
+      submitBtn.style.opacity = '0.5';
 
-      window.open(tallyUrl, '_blank');
+      // Prepare payload
+      var payload = {
+        ref: reportRef.textContent,
+        coordinates: reportData.lat.toFixed(6) + ', ' + reportData.lng.toFixed(6),
+        location: document.getElementById('loc-name').textContent,
+        description: desc || '(none)',
+        timestamp: new Date().toISOString()
+      };
+
+      // Include photo as base64 (compressed)
+      if (reportData.photoDataUrl) {
+        var img = new Image();
+        img.onload = function(){
+          var canvas = document.createElement('canvas');
+          var maxDim = 1200;
+          var w = img.width, h = img.height;
+          if (w > maxDim || h > maxDim) {
+            if (w > h) { h = Math.round(h * maxDim / w); w = maxDim; }
+            else { w = Math.round(w * maxDim / h); h = maxDim; }
+          }
+          canvas.width = w; canvas.height = h;
+          canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+          payload.photo = canvas.toDataURL('image/jpeg', 0.7);
+          sendReport(payload);
+        };
+        img.src = reportData.photoDataUrl;
+      } else {
+        sendReport(payload);
+      }
     });
+
+    function sendReport(payload) {
+      var card = document.getElementById('fieldCard');
+
+      // Try to send to webhook
+      if (WEBHOOK_URL && WEBHOOK_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL') {
+        fetch(WEBHOOK_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }).catch(function(){ /* silent fail */ });
+      }
+
+      // Show thank-you message
+      card.innerHTML = '<div style="text-align:center; padding: 30px 10px;">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="2" style="width:48px;height:48px;margin:0 auto 16px;display:block;">' +
+        '<circle cx="12" cy="12" r="10"/><path d="M8 12l2.5 3L16 9"/></svg>' +
+        '<h3 style="margin:0 0 8px; font-size:1.15rem;">Submitted — Thank You</h3>' +
+        '<p style="margin:0; color:var(--ink-soft); font-size:0.88rem; line-height:1.5;">' +
+        'Thank you for your input. We\'ll verify the report and reach back accordingly.</p>' +
+        '<p style="margin:14px 0 0; font-family:\'IBM Plex Mono\',monospace; font-size:0.68rem; color:var(--ink-faint);">' + 
+        payload.ref + ' · ' + payload.location + '</p>' +
+        '</div>';
+    }
   })();
 
   // --- scroll reveal ---
