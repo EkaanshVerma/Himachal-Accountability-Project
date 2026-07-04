@@ -47,6 +47,20 @@ function doPost(e) {
       
       sendDetailedNotification(data, issuePhotoUrl, priorityPhotoUrl);
       
+    } else if (data.formType === 'contact') {
+      var sheet = ss.getSheetByName('Contact Messages') || createContactSheet(ss);
+      
+      sheet.appendRow([
+        data.timestamp || new Date().toISOString(),
+        data.name || '',
+        data.email || '',
+        data.subject || '',
+        data.message || '',
+        'New' // Status
+      ]);
+      
+      sendContactNotification(data);
+      
     } else {
       // Default: Quick Report from Home Page
       var sheet = ss.getSheetByName('Reports') || createQuickSheet(ss);
@@ -108,6 +122,7 @@ function getOrCreateSpreadsheet() {
   
   createQuickSheet(ss, sheet);
   createDetailedSheet(ss);
+  createContactSheet(ss);
   
   props.setProperty('SPREADSHEET_ID', ss.getId());
   Logger.log('Created spreadsheet: ' + ss.getUrl());
@@ -227,6 +242,48 @@ function sendDetailedNotification(data, issuePhoto, priorityPhoto) {
   
   if (issuePhoto) body += 'Issue Photo: ' + issuePhoto + '\n';
   if (priorityPhoto) body += 'Priority Photo: ' + priorityPhoto + '\n';
+  
+  MailApp.sendEmail(email, subject, body);
+}
+
+function createContactSheet(ss) {
+  var sheet = ss.insertSheet('Contact Messages');
+  
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow([
+      'Timestamp', 'Name', 'Email', 'Subject', 'Message', 'Status'
+    ]);
+    
+    var headerRange = sheet.getRange(1, 1, 1, 6);
+    headerRange.setFontWeight('bold');
+    headerRange.setBackground('#2D3B2D');
+    headerRange.setFontColor('#F3F1E6');
+    
+    sheet.setColumnWidth(1, 180);
+    sheet.setColumnWidth(2, 150);
+    sheet.setColumnWidth(3, 200);
+    sheet.setColumnWidth(4, 200);
+    sheet.setColumnWidth(5, 400);
+    sheet.setColumnWidth(6, 100);
+    
+    sheet.setFrozenRows(1);
+  }
+  return sheet;
+}
+
+function sendContactNotification(data) {
+  var email = Session.getActiveUser().getEmail();
+  if (!email) return;
+  
+  var subject = '✉️ Contact Form: ' + (data.subject || 'New Message');
+  var body = 'New contact message received via HAP website.\n\n' +
+    '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
+    'Name: ' + (data.name || '—') + '\n' +
+    'Email: ' + (data.email || '—') + '\n' +
+    'Subject: ' + (data.subject || '—') + '\n' +
+    'Message:\n' + (data.message || '(no message)') + '\n' +
+    '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
+    'Timestamp: ' + (data.timestamp || new Date().toISOString()) + '\n';
   
   MailApp.sendEmail(email, subject, body);
 }
