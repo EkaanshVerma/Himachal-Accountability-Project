@@ -18,20 +18,20 @@ function doPost(e) {
   try {
     var data = JSON.parse(e.postData.contents);
     var ss = getOrCreateSpreadsheet();
-    
+
     if (data.formType === 'detailed') {
       var sheet = ss.getSheetByName('Detailed Reports') || createDetailedSheet(ss);
-      
+
       var issuePhotoUrl = '';
       if (data.issuePhoto && data.issuePhoto.startsWith('data:image')) {
         issuePhotoUrl = savePhotoToDrive(data.issuePhoto, 'issue_' + Date.now());
       }
-      
+
       var priorityPhotoUrl = '';
       if (data.priorityPhoto && data.priorityPhoto.startsWith('data:image')) {
         priorityPhotoUrl = savePhotoToDrive(data.priorityPhoto, 'priority_' + Date.now());
       }
-      
+
       sheet.appendRow([
         data.timestamp || new Date().toISOString(),
         data.pincode || '',
@@ -44,12 +44,12 @@ function doPost(e) {
         data.whatsapp || '',
         'New' // Status
       ]);
-      
+
       sendDetailedNotification(data, issuePhotoUrl, priorityPhotoUrl);
-      
+
     } else if (data.formType === 'contact') {
       var sheet = ss.getSheetByName('Contact Messages') || createContactSheet(ss);
-      
+
       sheet.appendRow([
         data.timestamp || new Date().toISOString(),
         data.name || '',
@@ -58,18 +58,18 @@ function doPost(e) {
         data.message || '',
         'New' // Status
       ]);
-      
+
       sendContactNotification(data);
-      
+
     } else {
       // Default: Quick Report from Home Page
       var sheet = ss.getSheetByName('Reports') || createQuickSheet(ss);
-      
+
       var photoUrl = '';
       if (data.photo && data.photo.startsWith('data:image')) {
         photoUrl = savePhotoToDrive(data.photo, data.ref || 'report');
       }
-      
+
       sheet.appendRow([
         data.timestamp || new Date().toISOString(),
         data.ref || '',
@@ -81,14 +81,14 @@ function doPost(e) {
         photoUrl,
         'New'  // Status
       ]);
-      
+
       sendNotification(data, photoUrl);
     }
-    
+
     return ContentService.createTextOutput(
       JSON.stringify({ status: 'success' })
     ).setMimeType(ContentService.MimeType.JSON);
-    
+
   } catch (error) {
     return ContentService.createTextOutput(
       JSON.stringify({ status: 'error', message: error.toString() })
@@ -105,7 +105,7 @@ function doGet(e) {
 function getOrCreateSpreadsheet() {
   var props = PropertiesService.getScriptProperties();
   var ssId = props.getProperty('SPREADSHEET_ID');
-  
+
   if (ssId) {
     try {
       return SpreadsheetApp.openById(ssId);
@@ -113,17 +113,17 @@ function getOrCreateSpreadsheet() {
       // Spreadsheet deleted, will create a new one
     }
   }
-  
+
   var ss = SpreadsheetApp.create('HAP Field Reports');
-  
+
   // Default first sheet is 'Sheet1', let's rename it
   var sheet = ss.getSheets()[0];
   sheet.setName('Reports');
-  
+
   createQuickSheet(ss, sheet);
   createDetailedSheet(ss);
   createContactSheet(ss);
-  
+
   props.setProperty('SPREADSHEET_ID', ss.getId());
   Logger.log('Created spreadsheet: ' + ss.getUrl());
   return ss;
@@ -131,18 +131,18 @@ function getOrCreateSpreadsheet() {
 
 function createQuickSheet(ss, existingSheet) {
   var sheet = existingSheet || ss.insertSheet('Reports');
-  
+
   if (sheet.getLastRow() === 0) {
     sheet.appendRow([
-      'Timestamp', 'Reference ID', 'Coordinates', 'Location', 
+      'Timestamp', 'Reference ID', 'Coordinates', 'Location',
       'Category', 'Description', 'MLA Approval', 'Photo Link', 'Status'
     ]);
-    
+
     var headerRange = sheet.getRange(1, 1, 1, 9);
     headerRange.setFontWeight('bold');
     headerRange.setBackground('#2D3B2D');
     headerRange.setFontColor('#F3F1E6');
-    
+
     sheet.setColumnWidth(1, 180);
     sheet.setColumnWidth(2, 130);
     sheet.setColumnWidth(3, 200);
@@ -152,7 +152,7 @@ function createQuickSheet(ss, existingSheet) {
     sheet.setColumnWidth(7, 120);
     sheet.setColumnWidth(8, 300);
     sheet.setColumnWidth(9, 100);
-    
+
     sheet.setFrozenRows(1);
   }
   return sheet;
@@ -160,17 +160,17 @@ function createQuickSheet(ss, existingSheet) {
 
 function createDetailedSheet(ss) {
   var sheet = ss.insertSheet('Detailed Reports');
-  
+
   sheet.appendRow([
-    'Timestamp', 'Pincode', 'Biggest Issue', 'Issue Photo', 
+    'Timestamp', 'Pincode', 'Biggest Issue', 'Issue Photo',
     '#1 Priority', 'Priority Photo', 'MLA Perception', 'Leadership Needed', 'WhatsApp', 'Status'
   ]);
-  
+
   var headerRange = sheet.getRange(1, 1, 1, 10);
   headerRange.setFontWeight('bold');
   headerRange.setBackground('#2D3B2D');
   headerRange.setFontColor('#F3F1E6');
-  
+
   sheet.setColumnWidth(1, 180); // Timestamp
   sheet.setColumnWidth(2, 100); // Pincode
   sheet.setColumnWidth(3, 300); // Issue
@@ -181,7 +181,7 @@ function createDetailedSheet(ss) {
   sheet.setColumnWidth(8, 300); // Leadership
   sheet.setColumnWidth(9, 120); // WhatsApp
   sheet.setColumnWidth(10, 100); // Status
-  
+
   sheet.setFrozenRows(1);
   return sheet;
 }
@@ -195,22 +195,22 @@ function savePhotoToDrive(base64Data, refId) {
     folder = DriveApp.createFolder('HAP_Photos');
     folder.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
   }
-  
+
   var parts = base64Data.split(',');
   var mimeType = parts[0].match(/:(.*?);/)[1];
   var bytes = Utilities.base64Decode(parts[1]);
   var blob = Utilities.newBlob(bytes, mimeType, refId + '.jpg');
-  
+
   var file = folder.createFile(blob);
   file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
-  
+
   return file.getUrl();
 }
 
 function sendNotification(data, photoUrl) {
   var email = Session.getActiveUser().getEmail();
   if (!email) return;
-  
+
   var subject = '🔔 Quick Report: ' + (data.ref || 'Unknown');
   var body = 'New quick field report submitted.\n\n' +
     '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
@@ -221,14 +221,14 @@ function sendNotification(data, photoUrl) {
     'Approve MLA?: ' + (data.mlaApprove || '—') + '\n' +
     'Timestamp: ' + (data.timestamp || new Date().toISOString()) + '\n';
   if (photoUrl) body += 'Photo: ' + photoUrl + '\n';
-  
+
   MailApp.sendEmail(email, subject, body);
 }
 
 function sendDetailedNotification(data, issuePhoto, priorityPhoto) {
   var email = Session.getActiveUser().getEmail();
   if (!email) return;
-  
+
   var subject = '📝 Detailed Survey: Pin ' + (data.pincode || 'Unknown');
   var body = 'New detailed survey response submitted.\n\n' +
     '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
@@ -239,33 +239,33 @@ function sendDetailedNotification(data, issuePhoto, priorityPhoto) {
     'Leadership Needed: ' + (data.leadership || '—') + '\n' +
     'WhatsApp: ' + (data.whatsapp || '—') + '\n' +
     'Timestamp: ' + (data.timestamp || new Date().toISOString()) + '\n';
-  
+
   if (issuePhoto) body += 'Issue Photo: ' + issuePhoto + '\n';
   if (priorityPhoto) body += 'Priority Photo: ' + priorityPhoto + '\n';
-  
+
   MailApp.sendEmail(email, subject, body);
 }
 
 function createContactSheet(ss) {
   var sheet = ss.insertSheet('Contact Messages');
-  
+
   if (sheet.getLastRow() === 0) {
     sheet.appendRow([
       'Timestamp', 'Name', 'Email', 'Subject', 'Message', 'Status'
     ]);
-    
+
     var headerRange = sheet.getRange(1, 1, 1, 6);
     headerRange.setFontWeight('bold');
     headerRange.setBackground('#2D3B2D');
     headerRange.setFontColor('#F3F1E6');
-    
+
     sheet.setColumnWidth(1, 180);
     sheet.setColumnWidth(2, 150);
     sheet.setColumnWidth(3, 200);
     sheet.setColumnWidth(4, 200);
     sheet.setColumnWidth(5, 400);
     sheet.setColumnWidth(6, 100);
-    
+
     sheet.setFrozenRows(1);
   }
   return sheet;
@@ -274,7 +274,7 @@ function createContactSheet(ss) {
 function sendContactNotification(data) {
   var email = Session.getActiveUser().getEmail();
   if (!email) return;
-  
+
   var subject = '✉️ Contact Form: ' + (data.subject || 'New Message');
   var body = 'New contact message received via HAP website.\n\n' +
     '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
@@ -284,6 +284,6 @@ function sendContactNotification(data) {
     'Message:\n' + (data.message || '(no message)') + '\n' +
     '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
     'Timestamp: ' + (data.timestamp || new Date().toISOString()) + '\n';
-  
+
   MailApp.sendEmail(email, subject, body);
 }
