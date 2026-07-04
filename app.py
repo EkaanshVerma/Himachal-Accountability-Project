@@ -2,21 +2,29 @@ import os
 import hmac
 import hashlib
 from flask import Flask, request, jsonify, send_from_directory
-from dotenv import load_dotenv
-import razorpay
 
-# Load environment variables
-load_dotenv()
+# Try loading .env for local development (safe to fail on Vercel)
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 
-# Fetch Razorpay keys
-RAZORPAY_KEY_ID = os.getenv("RAZORPAY_KEY_ID")
-RAZORPAY_KEY_SECRET = os.getenv("RAZORPAY_KEY_SECRET")
+# Fetch Razorpay keys (validated at request time, not at import time)
+RAZORPAY_KEY_ID = os.getenv("RAZORPAY_KEY_ID", "")
+RAZORPAY_KEY_SECRET = os.getenv("RAZORPAY_KEY_SECRET", "")
 
-if not RAZORPAY_KEY_ID or not RAZORPAY_KEY_SECRET:
-    raise ValueError("Missing RAZORPAY_KEY_ID or RAZORPAY_KEY_SECRET in environment variables.")
+# Initialize Razorpay Client lazily
+_razorpay_client = None
 
-# Initialize Razorpay Client
-client = razorpay.Client(auth=(RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET))
+def get_razorpay_client():
+    global _razorpay_client
+    if _razorpay_client is None:
+        if not RAZORPAY_KEY_ID or not RAZORPAY_KEY_SECRET:
+            raise RuntimeError("Missing RAZORPAY_KEY_ID or RAZORPAY_KEY_SECRET in environment variables.")
+        import razorpay
+        _razorpay_client = razorpay.Client(auth=(RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET))
+    return _razorpay_client
 
 # Initialize Flask app
 # Serve static files out of the root project folder
@@ -54,6 +62,9 @@ def create_order():
         if amount < 100:
             return jsonify({'error': 'Amount must be at least 100 paise (₹1)'}), 400
             
+        # Get Razorpay client (validates env vars)
+        client = get_razorpay_client()
+
         # Create order via Razorpay API
         order_data = {
             'amount': amount,
@@ -71,8 +82,8 @@ def create_order():
             'key_id': RAZORPAY_KEY_ID
         })
         
-    except razorpay.errors.SignatureVerificationError as e:
-        return jsonify({'error': 'Signature verification error: ' + str(e)}), 400
+    except RuntimeError as e:
+        return jsonify({'error': str(e)}), 500
     except Exception as e:
         return jsonify({'error': 'Internal server error: ' + str(e)}), 500
 
@@ -90,6 +101,9 @@ def verify_payment():
         # Validate required fields
         if not razorpay_order_id or not razorpay_payment_id or not razorpay_signature:
             return jsonify({'error': 'Missing required payment verification fields'}), 400
+
+        if not RAZORPAY_KEY_SECRET:
+            return jsonify({'error': 'Server misconfigured: missing Razorpay secret key'}), 500
             
         # Verify Payment Signature
         # Signature verification formula: HMAC-SHA256(order_id + "|" + payment_id, SECRET_KEY)
@@ -116,5 +130,4 @@ def verify_payment():
 
 if __name__ == '__main__':
     # Start Flask application on port 8000
-    # Port 8000 matches the port the user previewed earlier
     app.run(host='0.0.0.0', port=8000, debug=True)

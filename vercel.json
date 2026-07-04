@@ -4,36 +4,16 @@
     {
       "src": "app.py",
       "use": "@vercel/python"
-    },
-    {
-      "src": "**/*.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "**/*.css",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "**/*.js",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "**/hap_logo.png",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "**/himachal_bg_1782657812430.png",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "**/himachal_landing_bg.jpg",
-      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
       "dest": "app.py"
+    },
+    {
+      "src": "/(.*\\.(html|css|js|png|jpg|jpeg|svg|ico|woff|woff2|ttf))",
+      "dest": "/$1"
     },
     {
       "src": "/(.*)",
