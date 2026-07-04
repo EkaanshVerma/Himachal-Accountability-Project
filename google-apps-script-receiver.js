@@ -37,7 +37,9 @@ function doPost(e) {
       data.ref || '',
       data.coordinates || '',
       data.location || '',
+      data.category || '',
       data.description || '',
+      data.mlaApprove || '',
       photoUrl,
       'New'  // Status column
     ]);
@@ -88,13 +90,15 @@ function getOrCreateSpreadsheet() {
     'Reference ID', 
     'Coordinates',
     'Location',
+    'Category',
     'Description',
+    'MLA Approval',
     'Photo Link',
     'Status'
   ]);
   
   // Format headers
-  var headerRange = sheet.getRange(1, 1, 1, 7);
+  var headerRange = sheet.getRange(1, 1, 1, 9);
   headerRange.setFontWeight('bold');
   headerRange.setBackground('#2D3B2D');
   headerRange.setFontColor('#F3F1E6');
@@ -104,9 +108,11 @@ function getOrCreateSpreadsheet() {
   sheet.setColumnWidth(2, 130);  // Ref ID
   sheet.setColumnWidth(3, 200);  // Coordinates
   sheet.setColumnWidth(4, 250);  // Location
-  sheet.setColumnWidth(5, 350);  // Description
-  sheet.setColumnWidth(6, 300);  // Photo Link
-  sheet.setColumnWidth(7, 100);  // Status
+  sheet.setColumnWidth(5, 150);  // Category
+  sheet.setColumnWidth(6, 350);  // Description
+  sheet.setColumnWidth(7, 120);  // MLA Approval
+  sheet.setColumnWidth(8, 300);  // Photo Link
+  sheet.setColumnWidth(9, 100);  // Status
   
   // Freeze header row
   sheet.setFrozenRows(1);
@@ -158,7 +164,9 @@ function sendNotification(data, photoUrl) {
     'Reference: ' + (data.ref || '—') + '\n' +
     'Location: ' + (data.location || '—') + '\n' +
     'Coordinates: ' + (data.coordinates || '—') + '\n' +
+    'Category: ' + (data.category || '—') + '\n' +
     'Description: ' + (data.description || '(none)') + '\n' +
+    'Approve MLA?: ' + (data.mlaApprove || '—') + '\n' +
     'Timestamp: ' + (data.timestamp || new Date().toISOString()) + '\n';
   
   if (photoUrl) {
