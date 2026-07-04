@@ -2018,9 +2018,16 @@
           receipt: 'receipt_hap_' + Date.now()
         })
       })
-      .then(res => {
+      .then(async res => {
         if (!res.ok) {
-          return res.json().then(err => { throw new Error(err.error || 'Server error creating order') });
+          let errMsg = 'Server error creating order';
+          try {
+            const err = await res.json();
+            errMsg = err.error || errMsg;
+          } catch(e) {
+            errMsg = `Server returned status ${res.status}: ${res.statusText}`;
+          }
+          throw new Error(errMsg);
         }
         return res.json();
       })
@@ -2049,9 +2056,16 @@
                 razorpay_signature: response.razorpay_signature
               })
             })
-            .then(vRes => {
+            .then(async vRes => {
               if (!vRes.ok) {
-                return vRes.json().then(vErr => { throw new Error(vErr.error || 'Signature mismatch') });
+                let errMsg = 'Signature mismatch';
+                try {
+                  const vErr = await vRes.json();
+                  errMsg = vErr.error || errMsg;
+                } catch(e) {
+                  errMsg = `Server returned status ${vRes.status}: ${vRes.statusText}`;
+                }
+                throw new Error(errMsg);
               }
               return vRes.json();
             })
