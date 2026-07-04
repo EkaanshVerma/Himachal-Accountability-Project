@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How We Use Your Data — Himachal Accountability Project</title>
+<meta name="description" content="A full account of how citizen grievance data moves from a Tally form submission through ground verification to the live public dashboard — every step documented.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --paper: #ECEEDF; --paper-deep: #DFE2CE; --paper-line: rgba(30,42,34,0.14);
+  --ink: #1E2A22; --ink-soft: rgba(30,42,34,0.68); --ink-faint: rgba(30,42,34,0.42);
+  --slate: #283740; --cream: #F3F1E6; --amber-val: #D98C3D; --stamp: #A23B2E; --sage: #5C7A52;
+  --bg: var(--paper); --bg2: var(--cream); --bg3: var(--paper-deep);
+  --bg4: rgba(30,42,34,0.06); --bg5: rgba(30,42,34,0.12);
+  --border: var(--paper-line); --border2: rgba(30,42,34,0.22); --border3: var(--ink);
+  --text: var(--ink); --text2: var(--ink-soft); --text3: var(--ink-faint);
+  --red: var(--stamp); --red-bg: rgba(162,59,46,0.1); --red-mid: rgba(162,59,46,0.25);
+  --amber: var(--amber-val); --amber-bg: rgba(217,140,61,0.1); --amber-mid: rgba(217,140,61,0.25);
+  --green: var(--sage); --green-bg: rgba(92,122,82,0.1); --green-mid: rgba(92,122,82,0.25);
+  --blue: #283740; --blue-bg: rgba(40,55,64,0.1); --blue-mid: rgba(40,55,64,0.25);
+  --glass-bg: rgba(243,241,230,0.88); --glass-blur: blur(6px);
+  --transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+[data-theme="dark"] {
+  --paper: #111914; --paper-deep: #182018; --paper-line: rgba(180,200,170,0.12);
+  --ink: #D8E4D0; --ink-soft: rgba(216,228,208,0.68); --ink-faint: rgba(216,228,208,0.38);
+  --slate: #1A2830; --cream: #1E2A22; --amber-val: #E09B50; --stamp: #C4584A; --sage: #7A9E6E;
+  --bg: var(--paper); --bg2: var(--cream); --bg3: var(--paper-deep);
+  --bg4: rgba(216,228,208,0.08); --bg5: rgba(216,228,208,0.15);
+  --border: var(--paper-line); --border2: rgba(216,228,208,0.22); --border3: var(--ink);
+  --text: var(--ink); --text2: var(--ink-soft); --text3: var(--ink-faint);
+  --red: var(--stamp); --red-bg: rgba(196,88,74,0.1); --red-mid: rgba(196,88,74,0.25);
+  --amber: var(--amber-val); --amber-bg: rgba(224,155,80,0.1); --amber-mid: rgba(224,155,80,0.25);
+  --green: var(--sage); --green-bg: rgba(122,158,110,0.1); --green-mid: rgba(122,158,110,0.25);
+  --blue: #1A2830; --blue-bg: rgba(26,40,48,0.3); --blue-mid: rgba(26,40,48,0.5);
+  --glass-bg: rgba(30,42,34,0.88);
+}
+
+html, body { min-height: 100%; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+  font-size: 14px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: var(--transition);
+}
+
+/* ── ANN BAR ── */
+.ann-bar {
+  background: var(--bg3); border-bottom: 1px solid var(--border2);
+  padding: 7px 24px; font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; color: var(--text3); text-align: center; letter-spacing: 0.04em;
+}
+.ann-bar b { color: var(--text); font-weight: 600; }
+
+/* ── MASTHEAD ── */
+.masthead {
+  padding: 15px 24px; border-bottom: 1px solid var(--border);
+  background: var(--glass-bg); backdrop-filter: var(--glass-blur);
+  position: sticky; top: 0; z-index: 1000; transition: var(--transition);
+}
+.masthead-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+}
+.brand {
+  display: flex; align-items: center; gap: 12px;
+  font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 0.92rem;
+  text-decoration: none; color: var(--text);
+}
+.brand-mark {
+  width: 33px; height: 33px; border: 1.5px solid var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; font-weight: 600;
+  flex-shrink: 0; transition: var(--transition);
+}
+.brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+.brand-text small {
+  font-family: 'IBM Plex Mono', monospace; font-weight: 400;
+  font-size: 0.6rem; letter-spacing: 0.1em; color: var(--text3); text-transform: uppercase;
+}
+.masthead-right { display: flex; align-items: center; gap: 8px; }
+.btn-ghost {
+  background: transparent; border: 1.5px solid var(--border3); color: var(--text);
+  padding: 8px 14px; font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+  cursor: pointer; transition: var(--transition); text-decoration: none; display: inline-flex; align-items: center;
+}
+.btn-ghost:hover { background: var(--text); color: var(--bg2); }
+.theme-btn {
+  background: transparent; border: 1.5px solid var(--border3); color: var(--text);
+  width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: var(--transition);
+}
+.theme-btn:hover { background: var(--text); color: var(--bg2); }
+.theme-btn svg { width: 16px; height: 16px; pointer-events: none; }
+.icon-sun { display: none; } .icon-moon { display: block; }
+[data-theme="light"] .icon-sun { display: block; } [data-theme="light"] .icon-moon { display: none; }
+
+/* ── HERO ── */
+.hero {
+  background: var(--bg2); border-bottom: 1px solid var(--border2);
+  padding: 64px 24px 56px;
+}
+.hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 340px; gap: 72px; align-items: start; }
+@media(max-width:860px){ .hero-inner{ grid-template-columns:1fr; gap:40px; } }
+.hero-eyebrow {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--red);
+  margin-bottom: 18px; display: flex; align-items: center; gap: 10px;
+}
+.hero-eyebrow::before { content: ""; display: block; width: 22px; height: 1.5px; background: var(--red); }
+.hero-h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(28px, 4.5vw, 48px); font-weight: 700;
+  letter-spacing: -0.03em; line-height: 1.08; color: var(--text); margin-bottom: 20px;
+}
+.hero-h1 em { font-style: normal; color: var(--red); }
+.hero-lead { font-size: 15px; line-height: 1.75; color: var(--text2); max-width: 520px; }
+
+/* TOC card */
+.toc-card {
+  background: var(--bg); border: 1.5px solid var(--border3);
+  padding: 0; overflow: hidden; position: sticky; top: 80px;
+}
+.toc-head {
+  background: var(--text); color: var(--bg2);
+  padding: 12px 18px;
+  font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.14em;
+}
+.toc-list { list-style: none; }
+.toc-list li { border-bottom: 1px solid var(--border); }
+.toc-list li:last-child { border-bottom: none; }
+.toc-list a {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 18px; font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; font-weight: 600; color: var(--text3);
+  text-decoration: none; text-transform: uppercase; letter-spacing: 0.06em;
+  transition: var(--transition);
+}
+.toc-list a:hover { background: var(--bg3); color: var(--text); }
+.toc-list a.active { background: var(--red-bg); color: var(--red); border-left: 2px solid var(--red); }
+.toc-num {
+  font-size: 10px; color: var(--text3); min-width: 20px;
+  font-family: 'IBM Plex Mono', monospace;
+}
+.toc-list a.active .toc-num { color: var(--red); }
+
+/* ── MAIN ── */
+.main { max-width: 1100px; margin: 0 auto; padding: 64px 24px 80px; display: flex; flex-direction: column; gap: 80px; }
+
+/* ── SECTION ── */
+.section-eyebrow {
+  font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--text3);
+  margin-bottom: 10px; display: flex; align-items: center; gap: 10px;
+}
+.section-eyebrow::after { content: ""; flex: 1; height: 1px; background: var(--border2); }
+.section-h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(20px, 2.8vw, 28px); font-weight: 700;
+  letter-spacing: -0.02em; color: var(--text); margin-bottom: 10px;
+}
+.section-lead { font-size: 14px; color: var(--text2); line-height: 1.75; max-width: 680px; margin-bottom: 36px; }
+
+/* ── PIPELINE ── */
+.pipeline { display: flex; flex-direction: column; gap: 0; position: relative; }
+.pipeline::before {
+  content: ""; position: absolute;
+  left: 27px; top: 56px; bottom: 56px; width: 2px;
+  background: var(--border2);
+  z-index: 0;
+}
+.pipeline-step {
+  display: grid; grid-template-columns: 56px 1fr; gap: 24px;
+  align-items: start; position: relative; z-index: 1;
+  padding-bottom: 0;
+}
+.pipeline-step + .pipeline-step { margin-top: 32px; }
+.step-marker {
+  display: flex; flex-direction: column; align-items: center; gap: 0; flex-shrink: 0;
+}
+.step-num {
+  width: 56px; height: 56px; border: 2px solid var(--border3);
+  background: var(--bg2); display: flex; align-items: center; justify-content: center;
+  font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 700;
+  color: var(--text3); flex-shrink: 0; transition: var(--transition);
+  position: relative; z-index: 2;
+}
+.pipeline-step.active .step-num { background: var(--text); color: var(--bg2); border-color: var(--text); }
+.pipeline-step.verified .step-num { background: var(--green-bg); color: var(--green); border-color: var(--green); }
+.pipeline-step.flag .step-num { background: var(--amber-bg); color: var(--amber); border-color: var(--amber); }
+.pipeline-step.publish .step-num { background: var(--red-bg); color: var(--red); border-color: var(--red); }
+.step-body {
+  background: var(--bg2); border: 1.5px solid var(--border3);
+  overflow: hidden; margin-bottom: 0;
+}
+.step-head {
+  padding: 16px 20px 14px; border-bottom: 1px solid var(--border2);
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+}
+.step-title {
+  font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700;
+  color: var(--text); margin-bottom: 3px;
+}
+.step-sub { font-size: 12px; color: var(--text3); font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.04em; }
+.step-badge {
+  font-family: 'IBM Plex Mono', monospace; font-size: 8px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  padding: 4px 10px; border: 1px solid; flex-shrink: 0; margin-top: 2px;
+}
+.badge-input { color: var(--text3); border-color: var(--border2); }
+.badge-verify { color: var(--amber); border-color: var(--amber); background: var(--amber-bg); }
+.badge-publish { color: var(--green); border-color: var(--green); background: var(--green-bg); }
+.badge-live { color: var(--red); border-color: var(--red); background: var(--red-bg); animation: pulse-border 2s ease-in-out infinite; }
+@keyframes pulse-border { 0%,100%{opacity:1} 50%{opacity:0.5} }
+.badge-flag { color: var(--amber); border-color: var(--amber-mid); background: var(--amber-bg); }
+.badge-archive { color: var(--text3); border-color: var(--border2); }
+.step-content { padding: 18px 20px; display: flex; flex-direction: column; gap: 14px; }
+.step-desc { font-size: 13.5px; color: var(--text2); line-height: 1.75; }
+.step-detail-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+@media(max-width:600px){ .step-detail-grid{ grid-template-columns:1fr; } }
+.detail-item {
+  background: var(--bg3); border: 1px solid var(--border2);
+  padding: 12px 14px;
+}
+.detail-label {
+  font-family: 'IBM Plex Mono', monospace; font-size: 8.5px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.12em; color: var(--text3); margin-bottom: 5px;
+}
+.detail-val { font-size: 12.5px; color: var(--text2); line-height: 1.5; }
+.detail-val b { color: var(--text); font-weight: 600; }
+.step-fields { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border2); }
+.field-row {
+  display: grid; grid-template-columns: 160px 1fr 80px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+}
+.field-row:last-child { border-bottom: none; }
+.field-name {
+  padding: 9px 12px; font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; font-weight: 600; color: var(--text);
+  background: var(--bg3); border-right: 1px solid var(--border2);
+}
+.field-desc { padding: 9px 12px; color: var(--text2); line-height: 1.4; }
+.field-req {
+  padding: 9px 12px; font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+  text-align: center; border-left: 1px solid var(--border2);
+}
+.req-y { color: var(--red); } .req-n { color: var(--text3); }
+@media(max-width:580px){
+  .field-row{ grid-template-columns: 1fr; }
+  .field-name, .field-desc, .field-req { border-right: none; border-left: none; border-bottom: 1px solid var(--border); }
+}
+.step-note {
+  background: var(--amber-bg); border: 1px solid var(--amber-mid);
+  padding: 12px 14px; font-size: 12.5px; color: var(--text2); line-height: 1.6;
+  display: flex; gap: 10px; align-items: flex-start;
+}
+.step-note .note-icon { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 700; color: var(--amber); flex-shrink: 0; padding-top: 2px; }
+.step-note b { color: var(--text); font-weight: 600; }
+.step-note.green { background: var(--green-bg); border-color: var(--green-mid); }
+.step-note.green .note-icon { color: var(--green); }
+.step-note.red { background: var(--red-bg); border-color: var(--red-mid); }
+.step-note.red .note-icon { color: var(--red); }
+
+/* ── DECISION TREE ── */
+.decision-tree {
+  border: 1.5px solid var(--border3); background: var(--bg2); overflow: hidden;
+}
+.dt-head {
+  background: var(--text); color: var(--bg2);
+  padding: 12px 18px; font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em;
+}
+.dt-body { padding: 20px; }
+.dt-row {
+  display: grid; grid-template-columns: 28px 1fr 1fr;
+  gap: 0; border-bottom: 1px solid var(--border);
+  align-items: stretch;
+}
+.dt-row:last-child { border-bottom: none; }
+.dt-step-num {
+  font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 700;
+  color: var(--text3); padding: 12px 0; display: flex; align-items: flex-start;
+}
+.dt-question {
+  padding: 12px 16px; font-size: 12.5px; color: var(--text2);
+  border-left: 1px solid var(--border); border-right: 1px solid var(--border);
+  line-height: 1.5;
+}
+.dt-question b { color: var(--text); font-weight: 600; display: block; margin-bottom: 2px; }
+.dt-outcome { padding: 12px 16px; font-size: 12px; line-height: 1.5; }
+.dt-outcome .pass { color: var(--green); font-weight: 600; }
+.dt-outcome .fail { color: var(--red); font-weight: 600; }
+.dt-outcome .flag { color: var(--amber); font-weight: 600; }
+.dt-outcome span { display: block; color: var(--text3); font-size: 11px; margin-top: 2px; font-family: 'IBM Plex Mono', monospace; }
+
+/* ── DATA FIELDS TABLE ── */
+.data-table { width: 100%; border-collapse: collapse; border: 1.5px solid var(--border3); font-size: 12.5px; }
+.data-table th {
+  background: var(--bg3); border: 1px solid var(--border2);
+  padding: 10px 16px; font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--text3); text-align: left;
+}
+.data-table td {
+  border: 1px solid var(--border); padding: 12px 16px;
+  color: var(--text2); vertical-align: top; line-height: 1.5; transition: var(--transition);
+}
+.data-table tr:nth-child(even) td { background: var(--bg3); }
+.data-table tr:hover td { background: var(--bg5); }
+.data-table .mono { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text); }
+.data-table .tag {
+  display: inline-block; font-family: 'IBM Plex Mono', monospace;
+  font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 2px 6px; border: 1px solid var(--border2); color: var(--text3); margin-right: 4px;
+}
+.tag-public { color: var(--green); border-color: var(--green-mid); background: var(--green-bg); }
+.tag-internal { color: var(--amber); border-color: var(--amber-mid); background: var(--amber-bg); }
+.tag-deleted { color: var(--red); border-color: var(--red-mid); background: var(--red-bg); }
+
+/* ── PRIVACY CARDS ── */
+.privacy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+@media(max-width:720px){ .privacy-grid{ grid-template-columns:1fr; } }
+.privacy-card {
+  background: var(--bg2); border: 1.5px solid var(--border3);
+  padding: 22px; display: flex; flex-direction: column; gap: 12px;
+  transition: var(--transition);
+}
+.privacy-card:hover { background: var(--bg3); }
+.pc-icon {
+  font-family: 'IBM Plex Mono', monospace; font-size: 20px; font-weight: 700;
+  color: var(--border2); line-height: 1;
+}
+.pc-title { font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; color: var(--text); }
+.pc-body { font-size: 12.5px; color: var(--text2); line-height: 1.65; }
+
+/* ── RETENTION TABLE ── */
+.retention-block {
+  background: var(--bg2); border: 1.5px solid var(--border3); overflow: hidden;
+}
+.retention-head {
+  background: var(--bg3); border-bottom: 1px solid var(--border2);
+  padding: 12px 20px; display: grid; grid-template-columns: 1fr 140px 160px;
+  gap: 0; font-family: 'IBM Plex Mono', monospace; font-size: 9px;
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text3);
+}
+.retention-row {
+  padding: 14px 20px; display: grid; grid-template-columns: 1fr 140px 160px;
+  gap: 0; border-bottom: 1px solid var(--border); align-items: center;
+  font-size: 12.5px; transition: var(--transition);
+}
+.retention-row:last-child { border-bottom: none; }
+.retention-row:hover { background: var(--bg3); }
+.rr-type { color: var(--text); font-weight: 500; }
+.rr-period { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text2); }
+.rr-action { font-family: 'IBM Plex Mono', monospace; font-size: 10px; }
+.rr-action.del { color: var(--red); } .rr-action.anon { color: var(--amber); } .rr-action.keep { color: var(--green); }
+
+/* ── RIGHTS BLOCK ── */
+.rights-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+@media(max-width:640px){ .rights-grid{ grid-template-columns:1fr; } }
+.right-item {
+  background: var(--bg2); border: 1.5px solid var(--border3);
+  padding: 18px 20px; display: flex; gap: 14px; align-items: flex-start;
+  transition: var(--transition);
+}
+.right-item:hover { background: var(--bg3); }
+.right-num {
+  font-family: 'IBM Plex Mono', monospace; font-size: 18px; font-weight: 600;
+  color: var(--border2); line-height: 1; min-width: 28px; flex-shrink: 0;
+}
+.right-title { font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 5px; }
+.right-body { font-size: 12.5px; color: var(--text2); line-height: 1.6; }
+.right-action {
+  margin-top: 8px; font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--red);
+}
+
+/* ── FOOTER ── */
+.footer { border-top: 1px solid var(--border2); background: var(--bg2); padding: 26px 24px; transition: var(--transition); }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; }
+.footer-note { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text3); letter-spacing: 0.04em; }
+.footer-links { display: flex; gap: 18px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; }
+.footer-links a { color: var(--text3); text-decoration: underline; }
+.footer-links a:hover { color: var(--text); }
+
+/* ── LAST UPDATED STRIP ── */
+.updated-strip {
+  background: var(--green-bg); border: 1px solid var(--green-mid);
+  padding: 10px 16px; display: flex; align-items: center; gap: 10px;
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text3);
+  margin-bottom: 32px;
+}
+.updated-strip b { color: var(--text); font-weight: 600; }
+
+/* ── INLINE CODE ── */
+code {
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+  background: var(--bg5); border: 1px solid var(--border2);
+  padding: 1px 5px; color: var(--text2);
+}
+
+/* ─── UNIFIED MASTHEAD NAVIGATION ─── */
+.masthead {
+  padding: 16px var(--pad, 24px);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: var(--transition);
+}
+.masthead-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.masthead-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+}
+.brand-logo {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+.brand-text small {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 400;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  color: var(--text3);
+  text-transform: uppercase;
+}
+.masthead-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.btn-ghost {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 8px 14px;
+  background: transparent;
+  border: 1px solid transparent;
+  transition: var(--transition);
+}
+.btn-ghost:hover {
+  background: var(--bg4);
+  color: var(--text);
+}
+.btn-ghost.active {
+  border-color: var(--text);
+  background: var(--bg5);
+}
+.btn-primary {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 8px 16px;
+  background: var(--ink);
+  color: var(--cream);
+  border: 1px solid var(--ink);
+  transition: var(--transition);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+.btn-primary:hover {
+  background: transparent;
+  color: var(--text);
+}
+.theme-toggle-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text);
+  transition: var(--transition);
+}
+.theme-toggle-btn:hover {
+  background: var(--bg4);
+}
+.theme-toggle-btn svg {
+  width: 16px; height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+.theme-toggle-btn .icon-sun { display: none; }
+.theme-toggle-btn .icon-moon { display: block; }
+[data-theme="dark"] .theme-toggle-btn .icon-sun { display: block; }
+[data-theme="dark"] .theme-toggle-btn .icon-moon { display: none; }
+
+</style>
+</head>
+<body>
+
+<div class="ann-bar">
+  This document is a living record. <b>Last reviewed: July 2025.</b> &nbsp;|&nbsp; All policy changes are committed to our public GitHub repository with a full diff history.
+</div>
+
+<div class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-left">
+      <a href="index.html" class="brand">
+        <img src="hap_logo.png" alt="HAP Logo" class="brand-logo">
+        <span class="brand-text">
+          Himachal Accountability Project
+          <small>Public Ledger &middot; Himachal Pradesh</small>
+        </span>
+      </a>
+    </div>
+    <div class="masthead-right">
+      <a class="btn-ghost " id="nav-home" href="index.html">Home</a>
+      <a class="btn-ghost " id="nav-dashboard" href="dashboard.html">Dashboard</a>
+      <a class="btn-ghost " id="nav-perception" href="mla_perception.html">MLA Perception</a>
+      <a class="btn-ghost " id="nav-join" href="join.html">Join Us</a>
+      <a class="btn-ghost " id="nav-donate" href="donate.html">Support Us</a>
+      <a class="btn-primary" href="https://tally.so/r/A76O8B" target="_blank">&#x270E;&nbsp; Report Issue</a>
+      <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Data methodology</div>
+      <h1 class="hero-h1">How we use<br>your <em>data.</em></h1>
+      <p class="hero-lead">
+        Every grievance submitted to this platform goes through a documented, multi-stage process before it appears on the public dashboard. This page describes that process in full — what we collect, how we verify it, what we publish, what we delete, and what you can ask us to do with your information.
+      </p>
+      <p class="hero-lead" style="margin-top:14px">
+        We are not a government body and we are not a corporation. We have no legal obligation to publish this. We publish it anyway because the platform's credibility depends on it being legible — to citizens, to journalists, and to the officials whose work it documents.
+      </p>
+    </div>
+    <!-- TOC -->
+    <nav>
+      <div class="toc-card">
+        <div class="toc-head">On this page</div>
+        <ul class="toc-list">
+          <li><a href="#collection" class="active"><span class="toc-num">01</span> Data collection</a></li>
+          <li><a href="#verification"><span class="toc-num">02</span> Ground verification</a></li>
+          <li><a href="#classification"><span class="toc-num">03</span> Classification</a></li>
+          <li><a href="#publication"><span class="toc-num">04</span> Publication to dashboard</a></li>
+          <li><a href="#flagging"><span class="toc-num">05</span> Flagging & disputes</a></li>
+          <li><a href="#fields"><span class="toc-num">06</span> What data we hold</a></li>
+          <li><a href="#privacy"><span class="toc-num">07</span> Privacy protections</a></li>
+          <li><a href="#retention"><span class="toc-num">08</span> Retention & deletion</a></li>
+          <li><a href="#rights"><span class="toc-num">09</span> Your rights</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- SECTION 1: COLLECTION -->
+  <section id="collection">
+    <div class="section-eyebrow">Stage 01</div>
+    <h2 class="section-h2">Data collection — the submission form</h2>
+    <p class="section-lead">A citizen reports a grievance through a Tally form linked on the dashboard. The form is designed to collect the minimum information needed to verify and geolocate the complaint — nothing more.</p>
+
+    <div class="pipeline">
+      <div class="pipeline-step active">
+        <div class="step-marker"><div class="step-num">01</div></div>
+        <div class="step-body">
+          <div class="step-head">
+            <div>
+              <div class="step-title">Citizen submits the Tally form</div>
+              <div class="step-sub">Entry point — tally.so/r/A76O8B</div>
+            </div>
+            <div class="step-badge badge-input">Input</div>
+          </div>
+          <div class="step-content">
+            <div class="step-desc">
+              The form collects structured information about a local infrastructure or service failure. It is available in English and Hindi. No login, no account, no app required. Submissions are accepted 24 hours a day.
+            </div>
+            <div class="step-fields">
+              <div class="field-row" style="background:var(--bg3);font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text3)">
+                <div style="padding:8px 12px">Question / Field Name</div>
+                <div style="padding:8px 12px;border-left:1px solid var(--border2)">What is collected / Description</div>
+                <div style="padding:8px 12px;border-left:1px solid var(--border2);text-align:center">Required</div>
+              </div>
+              <div class="field-row">
+                <div class="field-name" style="font-size: 11px;">1. Biggest Area Issue (Ignored by Administration)<br><small style="color: var(--text3); display: block; margin-top: 3px; font-weight: normal;">Aapke kshetra ki aisi sabse badi samasya kya hai...</small></div>
+                <div class="field-desc">Constituents describe the primary infrastructure, service, or administrative grievance completely ignored by local authorities in their assembly region.</div>
+                <div class="field-req req-y">Yes</div>
+              </div>
+              <div class="field-row">
+                <div class="field-name" style="font-size: 11px;">2. Issue Related Photo / Video<br><small style="color: var(--text3); display: block; margin-top: 3px; font-weight: normal;">Photo ya Video isse related (optional)</small></div>
+                <div class="field-desc">Optional file upload (up to 10 MB limit) supporting the grievance. Used to visually verify the broken infrastructure on the ground and geo-verify the location.</div>
+                <div class="field-req req-n">No</div>
+              </div>
+              <div class="field-row">
+                <div class="field-name" style="font-size: 11px;">3. Development Priority #1<br><small style="color: var(--text3); display: block; margin-top: 3px; font-weight: normal;">Pure Himachal ke vikas ke liye agli sarkar...</small></div>
+                <div class="field-desc">Citizens state their top priority choice for the overall development of Himachal Pradesh in the next state governance cycle.</div>
+                <div class="field-req req-y">Yes</div>
+              </div>
+              <div class="field-row">
+                <div class="field-name" style="font-size: 11px;">4. Development Related Photo / Video<br><small style="color: var(--text3); display: block; margin-top: 3px; font-weight: normal;">Photo ya Video isse related (optional)</small></div>
+                <div class="field-desc">Optional visual upload (up to 10 MB limit) corroborating development requirements, infrastructure templates, or local concerns.</div>
+                <div class="field-req req-n">No</div>
+              </div>
+              <div class="field-row">
+                <div class="field-name" style="font-size: 11px;">5. MLA Evaluation & Re-election Sentiment<br><small style="color: var(--text3); display: block; margin-top: 3px; font-weight: normal;">Kya aapko lagta hai ki aapke vartaman MLA...</small></div>
+                <div class="field-desc">Captures whether the resident feels their local MLA understands the needs of the youth and society, and if they plan to vote for them again. Drives the MLA Approval Rating.</div>
+                <div class="field-req req-y">Yes</div>
+              </div>
+              <div class="field-row">
+                <div class="field-name" style="font-size: 11px;">6. Required Leadership Model<br><small style="color: var(--text3); display: block; margin-top: 3px; font-weight: normal;">Ek behtar kal ke liye, Himachal ko abhi...</small></div>
+                <div class="field-desc">Gathers feedback on the type and qualities of leadership Himachal Pradesh needs most to build a better future.</div>
+                <div class="field-req req-y">Yes</div>
+              </div>
+              <div class="field-row">
+                <div class="field-name" style="font-size: 11px;">7. Pin Code<br><small style="color: var(--text3); display: block; margin-top: 3px; font-weight: normal;">Aapka Pin Code kya hai?</small></div>
+                <div class="field-desc">Six-digit postal code of the submitter's area. Used to automatically map the grievance to the correct assembly constituency and district boundaries.</div>
+                <div class="field-req req-y">Yes</div>
+              </div>
+              <div class="field-row">
+                <div class="field-name" style="font-size: 11px;">8. WhatsApp Number<br><small style="color: var(--text3); display: block; margin-top: 3px; font-weight: normal;">Drop your WhatsApp number...</small></div>
+                <div class="field-desc">Optional contact number used exclusively to share the compiled district reports and request clarification. Never published publicly. Stored separately and encrypted.</div>
+                <div class="field-req req-n">No</div>
+              </div>
+            </div>
+            <div class="step-note">
+              <div class="note-icon">!</div>
+              <div><b>We do not collect:</b> Aadhaar numbers, voter ID, caste, religion, income level, or any information that could be used to identify or profile the submitter beyond what is needed to verify the grievance.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-step">
+        <div class="step-marker"><div class="step-num">02</div></div>
+        <div class="step-body">
+          <div class="step-head">
+            <div>
+              <div class="step-title">Submission enters the raw queue</div>
+              <div class="step-sub">Automated intake — Tally → internal database</div>
+            </div>
+            <div class="step-badge badge-input">Automated</div>
+          </div>
+          <div class="step-content">
+            <div class="step-desc">
+              On submission, Tally sends a webhook to our intake endpoint. The raw record is written to an internal database table with status <code>raw</code>. It is <strong>not yet visible on the public dashboard</strong>. A timestamp and a unique submission ID are generated automatically.
+            </div>
+            <div class="step-detail-grid">
+              <div class="detail-item">
+                <div class="detail-label">Auto-assigned fields</div>
+                <div class="detail-val"><b>submission_id</b> — unique reference<br><b>received_at</b> — UTC timestamp<br><b>status</b> — set to <code>raw</code><br><b>source</b> — set to <code>tally_form</code></div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-label">What happens next</div>
+                <div class="detail-val">The submission ID is logged. An automated duplicate-check runs against the last 90 days of submissions from the same PIN code and category. If a likely duplicate is detected, status is set to <code>duplicate_review</code>.</div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-label">Typical queue depth</div>
+                <div class="detail-val">3–12 unverified submissions waiting at any given time. Volume spikes after district-level media coverage or social media sharing of the dashboard.</div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-label">Time in raw queue</div>
+                <div class="detail-val">24–72 hours for standard submissions. High-priority issues (health emergencies, road closures affecting multiple villages) are flagged for same-day verification.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: VERIFICATION -->
+  <section id="verification">
+    <div class="section-eyebrow">Stage 02</div>
+    <h2 class="section-h2">Ground verification</h2>
+    <p class="section-lead">No submission is published without at least one independent confirmation from a source other than the original submitter. This is the most resource-intensive part of the process and the reason donations matter.</p>
+
+    <div class="pipeline">
+      <div class="pipeline-step verified">
+        <div class="step-marker"><div class="step-num">03</div></div>
+        <div class="step-body">
+          <div class="step-head">
+            <div>
+              <div class="step-title">Desk verification pass</div>
+              <div class="step-sub">Within 24 hours of submission</div>
+            </div>
+            <div class="step-badge badge-verify">Verify</div>
+          </div>
+          <div class="step-content">
+            <div class="step-desc">
+              A team member conducts an initial desk check using publicly available sources. This is not sufficient for publication but is used to prioritise and pre-screen submissions before committing field resources.
+            </div>
+            <div class="step-detail-grid">
+              <div class="detail-item">
+                <div class="detail-label">Desk check sources</div>
+                <div class="detail-val">PWD complaint portals, HP government press releases, local news archives, Google Street View (where available), social media cross-reference, prior submissions from same tehsil.</div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-label">Outcomes</div>
+                <div class="detail-val"><b>Pre-verified</b> — corroborating public record found, moves to priority ground verification.<br><b>Plausible</b> — standard ground verification queue.<br><b>Implausible</b> — flagged for rejection review.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-step verified">
+        <div class="step-marker"><div class="step-num">04</div></div>
+        <div class="step-body">
+          <div class="step-head">
+            <div>
+              <div class="step-title">Ground-level verification call or visit</div>
+              <div class="step-sub">Minimum one independent source required</div>
+            </div>
+            <div class="step-badge badge-verify">Field Verify</div>
+          </div>
+          <div class="step-content">
+            <div class="step-desc">
+              The core verification step. A community reporter or team member contacts at least one independent source in the relevant tehsil to confirm the grievance is active, accurately described, and correctly located. For high-severity issues, two independent confirmations are required.
+            </div>
+            <div class="step-detail-grid">
+              <div class="detail-item">
+                <div class="detail-label">Acceptable verification sources</div>
+                <div class="detail-val">
+                  <b>Tier 1 (preferred):</b> On-site field visit with photographic record.<br>
+                  <b>Tier 2:</b> Phone call to a second local resident, ASHA worker, shopkeeper, or gram panchayat member who can independently confirm the issue.<br>
+                  <b>Tier 3:</b> Documented PWD / municipal complaint record showing an unresolved prior filing.
+                </div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-label">What is recorded</div>
+                <div class="detail-val">
+                  Verifier ID (internal reference only), verification method used, source type, date and time of verification, any contradictions with the original submission, and a confidence rating (high / medium / low).
+                </div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-label">Identity of verifying sources</div>
+                <div class="detail-val">Never published. Sources who verify grievances are protected by the same non-disclosure standard as the original submitter. Their contact details are stored in an encrypted column and are not accessible to the public-facing data pipeline.</div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-label">Verification cost</div>
+                <div class="detail-val">₹200–₹500 per verified grievance depending on method. Field visits cost more; phone verifications cost less. This is the primary use of donated funds. See the <a href="donate.html#transparency" style="color:var(--green)">fund usage breakdown</a>.</div>
+              </div>
+            </div>
+            <div class="step-note green">
+              <div class="note-icon">✓</div>
+              <div><b>Verification standard:</b> We aim to publish nothing that a reasonable person, upon visiting the location, could not independently confirm. If there is reasonable doubt, the submission is held — not rejected — pending additional verification.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-step flag">
+        <div class="step-marker"><div class="step-num">05</div></div>
+        <div class="step-body">
+          <div class="step-head">
+            <div>
+              <div class="step-title">Verification decision tree</div>
+              <div class="step-sub">Applied to every submission before status changes</div>
+            </div>
+            <div class="step-badge badge-flag">Decision</div>
+          </div>
+          <div class="step-content">
+            <div class="decision-tree">
+              <div class="dt-head">Verification checklist — all conditions evaluated in order</div>
+              <div class="dt-body" style="padding:0">
+                <div class="dt-row" style="background:var(--bg3);font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text3)">
+                  <div style="padding:10px 0 10px 0">#</div>
+                  <div style="padding:10px 16px;border-left:1px solid var(--border2)">Condition checked</div>
+                  <div style="padding:10px 16px;border-left:1px solid var(--border2)">Outcome if fails</div>
+                </div>
+                <div class="dt-row">
+                  <div class="dt-step-num">1</div>
+                  <div class="dt-question"><b>Is the issue currently active?</b> Not resolved by the time of verification.</div>
+                  <div class="dt-outcome"><span class="fail">Rejected</span><span>Marked resolved if administration has already acted. Optionally published as a closed case.</span></div>
+                </div>
+                <div class="dt-row">
+                  <div class="dt-step-num">2</div>
+                  <div class="dt-question"><b>Is the location verifiable?</b> Can we confirm the tehsil and approximate area from independent sources?</div>
+                  <div class="dt-outcome"><span class="flag">Held</span><span>Returned to submitter (if contact provided) for location clarification. Published with district-only pin if clarification not received within 14 days.</span></div>
+                </div>
+                <div class="dt-row">
+                  <div class="dt-step-num">3</div>
+                  <div class="dt-question"><b>Does the description match the verification?</b> No material factual contradictions between submission and ground source.</div>
+                  <div class="dt-outcome"><span class="flag">Amended</span><span>Published with corrected description. Original wording retained in internal record. Amendment noted in the entry.</span></div>
+                </div>
+                <div class="dt-row">
+                  <div class="dt-step-num">4</div>
+                  <div class="dt-question"><b>Is this a likely duplicate?</b> Same location, same category, same approximate issue as an existing entry filed within 60 days.</div>
+                  <div class="dt-outcome"><span class="flag">Merged</span><span>Submission count on existing entry incremented. New submission details reviewed for any additional information before merging.</span></div>
+                </div>
+                <div class="dt-row">
+                  <div class="dt-step-num">5</div>
+                  <div class="dt-question"><b>Does it contain personal data of third parties?</b> Names, phone numbers, or addresses of individuals not party to the submission.</div>
+                  <div class="dt-outcome"><span class="flag">Redacted</span><span>Third-party personal data is removed before publication. Submitter is notified if contact was provided.</span></div>
+                </div>
+                <div class="dt-row">
+                  <div class="dt-step-num">6</div>
+                  <div class="dt-question"><b>All conditions above pass?</b></div>
+                  <div class="dt-outcome"><span class="pass">Approved for publication</span><span>Status set to verified. Moves to classification stage.</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: CLASSIFICATION -->
+  <section id="classification">
+    <div class="section-eyebrow">Stage 03</div>
+    <h2 class="section-h2">Classification and tagging</h2>
+    <p class="section-lead">Verified submissions are tagged with structured metadata that drives the map visualisation, category filters, and constituency-level aggregation on the dashboard.</p>
+
+    <div class="pipeline">
+      <div class="pipeline-step">
+        <div class="step-marker"><div class="step-num">06</div></div>
+        <div class="step-body">
+          <div class="step-head">
+            <div>
+              <div class="step-title">Structured classification pass</div>
+              <div class="step-sub">Applied after verification is confirmed</div>
+            </div>
+            <div class="step-badge badge-verify">Classify</div>
+          </div>
+          <div class="step-content">
+            <div class="step-desc">
+              A team member assigns final tags. The category selected by the submitter is confirmed or corrected — for example, a broken water tank reported under "Roads" is reclassified to "Water" before publication. Constituency and district assignments are verified against the official delimitation order.
+            </div>
+            <div class="step-detail-grid">
+              <div class="detail-item">
+                <div class="detail-label">Category taxonomy</div>
+                <div class="detail-val">
+                  <b>Roads</b> — surface damage, blocked routes, missing bridges, landslide clearance.<br>
+                  <b>Water</b> — supply cuts, contamination, broken mains, Jal Jeevan gaps.<br>
+                  <b>Health</b> — PHC closures, staff vacancies, medicine shortages, ambulance access.<br>
+                  <b>Power</b> — unscheduled cuts, transformer failures, billing disputes, new connections.<br>
+                  <b>Youth / Employment</b> — skill centre gaps, placement failures, MGNREGA non-payment.
+                </div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-label">Severity rating</div>
+                <div class="detail-val">
+                  <b>Critical</b> — direct threat to life, health, or access to essential services for 50+ households.<br>
+                  <b>High</b> — significant hardship for 20+ households, ongoing for more than 3 months.<br>
+                  <b>Standard</b> — all other verified grievances.
+                </div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-label">Constituency mapping</div>
+                <div class="detail-val">Tehsil is cross-referenced against the 2008 Delimitation Commission order to assign the correct Vidhan Sabha constituency number. Kinnaur, Bharmour (ST), and Lahaul-Spiti are flagged separately due to geographical complexity.</div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-label">RTI cross-link</div>
+                <div class="detail-val">If an RTI request has been filed on the same issue, the submission is linked to the RTI record. The outcome of the RTI (response, non-response, partial disclosure) is updated on the dashboard entry when received.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: PUBLICATION -->
+  <section id="publication">
+    <div class="section-eyebrow">Stage 04</div>
+    <h2 class="section-h2">Publication to the dashboard</h2>
+    <p class="section-lead">Verified, classified submissions are published to the public dashboard. This is what appears on the map, the live feed, and the district-level aggregation charts.</p>
+
+    <div class="pipeline">
+      <div class="pipeline-step publish">
+        <div class="step-marker"><div class="step-num">07</div></div>
+        <div class="step-body">
+          <div class="step-head">
+            <div>
+              <div class="step-title">Published to public dashboard</div>
+              <div class="step-sub">Status set to <code>live</code> — visible to all</div>
+            </div>
+            <div class="step-badge badge-live">Live</div>
+          </div>
+          <div class="step-content">
+            <div class="step-desc">
+              Once approved, the entry is written to the public database and appears on the dashboard within 15 minutes. The following fields are published. Everything else stays internal.
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Field published</th>
+                  <th>What it shows</th>
+                  <th>Visibility</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="mono">description</td>
+                  <td>The verified grievance text. If amended during verification, the corrected version is published. Submitter's exact wording is not guaranteed to appear verbatim.</td>
+                  <td><span class="tag tag-public">Public</span></td>
+                </tr>
+                <tr>
+                  <td class="mono">district</td>
+                  <td>The HP district the grievance is located in. Used for map choropleth colouring.</td>
+                  <td><span class="tag tag-public">Public</span></td>
+                </tr>
+                <tr>
+                  <td class="mono">tehsil</td>
+                  <td>Approximate tehsil marker placement on the map. Not a precise GPS coordinate — placed at the tehsil centroid, not the exact complaint location.</td>
+                  <td><span class="tag tag-public">Public</span></td>
+                </tr>
+                <tr>
+                  <td class="mono">category</td>
+                  <td>Roads, Water, Health, Power, or Youth. Drives the filter pills and bar chart on the dashboard.</td>
+                  <td><span class="tag tag-public">Public</span></td>
+                </tr>
+                <tr>
+                  <td class="mono">constituency</td>
+                  <td>Vidhan Sabha constituency number and name, used for the assembly map tab and unresolved rate tracking.</td>
+                  <td><span class="tag tag-public">Public</span></td>
+                </tr>
+                <tr>
+                  <td class="mono">received_at</td>
+                  <td>Shown as a relative timestamp ("2 hours ago"). Exact date is not displayed publicly to prevent reverse-engineering the submitter's identity through timing.</td>
+                  <td><span class="tag tag-public">Public</span></td>
+                </tr>
+                <tr>
+                  <td class="mono">submission_id</td>
+                  <td>Internal reference. Not displayed publicly, but available if a submitter needs to follow up on their entry.</td>
+                  <td><span class="tag tag-internal">Internal</span></td>
+                </tr>
+                <tr>
+                  <td class="mono">contact details</td>
+                  <td>Phone number or email provided optionally by the submitter. Never published under any circumstances.</td>
+                  <td><span class="tag tag-deleted">Never published</span></td>
+                </tr>
+                <tr>
+                  <td class="mono">photo / media</td>
+                  <td>If provided and of sufficient quality, published with EXIF metadata fully stripped. GPS data, device model, and creation timestamp are removed before upload.</td>
+                  <td><span class="tag tag-public">Public (EXIF stripped)</span></td>
+                </tr>
+                <tr>
+                  <td class="mono">raw submission text</td>
+                  <td>Original wording before any verification edits. Retained internally for audit purposes. Never published.</td>
+                  <td><span class="tag tag-internal">Internal only</span></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="step-note green">
+              <div class="note-icon">✓</div>
+              <div><b>The dashboard does not display any information that could identify the submitter.</b> The combination of district + tehsil + category + timestamp is the finest granularity we publish. We do not display street addresses, GPS coordinates, or any personal identifiers.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: FLAGGING -->
+  <section id="flagging">
+    <div class="section-eyebrow">Stage 05</div>
+    <h2 class="section-h2">Flagging, disputes, and corrections</h2>
+    <p class="section-lead">Published entries can be disputed by any party — including government officials, the submitter, or a third party with direct knowledge. All disputes are reviewed within 7 days.</p>
+
+    <div class="pipeline">
+      <div class="pipeline-step flag">
+        <div class="step-marker"><div class="step-num">08</div></div>
+        <div class="step-body">
+          <div class="step-head">
+            <div>
+              <div class="step-title">Dispute and correction process</div>
+              <div class="step-sub">Available to all parties after publication</div>
+            </div>
+            <div class="step-badge badge-flag">Dispute</div>
+          </div>
+          <div class="step-content">
+            <div class="step-desc">
+              If a government official, MLA office, or any member of the public believes a published entry is factually incorrect, resolved, or misleading, they can submit a dispute using the contact form. We treat government disputes with the same process as citizen disputes — neither gets preferential treatment.
+            </div>
+            <div class="step-detail-grid">
+              <div class="detail-item">
+                <div class="detail-label">Grounds for correction</div>
+                <div class="detail-val">
+                  <b>Issue resolved</b> — administration has addressed the grievance. Evidence required (photo, government order, or independent confirmation).<br>
+                  <b>Factual error</b> — description is materially incorrect. Correction with evidence required.<br>
+                  <b>Wrong location</b> — district or tehsil is incorrectly assigned.
+                </div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-label">What we will not remove</div>
+                <div class="detail-val">
+                  A verified entry will not be removed on the grounds that it is embarrassing to an official, that the official disputes it without evidence, or that legal pressure is applied without a court order. We publish our dispute log publicly.
+                </div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-label">Resolution outcomes</div>
+                <div class="detail-val">
+                  <b>Upheld</b> — entry stands unchanged.<br>
+                  <b>Corrected</b> — entry updated with correction note visible.<br>
+                  <b>Resolved</b> — entry marked as resolved, retained in archive.<br>
+                  <b>Removed</b> — only on verifiable factual error or court order.
+                </div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-label">Timeline</div>
+                <div class="detail-val">All disputes acknowledged within 48 hours. Decision published within 7 calendar days. If a dispute is filed against an entry and is under active review, the entry is marked <code>under review</code> but not removed during the review period.</div>
+              </div>
+            </div>
+            <div class="step-note">
+              <div class="note-icon">!</div>
+              <div><b>Government threats and legal notices:</b> All legal notices received are published in full on our GitHub repository within 7 days of receipt. We do not remove entries in response to informal pressure. We respond to all formal legal notices through proper legal process.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: WHAT DATA WE HOLD -->
+  <section id="fields">
+    <div class="section-eyebrow">Data inventory</div>
+    <h2 class="section-h2">Complete record of what data we hold</h2>
+    <p class="section-lead">This is a full inventory of every data type we collect, where it is stored, who can access it, and what happens to it.</p>
+    <div class="updated-strip">
+      <b>Last audited: July 2025</b> &nbsp;·&nbsp; Next audit: October 2025 &nbsp;·&nbsp; Full audit log available on GitHub
+    </div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Data type</th>
+          <th>Where stored</th>
+          <th>Access</th>
+          <th>Retention</th>
+          <th>Visibility</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Verified grievance text</b></td>
+          <td>Public database (Supabase, EU region)</td>
+          <td>HAP team + public read</td>
+          <td>Indefinite (archive)</td>
+          <td><span class="tag tag-public">Public</span></td>
+        </tr>
+        <tr>
+          <td><b>District, tehsil, category</b></td>
+          <td>Public database</td>
+          <td>HAP team + public read</td>
+          <td>Indefinite</td>
+          <td><span class="tag tag-public">Public</span></td>
+        </tr>
+        <tr>
+          <td><b>Raw submission text</b> (before edits)</td>
+          <td>Internal database (encrypted at rest)</td>
+          <td>HAP team only</td>
+          <td>2 years, then deleted</td>
+          <td><span class="tag tag-internal">Internal</span></td>
+        </tr>
+        <tr>
+          <td><b>Submitter contact details</b> (if provided)</td>
+          <td>Encrypted column, separate table</td>
+          <td>Verification team only</td>
+          <td>90 days, then deleted</td>
+          <td><span class="tag tag-deleted">Never published</span></td>
+        </tr>
+        <tr>
+          <td><b>Verifier notes</b></td>
+          <td>Internal database</td>
+          <td>HAP team only</td>
+          <td>2 years, then anonymised</td>
+          <td><span class="tag tag-internal">Internal</span></td>
+        </tr>
+        <tr>
+          <td><b>Media / photos</b> (EXIF stripped)</td>
+          <td>Object storage (Cloudflare R2)</td>
+          <td>HAP team + public read</td>
+          <td>Indefinite if published</td>
+          <td><span class="tag tag-public">Public (no metadata)</span></td>
+        </tr>
+        <tr>
+          <td><b>PIN codes</b></td>
+          <td>Internal database, hashed</td>
+          <td>Duplicate check only</td>
+          <td>90 days, then deleted</td>
+          <td><span class="tag tag-deleted">Never published</span></td>
+        </tr>
+        <tr>
+          <td><b>Tally form webhook logs</b></td>
+          <td>Server logs</td>
+          <td>HAP infrastructure team</td>
+          <td>30 days rolling</td>
+          <td><span class="tag tag-internal">Internal</span></td>
+        </tr>
+        <tr>
+          <td><b>Dashboard analytics</b> (page views)</td>
+          <td>Vercel Analytics (cookieless)</td>
+          <td>HAP team only</td>
+          <td>90 days</td>
+          <td><span class="tag tag-internal">Internal</span></td>
+        </tr>
+        <tr>
+          <td><b>Donor payment records</b></td>
+          <td>Razorpay (PCI-DSS compliant)</td>
+          <td>HAP finance + Razorpay</td>
+          <td>7 years (legal requirement)</td>
+          <td><span class="tag tag-internal">Internal</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- SECTION 7: PRIVACY -->
+  <section id="privacy">
+    <div class="section-eyebrow">Privacy protections</div>
+    <h2 class="section-h2">How we protect submitters</h2>
+    <p class="section-lead">Submitting a grievance about a government official or infrastructure failure can carry social or professional risk in small communities. These are the protections in place.</p>
+    <div class="privacy-grid">
+      <div class="privacy-card">
+        <div class="pc-icon">//</div>
+        <div class="pc-title">No identity attached to published entries</div>
+        <div class="pc-body">Nothing published on the dashboard can be traced back to the submitter by a third party. District and tehsil are the finest granularity we use. We never publish names, phone numbers, or submission times precise enough to identify an individual.</div>
+      </div>
+      <div class="privacy-card">
+        <div class="pc-icon">Σ</div>
+        <div class="pc-title">Aggregation only at tehsil level</div>
+        <div class="pc-body">Map pins are placed at tehsil centroids — the geographic centre of the tehsil — not at the precise location of the complaint. A submission from a small village of 200 people appears on the same pin as submissions from the tehsil town.</div>
+      </div>
+      <div class="privacy-card">
+        <div class="pc-icon">∅</div>
+        <div class="pc-title">No tracking, no cookies, no fingerprinting</div>
+        <div class="pc-body">The dashboard and this page set no tracking cookies. Analytics are cookieless page-view counts via Vercel Analytics. We do not fingerprint browsers, track IP addresses across sessions, or sell any data to any third party.</div>
+      </div>
+      <div class="privacy-card">
+        <div class="pc-icon">⊗</div>
+        <div class="pc-title">Photographs are stripped of metadata</div>
+        <div class="pc-body">All photos submitted are processed to remove EXIF data — including GPS coordinates, device model, creation timestamp, and any embedded personal information — before being stored or published. We use ExifTool with a full-strip flag on all incoming media.</div>
+      </div>
+      <div class="privacy-card">
+        <div class="pc-icon">⌀</div>
+        <div class="pc-title">Contact details are encrypted and time-limited</div>
+        <div class="pc-body">If you provide a phone number or email address, it is stored in an AES-256 encrypted column in a separate database table. It is accessible only to the verification team. It is deleted after 90 days regardless of whether it was used.</div>
+      </div>
+      <div class="privacy-card">
+        <div class="pc-icon">§</div>
+        <div class="pc-title">We do not cooperate with informal data requests</div>
+        <div class="pc-body">We will not share submitter information with government officials, police, or political parties in response to informal requests. We respond only to court orders, and we publish all such orders on our GitHub repository within 7 days of receipt.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8: RETENTION -->
+  <section id="retention">
+    <div class="section-eyebrow">Retention policy</div>
+    <h2 class="section-h2">How long we keep each type of data</h2>
+    <p class="section-lead">Different data types have different retention periods based on their purpose. Contact details are deleted quickly. Verified public grievance records are kept permanently as part of the civic archive.</p>
+    <div class="retention-block">
+      <div class="retention-head">
+        <div>Data type</div>
+        <div>Retention period</div>
+        <div>After retention expires</div>
+      </div>
+      <div class="retention-row">
+        <div class="rr-type">Verified grievance records (public)</div>
+        <div class="rr-period">Indefinite</div>
+        <div class="rr-action keep">Archived permanently — public record</div>
+      </div>
+      <div class="retention-row">
+        <div class="rr-type">Submitter contact details (phone / email)</div>
+        <div class="rr-period">90 days</div>
+        <div class="rr-action del">Hard deleted — no backup retained</div>
+      </div>
+      <div class="retention-row">
+        <div class="rr-type">Raw submission text (pre-edit)</div>
+        <div class="rr-period">2 years</div>
+        <div class="rr-action del">Hard deleted</div>
+      </div>
+      <div class="retention-row">
+        <div class="rr-type">Verification notes and source details</div>
+        <div class="rr-period">2 years</div>
+        <div class="rr-action anon">Anonymised — verifier identity removed</div>
+      </div>
+      <div class="retention-row">
+        <div class="rr-type">PIN codes (hashed)</div>
+        <div class="rr-period">90 days</div>
+        <div class="rr-action del">Hard deleted</div>
+      </div>
+      <div class="retention-row">
+        <div class="rr-type">Server and webhook logs</div>
+        <div class="rr-period">30 days rolling</div>
+        <div class="rr-action del">Automatically purged</div>
+      </div>
+      <div class="retention-row">
+        <div class="rr-type">Dashboard analytics (page views)</div>
+        <div class="rr-period">90 days</div>
+        <div class="rr-action del">Automatically purged by Vercel</div>
+      </div>
+      <div class="retention-row">
+        <div class="rr-type">Donor payment records</div>
+        <div class="rr-period">7 years</div>
+        <div class="rr-action keep">Retained — statutory accounting requirement</div>
+      </div>
+      <div class="retention-row">
+        <div class="rr-type">Rejected / unverified submissions</div>
+        <div class="rr-period">6 months</div>
+        <div class="rr-action del">Hard deleted with all associated data</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 9: RIGHTS -->
+  <section id="rights">
+    <div class="section-eyebrow">Your rights</div>
+    <h2 class="section-h2">What you can ask us to do</h2>
+    <p class="section-lead">These rights apply to any person who has submitted a grievance, provided contact details, or donated to the platform. Contact us at <b>data@himachal-accountability.in</b> to exercise any of them.</p>
+    <div class="rights-grid">
+      <div class="right-item">
+        <div class="right-num">01</div>
+        <div>
+          <div class="right-title">Access — see what we hold about you</div>
+          <div class="right-body">You can request a copy of all data we hold that is associated with your submission ID, contact details, or donation record. We will respond within 14 days. No fee charged.</div>
+          <div class="right-action">→ Email data@ with subject: DATA ACCESS REQUEST</div>
+        </div>
+      </div>
+      <div class="right-item">
+        <div class="right-num">02</div>
+        <div>
+          <div class="right-title">Correction — fix an error</div>
+          <div class="right-body">If any data we hold about you is factually incorrect, you can ask us to correct it. For published entries, corrections are made with a visible amendment note. We do not silently edit published records.</div>
+          <div class="right-action">→ Email data@ with subject: CORRECTION REQUEST + submission ID</div>
+        </div>
+      </div>
+      <div class="right-item">
+        <div class="right-num">03</div>
+        <div>
+          <div class="right-title">Deletion of personal data</div>
+          <div class="right-body">You can ask us to delete your contact details at any time, including before the 90-day automatic deletion. Deletion of personal data does not automatically remove the associated verified grievance from the public record.</div>
+          <div class="right-action">→ Email data@ with subject: DELETE MY DATA + submission ID</div>
+        </div>
+      </div>
+      <div class="right-item">
+        <div class="right-num">04</div>
+        <div>
+          <div class="right-title">Withdrawal of a grievance submission</div>
+          <div class="right-body">If you submitted a grievance and want it removed from the public dashboard, you can request withdrawal. We will assess whether the public interest in retaining it outweighs the request. If the issue has been resolved, we will mark it closed rather than delete it.</div>
+          <div class="right-action">→ Email data@ with submission ID and reason</div>
+        </div>
+      </div>
+      <div class="right-item">
+        <div class="right-num">05</div>
+        <div>
+          <div class="right-title">Objection to processing</div>
+          <div class="right-body">You can object to us processing your data for any purpose. We will assess the objection and respond within 14 days with either a decision to stop processing or a documented reason why public interest requires us to continue.</div>
+          <div class="right-action">→ Email data@ with subject: OBJECTION TO PROCESSING</div>
+        </div>
+      </div>
+      <div class="right-item">
+        <div class="right-num">06</div>
+        <div>
+          <div class="right-title">Portability — get your data in a usable format</div>
+          <div class="right-body">You can request your submission data in JSON or CSV format. All verified public grievance data is also available as a bulk download from the dashboard — no request needed.</div>
+          <div class="right-action">→ Email data@ with subject: DATA PORTABILITY REQUEST</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-note">
+      © 2025 Himachal Accountability Project &nbsp;·&nbsp; data@himachal-accountability.in &nbsp;·&nbsp; Not affiliated with any government body or political party
+    </div>
+    <div class="footer-links">
+      <a href="himachal_dashboard_v2.html">Dashboard</a>
+      <a href="donate.html">Support</a>
+      <a href="https://github.com/EkaanshVerma/Himachal-Accountability-Project" target="_blank">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Theme
+const root = document.documentElement;
+const stored = localStorage.getItem('hap-theme') || 'light';
+root.setAttribute('data-theme', stored);
+
+document.getElementById('theme-toggle').addEventListener('click', () => {
+  const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('hap-theme', next);
+});
+
+// Active TOC on scroll
+const sections = document.querySelectorAll('section[id]');
+const tocLinks = document.querySelectorAll('.toc-list a');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      tocLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+      });
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
