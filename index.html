@@ -1479,6 +1479,13 @@
       );
     });
 
+    // Auto-prompt location on load
+    setTimeout(function() {
+      if (!reportData.lat) {
+        locBtn.click();
+      }
+    }, 500);
+
     // Photo upload
     photoArea.addEventListener('click', function(){ photoInput.click(); });
     photoInput.addEventListener('change', function(){
@@ -1694,24 +1701,40 @@
 </script>
 
 
-<!-- Mobile menu dropdown toggle helper -->
+<!-- Location Permission Modal -->
+<div id="location-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; align-items:center; justify-content:center; backdrop-filter:blur(4px);">
+  <div style="background:var(--paper-deep); border:1px solid var(--paper-line); padding:24px; max-width:400px; width:90%; text-align:center;">
+    <h3 style="font-family:'IBM Plex Serif',serif; font-size:1.5rem; font-weight:400; color:var(--ink); margin:0 0 12px;">Location Required</h3>
+    <p style="font-family:'IBM Plex Sans',sans-serif; font-size:0.95rem; color:var(--ink); margin:0 0 20px; line-height:1.5;">
+      To help us accurately identify and map problems across Himachal Pradesh, we need your exact location. Please enable location access when prompted.
+    </p>
+    <button id="location-modal-btn" style="
+      width:100%; padding:14px;
+      font-family:'IBM Plex Mono', monospace; font-size:0.85rem;
+      font-weight:600; text-transform:uppercase; letter-spacing:0.05em;
+      background: var(--ink); color: var(--cream); border:1px solid var(--ink);
+      cursor:pointer; transition: var(--transition);
+    ">Give Location</button>
+  </div>
+</div>
+
 <script>
-(function(){
-  const menuToggle = document.getElementById('menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-  if (menuToggle && mobileMenu) {
-    menuToggle.addEventListener('click', function(e) {
-      e.stopPropagation();
-      const isVisible = mobileMenu.style.display === 'flex';
-      mobileMenu.style.display = isVisible ? 'none' : 'flex';
-    });
-    document.addEventListener('click', function(e) {
-      if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-        mobileMenu.style.display = 'none';
-      }
-    });
-  }
-})();
+  window.addEventListener('load', function() {
+    if (!localStorage.getItem('hap_location_prompted')) {
+      var modal = document.getElementById('location-modal');
+      modal.style.display = 'flex';
+      
+      document.getElementById('location-modal-btn').addEventListener('click', function() {
+        modal.style.display = 'none';
+        localStorage.setItem('hap_location_prompted', 'true');
+        var locBtn = document.getElementById('loc-btn');
+        if (locBtn) {
+          locBtn.scrollIntoView({behavior: 'smooth', block: 'center'});
+          setTimeout(function() { locBtn.click(); }, 600);
+        }
+      });
+    }
+  });
 </script>
 
 </body>
