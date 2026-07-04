@@ -734,13 +734,20 @@ footer {
   .menu-toggle-btn {
     display: flex;
   }
+  .masthead-right {
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
   .mobile-dropdown {
     position: absolute;
     top: calc(100% - 10px);
     right: 24px;
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    background: var(--bg2, var(--cream, #F3F1E6)) !important;
+    border: 1px solid var(--border, var(--paper-line, rgba(30,42,34,0.14)));
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
     flex-direction: column;
     padding: 8px 0;
     min-width: 180px;
@@ -752,10 +759,10 @@ footer {
     font-size: 0.78rem;
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 500;
-    color: var(--text);
+    color: var(--text, var(--ink, #1E2A22)) !important;
     text-decoration: none;
     transition: var(--transition);
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--border, var(--paper-line, rgba(30,42,34,0.14)));
   }
   .dropdown-link:last-child {
     border-bottom: none;
@@ -776,6 +783,8 @@ footer {
     display: none;
   }
   .masthead-right {
+    width: 100%;
+    justify-content: space-between;
     gap: 4px;
   }
   .btn-ghost {
@@ -1866,6 +1875,27 @@ function renderGrid() {
 // Initial render
 renderGrid();
 </script>
+
+<!-- Mobile menu dropdown toggle helper -->
+<script>
+(function(){
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const isVisible = mobileMenu.style.display === 'flex';
+      mobileMenu.style.display = isVisible ? 'none' : 'flex';
+    });
+    document.addEventListener('click', function(e) {
+      if (!mobileMenu.contains(e.target) && e.target !== menuToggle) {
+        mobileMenu.style.display = 'none';
+      }
+    });
+  }
+})();
+</script>
+
 
 <!-- Mobile menu dropdown toggle helper -->
 <script>
