@@ -468,12 +468,15 @@ code {
   display: flex;
   align-items: center;
   gap: 12px;
-  flex-shrink: 0;
+  flex: 1;
+  justify-content: flex-end;
 }
 .masthead-links {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex: 1;
+  justify-content: space-evenly;
 }
 .btn-ghost {
   font-family: 'IBM Plex Mono', monospace;
@@ -548,6 +551,25 @@ code {
 }
 
 /* Responsive navigation styles */
+@media (max-width: 1200px) {
+  .masthead-inner {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .masthead-left {
+    justify-content: center;
+    width: 100%;
+  }
+  .masthead-right {
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+}
+
 @media (max-width: 768px) {
   .masthead-links {
     display: none;
@@ -1496,6 +1518,27 @@ sections.forEach(s => observer.observe(s));
     });
     document.addEventListener('click', function(e) {
       if (!mobileMenu.contains(e.target) && e.target !== menuToggle) {
+        mobileMenu.style.display = 'none';
+      }
+    });
+  }
+})();
+</script>
+
+
+<!-- Mobile menu dropdown toggle helper -->
+<script>
+(function(){
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const isVisible = mobileMenu.style.display === 'flex';
+      mobileMenu.style.display = isVisible ? 'none' : 'flex';
+    });
+    document.addEventListener('click', function(e) {
+      if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
         mobileMenu.style.display = 'none';
       }
     });
