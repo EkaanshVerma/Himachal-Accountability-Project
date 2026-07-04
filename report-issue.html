@@ -1007,278 +1007,261 @@
 </div>
 
 <main id="top">
-
-  <!-- ===== HERO ===== -->
-  <section class="hero">
-    <svg class="contour-field" id="contourField" preserveAspectRatio="none" aria-hidden="true"></svg>
-    <div class="wrap hero-grid">
-      <div>
-        <div class="hero-tag">Independent &middot; Non-partisan &middot; Data-driven</div>
-        <h1>
-          <span class="line">Bad Roads.</span>
-          <span class="line">Dry Taps.</span>
-          <span class="line">Dark Streets.</span>
-        </h1>
-        <p class="hero-sub">We log the where, the when, and the proof for broken public infrastructure across Himachal Pradesh — and keep the file open until the department closes it.</p>
-        <div class="hero-ctas">
-          <a href="report-issue.html" target="_blank" class="btn btn-primary">Report an issue</a>
-          <a href="/dashboard.html" class="btn btn-ghost" style="border-color: var(--amber); color: var(--amber);">View Dashboard</a>
-          <a href="/donate.html" class="btn btn-ghost" style="border-color: var(--stamp); color: var(--stamp);">Support Us</a>
+    <section style="padding: 120px 24px; min-height: 80vh; display:flex; justify-content:center; align-items:flex-start; background: var(--paper);">
+      <div style="max-width: 640px; width:100%; margin: 0 auto; background: var(--paper-deep); padding: 40px; border: 1px solid var(--paper-line);">
+        
+        <div style="margin-bottom: 32px; text-align:center;">
+          <h1 style="font-family:'IBM Plex Serif',serif; font-size:2rem; font-weight:400; color:var(--ink); margin:0 0 12px; letter-spacing:-0.02em;">Report an Issue</h1>
+          <p style="font-family:'IBM Plex Sans',sans-serif; font-size:1rem; color:var(--ink-soft); line-height:1.6; margin:0;">
+            Help us track what's broken so we can hold the administration accountable. Please provide as much detail as possible.
+          </p>
         </div>
-      </div>
-
-      <div class="field-card" id="fieldCard">
-        <div class="field-card-head">
-          <span class="field-card-label" style="border-color: var(--sage); color: var(--sage);">Report from your location</span>
-          <span class="field-card-id mono" id="report-ref">REF · —</span>
-        </div>
-
-        <!-- Step 1: Location -->
-        <div id="loc-section">
-          <button id="loc-btn" style="
-            width:100%; padding:14px; margin: 10px 0;
-            font-family:'IBM Plex Mono', monospace; font-size:0.78rem;
-            font-weight:600; text-transform:uppercase; letter-spacing:0.08em;
-            background: var(--sage); color: var(--cream); border:1px solid var(--sage);
-            cursor:pointer; transition: var(--transition); display:flex; align-items:center; justify-content:center; gap:8px;
-          ">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:16px;height:16px;">
-              <path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/>
-              <circle cx="12" cy="9" r="2.4"/>
-            </svg>
-            Enable Location
-          </button>
-          <p id="loc-status" style="margin:0; font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--ink-faint); text-align:center;"></p>
-        </div>
-
-        <!-- Location data display (hidden until location obtained) -->
-        <dl class="field-meta" id="loc-data" style="display:none;">
-          <div><dt>Location</dt><dd id="loc-name">Detecting…</dd></div>
-          <div><dt>Coordinates</dt><dd id="loc-coords">—</dd></div>
-        </dl>
-
-        <!-- Photo upload (Optional) -->
-        <div class="photo-evidence" id="photo-upload-area" style="cursor:pointer; flex-direction:column; height:auto; min-height:72px; padding:14px; gap:8px;">
-          <span class="corner tl"></span><span class="corner br"></span>
-          <input type="file" id="photo-input" accept="image/*,video/*" capture="environment" style="display:none;">
-          <div id="photo-placeholder" style="display:flex; align-items:center; gap:10px;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:22px;height:22px; flex-shrink:0; color:var(--ink-soft);">
-              <rect x="3" y="7" width="18" height="13" rx="1"/>
-              <path d="M8 7l1.5-3h5L16 7"/>
-              <circle cx="12" cy="13.5" r="3.2"/>
-            </svg>
-            <span style="font-family:'IBM Plex Mono',monospace; font-size:0.7rem; color:var(--ink-soft);">Tap to upload a photo/video (optional)</span>
+        
+        <form id="detailed-report-form" style="display:flex; flex-direction:column; gap:24px;">
+          
+          <!-- Q1 -->
+          <div>
+            <label style="display:block; font-family:'IBM Plex Sans',sans-serif; font-size:0.95rem; font-weight:600; color:var(--ink); margin-bottom:8px;">
+              Aapke kshetra ki aisi sabse badi samasya kya hai jise sthaniya prashasan puri tarah se najarandaz kar raha hai?<span style="color:var(--stamp)">*</span><br>
+              <span style="font-weight:400; font-size:0.85rem; color:var(--ink-soft);">(What is the biggest issue in your area that the local administration is completely ignoring?)</span>
+            </label>
+            <textarea id="q1-issue" required placeholder="Tuti sadkon, pani ki kami, ya ruke hue projects ke baare mein batayein. Kripya puri jankari dein." style="width:100%; min-height:100px; padding:12px; font-family:'IBM Plex Sans',sans-serif; font-size:0.9rem; background:var(--paper); border:1px solid var(--paper-line); color:var(--ink); outline:none; box-sizing:border-box; resize:vertical;"></textarea>
           </div>
-          <div id="photo-preview-container" style="display:none; width:100%; text-align:center;">
-            <img id="photo-preview" style="max-width:100%; max-height:180px; border:1px solid var(--paper-line); margin-bottom:6px;" alt="Photo preview">
-            <div style="display:flex; align-items:center; justify-content:center; gap:6px;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.8" style="width:14px;height:14px;"><path d="M20 6 9 17l-5-5"/></svg>
-              <span style="font-family:'IBM Plex Mono',monospace; font-size:0.68rem; color:var(--sage);">Media attached</span>
+
+          <!-- Q2 -->
+          <div>
+            <label style="display:block; font-family:'IBM Plex Sans',sans-serif; font-size:0.95rem; font-weight:600; color:var(--ink); margin-bottom:8px;">
+              Photo ya Video isse related <span style="font-weight:400; color:var(--ink-soft);">(Optional)</span>
+            </label>
+            <div id="q2-upload-area" style="border: 1px dashed var(--paper-line); padding: 24px; text-align: center; cursor: pointer; background: var(--paper); transition: background 0.2s;">
+              <input type="file" id="q2-file" accept="image/*,video/*" style="display:none;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--ink-soft)" stroke-width="1.5" style="width:28px;height:28px; margin-bottom:8px;">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+              </svg>
+              <div style="font-family:'IBM Plex Sans',sans-serif; font-size:0.9rem; color:var(--ink);">Click to choose a file or drag here</div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:0.7rem; color:var(--ink-soft); margin-top:6px;" id="q2-file-name">Size limit: 10 MB</div>
+            </div>
+            <img id="q2-preview" style="max-width:100%; max-height:200px; display:none; margin-top:12px; border:1px solid var(--paper-line);">
+          </div>
+
+          <!-- Q3 -->
+          <div>
+            <label style="display:block; font-family:'IBM Plex Sans',sans-serif; font-size:0.95rem; font-weight:600; color:var(--ink); margin-bottom:8px;">
+              Pure Himachal ke vikas ke liye agli sarkar ki sabse pehli prathmikta kya honi chahiye?<span style="color:var(--stamp)">*</span><br>
+              <span style="font-weight:400; font-size:0.85rem; color:var(--ink-soft);">(What should be the #1 priority for Himachal's overall development?)</span>
+            </label>
+            <textarea id="q3-priority" required placeholder="Tell us your thoughts..." style="width:100%; min-height:80px; padding:12px; font-family:'IBM Plex Sans',sans-serif; font-size:0.9rem; background:var(--paper); border:1px solid var(--paper-line); color:var(--ink); outline:none; box-sizing:border-box; resize:vertical;"></textarea>
+          </div>
+
+          <!-- Q4 -->
+          <div>
+            <label style="display:block; font-family:'IBM Plex Sans',sans-serif; font-size:0.95rem; font-weight:600; color:var(--ink); margin-bottom:8px;">
+              Photo ya Video isse related <span style="font-weight:400; color:var(--ink-soft);">(Optional)</span>
+            </label>
+            <div id="q4-upload-area" style="border: 1px dashed var(--paper-line); padding: 24px; text-align: center; cursor: pointer; background: var(--paper); transition: background 0.2s;">
+              <input type="file" id="q4-file" accept="image/*,video/*" style="display:none;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--ink-soft)" stroke-width="1.5" style="width:28px;height:28px; margin-bottom:8px;">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+              </svg>
+              <div style="font-family:'IBM Plex Sans',sans-serif; font-size:0.9rem; color:var(--ink);">Click to choose a file or drag here</div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:0.7rem; color:var(--ink-soft); margin-top:6px;" id="q4-file-name">Size limit: 10 MB</div>
+            </div>
+            <img id="q4-preview" style="max-width:100%; max-height:200px; display:none; margin-top:12px; border:1px solid var(--paper-line);">
+          </div>
+
+          <!-- Q5 -->
+          <div>
+            <label style="display:block; font-family:'IBM Plex Sans',sans-serif; font-size:0.95rem; font-weight:600; color:var(--ink); margin-bottom:8px;">
+              Kya aapko lagta hai ki aapke vartaman MLA yuvaon aur pure samaj ki zarooraton ko samajhte hain? Kya aap unhe dobara vote denge?<span style="color:var(--stamp)">*</span><br>
+              <span style="font-weight:400; font-size:0.85rem; color:var(--ink-soft);">(Do you feel your current MLA understands the needs of the youth, and the wider society as a whole? Would you vote for him/her again?)</span>
+            </label>
+            <textarea id="q5-mla" required placeholder="Kripya khul kar batayein. Aap chahein toh vyakti ka naam lene chodh sakte hain." style="width:100%; min-height:100px; padding:12px; font-family:'IBM Plex Sans',sans-serif; font-size:0.9rem; background:var(--paper); border:1px solid var(--paper-line); color:var(--ink); outline:none; box-sizing:border-box; resize:vertical;"></textarea>
+          </div>
+
+          <!-- Q6 -->
+          <div>
+            <label style="display:block; font-family:'IBM Plex Sans',sans-serif; font-size:0.95rem; font-weight:600; color:var(--ink); margin-bottom:8px;">
+              Ek behtar kal ke liye, Himachal ko abhi sabse zyada kis tarah ki leadership ki zaroorat hai?<span style="color:var(--stamp)">*</span><br>
+              <span style="font-weight:400; font-size:0.85rem; color:var(--ink-soft);">(For a better tomorrow, what kind of leadership does Himachal need most right now?)</span>
+            </label>
+            <textarea id="q6-leadership" required placeholder="Ek paramparik neta, ek yuva aur tech-focused prashasnik neta, ya kuch aur?" style="width:100%; min-height:80px; padding:12px; font-family:'IBM Plex Sans',sans-serif; font-size:0.9rem; background:var(--paper); border:1px solid var(--paper-line); color:var(--ink); outline:none; box-sizing:border-box; resize:vertical;"></textarea>
+          </div>
+
+          <div style="display:flex; gap:24px; flex-wrap:wrap;">
+            <!-- Q7 -->
+            <div style="flex:1; min-width:200px;">
+              <label style="display:block; font-family:'IBM Plex Sans',sans-serif; font-size:0.95rem; font-weight:600; color:var(--ink); margin-bottom:8px;">
+                Aapka Pin Code kya hai?<span style="color:var(--stamp)">*</span><br>
+                <span style="font-weight:400; font-size:0.85rem; color:var(--ink-soft);">(What is your Pin Code?)</span>
+              </label>
+              <input type="text" id="q7-pincode" required placeholder="Example: 171009" style="width:100%; padding:12px; font-family:'IBM Plex Sans',sans-serif; font-size:0.9rem; background:var(--paper); border:1px solid var(--paper-line); color:var(--ink); outline:none; box-sizing:border-box;">
+            </div>
+
+            <!-- Q8 -->
+            <div style="flex:1; min-width:200px;">
+              <label style="display:block; font-family:'IBM Plex Sans',sans-serif; font-size:0.95rem; font-weight:600; color:var(--ink); margin-bottom:8px;">
+                WhatsApp Number <span style="font-weight:400; color:var(--ink-soft);">(Optional)</span><br>
+                <span style="font-weight:400; font-size:0.85rem; color:var(--ink-soft);">(To receive the compiled grievance report)</span>
+              </label>
+              <input type="tel" id="q8-whatsapp" placeholder="+91" style="width:100%; padding:12px; font-family:'IBM Plex Sans',sans-serif; font-size:0.9rem; background:var(--paper); border:1px solid var(--paper-line); color:var(--ink); outline:none; box-sizing:border-box;">
             </div>
           </div>
+
+          <div id="form-error" style="display:none; color:var(--stamp); font-family:'IBM Plex Sans',sans-serif; font-size:0.9rem;"></div>
+          
+          <button type="submit" id="submit-btn" style="
+            width:100%; padding:16px; margin-top:12px;
+            font-family:'IBM Plex Mono', monospace; font-size:0.9rem;
+            font-weight:600; text-transform:uppercase; letter-spacing:0.08em;
+            background: var(--ink); color: var(--cream); border:1px solid var(--ink);
+            cursor:pointer; transition: opacity 0.2s;
+          ">Submit Report →</button>
+        </form>
+
+        <div id="success-msg" style="display:none; text-align:center; padding:40px 0;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.5" style="width:48px;height:48px; margin-bottom:16px; margin:0 auto 16px;">
+            <path d="M20 6L9 17l-5-5"/>
+          </svg>
+          <h2 style="font-family:'IBM Plex Serif',serif; font-size:1.8rem; font-weight:400; color:var(--ink); margin:0 0 12px;">Submitted successfully</h2>
+          <p style="font-family:'IBM Plex Sans',sans-serif; font-size:1rem; color:var(--ink-soft); line-height:1.6;">
+            Thank you for your input. We'll verify this information and reach back accordingly.
+          </p>
+          <a href="/" class="btn btn-primary" style="display:inline-block; margin-top:24px;">Return Home</a>
         </div>
 
-        <!-- Problem Category -->
-        <select id="report-category" style="
-          width:100%; padding:12px; margin:10px 0 0 0;
-          font-family:'IBM Plex Sans',sans-serif; font-size:0.88rem;
-          background: var(--paper-deep); color: var(--ink);
-          border:1px solid var(--paper-line); outline:none;
-          transition: border-color 0.2s;
-          appearance: none; -webkit-appearance: none;
-          background-image: url('data:image/svg+xml;utf8,<svg fill=%22none%22 stroke=%22currentColor%22 stroke-width=%222%22 viewBox=%220 0 24 24%22 xmlns=%22http://www.w3.org/2000/svg%22><path stroke-linecap=%22round%22 stroke-linejoin=%22round%22 d=%22M19 9l-7 7-7-7%22></path></svg>');
-          background-repeat: no-repeat; background-position: right 12px center; background-size: 16px;
-        ">
-          <option value="" disabled selected>Select problem category (required)</option>
-          <option value="Roads">Roads & Infrastructure</option>
-          <option value="Water">Water Supply</option>
-          <option value="Health">Healthcare</option>
-          <option value="Education">Education</option>
-          <option value="Food">Food & PDS</option>
-          <option value="Electricity">Electricity</option>
-          <option value="Other">Other</option>
-        </select>
-
-        <!-- Mandatory description -->
-        <textarea id="report-desc" placeholder="Describe the problem (required)" style="
-          width:100%; min-height:70px; max-height:140px; resize:vertical;
-          padding:12px; margin:10px 0 0 0; box-sizing:border-box;
-          font-family:'IBM Plex Sans',sans-serif; font-size:0.88rem;
-          background: var(--paper-deep); color: var(--ink);
-          border:1px solid var(--paper-line); outline:none;
-          transition: border-color 0.2s;
-        "></textarea>
-
-        <!-- MLA Approval -->
-        <div style="margin: 10px 0 0 0; padding: 12px; border: 1px solid var(--paper-line); background: var(--paper-deep);">
-          <p style="margin:0 0 10px 0; font-family:'IBM Plex Sans',sans-serif; font-size:0.85rem; color:var(--ink); line-height: 1.3;">Would you say you approve of your MLA and vote for them again?</p>
-          <div style="display:flex; gap:20px;">
-            <label style="display:flex; align-items:center; gap:6px; font-size:0.88rem; cursor:pointer;">
-              <input type="radio" name="mla-approve" value="Yes" style="accent-color:var(--sage); width:16px; height:16px; cursor:pointer;"> Yes
-            </label>
-            <label style="display:flex; align-items:center; gap:6px; font-size:0.88rem; cursor:pointer;">
-              <input type="radio" name="mla-approve" value="No" style="accent-color:var(--sage); width:16px; height:16px; cursor:pointer;"> No
-            </label>
-          </div>
-        </div>
-
-        <!-- Submit -->
-        <button id="submit-report-btn" disabled style="
-          width:100%; padding:14px; margin-top:12px;
-          font-family:'IBM Plex Mono', monospace; font-size:0.78rem;
-          font-weight:600; text-transform:uppercase; letter-spacing:0.08em;
-          background: var(--ink); color: var(--cream); border:1px solid var(--ink);
-          cursor:pointer; transition: var(--transition); opacity:0.4;
-        ">Submit Report →</button>
-        <p style="margin:6px 0 0; font-family:'IBM Plex Mono',monospace; font-size:0.62rem; color:var(--ink-faint); text-align:center;">
-          Location, category, description &amp; vote required
-        </p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <div class="trust-strip">
-    <div class="wrap">
-      <span class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-4z"/></svg>Non-partisan by design</span>
-      <span class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>GPS-verified, every time</span>
-      <span class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 9h18M8 4v5"/></svg>Open to the public dashboard</span>
-    </div>
-  </div>
+    <script>
+      // The exact same webhook used elsewhere
+      var WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbyGZl6YjHBrAgrL85QJd9chkR5cS3wNUuo9PREB8qira6__XvBk5z98CQQJQl9oBh86/exec';
 
-  <!-- ===== PILLARS ===== -->
-  <section class="section" id="pillars">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <div class="eyebrow">The framework</div>
-        <h2>Four ground rules for how this works</h2>
-        <p>Nothing on this platform is built to attack a person or a party. It's built to shorten the distance between a broken handpump and the department that can fix it.</p>
-      </div>
+      function setupFileUpload(areaId, fileId, nameId, previewId) {
+        var area = document.getElementById(areaId);
+        var input = document.getElementById(fileId);
+        var nameLabel = document.getElementById(nameId);
+        var preview = document.getElementById(previewId);
 
-      <div class="pillars-grid">
-        <div class="pillar reveal">
-          <div class="pillar-top">
-            <span class="pillar-num mono">PILLAR — 01</span>
-            <span class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><path d="M9 9l2 1.5-1 2 2.5 1-1 2.5" /></svg></span>
-          </div>
-          <h3>Citizen-centric utility</h3>
-          <p>Reporting a collapsed culvert or a dry tap shouldn't take a government form. Any resident can log an issue in minutes — no party affiliation, no office visit, no fee. It exists for the person waiting at the bus stop next to the pothole, not for any campaign.</p>
-        </div>
+        area.addEventListener('click', function() { input.click(); });
+        
+        area.addEventListener('dragover', function(e) {
+          e.preventDefault();
+          area.style.background = 'var(--paper-deep)';
+        });
+        
+        area.addEventListener('dragleave', function(e) {
+          e.preventDefault();
+          area.style.background = 'var(--paper)';
+        });
 
-        <div class="pillar reveal">
-          <div class="pillar-top">
-            <span class="pillar-num mono">PILLAR — 02</span>
-            <span class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8"/><path d="M12 4v3M12 17v3M4 12h3M17 12h3"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/></svg></span>
-          </div>
-          <h3>Radical transparency &amp; data accuracy</h3>
-          <p>Every report needs three things: a GPS pin, a ward, and a photograph — nothing less is accepted, nothing more is required. It lands directly on a public map that a resident, a journalist, and a department engineer all see in the same form.</p>
-        </div>
+        area.addEventListener('drop', function(e) {
+          e.preventDefault();
+          area.style.background = 'var(--paper)';
+          if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+            input.files = e.dataTransfer.files;
+            handleFile(input.files[0]);
+          }
+        });
 
-        <div class="pillar reveal">
-          <div class="pillar-top">
-            <span class="pillar-num mono">PILLAR — 03</span>
-            <span class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V13M9.5 20V9M15 20V5M20.5 20v-7"/></svg></span>
-          </div>
-          <h3>Constructive administrative feedback</h3>
-          <p>The Critical Delay Index is a ward-level backlog tracker: every open report carries a running count of months since it was first logged. Entries sort automatically on the public dashboard — longest-pending issues surface first, by constituency and district, so resources follow the worst backlogs, not the loudest voices.</p>
-        </div>
+        input.addEventListener('change', function() {
+          if (this.files && this.files[0]) handleFile(this.files[0]);
+        });
 
-        <div class="pillar reveal">
-          <div class="pillar-top">
-            <span class="pillar-num mono">PILLAR — 04</span>
-            <span class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="2.2"/><circle cx="17" cy="7" r="2.2"/><circle cx="12" cy="17" r="2.2"/><path d="M8.6 8.4 10.4 15.2M15.4 8.4 13.6 15.2M9 7h6"/></svg></span>
-          </div>
-          <h3>Youth-led civic participation</h3>
-          <p>Most of the field reporting, photo verification, and social posts come from students and young residents who already carry a phone with a camera and a GPS chip. When an issue gets resolved, the post that follows is a thank-you to the department — not a target list.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+        function handleFile(file) {
+          nameLabel.textContent = file.name;
+          
+          if (file.size > 10 * 1024 * 1024) {
+             alert('File is too large. Please select a file under 10MB.');
+             input.value = '';
+             nameLabel.textContent = 'Size limit: 10 MB';
+             preview.style.display = 'none';
+             return;
+          }
 
-  <!-- ===== DELAY INDEX ===== -->
-  <section class="section band-dark" id="delay-index">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <div class="eyebrow on-dark">The critical delay index</div>
-        <h2>Time pending, not blame assigned</h2>
-        <p>Every open report carries one number: months since it was first logged. That number sorts the public dashboard automatically, so the longest-ignored problems surface on their own.</p>
-      </div>
+          if (file.type.startsWith('image/')) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+              preview.src = e.target.result;
+              preview.style.display = 'block';
+              
+              // Compress image
+              var img = new Image();
+              img.onload = function() {
+                var canvas = document.createElement('canvas');
+                var maxDim = 1200;
+                var w = img.width, h = img.height;
+                if (w > maxDim || h > maxDim) {
+                  if (w > h) { h = Math.round(h * maxDim / w); w = maxDim; }
+                  else { w = Math.round(w * maxDim / h); h = maxDim; }
+                }
+                canvas.width = w; canvas.height = h;
+                var ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, w, h);
+                input.dataset.compressed = canvas.toDataURL('image/jpeg', 0.6);
+              };
+              img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+          } else {
+             preview.style.display = 'none';
+             var reader = new FileReader();
+             reader.onload = function(e) {
+               input.dataset.compressed = e.target.result; 
+             }
+             reader.readAsDataURL(file);
+          }
+        }
+      }
 
-      <div class="index-strip reveal">
-        <div class="index-row">
-          <div class="index-seg">
-            <div class="index-marker">Example: this report<div class="pin"></div></div>
-            <div class="bar"></div>
-            <div class="months">0–2 months</div>
-            <div class="stage">Logged</div>
-          </div>
-          <div class="index-seg">
-            <div class="bar"></div>
-            <div class="months">3–6 months</div>
-            <div class="stage">Watch</div>
-          </div>
-          <div class="index-seg">
-            <div class="bar"></div>
-            <div class="months">7–11 months</div>
-            <div class="stage">Escalate</div>
-          </div>
-          <div class="index-seg">
-            <div class="bar"></div>
-            <div class="months">12+ months</div>
-            <div class="stage">Critical</div>
-          </div>
-        </div>
-      </div>
-      <p class="index-note reveal">No issue is ever removed from the index for being old or inconvenient — it only moves when a department closes it out, with photo proof of the fix.</p>
-    </div>
-  </section>
+      setupFileUpload('q2-upload-area', 'q2-file', 'q2-file-name', 'q2-preview');
+      setupFileUpload('q4-upload-area', 'q4-file', 'q4-file-name', 'q4-preview');
 
-  <!-- ===== THE PITCH ===== -->
-  <section class="section" id="pitch">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <div class="eyebrow">When someone asks what this is</div>
-        <h2>The line we hold</h2>
-        <p>This is the exact answer given to a journalist, a politician, or a fellowship coordinator who asks what the project actually is.</p>
-      </div>
+      var form = document.getElementById('detailed-report-form');
+      var submitBtn = document.getElementById('submit-btn');
+      var errorMsg = document.getElementById('form-error');
 
-      <div class="pitch-card reveal">
-        <div class="pitch-stamp">On the<br>record</div>
-        <blockquote>
-          <p>We are a data-driven public utility. We do not support any political party, and we do not oppose any political party. We oppose bad roads, dry taps, and administrative delays.</p>
-          <p>Our goal is to use modern technology to help the government see real-time ground realities so that public funds are spent efficiently. We are simply here to help the system work faster and better for the people of Himachal.</p>
-        </blockquote>
-        <div class="pitch-foot">The Himachal Accountability Project — official position</div>
-      </div>
-    </div>
-  </section>
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        errorMsg.style.display = 'none';
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
+        submitBtn.style.opacity = '0.5';
 
-  <!-- ===== GET INVOLVED ===== -->
-  <section class="section band-paper-deep" id="get-involved">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <div class="eyebrow">Join Us</div>
-        <h2>Two ways in</h2>
-        <p>Whether you've got one pothole to log or a weekend a month to give, there's a way to plug in.</p>
-      </div>
+        var payload = {
+          formType: 'detailed',
+          issue: document.getElementById('q1-issue').value.trim(),
+          issuePhoto: document.getElementById('q2-file').dataset.compressed || null,
+          priority: document.getElementById('q3-priority').value.trim(),
+          priorityPhoto: document.getElementById('q4-file').dataset.compressed || null,
+          mlaPerception: document.getElementById('q5-mla').value.trim(),
+          leadership: document.getElementById('q6-leadership').value.trim(),
+          pincode: document.getElementById('q7-pincode').value.trim(),
+          whatsapp: document.getElementById('q8-whatsapp').value.trim(),
+          timestamp: new Date().toISOString()
+        };
 
-      <div class="involve-grid">
-        <div class="involve-card reveal">
-          <span class="tag mono">For residents</span>
-          <h3>Report from your ward</h3>
-          <p>Have a broken streetlight, a collapsed drain, or a dry handpump to log? Submit your ward, pin code, and a photo via the form — it goes directly onto the public map. No login, no app, no email draft.</p>
-          <a class="btn btn-ghost" href="report-issue.html" target="_blank">Log your report via form <span style="font-size:0.72em;opacity:0.7">(60 sec, no login)</span></a>
-        </div>
-        <div class="involve-card reveal">
-          <span class="tag mono">For volunteers</span>
-          <h3>Verify, map, and post</h3>
-          <p>Students and young residents do most of the on-ground verification and the social posts that follow a fix. No experience required — just a phone and a Saturday morning.</p>
-          <a class="btn btn-ghost" href="join.html">Express interest</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-</main>
+        fetch(WEBHOOK_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+        .then(function() {
+          form.style.display = 'none';
+          document.getElementById('success-msg').style.display = 'block';
+          window.scrollTo({top: 0, behavior: 'smooth'});
+        })
+        .catch(function(err) {
+          console.error(err);
+          errorMsg.textContent = 'A network error occurred. Please try again.';
+          errorMsg.style.display = 'block';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit Report →';
+          submitBtn.style.opacity = '1';
+        });
+      });
+    </script>
+    </main>
 
 <footer>
   <div class="wrap">
