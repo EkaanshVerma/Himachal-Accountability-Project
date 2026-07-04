@@ -766,6 +766,7 @@
   justify-content: space-between;
   gap: 24px;
   flex-wrap: wrap;
+  position: relative;
 }
 .masthead-left {
   display: flex;
@@ -803,6 +804,11 @@
   align-items: center;
   gap: 12px;
   flex-shrink: 0;
+}
+.masthead-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 .btn-ghost {
   font-family: 'IBM Plex Mono', monospace;
@@ -843,7 +849,7 @@
   background: transparent;
   color: var(--text);
 }
-.theme-toggle-btn {
+.theme-toggle-btn, .menu-toggle-btn {
   background: transparent;
   border: 1px solid var(--border);
   width: 36px;
@@ -855,7 +861,7 @@
   color: var(--text);
   transition: var(--transition);
 }
-.theme-toggle-btn:hover {
+.theme-toggle-btn:hover, .menu-toggle-btn:hover {
   background: var(--bg4);
 }
 .theme-toggle-btn svg {
@@ -869,22 +875,53 @@
 [data-theme="dark"] .theme-toggle-btn .icon-sun { display: block; }
 [data-theme="dark"] .theme-toggle-btn .icon-moon { display: none; }
 
+.menu-toggle-btn {
+  display: none;
+}
+.mobile-dropdown {
+  display: none;
+}
+
 /* Responsive navigation styles */
-@media (max-width: 1024px) {
-  .masthead-inner {
+@media (max-width: 768px) {
+  .masthead-links {
+    display: none;
+  }
+  .menu-toggle-btn {
+    display: flex;
+  }
+  .mobile-dropdown {
+    position: absolute;
+    top: calc(100% - 10px);
+    right: 24px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
     flex-direction: column;
-    align-items: center;
-    gap: 16px;
+    padding: 8px 0;
+    min-width: 180px;
+    z-index: 1001;
+    border-radius: 4px;
   }
-  .masthead-left {
-    justify-content: center;
-    width: 100%;
+  .dropdown-link {
+    padding: 10px 18px;
+    font-size: 0.78rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: none;
+    transition: var(--transition);
+    border-bottom: 1px solid var(--border);
   }
-  .masthead-right {
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 8px;
+  .dropdown-link:last-child {
+    border-bottom: none;
+  }
+  .dropdown-link:hover {
+    background: var(--bg4);
+  }
+  .dropdown-link.active {
+    background: var(--bg5);
+    font-weight: 600;
   }
 }
 @media (max-width: 480px) {
@@ -907,6 +944,9 @@
     font-size: 0.65rem;
     letter-spacing: 0.05em;
   }
+  .mobile-dropdown {
+    right: 10px;
+  }
 }
 
 </style>
@@ -925,13 +965,29 @@
       </a>
     </div>
     <div class="masthead-right">
-      <a class="btn-ghost active" id="nav-home" href="index.html">Home</a>
-      <a class="btn-ghost " id="nav-dashboard" href="dashboard.html">Dashboard</a>
-      <a class="btn-ghost " id="nav-perception" href="mla_perception.html">MLA Perception</a>
-      <a class="btn-ghost " id="nav-join" href="join.html">Join Us</a>
+      <div class="masthead-links">
+        <a class="btn-ghost active" id="nav-home" href="index.html">Home</a>
+        <a class="btn-ghost " id="nav-dashboard" href="dashboard.html">Dashboard</a>
+        <a class="btn-ghost " id="nav-perception" href="mla_perception.html">MLA Perception</a>
+        <a class="btn-ghost " id="nav-join" href="join.html">Join Us</a>
+        <a class="btn-ghost " id="nav-contact" href="contact.html">Contact Us</a>
+      </div>
+      
+      <div class="mobile-dropdown" id="mobile-menu" style="display: none;">
+        <a class="dropdown-link active" href="index.html">Home</a>
+        <a class="dropdown-link " href="dashboard.html">Dashboard</a>
+        <a class="dropdown-link " href="mla_perception.html">MLA Perception</a>
+        <a class="dropdown-link " href="join.html">Join Us</a>
+        <a class="dropdown-link " href="contact.html">Contact Us</a>
+      </div>
+
       <a class="btn-ghost " id="nav-donate" href="donate.html">Support Us</a>
-      <a class="btn-ghost " id="nav-contact" href="contact.html">Contact Us</a>
       <a class="btn-primary" href="https://tally.so/r/A76O8B" target="_blank">&#x270E;&nbsp; Report Issue</a>
+      
+      <button class="menu-toggle-btn" id="menu-toggle" aria-label="Toggle navigation menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="width:18px; height:18px; display:block;"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+
       <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle theme">
         <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
         <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
@@ -1278,6 +1334,27 @@
     }
   })();
 
+</script>
+
+
+<!-- Mobile menu dropdown toggle helper -->
+<script>
+(function(){
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const isVisible = mobileMenu.style.display === 'flex';
+      mobileMenu.style.display = isVisible ? 'none' : 'flex';
+    });
+    document.addEventListener('click', function(e) {
+      if (!mobileMenu.contains(e.target) && e.target !== menuToggle) {
+        mobileMenu.style.display = 'none';
+      }
+    });
+  }
+})();
 </script>
 
 </body>
