@@ -463,20 +463,29 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; }
   padding: 2px 6px;
   border: 1px solid transparent;
 }
+.party-badge {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8.5px !important;
+  font-weight: 700;
+  padding: 1px 5px !important;
+  border-radius: 0;
+  text-transform: uppercase;
+  display: inline-block;
+}
 .party-badge.party-INC {
-  background: var(--blue-bg);
-  border-color: var(--blue);
-  color: var(--blue);
+  background: rgba(16, 185, 129, 0.12);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.25);
 }
 .party-badge.party-BJP {
-  background: var(--amber-bg);
-  border-color: var(--amber);
-  color: var(--amber);
+  background: rgba(245, 158, 11, 0.12);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.25);
 }
 .party-badge.party-IND {
-  background: var(--bg4);
-  border-color: var(--text3);
+  background: rgba(120, 120, 120, 0.1);
   color: var(--text2);
+  border: 1px solid var(--border);
 }
 
 .meta-row {
@@ -580,6 +589,128 @@ footer {
   color: var(--cream-faint);
   letter-spacing: 0.03em;
 }
+
+/* ─── UNIFIED MASTHEAD NAVIGATION ─── */
+.masthead {
+  padding: 16px var(--pad, 24px);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: var(--transition);
+}
+.masthead-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.masthead-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+}
+.brand-logo {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+.brand-text small {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 400;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  color: var(--text3);
+  text-transform: uppercase;
+}
+.masthead-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.btn-ghost {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 8px 14px;
+  background: transparent;
+  border: 1px solid transparent;
+  transition: var(--transition);
+}
+.btn-ghost:hover {
+  background: var(--bg4);
+  color: var(--text);
+}
+.btn-ghost.active {
+  border-color: var(--text);
+  background: var(--bg5);
+}
+.btn-primary {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 8px 16px;
+  background: var(--ink);
+  color: var(--cream);
+  border: 1px solid var(--ink);
+  transition: var(--transition);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+.btn-primary:hover {
+  background: transparent;
+  color: var(--text);
+}
+.theme-toggle-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text);
+  transition: var(--transition);
+}
+.theme-toggle-btn:hover {
+  background: var(--bg4);
+}
+.theme-toggle-btn svg {
+  width: 16px; height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+.theme-toggle-btn .icon-sun { display: none; }
+.theme-toggle-btn .icon-moon { display: block; }
+[data-theme="dark"] .theme-toggle-btn .icon-sun { display: block; }
+[data-theme="dark"] .theme-toggle-btn .icon-moon { display: none; }
+
 </style>
 </head>
 <body>
@@ -600,15 +731,15 @@ footer {
       </a>
     </div>
     <div class="masthead-right">
+      <a class="btn-ghost " id="nav-home" href="index.html">Home</a>
+      <a class="btn-ghost " id="nav-dashboard" href="dashboard.html">Dashboard</a>
+      <a class="btn-ghost active" id="nav-perception" href="mla_perception.html">MLA Perception</a>
+      <a class="btn-ghost " id="nav-donate" href="donate.html">Support Us</a>
+      <a class="btn-primary" href="https://tally.so/r/A76O8B" target="_blank">&#x270E;&nbsp; Report Issue</a>
       <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle theme">
         <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
         <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
       </button>
-      <a class="btn-ghost" href="index.html">Home</a>
-      <a class="btn-ghost" href="dashboard.html">Dashboard</a>
-      <a class="btn-ghost active" href="mla_perception.html">MLA Perception</a>
-      <a class="btn-ghost" href="donate.html">Support Us</a>
-      <a class="btn-primary" href="https://tally.so/r/A76O8B" target="_blank">&#x270E;&nbsp; Report Issue</a>
     </div>
   </div>
 </div>
@@ -739,7 +870,8 @@ const MLAS_DATA = [
     "party": "BJP",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 2,
@@ -749,7 +881,8 @@ const MLAS_DATA = [
     "party": "BJP",
     "reports": 1,
     "rating": 0,
-    "voteAgain": "No"
+    "voteAgain": "No",
+    "problem": "Collapse of NH-154A at Dharwala after spring rain connects Bharmour/Holi region to health infrastructure."
   },
   {
     "no": 3,
@@ -759,7 +892,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 4,
@@ -769,7 +903,8 @@ const MLAS_DATA = [
     "party": "BJP",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 5,
@@ -779,7 +914,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 6,
@@ -789,7 +925,8 @@ const MLAS_DATA = [
     "party": "BJP",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 7,
@@ -799,7 +936,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 8,
@@ -809,7 +947,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 9,
@@ -819,7 +958,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 10,
@@ -829,7 +969,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 11,
@@ -839,7 +980,8 @@ const MLAS_DATA = [
     "party": "BJP",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 12,
@@ -849,7 +991,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 13,
@@ -859,7 +1002,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 14,
@@ -869,7 +1013,8 @@ const MLAS_DATA = [
     "party": "BJP",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 15,
@@ -879,7 +1024,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 16,
@@ -889,7 +1035,8 @@ const MLAS_DATA = [
     "party": "BJP",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 17,
@@ -899,7 +1046,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 18,
@@ -909,7 +1057,8 @@ const MLAS_DATA = [
     "party": "BJP",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 19,
@@ -919,7 +1068,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 20,
@@ -929,7 +1079,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 21,
@@ -939,7 +1090,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 22,
@@ -949,7 +1101,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 23,
@@ -959,7 +1112,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 24,
@@ -969,7 +1123,8 @@ const MLAS_DATA = [
     "party": "BJP",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 25,
@@ -979,7 +1134,8 @@ const MLAS_DATA = [
     "party": "BJP",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 26,
@@ -989,7 +1145,8 @@ const MLAS_DATA = [
     "party": "BJP",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 27,
@@ -999,7 +1156,8 @@ const MLAS_DATA = [
     "party": "BJP",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 28,
@@ -1009,7 +1167,8 @@ const MLAS_DATA = [
     "party": "BJP",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 29,
@@ -1019,7 +1178,8 @@ const MLAS_DATA = [
     "party": "BJP",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 30,
@@ -1029,7 +1189,8 @@ const MLAS_DATA = [
     "party": "BJP",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 31,
@@ -1039,7 +1200,8 @@ const MLAS_DATA = [
     "party": "BJP",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 32,
@@ -1049,7 +1211,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 33,
@@ -1059,7 +1222,8 @@ const MLAS_DATA = [
     "party": "BJP",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 34,
@@ -1069,7 +1233,8 @@ const MLAS_DATA = [
     "party": "BJP",
     "reports": 1,
     "rating": 0,
-    "voteAgain": "No"
+    "voteAgain": "No",
+    "problem": "Sarkaghat/Bhangrotu roads unrepaired since 2023 monsoon floods."
   },
   {
     "no": 35,
@@ -1079,7 +1244,8 @@ const MLAS_DATA = [
     "party": "BJP",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 36,
@@ -1089,7 +1255,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 37,
@@ -1099,7 +1266,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 38,
@@ -1109,7 +1277,8 @@ const MLAS_DATA = [
     "party": "BJP",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 39,
@@ -1119,7 +1288,8 @@ const MLAS_DATA = [
     "party": "BJP",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 40,
@@ -1129,7 +1299,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 1,
     "rating": 0,
-    "voteAgain": "No"
+    "voteAgain": "No",
+    "problem": "Delayed and stalled PWD road from Majhin Chowk to Majhin."
   },
   {
     "no": 41,
@@ -1139,7 +1310,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 42,
@@ -1149,7 +1321,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 1,
     "rating": 0,
-    "voteAgain": "No"
+    "voteAgain": "No",
+    "problem": "Gagret Civil Hospital work on hold for 5-7 years despite construction due to land feuds."
   },
   {
     "no": 43,
@@ -1159,7 +1332,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 1,
     "rating": 0,
-    "voteAgain": "No"
+    "voteAgain": "No",
+    "problem": "Complete lack of footpaths, sidewalks, and dustbins in public market area."
   },
   {
     "no": 44,
@@ -1169,7 +1343,8 @@ const MLAS_DATA = [
     "party": "BJP",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 45,
@@ -1179,7 +1354,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 46,
@@ -1189,7 +1365,8 @@ const MLAS_DATA = [
     "party": "BJP",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 47,
@@ -1199,7 +1376,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 48,
@@ -1209,7 +1387,8 @@ const MLAS_DATA = [
     "party": "BJP",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 49,
@@ -1219,7 +1398,8 @@ const MLAS_DATA = [
     "party": "BJP",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 50,
@@ -1229,7 +1409,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 51,
@@ -1239,7 +1420,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 52,
@@ -1249,7 +1431,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 53,
@@ -1259,7 +1442,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 54,
@@ -1269,7 +1453,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 1,
     "rating": 0,
-    "voteAgain": "No"
+    "voteAgain": "No",
+    "problem": "Encroachments on pavements make walking impossible. Cyclic path/village connectivity blocked."
   },
   {
     "no": 55,
@@ -1279,7 +1464,8 @@ const MLAS_DATA = [
     "party": "BJP",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 56,
@@ -1289,7 +1475,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 57,
@@ -1299,7 +1486,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 58,
@@ -1309,7 +1497,8 @@ const MLAS_DATA = [
     "party": "BJP",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 59,
@@ -1319,7 +1508,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 60,
@@ -1329,7 +1519,8 @@ const MLAS_DATA = [
     "party": "BJP",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 61,
@@ -1339,7 +1530,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 62,
@@ -1349,7 +1541,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 63,
@@ -1359,7 +1552,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 64,
@@ -1369,7 +1563,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 65,
@@ -1379,7 +1574,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 66,
@@ -1389,7 +1585,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 67,
@@ -1399,7 +1596,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   },
   {
     "no": 68,
@@ -1409,7 +1607,8 @@ const MLAS_DATA = [
     "party": "INC",
     "reports": 0,
     "rating": null,
-    "voteAgain": "N/A"
+    "voteAgain": "N/A",
+    "problem": "No active civic reports verified on public ledger."
   }
 ];
 
@@ -1550,6 +1749,10 @@ function renderGrid() {
             <span class="party-badge party-${item.party}">${item.party}</span>
           </div>
           <div class="meta-row">District: ${item.district}</div>
+          <div class="problem-section" style="margin-top:12px; border-top:1px dashed var(--border); padding-top:10px; font-size:0.82rem;">
+            <span class="mono" style="font-size:0.65rem; color:var(--text3); text-transform:uppercase; display:block; margin-bottom:2px;">Biggest Problem:</span>
+            <span class="problem-text" style="color:var(--text2); font-weight:500;">${item.problem}</span>
+          </div>
         </div>
         <div class="card-bottom">
           ${perceptionBadgeHTML}

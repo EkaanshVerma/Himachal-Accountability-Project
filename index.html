@@ -745,36 +745,156 @@
   [data-theme="dark"] .band-dark .index-seg .stage{ color: #D8E4D0; }
   [data-theme="dark"] .band-dark .index-note{ color: rgba(216,228,208,0.68); }
 
+
+/* ─── UNIFIED MASTHEAD NAVIGATION ─── */
+.masthead {
+  padding: 16px var(--pad, 24px);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: var(--transition);
+}
+.masthead-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.masthead-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+}
+.brand-logo {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+.brand-text small {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 400;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  color: var(--text3);
+  text-transform: uppercase;
+}
+.masthead-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.btn-ghost {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 8px 14px;
+  background: transparent;
+  border: 1px solid transparent;
+  transition: var(--transition);
+}
+.btn-ghost:hover {
+  background: var(--bg4);
+  color: var(--text);
+}
+.btn-ghost.active {
+  border-color: var(--text);
+  background: var(--bg5);
+}
+.btn-primary {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 8px 16px;
+  background: var(--ink);
+  color: var(--cream);
+  border: 1px solid var(--ink);
+  transition: var(--transition);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+.btn-primary:hover {
+  background: transparent;
+  color: var(--text);
+}
+.theme-toggle-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text);
+  transition: var(--transition);
+}
+.theme-toggle-btn:hover {
+  background: var(--bg4);
+}
+.theme-toggle-btn svg {
+  width: 16px; height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+.theme-toggle-btn .icon-sun { display: none; }
+.theme-toggle-btn .icon-moon { display: block; }
+[data-theme="dark"] .theme-toggle-btn .icon-sun { display: block; }
+[data-theme="dark"] .theme-toggle-btn .icon-moon { display: none; }
+
 </style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="header-inner">
-    <a href="#top" class="brand">
-      <img src="hap_logo.png" alt="HAP Logo" class="brand-logo">
-      <span class="brand-text">
-        Himachal Accountability Project
-        <small>Public Ledger &middot; Himachal Pradesh</small>
-      </span>
-    </a>
-    <nav class="nav-links" aria-label="Primary">
-      <a href="/dashboard.html" style="color: var(--amber); font-weight: 600;">Dashboard</a>
-      <a href="/mla_perception.html" style="color: var(--sage); font-weight: 600;">MLA Perception</a>
-      <a href="/donate.html" style="color: var(--stamp); font-weight: 600;">Support Us</a>
-      <a href="#pillars">Pillars</a>
-      <a href="#delay-index">Delay Index</a>
-      <a href="#pitch">The Pitch</a>
-      <a href="#get-involved">Get Involved</a>
-    </nav>
-    <a href="https://tally.so/r/A76O8B" target="_blank" class="btn btn-primary">Report an issue</a>
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-    </button>
-    <button class="nav-toggle" aria-label="Toggle menu" id="navToggle"><span></span></button>
+<div class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-left">
+      <a href="index.html" class="brand">
+        <img src="hap_logo.png" alt="HAP Logo" class="brand-logo">
+        <span class="brand-text">
+          Himachal Accountability Project
+          <small>Public Ledger &middot; Himachal Pradesh</small>
+        </span>
+      </a>
+    </div>
+    <div class="masthead-right">
+      <a class="btn-ghost active" id="nav-home" href="index.html">Home</a>
+      <a class="btn-ghost " id="nav-dashboard" href="dashboard.html">Dashboard</a>
+      <a class="btn-ghost " id="nav-perception" href="mla_perception.html">MLA Perception</a>
+      <a class="btn-ghost " id="nav-donate" href="donate.html">Support Us</a>
+      <a class="btn-primary" href="https://tally.so/r/A76O8B" target="_blank">&#x270E;&nbsp; Report Issue</a>
+      <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </button>
+    </div>
   </div>
-</header>
+</div>
 
 <main id="top">
 
@@ -1101,7 +1221,7 @@
 
   // --- theme toggle ---
   (function(){
-    var toggle = document.getElementById('themeToggle');
+    var toggle = document.getElementById('theme-toggle');
     var root = document.documentElement;
     // respect system preference on first load
     var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
