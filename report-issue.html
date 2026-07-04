@@ -1617,90 +1617,6 @@
 </script>
 
 
-<!-- Mobile menu dropdown toggle helper -->
-<script>
-(function(){
-  const menuToggle = document.getElementById('menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-  if (menuToggle && mobileMenu) {
-    menuToggle.addEventListener('click', function(e) {
-      e.stopPropagation();
-      const isVisible = mobileMenu.style.display === 'flex';
-      mobileMenu.style.display = isVisible ? 'none' : 'flex';
-    });
-    document.addEventListener('click', function(e) {
-      if (!mobileMenu.contains(e.target) && e.target !== menuToggle) {
-        mobileMenu.style.display = 'none';
-      }
-    });
-  }
-})();
-</script>
-
-
-<!-- Mobile menu dropdown toggle helper -->
-<script>
-(function(){
-  const menuToggle = document.getElementById('menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-  if (menuToggle && mobileMenu) {
-    menuToggle.addEventListener('click', function(e) {
-      e.stopPropagation();
-      const isVisible = mobileMenu.style.display === 'flex';
-      mobileMenu.style.display = isVisible ? 'none' : 'flex';
-    });
-    document.addEventListener('click', function(e) {
-      if (!mobileMenu.contains(e.target) && e.target !== menuToggle) {
-        mobileMenu.style.display = 'none';
-      }
-    });
-  }
-})();
-</script>
-
-
-<!-- Mobile menu dropdown toggle helper -->
-<script>
-(function(){
-  const menuToggle = document.getElementById('menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-  if (menuToggle && mobileMenu) {
-    menuToggle.addEventListener('click', function(e) {
-      e.stopPropagation();
-      const isVisible = mobileMenu.style.display === 'flex';
-      mobileMenu.style.display = isVisible ? 'none' : 'flex';
-    });
-    document.addEventListener('click', function(e) {
-      if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-        mobileMenu.style.display = 'none';
-      }
-    });
-  }
-})();
-</script>
-
-
-<!-- Mobile menu dropdown toggle helper -->
-<script>
-(function(){
-  const menuToggle = document.getElementById('menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-  if (menuToggle && mobileMenu) {
-    menuToggle.addEventListener('click', function(e) {
-      e.stopPropagation();
-      const isVisible = mobileMenu.style.display === 'flex';
-      mobileMenu.style.display = isVisible ? 'none' : 'flex';
-    });
-    document.addEventListener('click', function(e) {
-      if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-        mobileMenu.style.display = 'none';
-      }
-    });
-  }
-})();
-</script>
-
-
 <!-- Location Permission Modal -->
 <div id="location-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; align-items:center; justify-content:center; backdrop-filter:blur(4px);">
   <div style="background:var(--paper-deep); border:1px solid var(--paper-line); padding:24px; max-width:400px; width:90%; text-align:center;">
@@ -1735,6 +1651,27 @@
       });
     }
   });
+</script>
+
+
+<!-- Mobile menu dropdown toggle helper -->
+<script>
+(function(){
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const isVisible = mobileMenu.style.display === 'flex';
+      mobileMenu.style.display = isVisible ? 'none' : 'flex';
+    });
+    document.addEventListener('click', function(e) {
+      if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+        mobileMenu.style.display = 'none';
+      }
+    });
+  }
+})();
 </script>
 
 </body>
