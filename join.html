@@ -602,7 +602,24 @@ footer {
 }
 
 </style>
-</head>
+
+    <!-- THEME MANAGER -->
+    <script>
+      (function(){
+        var stored = localStorage.getItem('hap-theme');
+        var theme = stored ? stored : 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+        var observer = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+              localStorage.setItem('hap-theme', document.documentElement.getAttribute('data-theme'));
+            }
+          });
+        });
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+      })();
+    </script>
+    </head>
 <body>
 
 <div class="ann-bar">

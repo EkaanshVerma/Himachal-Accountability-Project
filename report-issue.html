@@ -960,7 +960,24 @@
 }
 
 </style>
-</head>
+
+    <!-- THEME MANAGER -->
+    <script>
+      (function(){
+        var stored = localStorage.getItem('hap-theme');
+        var theme = stored ? stored : 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+        var observer = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+              localStorage.setItem('hap-theme', document.documentElement.getAttribute('data-theme'));
+            }
+          });
+        });
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+      })();
+    </script>
+    </head>
 <body>
 
 <div class="masthead">
@@ -1587,8 +1604,8 @@
     var toggle = document.getElementById('theme-toggle');
     var root = document.documentElement;
     // respect system preference on first load
-    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if(prefersDark){ root.setAttribute('data-theme','dark'); }
+    var prefersDark = (localStorage.getItem('hap-theme') !== 'light');
+    root.setAttribute('data-theme', localStorage.getItem('hap-theme') || 'dark');
     if(toggle){
       toggle.addEventListener('click', function(){
         var isDark = root.getAttribute('data-theme') === 'dark';
