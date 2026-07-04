@@ -667,6 +667,7 @@ footer {
   background: transparent;
   border: 1px solid transparent;
   transition: var(--transition);
+  white-space: nowrap;
 }
 .btn-ghost:hover {
   background: var(--bg4);
@@ -691,6 +692,7 @@ footer {
   display: inline-flex;
   align-items: center;
   text-decoration: none;
+  white-space: nowrap;
 }
 .btn-primary:hover {
   background: transparent;
@@ -1932,6 +1934,27 @@ renderGrid();
     });
     document.addEventListener('click', function(e) {
       if (!mobileMenu.contains(e.target) && e.target !== menuToggle) {
+        mobileMenu.style.display = 'none';
+      }
+    });
+  }
+})();
+</script>
+
+
+<!-- Mobile menu dropdown toggle helper -->
+<script>
+(function(){
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const isVisible = mobileMenu.style.display === 'flex';
+      mobileMenu.style.display = isVisible ? 'none' : 'flex';
+    });
+    document.addEventListener('click', function(e) {
+      if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
         mobileMenu.style.display = 'none';
       }
     });
