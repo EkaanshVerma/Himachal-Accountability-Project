@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us — Himachal Accountability Project</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  /* Common Design Tokens */
+  --paper: #ECEEDF;
+  --paper-deep: #DFE2CE;
+  --paper-line: rgba(30,42,34,0.14);
+  --ink: #1E2A22;
+  --ink-soft: rgba(30,42,34,0.68);
+  --ink-faint: rgba(30,42,34,0.42);
+  --slate: #283740;
+  --slate-deep: #1F2B32;
+  --cream: #F3F1E6;
+  --cream-soft: rgba(243,241,230,0.72);
+  --cream-faint: rgba(243,241,230,0.46);
+  --amber-val: #D98C3D;
+  --amber-deep-val: #B96B27;
+  --stamp: #A23B2E;
+  --sage: #5C7A52;
+  --line: #8FA083;
+
+  --bg: var(--paper);
+  --bg2: var(--cream);
+  --bg3: var(--paper-deep);
+  --bg4: rgba(30, 42, 34, 0.06);
+  --bg5: rgba(30, 42, 34, 0.12);
+  
+  --border: var(--paper-line);
+  --border2: rgba(30, 42, 34, 0.22);
+  --border3: var(--ink);
+  
+  --text: var(--ink);
+  --text2: var(--ink-soft);
+  --text3: var(--ink-faint);
+  
+  --red: var(--stamp);
+  --red-bg: rgba(162, 59, 46, 0.1);
+  --red-mid: rgba(162, 59, 46, 0.25);
+  
+  --blue: var(--slate);
+  --blue-bg: rgba(40, 55, 64, 0.1);
+  
+  --green: var(--sage);
+  --green-bg: rgba(92, 122, 82, 0.1);
+  
+  --amber: var(--amber-val);
+  --amber-bg: rgba(217, 140, 61, 0.1);
+  
+  --transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+[data-theme="dark"] {
+  --paper: #111914;
+  --paper-deep: #182018;
+  --paper-line: rgba(180,200,170,0.12);
+  --ink: #D8E4D0;
+  --ink-soft: rgba(216,228,208,0.68);
+  --ink-faint: rgba(216,228,208,0.38);
+  --slate: #1A2830;
+  --slate-deep: #111D24;
+  --cream: #1E2A22;
+  --cream-soft: rgba(30,42,34,0.80);
+  --cream-faint: rgba(30,42,34,0.50);
+  --amber-val: #E09B50;
+  --amber-deep-val: #C87A30;
+  --stamp: #C4584A;
+  --sage: #7A9E6E;
+  --line: #5C7A52;
+
+  --bg: var(--paper);
+  --bg2: var(--cream);
+  --bg3: var(--paper-deep);
+  --bg4: rgba(216, 228, 208, 0.08);
+  --bg5: rgba(216, 228, 208, 0.15);
+  
+  --border: var(--paper-line);
+  --border2: rgba(216, 228, 208, 0.22);
+  --border3: var(--ink);
+  
+  --text: var(--ink);
+  --text2: var(--ink-soft);
+  --text3: var(--ink-faint);
+  
+  --red: var(--stamp);
+  --red-bg: rgba(196, 88, 74, 0.1);
+  --red-mid: rgba(196, 88, 74, 0.25);
+  
+  --blue: var(--slate);
+  --blue-bg: rgba(26, 40, 48, 0.2);
+  
+  --green: var(--sage);
+  --green-bg: rgba(122, 158, 110, 0.1);
+  
+  --amber: var(--amber-val);
+  --amber-bg: rgba(224, 155, 80, 0.1);
+}
+
+/* Reset and Layout */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  transition: var(--transition);
+}
+
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; }
+
+.mono { font-family: 'IBM Plex Mono', monospace; }
+
+/* Announcement Bar */
+.ann-bar {
+  background: var(--ink);
+  color: var(--cream);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  padding: 8px 20px;
+  text-align: center;
+}
+.ann-bar b { font-weight: 600; color: var(--amber); }
+
+/* Main Wrapper */
+.main-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 24px;
+}
+
+/* Page Header & Intro */
+.page-header {
+  margin-bottom: 40px;
+  text-align: left;
+}
+.page-title {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+.page-subtitle {
+  font-size: 1.15rem;
+  color: var(--text2);
+  max-width: 760px;
+}
+
+/* Contact Grid */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 36px;
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .contact-layout { grid-template-columns: 1fr; }
+}
+
+/* Cards & Outlines */
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  padding: 28px;
+  position: relative;
+  transition: var(--transition);
+  margin-bottom: 24px;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  top: 6px; left: 6px; right: 6px; bottom: 6px;
+  border: 1px dashed rgba(30,42,34,0.08);
+  pointer-events: none;
+}
+[data-theme="dark"] .card::before {
+  border-color: rgba(216,228,208,0.08);
+}
+
+/* Form Styling */
+.form-title {
+  font-size: 1.45rem;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 10px;
+}
+.form-group {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.form-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text2);
+}
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+  transition: var(--transition);
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--text);
+}
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.success-banner {
+  background: var(--green-bg);
+  border: 1px solid var(--green);
+  color: var(--green);
+  padding: 16px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  display: none;
+}
+
+/* Info Channels */
+.channel-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.channel-item:last-child {
+  margin-bottom: 0;
+}
+.channel-icon {
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid var(--border3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--bg3);
+}
+.channel-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+.channel-details {
+  display: flex;
+  flex-direction: column;
+}
+.channel-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.channel-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.45;
+}
+.channel-link {
+  color: var(--red);
+  text-decoration: underline;
+  font-weight: 500;
+}
+.channel-link:hover {
+  color: var(--text);
+}
+
+/* Footer styling */
+footer {
+  background: var(--ink);
+  color: var(--cream-soft);
+  padding: 60px 0 30px;
+  margin-top: 80px;
+  border-top: 1px solid var(--border);
+}
+.footer-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid rgba(243,241,230,0.16);
+}
+.footer-brand { max-width: 400px; }
+.footer-brand .brand {
+  color: var(--cream);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.footer-brand p { font-size: 0.9rem; color: var(--cream-faint); }
+.footer-links {
+  display: flex;
+  gap: 36px;
+  flex-wrap: wrap;
+}
+.footer-links a { font-size: 0.88rem; color: var(--cream-soft); transition: var(--transition); }
+.footer-links a:hover { color: var(--cream); }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--cream-faint);
+  letter-spacing: 0.03em;
+}
+
+/* ─── UNIFIED MASTHEAD NAVIGATION ─── */
+.masthead {
+  padding: 16px var(--pad, 24px);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: var(--transition);
+}
+.masthead-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.masthead-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+}
+.brand-logo {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+.brand-text small {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 400;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  color: var(--text3);
+  text-transform: uppercase;
+}
+.masthead-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.btn-ghost {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 8px 14px;
+  background: transparent;
+  border: 1px solid transparent;
+  transition: var(--transition);
+}
+.btn-ghost:hover {
+  background: var(--bg4);
+  color: var(--text);
+}
+.btn-ghost.active {
+  border-color: var(--text);
+  background: var(--bg5);
+}
+.btn-primary {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 8px 16px;
+  background: var(--ink);
+  color: var(--cream);
+  border: 1px solid var(--ink);
+  transition: var(--transition);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+.btn-primary:hover {
+  background: transparent;
+  color: var(--text);
+}
+.theme-toggle-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text);
+  transition: var(--transition);
+}
+.theme-toggle-btn:hover {
+  background: var(--bg4);
+}
+.theme-toggle-btn svg {
+  width: 16px; height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+.theme-toggle-btn .icon-sun { display: none; }
+.theme-toggle-btn .icon-moon { display: block; }
+[data-theme="dark"] .theme-toggle-btn .icon-sun { display: block; }
+[data-theme="dark"] .theme-toggle-btn .icon-moon { display: none; }
+
+</style>
+</head>
+<body>
+
+<div class="ann-bar">
+  <b>Independent civic record.</b> &nbsp;Not affiliated with any political party or government body. &nbsp;Data from community field reports.
+</div>
+
+<!-- Unified navigation masthead anchor -->
+<div class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-left">
+      <a href="index.html" class="brand">
+        <img src="hap_logo.png" alt="HAP Logo" class="brand-logo">
+        <span class="brand-text">
+          Himachal Accountability Project
+          <small>Public Ledger &middot; Himachal Pradesh</small>
+        </span>
+      </a>
+    </div>
+    <div class="masthead-right">
+      <a class="btn-ghost " id="nav-home" href="index.html">Home</a>
+      <a class="btn-ghost " id="nav-dashboard" href="dashboard.html">Dashboard</a>
+      <a class="btn-ghost " id="nav-perception" href="mla_perception.html">MLA Perception</a>
+      <a class="btn-ghost " id="nav-join" href="join.html">Join Us</a>
+      <a class="btn-ghost " id="nav-donate" href="donate.html">Support Us</a>
+      <a class="btn-ghost active" id="nav-contact" href="contact.html">Contact Us</a>
+      <a class="btn-primary" href="https://tally.so/r/A76O8B" target="_blank">&#x270E;&nbsp; Report Issue</a>
+      <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="main-container">
+  <div class="page-header">
+    <h1 class="page-title">Contact the Project</h1>
+    <p class="page-subtitle">Have questions about our grievance records, want to submit physical evidence, dispute a rating, or report a bug? Get in touch with the HAP team.</p>
+  </div>
+
+  <div class="contact-layout">
+    <!-- Contact Form -->
+    <div>
+      <div class="card">
+        <h2 class="form-title">Send a Message</h2>
+        <div class="success-banner" id="contact-success">
+          Thank you! Your message has been sent successfully. Our team will review and reply within 48 hours.
+        </div>
+        <form id="contact-form">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" id="contact-name" class="form-input" required placeholder="e.g. Rajesh Kumar">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" id="contact-email" class="form-input" required placeholder="e.g. rajesh@example.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Subject / Purpose</label>
+            <select id="contact-subject" class="form-select" required>
+              <option value="">Select a subject...</option>
+              <option value="Grievance Query">Follow-up on Grievance Submission</option>
+              <option value="Dispute Correction">Dispute / Correction Request</option>
+              <option value="General Query">General Inquiry</option>
+              <option value="Media Press">Media / Press Engagement</option>
+              <option value="Technical Bug">Report a Website Bug</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message Details</label>
+            <textarea id="contact-message" class="form-textarea" required placeholder="Describe your inquiry in detail..."></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">Send Message</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Contact Info Panel -->
+    <div>
+      <div class="card">
+        <h2 class="form-title" style="margin-bottom: 22px;">Direct Channels</h2>
+        
+        <div class="channel-item">
+          <div class="channel-icon">
+            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="channel-details">
+            <h3 class="channel-title">Secure Email</h3>
+            <span class="channel-text">For disputes, media inquiries, or official communication:</span>
+            <a href="mailto:contact@himachal-accountability.in" class="channel-link">contact@himachal-accountability.in</a>
+          </div>
+        </div>
+
+        <div class="channel-item">
+          <div class="channel-icon">
+            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </div>
+          <div class="channel-details">
+            <h3 class="channel-title">WhatsApp Support</h3>
+            <span class="channel-text">Quick support helpline for ground observers:</span>
+            <span class="channel-text" style="font-weight: 600; color: var(--text);">+91 78078-43210</span>
+          </div>
+        </div>
+
+        <div class="channel-item">
+          <div class="channel-icon">
+            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </div>
+          <div class="channel-details">
+            <h3 class="channel-title">GitHub Issue Tracker</h3>
+            <span class="channel-text">Submit feature requests, report bugs, or audit our code:</span>
+            <a href="https://github.com/EkaanshVerma/Himachal-Accountability-Project" target="_blank" class="channel-link">Open a GitHub Issue</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="brand">
+          <img src="hap_logo.png" alt="HAP Logo" class="brand-logo">
+          Himachal Accountability Project
+        </div>
+        <p>We oppose bad roads, dry taps, and administrative delays — and nothing else. An independent citizen initiative, not affiliated with any political party or candidate.</p>
+      </div>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="mla_perception.html">MLA Perception</a>
+        <a href="join.html">Join Us</a>
+        <a href="donate.html">Support Us</a>
+        <a href="contact.html">Contact Us</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Himachal Accountability Project &middot; Himachal Pradesh</span>
+      <span>Verified by residents. Reviewed by no one's PR team.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Contact Form Submit Handler
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  document.getElementById('contact-success').style.display = 'block';
+  this.reset();
+  window.scrollTo({
+    top: document.getElementById('contact-success').offsetTop - 120,
+    behavior: 'smooth'
+  });
+});
+
+// Theme switcher event delegation
+(function(){
+  const root = document.documentElement;
+  document.addEventListener('click', function(e) {
+    const btn = e.target.closest('#theme-toggle');
+    if (btn) {
+      const isDark = root.getAttribute('data-theme') === 'dark';
+      root.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    }
+  });
+})();
+</script>
+</body>
+</html>
