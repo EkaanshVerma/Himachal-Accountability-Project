@@ -601,6 +601,24 @@ footer {
   }
 }
 
+body::before {
+  content: "";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60vw;
+  height: 60vw;
+  max-width: 600px;
+  max-height: 600px;
+  background-image: url('hap_logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.08;
+  z-index: -1;
+  pointer-events: none;
+}
 </style>
 
     <!-- THEME MANAGER -->
