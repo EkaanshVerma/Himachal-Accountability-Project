@@ -65,7 +65,6 @@ function doPost(e) {
 
     } else if (data.formType === 'contact') {
       var sheet = ss.getSheetByName('Contact Messages') || createContactSheet(ss);
-  createJoinSheet(ss);
 
       sheet.appendRow([
         data.timestamp || new Date().toISOString(),
