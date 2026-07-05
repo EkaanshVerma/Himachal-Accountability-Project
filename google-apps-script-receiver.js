@@ -47,8 +47,25 @@ function doPost(e) {
 
       sendDetailedNotification(data, issuePhotoUrl, priorityPhotoUrl);
 
+    } else if (data.formType === 'join') {
+      var sheet = ss.getSheetByName('Volunteers') || createJoinSheet(ss);
+
+      sheet.appendRow([
+        data.timestamp || new Date().toISOString(),
+        data.name || '',
+        data.email || '',
+        data.tel || '',
+        data.constituency || '',
+        data.roles || '',
+        data.statement || '',
+        'New' // Status
+      ]);
+
+      sendJoinNotification(data);
+
     } else if (data.formType === 'contact') {
       var sheet = ss.getSheetByName('Contact Messages') || createContactSheet(ss);
+  createJoinSheet(ss);
 
       sheet.appendRow([
         data.timestamp || new Date().toISOString(),
@@ -123,6 +140,7 @@ function getOrCreateSpreadsheet() {
   createQuickSheet(ss, sheet);
   createDetailedSheet(ss);
   createContactSheet(ss);
+  createJoinSheet(ss);
 
   props.setProperty('SPREADSHEET_ID', ss.getId());
   Logger.log('Created spreadsheet: ' + ss.getUrl());
@@ -282,6 +300,52 @@ function sendContactNotification(data) {
     'Email: ' + (data.email || '—') + '\n' +
     'Subject: ' + (data.subject || '—') + '\n' +
     'Message:\n' + (data.message || '(no message)') + '\n' +
+    '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
+    'Timestamp: ' + (data.timestamp || new Date().toISOString()) + '\n';
+
+  MailApp.sendEmail(email, subject, body);
+}
+
+function createJoinSheet(ss) {
+  var sheet = ss.insertSheet('Volunteers');
+
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow([
+      'Timestamp', 'Name', 'Email', 'Phone', 'Constituency', 'Roles', 'Statement', 'Status'
+    ]);
+
+    var headerRange = sheet.getRange(1, 1, 1, 8);
+    headerRange.setFontWeight('bold');
+    headerRange.setBackground('#2D3B2D');
+    headerRange.setFontColor('#F3F1E6');
+
+    sheet.setColumnWidth(1, 180);
+    sheet.setColumnWidth(2, 150);
+    sheet.setColumnWidth(3, 200);
+    sheet.setColumnWidth(4, 150);
+    sheet.setColumnWidth(5, 200);
+    sheet.setColumnWidth(6, 250);
+    sheet.setColumnWidth(7, 400);
+    sheet.setColumnWidth(8, 100);
+
+    sheet.setFrozenRows(1);
+  }
+  return sheet;
+}
+
+function sendJoinNotification(data) {
+  var email = Session.getActiveUser().getEmail();
+  if (!email) return;
+
+  var subject = '🙋 New Volunteer: ' + (data.name || 'Unknown');
+  var body = 'New volunteer application received via HAP website.\n\n' +
+    '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
+    'Name: ' + (data.name || '—') + '\n' +
+    'Email: ' + (data.email || '—') + '\n' +
+    'Phone: ' + (data.tel || '—') + '\n' +
+    'Constituency: ' + (data.constituency || '—') + '\n' +
+    'Roles: ' + (data.roles || '—') + '\n' +
+    'Statement:\n' + (data.statement || '(no statement)') + '\n' +
     '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
     'Timestamp: ' + (data.timestamp || new Date().toISOString()) + '\n';
 
