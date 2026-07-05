@@ -966,16 +966,6 @@ body {
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// Simple Form Submit Handler
-document.getElementById('apply-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  document.getElementById('form-success').style.display = 'block';
-  this.reset();
-  window.scrollTo({
-    top: document.getElementById('form-success').offsetTop - 120,
-    behavior: 'smooth'
-  });
-});
 
 // Dynamic constituencies list
 const CONSTITUENCIES = [
