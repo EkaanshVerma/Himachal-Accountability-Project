@@ -1068,7 +1068,26 @@ footer {
           .verma-logo:hover { 
             filter: brightness(0) invert(1) opacity(1) !important; 
           }
-        </style>
+        
+body::before {
+  content: "";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 85vw;
+  height: 85vh;
+  max-width: 1200px;
+  max-height: 1200px;
+  background-image: url('hap_logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.08;
+  z-index: -1;
+  pointer-events: none;
+}
+</style>
         <span>Designed by</span>
         <a href="https://vermadigital.in/" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center;">
           <img src="verma_digital_logo.png" alt="Verma Digital" class="verma-logo">
