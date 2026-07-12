@@ -8,6 +8,8 @@
 <title>Himachal Accountability Project — Public Grievance Tracker</title>
 <meta name="description" content="An independent public ledger mapping citizen grievances across Himachal Pradesh — roads, water, health, power, youth unemployment — by district, tehsil, and constituency.">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -1465,6 +1467,39 @@ body {
 .hero, .page-hero, .where-it-goes, .faq-section, .section {
   background: transparent !important;
 }
+
+.critical-cluster {
+  background-color: rgba(239, 68, 68, 0.6);
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+.critical-cluster div {
+  background-color: rgba(220, 38, 38, 0.9);
+  color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border: 2px solid #fecaca;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(239, 68, 68, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+.pin-popup { font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; }
+.pin-title { font-weight: bold; margin-bottom: 5px; }
+.pin-meta { font-size: 0.8rem; color: #555; margin-bottom: 10px; }
+.pin-upvotes { font-weight: bold; color: #dc2626; margin-bottom: 10px; display:flex; align-items:center; gap:5px; }
+.pin-actions { display: flex; flex-direction: column; gap: 8px; border-top: 1px solid #ddd; padding-top: 10px; }
+.pin-input { padding: 6px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.85rem; width:100%;}
+.btn-upvote { background: #1E2A22; color: white; border: none; padding: 6px; border-radius: 4px; cursor: pointer; font-weight:600;}
+.btn-upvote:hover { background: #283740; }
+.btn-rti { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; padding: 6px; border-radius: 4px; cursor: pointer; font-weight:600;}
+.btn-rti:hover { background: #fde68a; }
 </style>
 
     <!-- THEME MANAGER -->
@@ -1571,6 +1606,7 @@ body {
         <div class="viz-strip" id="map-controls">
           <button class="viz-btn active" data-mode="heat">Heat</button>
           <button class="viz-btn" data-mode="bubbles">Bubbles</button>
+          <button class="viz-btn" data-mode="grievances" style="color:var(--urgent);">Grievances & RTI</button>
         </div>
       </div>
       <div class="map-box">
@@ -1710,7 +1746,12 @@ const CONSTITUENCY_NEGLECT = [
 ];
 
 const FEED_ITEMS = [
-  {text:"Shimla (IGMC Eye OPD) — Token system not working. Doctors unresponsive. Head of department deflected complaint.",district:"Shimla",cat:"health",time:"New"},
+  {id:"igmc-1", lat:31.107, lon:77.181, upvotes:48, dept:"Health Dept", contractor:"N/A", text:"Shimla (IGMC Eye OPD) — Token system not working. Doctors unresponsive. Head of department deflected complaint.",district:"Shimla",cat:"health",time:"New"},
+  {id:"sulah-1", lat:32.11, lon:76.54, upvotes:12, dept:"Revenue Dept", contractor:"Local Kanungo", text:"Sulah (Village Kharauth) — Panchayat road blocked for over 8 months due to Kanungo-level bias and revenue record discrepancies. Section 152 BNSS orders ignored.",district:"Kangra",cat:"roads",time:"New"},
+  {id:"bharmour-1", lat:32.45, lon:76.53, upvotes:501, dept:"PWD NHAI", contractor:"GVK Infra (Alleged)", text:"Bharmour (Dharwala) — NH-154A collapsed at Dharwala after spring rain. Connects Bharmour/Holi region to health infrastructure. No repair done.",district:"Chamba",cat:"roads",time:"New"},
+  {id:"nadaun-1", lat:31.78, lon:76.35, upvotes:56, dept:"PWD", contractor:"Sharma Builders", text:"Nadaun (Majhin) — Broken road from Majhin Chowk to Majhin. Delayed and stalled PWD Gaushala road project.",district:"Hamirpur",cat:"roads",time:"New"},
+  {id:"gagret-1", lat:31.68, lon:76.05, upvotes:89, dept:"Health Dept", contractor:"ABC Constructions", text:"Gagret — Gagret Civil Hospital work on hold for 5-7 years despite construction. Feuds over land demarcations.",district:"Una",cat:"health",time:"New"},
+  {id:"kasauli-1", lat:30.9, lon:76.97, upvotes:210, dept:"MC Kasauli", contractor:"N/A", text:"Kasauli — Encroachments on pavements make walking impossible. Cyclic path and village connectivity blocked.",district:"Solan",cat:"roads",time:"New"},
   {text:"Sulah (Village Kharauth) — Panchayat road blocked for over 8 months due to Kanungo-level bias and revenue record discrepancies. Section 152 BNSS orders ignored.",district:"Kangra",cat:"roads",time:"New"},
   {text:"Bharmour (Dharwala) — NH-154A collapsed at Dharwala after spring rain. Connects Bharmour/Holi region to health infrastructure. No repair done.",district:"Chamba",cat:"roads",time:"New"},
   {text:"Nadaun (Majhin) — Broken road from Majhin Chowk to Majhin. Delayed and stalled PWD Gaushala road project.",district:"Hamirpur",cat:"roads",time:"New"},
@@ -2018,7 +2059,10 @@ document.querySelectorAll(".map-tab").forEach(tab=>{
   tab.addEventListener("click",function(){
     document.querySelectorAll(".map-tab").forEach(t=>t.classList.remove("active"));
     this.classList.add("active");currentTab=this.dataset.tab;
-    if(currentTab==="districts")renderDistricts();
+    if(currentTab==="districts"){
+      if(mapMode==="grievances") renderGrievances();
+      else renderDistricts();
+    }
     else if(currentTab==="assembly")renderAssembly();
     else renderParliament();
   });
@@ -2027,11 +2071,117 @@ document.querySelectorAll(".viz-btn").forEach(btn=>{
   btn.addEventListener("click",function(){
     document.querySelectorAll(".viz-btn").forEach(b=>b.classList.remove("active"));
     this.classList.add("active");mapMode=this.dataset.mode;
-    if(currentTab==="districts")renderDistricts();
+    if(currentTab==="districts"){
+      if(mapMode==="grievances") renderGrievances();
+      else renderDistricts();
+    }
   });
 });
 
 renderDistricts();
+
+
+let grievanceCluster;
+let hazardLayer;
+
+function renderGrievances() {
+  clearMap();
+  
+  // Create Marker Cluster Group
+  grievanceCluster = L.markerClusterGroup({
+    iconCreateFunction: function(cluster) {
+      const markers = cluster.getAllChildMarkers();
+      let totalUpvotes = 0;
+      markers.forEach(m => totalUpvotes += (m.options.upvotes || 0));
+      
+      let c = ' marker-cluster-small';
+      let html = '<div><span>' + markers.length + '</span></div>';
+      
+      if(totalUpvotes >= 50) {
+        return L.divIcon({ html: '<div>' + totalUpvotes + ' 🔥</div>', className: 'critical-cluster', iconSize: L.point(40, 40) });
+      }
+      return L.divIcon({ html: html, className: 'marker-cluster' + c, iconSize: L.point(40, 40) });
+    }
+  });
+
+  // LocalStorage upvotes
+  const localUpvotes = JSON.parse(localStorage.getItem('hap_upvotes') || '{}');
+
+  FEED_ITEMS.forEach(item => {
+    if(!item.lat) return;
+    const currentUpvotes = localUpvotes[item.id] !== undefined ? localUpvotes[item.id] : item.upvotes;
+    
+    // Create popup HTML
+    const popupHTML = `
+      <div class="pin-popup">
+        <div class="pin-title">${item.cat.toUpperCase()} Issue</div>
+        <div class="pin-meta"><b>Dept:</b> ${item.dept || 'Unknown'} <br> <b>Contractor:</b> ${item.contractor || 'Unknown'}</div>
+        <div style="margin-bottom:8px;">${item.text}</div>
+        <div class="pin-upvotes" id="upvote-count-${item.id}">${currentUpvotes} Neighbors face this</div>
+        <div class="pin-actions">
+          <input type="text" id="pin-${item.id}" class="pin-input" placeholder="Enter PIN code to upvote" maxlength="6">
+          <button class="btn-upvote" onclick="handleUpvote('${item.id}')">I face this too</button>
+          <button class="btn-rti" onclick="generateRTI('${item.id}')">Generate RTI Draft</button>
+        </div>
+      </div>
+    `;
+
+    // Red circle for isolated critical pins
+    let iconUrl = 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png';
+    const marker = L.marker([item.lat, item.lon], { upvotes: currentUpvotes });
+    marker.bindPopup(popupHTML);
+    grievanceCluster.addLayer(marker);
+  });
+
+  map.addLayer(grievanceCluster);
+}
+
+// Global UI Functions
+window.handleUpvote = function(id) {
+  const pinInput = document.getElementById('pin-' + id).value;
+  if(!pinInput || pinInput.length < 6) { alert("Please enter a valid 6-digit PIN code."); return; }
+  
+  const v = JSON.parse(localStorage.getItem('hap_voters') || '{}');
+  if(!v[id]) v[id] = [];
+  if(v[id].includes(pinInput)) { alert("An upvote from this PIN code is already registered for this issue."); return; }
+  
+  v[id].push(pinInput);
+  localStorage.setItem('hap_voters', JSON.stringify(v));
+  
+  const upvotes = JSON.parse(localStorage.getItem('hap_upvotes') || '{}');
+  const item = FEED_ITEMS.find(i => i.id === id);
+  if(!upvotes[id]) upvotes[id] = item.upvotes;
+  upvotes[id]++;
+  localStorage.setItem('hap_upvotes', JSON.stringify(upvotes));
+  
+  document.getElementById('upvote-count-'+id).innerHTML = upvotes[id] + " Neighbors face this";
+  
+  // Refresh map to update clusters if it crosses 50
+  if(upvotes[id] === 50) {
+    if(mapMode === 'grievances') renderGrievances();
+  }
+};
+
+window.generateRTI = function(id) {
+  const item = FEED_ITEMS.find(i => i.id === id);
+  const win = window.open("", "_blank");
+  win.document.write(`
+    <html><head><title>RTI Draft</title><style>body{font-family:serif; padding:40px; line-height:1.6; max-width:800px; margin:auto;}</style></head><body>
+    <h2>Right to Information Act, 2005</h2>
+    <p><b>To:</b> Public Information Officer, ${item.dept || 'Relevant Department'}, District ${item.district}, Himachal Pradesh</p>
+    <p><b>Subject:</b> Request for information regarding unresolved civic issue at ${item.district}.</p>
+    <p>Dear Sir/Madam,</p>
+    <p>Under the Right to Information Act, 2005, please provide the following details regarding the issue described below:</p>
+    <blockquote style="background:#f4f4f4; padding:10px; border-left:3px solid #333;">${item.text}</blockquote>
+    <p>1. Please provide a certified copy of the work order / tender allotted to contractor: <b>${item.contractor || 'Unknown'}</b>.<br>
+    2. Please provide the status of the repair work and the estimated completion date.<br>
+    3. Provide copies of any show-cause notices issued for the delay.</p>
+    <p><b>Date:</b> ${new Date().toLocaleDateString()}</p>
+    <p><b>Applicant Signature:</b> ___________________</p>
+    <button onclick="window.print()" style="margin-top:40px; padding:10px; cursor:pointer;">Print RTI Application</button>
+    </body></html>
+  `);
+};
 
 // ---- FEED ----
 let activeCat="all";
