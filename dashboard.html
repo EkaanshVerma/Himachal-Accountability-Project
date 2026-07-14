@@ -1606,7 +1606,7 @@ body {
         <div class="viz-strip" id="map-controls">
           <button class="viz-btn active" data-mode="heat">Heat</button>
           <button class="viz-btn" data-mode="bubbles">Bubbles</button>
-          <button class="viz-btn" data-mode="grievances" style="color:var(--urgent);">Grievances & RTI</button>
+          
         </div>
       </div>
       <div class="map-box">
@@ -1849,7 +1849,7 @@ window._map = map;
 window._mapTileLayer = tileLayer;
 
 let currentTab="districts", mapMode="heat";
-let geoLayer=null, bubbleLayer=null, overlayGroup=null, labelGroup=null;
+let geoLayer=null, bubbleLayer=null, overlayGroup=null, labelGroup=null, monsoonLayer=null;
 const maxCount=Math.max(...Object.values(DISTRICT_DATA).map(d=>d.count));
 
 function isLight(){ return document.documentElement.getAttribute("data-theme")==="light"; }
@@ -1876,6 +1876,8 @@ function clearLayers(){
   if(bubbleLayer){bubbleLayer.forEach(l=>map.removeLayer(l));bubbleLayer=null;}
   if(overlayGroup){map.removeLayer(overlayGroup);overlayGroup=null;}
   if(labelGroup){map.removeLayer(labelGroup);labelGroup=null;}
+  
+  if(typeof monsoonLayer !== 'undefined' && monsoonLayer){map.removeLayer(monsoonLayer);monsoonLayer=null;}
 }
 
 function addDistrictLabel(name, lat, lon){
@@ -1895,7 +1897,7 @@ function renderDistricts(){
       style:f=>{const d=DISTRICT_DATA[f.properties.name]||{count:0};return{fillColor:getColor(d.count),fillOpacity:getOpacity(d.count),color:"#444",weight:1,opacity:0.8};},
       onEachFeature:onEachDistrict
     }).addTo(map);
-  } else {
+  } else if(mapMode==="bubbles") {
     geoLayer=L.geoJSON(HP_GEOJSON,{
       style:{fillColor:"#1e2a1e",fillOpacity:0.5,color:"#3a5a3a",weight:1},
       onEachFeature:onEachDistrict
@@ -1909,6 +1911,15 @@ function renderDistricts(){
       circle.bindPopup(distPopupHTML(name,d));
       bubbleLayer.push(circle);
     });
+
+  } else if(mapMode==="monsoon") {
+    geoLayer=L.geoJSON(HP_GEOJSON,{
+      style:f=>{
+        const highRisk = ["Kullu", "Mandi", "Chamba", "Kinnaur", "Lahaul & Spiti"].includes(f.properties.name);
+        return {fillColor: highRisk ? "#991b1b" : "#1e2a1e", fillOpacity: highRisk ? 0.6 : 0.4, color: highRisk ? "#ef4444" : "#3a5a3a", weight: highRisk ? 2 : 1};
+      },
+      onEachFeature:onEachDistrict
+    }).addTo(map);
   }
 
   // Tehsil markers
@@ -2065,8 +2076,9 @@ document.querySelectorAll(".map-tab").forEach(tab=>{
     document.querySelectorAll(".map-tab").forEach(t=>t.classList.remove("active"));
     this.classList.add("active");currentTab=this.dataset.tab;
     if(currentTab==="districts"){
-      if(mapMode==="grievances") renderGrievances();
-      else renderDistricts();
+      renderDistricts();
+      
+      if(mapMode==="monsoon") renderMonsoon();
     }
     else if(currentTab==="assembly")renderAssembly();
     else renderParliament();
@@ -2077,8 +2089,9 @@ document.querySelectorAll(".viz-btn").forEach(btn=>{
     document.querySelectorAll(".viz-btn").forEach(b=>b.classList.remove("active"));
     this.classList.add("active");mapMode=this.dataset.mode;
     if(currentTab==="districts"){
-      if(mapMode==="grievances") renderGrievances();
-      else renderDistricts();
+      renderDistricts();
+      
+      if(mapMode==="monsoon") renderMonsoon();
     }
   });
 });
@@ -2089,8 +2102,43 @@ renderDistricts();
 let grievanceCluster;
 let hazardLayer;
 
+
+function renderMonsoon() {
+  if(typeof monsoonLayer !== 'undefined' && monsoonLayer){map.removeLayer(monsoonLayer);monsoonLayer=null;}
+  monsoonLayer = L.layerGroup().addTo(map);
+  
+  const alerts = [
+    {lat: 31.95, lon: 77.15, text: "NH-3 Mandi-Kullu blocked due to major landslide near Pandoh.", type: "landslide"},
+    {lat: 32.25, lon: 76.32, text: "Flash flood warning in Dharamshala region.", type: "flood"},
+    {lat: 31.55, lon: 78.25, text: "Kinnaur highway vulnerable to rockfalls.", type: "rockfall"},
+    {lat: 31.10, lon: 77.16, text: "Shimla urban tree-fall hazards reported.", type: "wind"}
+  ];
+
+  alerts.forEach(alert => {
+    let iconHTML = '';
+    if (alert.type === 'landslide') iconHTML = '⛰️';
+    else if (alert.type === 'flood') iconHTML = '🌊';
+    else if (alert.type === 'rockfall') iconHTML = '🪨';
+    else iconHTML = '⚠️';
+
+    const icon = L.divIcon({
+      className: 'monsoon-alert-icon',
+      html: `<div style="font-size:24px; background:rgba(255,255,255,0.9); border:2px solid #ef4444; border-radius:50%; width:36px; height:36px; display:flex; align-items:center; justify-content:center; box-shadow:0 0 10px rgba(239,68,68,0.8);">${iconHTML}</div>`,
+      iconSize: L.point(36, 36)
+    });
+    
+    const marker = L.marker([alert.lat, alert.lon], { icon }).addTo(monsoonLayer);
+    marker.bindPopup(`<div style="font-family:Inter,sans-serif; color:#111;">
+        <h4 style="margin:0 0 5px 0; color:#b91c1c;">Monsoon Alert</h4>
+        <p style="margin:0; font-size:13px;">${alert.text}</p>
+        <button style="margin-top:8px; background:#b91c1c; color:#fff; border:none; border-radius:4px; padding:4px 8px; cursor:pointer; width:100%;">Share Alert to WhatsApp</button>
+    </div>`);
+  });
+}
+
 function renderGrievances() {
-  clearMap();
+  
+  if(typeof monsoonLayer !== 'undefined' && monsoonLayer){map.removeLayer(monsoonLayer);monsoonLayer=null;}
   
   // Create Marker Cluster Group
   grievanceCluster = L.markerClusterGroup({
@@ -2131,9 +2179,11 @@ function renderGrievances() {
       </div>
     `;
 
-    // Red circle for isolated critical pins
-    let iconUrl = 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png';
-    const marker = L.marker([item.lat, item.lon], { upvotes: currentUpvotes });
+    // Circle marker for isolated pins (avoids Leaflet default image 404s)
+    const marker = L.circleMarker([item.lat, item.lon], { 
+        radius: 8, fillColor: '#eab308', color: '#fff', weight: 2, fillOpacity: 0.9,
+        upvotes: currentUpvotes 
+    });
     marker.bindPopup(popupHTML);
     grievanceCluster.addLayer(marker);
   });
@@ -2163,7 +2213,7 @@ window.handleUpvote = function(id) {
   
   // Refresh map to update clusters if it crosses 50
   if(upvotes[id] === 50) {
-    if(mapMode === 'grievances') renderGrievances();
+    
   }
 };
 
