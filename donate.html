@@ -14,7 +14,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap"
     rel="stylesheet">
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  
   <style>
     * {
       box-sizing: border-box;
@@ -1611,7 +1611,7 @@
         </div>
         
         <div class="success-banner" id="payment-success" style="display:none; background: var(--green-bg); border: 1px solid var(--green); color: var(--text); padding: 12px 16px; font-size: 0.85rem; margin: 10px 0; border-radius: 4px; text-align: left; line-height: 1.45;">
-          <b>Thank you!</b> Your donation of <span id="success-amount">₹0</span> was successfully processed via Razorpay. Receipt transaction verified.
+          <b>Thank you!</b> Your donation of <span id="success-amount">₹0</span> was successfully processed via Milaap. Receipt transaction verified.
         </div>
         <div class="error-banner" id="payment-error" style="display:none; background: var(--red-bg); border: 1px solid var(--red); color: var(--red); padding: 12px 16px; font-size: 0.85rem; margin: 10px 0; border-radius: 4px; text-align: left; line-height: 1.45;">
           <b>Payment Failed:</b> <span id="error-reason">Unknown error</span>. Please try again.
@@ -1621,7 +1621,7 @@
           Contribute ₹500 / month →
         </a>
         <div class="dw-sub-note">
-          Payments via Razorpay · UPI · Net banking · Cards<br>
+          Payments via Milaap · UPI · Net banking · Cards<br>
           No transaction fees deducted from your contribution.<br>
           <a href="#transparency">See full fund usage breakdown ↓</a>
         </div>
@@ -2074,126 +2074,24 @@ body {
         `Contribute ${label} →`;
     }
 
-    // --- Razorpay Standard Checkout Integration ---
+    // --- Milaap Integration Placeholder ---
     document.getElementById('donate-btn').addEventListener('click', function(e) {
       e.preventDefault();
-      
-      const successBanner = document.getElementById('payment-success');
-      const errorBanner = document.getElementById('payment-error');
-      successBanner.style.display = 'none';
-      errorBanner.style.display = 'none';
-      
       if (!selectedAmt || selectedAmt < 1) {
         showError("Amount must be at least ₹1.");
         return;
       }
       
-      const amountInPaise = selectedAmt * 100;
-      
-      // Update trigger visual state
       const originalText = this.textContent;
-      this.textContent = "Processing Checkout...";
+      this.textContent = "Redirecting to Milaap...";
       this.style.pointerEvents = "none";
       this.style.opacity = "0.7";
       
-      fetch('/api/create-order', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          amount: amountInPaise,
-          currency: 'INR',
-          receipt: 'receipt_hap_' + Date.now()
-        })
-      })
-      .then(async res => {
-        if (!res.ok) {
-          let errMsg = 'Server error creating order';
-          try {
-            const err = await res.json();
-            errMsg = err.error || errMsg;
-          } catch(e) {
-            errMsg = `Server returned status ${res.status}: ${res.statusText}`;
-          }
-          throw new Error(errMsg);
-        }
-        return res.json();
-      })
-      .then(orderData => {
-        // Restore button state
-        this.textContent = originalText;
-        this.style.pointerEvents = "auto";
-        this.style.opacity = "1";
-        
-        const options = {
-          key: orderData.key_id,
-          amount: orderData.amount,
-          currency: orderData.currency,
-          name: 'Himachal Accountability Project',
-          description: 'Independent Civic Grievance Tracker Contribution',
-          image: 'hap_logo.png',
-          order_id: orderData.order_id,
-          handler: function (response) {
-            // Payment success. Verify signature on backend
-            fetch('/api/verify-payment', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                razorpay_order_id: response.razorpay_order_id,
-                razorpay_payment_id: response.razorpay_payment_id,
-                razorpay_signature: response.razorpay_signature
-              })
-            })
-            .then(async vRes => {
-              if (!vRes.ok) {
-                let errMsg = 'Signature mismatch';
-                try {
-                  const vErr = await vRes.json();
-                  errMsg = vErr.error || errMsg;
-                } catch(e) {
-                  errMsg = `Server returned status ${vRes.status}: ${vRes.statusText}`;
-                }
-                throw new Error(errMsg);
-              }
-              return vRes.json();
-            })
-            .then(vData => {
-              successBanner.style.display = 'block';
-              document.getElementById('success-amount').textContent = `₹${selectedAmt}`;
-              successBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            })
-            .catch(vErr => {
-              showError("Signature verification failed: " + vErr.message);
-            });
-          },
-          modal: {
-            ondismiss: function() {
-              showError("Payment window closed by user.");
-            }
-          },
-          prefill: {
-            name: "",
-            email: "",
-            contact: ""
-          },
-          theme: {
-            color: "#1E2A22"
-          }
-        };
-        
-        const rzp = new Razorpay(options);
-        
-        rzp.on('payment.failed', function (response) {
-          showError("Payment failed: " + (response.error.description || 'Unknown transaction error'));
-        });
-        
-        rzp.open();
-      })
-      .catch(err => {
-        this.textContent = originalText;
-        this.style.pointerEvents = "auto";
-        this.style.opacity = "1";
-        showError("Error initiating payment: " + err.message);
-      });
+      // Placeholder: In real implementation, redirect to your specific Milaap campaign URL
+      // optionally passing the selected amount as a query parameter if supported.
+      setTimeout(() => {
+        window.location.href = "https://milaap.org/"; 
+      }, 800);
     });
 
     function showError(msg) {
