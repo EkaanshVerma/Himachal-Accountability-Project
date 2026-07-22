@@ -1770,6 +1770,17 @@
       background: var(--ink); color: var(--cream); border:1px solid var(--ink);
       cursor:pointer; transition: var(--transition);
     ">Give Location</button>
+    <button id="location-manual-modal-btn" style="
+      width:100%; padding:10px; margin-top:10px;
+      font-family:'IBM Plex Sans', sans-serif; font-size:0.85rem;
+      background: transparent; color: var(--ink); border:1px dashed var(--ink);
+      cursor:pointer; transition: var(--transition);
+    ">I'll input location manually</button>
+    <div id="location-manual-modal-input" style="display:none; margin-top:10px;">
+      <input type="text" id="manual-modal-text" placeholder="Village / District" style="width:100%; padding:10px; margin-bottom:10px; font-family:'IBM Plex Sans',sans-serif; font-size:0.9rem; border:1px solid var(--paper-line); outline:none; background:var(--paper); color:var(--ink);">
+      <button id="confirm-modal-manual-btn" style="width:100%; padding:10px; background:var(--ink); color:var(--cream); border:none; font-family:'IBM Plex Mono',monospace; font-weight:600; text-transform:uppercase; cursor:pointer;">Confirm</button>
+    </div>
+
   </div>
 </div>
 
@@ -1779,6 +1790,27 @@
       var modal = document.getElementById('location-modal');
       modal.style.display = 'flex';
       
+      
+      document.getElementById('location-manual-modal-btn').addEventListener('click', function() {
+        document.getElementById('location-modal-btn').style.display = 'none';
+        document.getElementById('location-manual-modal-btn').style.display = 'none';
+        document.getElementById('location-manual-modal-input').style.display = 'block';
+      });
+      document.getElementById('confirm-modal-manual-btn').addEventListener('click', function() {
+        var val = document.getElementById('manual-modal-text').value.trim();
+        if(!val) return;
+        modal.style.display = 'none';
+        localStorage.setItem('hap_location_prompted', 'true');
+        // If loc-btn doesn't exist, we can't click it. But we can trigger the same manual fill if loc-btn is missing.
+        var mBtn = document.getElementById('loc-manual-btn');
+        var mText = document.getElementById('manual-loc-text');
+        var mConfirm = document.getElementById('loc-manual-confirm-btn');
+        if (mBtn && mText && mConfirm) {
+           mText.value = val;
+           mConfirm.click();
+        }
+      });
+
       document.getElementById('location-modal-btn').addEventListener('click', function() {
         modal.style.display = 'none';
         localStorage.setItem('hap_location_prompted', 'true');
