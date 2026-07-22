@@ -1518,7 +1518,13 @@ body {
         observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
       })();
     </script>
-    </head>
+    
+<!-- Vercel Speed Insights -->
+<script>
+  window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+</head>
 <body>
 
 <div class="ann-bar">
@@ -2221,7 +2227,13 @@ window.generateRTI = function(id) {
   const item = FEED_ITEMS.find(i => i.id === id);
   const win = window.open("", "_blank");
   win.document.write(`
-    <html><head><title>RTI Draft</title><style>body{font-family:serif; padding:40px; line-height:1.6; max-width:800px; margin:auto;}</style></head><body>
+    <html><head><title>RTI Draft</title><style>body{font-family:serif; padding:40px; line-height:1.6; max-width:800px; margin:auto;}</style>
+<!-- Vercel Speed Insights -->
+<script>
+  window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+</head><body>
     <h2>Right to Information Act, 2005</h2>
     <p><b>To:</b> Public Information Officer, ${item.dept || 'Relevant Department'}, District ${item.district}, Himachal Pradesh</p>
     <p><b>Subject:</b> Request for information regarding unresolved civic issue at ${item.district}.</p>
