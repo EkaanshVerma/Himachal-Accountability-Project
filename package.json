@@ -1,0 +1,9 @@
+{
+  "name": "himachal-accountability-project",
+  "version": "1.0.0",
+  "description": "Himachal Accountability Project - Civic platform for infrastructure tracking",
+  "private": true,
+  "dependencies": {
+    "@vercel/speed-insights": "^1.1.0"
+  }
+}
