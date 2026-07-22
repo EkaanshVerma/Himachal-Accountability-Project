@@ -1066,6 +1066,34 @@
             </svg>
             Enable Location
           </button>
+          <button type="button" id="loc-manual-btn" style="
+            width:100%; padding:10px; margin: 5px 0 10px 0;
+            font-family:'IBM Plex Sans', sans-serif; font-size:0.8rem;
+            background: transparent; color: var(--sage); border:1px dashed var(--sage);
+            cursor:pointer; transition: var(--transition); display:block;
+          ">
+            I'll input location manually
+          </button>
+          
+          <div id="loc-manual-input" style="display:none; margin: 10px 0;">
+            <input type="text" id="manual-loc-text" placeholder="Enter Pincode, Village or District" style="
+              width:100%; box-sizing:border-box;
+              padding:12px; margin:0 0 10px 0;
+              font-family:'IBM Plex Sans',sans-serif; font-size:0.88rem;
+              background: var(--paper-deep); color: var(--ink);
+              border:1px solid var(--paper-line); outline:none;
+            " />
+            <button type="button" id="loc-manual-confirm-btn" style="
+              width:100%; padding:12px;
+              font-family:'IBM Plex Mono', monospace; font-size:0.78rem;
+              font-weight:600; text-transform:uppercase; letter-spacing:0.08em;
+              background: var(--sage); color: var(--cream); border:1px solid var(--sage);
+              cursor:pointer; transition: var(--transition);
+            ">
+              Confirm Location
+            </button>
+          </div>
+
           <p id="loc-status" style="margin:0; font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--ink-faint); text-align:center;"></p>
         </div>
 
@@ -1536,6 +1564,44 @@
     reportCategory.addEventListener('change', checkReady);
     for(var i=0; i<approveRadios.length; i++) {
       approveRadios[i].addEventListener('change', checkReady);
+    }
+
+
+    // Manual Location
+    var locManualBtn = document.getElementById('loc-manual-btn');
+    var locManualInput = document.getElementById('loc-manual-input');
+    var manualLocText = document.getElementById('manual-loc-text');
+    var locManualConfirmBtn = document.getElementById('loc-manual-confirm-btn');
+
+    if (locManualBtn) {
+      locManualBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        locBtn.style.display = 'none';
+        locManualBtn.style.display = 'none';
+        locManualInput.style.display = 'block';
+      });
+
+      locManualConfirmBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var val = manualLocText.value.trim();
+        if (!val) {
+          locStatus.textContent = 'Please enter a location.';
+          locStatus.style.color = 'var(--stamp)';
+          return;
+        }
+        reportData.lat = 0;
+        reportData.lng = 0;
+        reportData.locationName = val;
+        locCoords.textContent = 'Manual Entry';
+        locName.textContent = val;
+        
+        locManualInput.style.display = 'none';
+        locData.style.display = 'grid';
+        locStatus.textContent = '';
+        if (typeof checkReady === 'function') {
+          checkReady();
+        }
+      });
     }
 
     // Location
