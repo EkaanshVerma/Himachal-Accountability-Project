@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>How We Use Your Data — Himachal Accountability Project</title>
-<meta name="description" content="A full account of how citizen grievance data moves from a Tally form submission through ground verification to the live public dashboard — every step documented.">
+<meta name="description" content="A full account of how citizen grievance data moves from a site form submission through ground verification to the live public dashboard — every step documented.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -768,7 +768,7 @@ code {
   <section id="collection">
     <div class="section-eyebrow">Stage 01</div>
     <h2 class="section-h2">Data collection — the submission form</h2>
-    <p class="section-lead">A citizen reports a grievance through a Tally form linked on the dashboard. The form is designed to collect the minimum information needed to verify and geolocate the complaint — nothing more.</p>
+    <p class="section-lead">A citizen reports a grievance through a native site form linked on the dashboard. The form is designed to collect the minimum information needed to verify and geolocate the complaint — nothing more.</p>
 
     <div class="pipeline">
       <div class="pipeline-step active">
@@ -776,8 +776,8 @@ code {
         <div class="step-body">
           <div class="step-head">
             <div>
-              <div class="step-title">Citizen submits the Tally form</div>
-              <div class="step-sub">Entry point — tally.so/r/A76O8B</div>
+              <div class="step-title">Citizen submits the site form</div>
+              <div class="step-sub">Entry point — report-issue.html</div>
             </div>
             <div class="step-badge badge-input">Input</div>
           </div>
@@ -846,18 +846,18 @@ code {
           <div class="step-head">
             <div>
               <div class="step-title">Submission enters the raw queue</div>
-              <div class="step-sub">Automated intake — Tally → internal database</div>
+              <div class="step-sub">Automated intake — Site Form → internal database</div>
             </div>
             <div class="step-badge badge-input">Automated</div>
           </div>
           <div class="step-content">
             <div class="step-desc">
-              On submission, Tally sends a webhook to our intake endpoint. The raw record is written to an internal database table with status <code>raw</code>. It is <strong>not yet visible on the public dashboard</strong>. A timestamp and a unique submission ID are generated automatically.
+              On submission, the form sends a payload to our intake endpoint. The raw record is written to an internal database table with status <code>raw</code>. It is <strong>not yet visible on the public dashboard</strong>. A timestamp and a unique submission ID are generated automatically.
             </div>
             <div class="step-detail-grid">
               <div class="detail-item">
                 <div class="detail-label">Auto-assigned fields</div>
-                <div class="detail-val"><b>submission_id</b> — unique reference<br><b>received_at</b> — UTC timestamp<br><b>status</b> — set to <code>raw</code><br><b>source</b> — set to <code>tally_form</code></div>
+                <div class="detail-val"><b>submission_id</b> — unique reference<br><b>received_at</b> — UTC timestamp<br><b>status</b> — set to <code>raw</code><br><b>source</b> — set to <code>site_form</code></div>
               </div>
               <div class="detail-item">
                 <div class="detail-label">What happens next</div>
@@ -1292,7 +1292,7 @@ code {
           <td><span class="tag tag-deleted">Never published</span></td>
         </tr>
         <tr>
-          <td><b>Tally form webhook logs</b></td>
+          <td><b>Site form submission logs</b></td>
           <td>Server logs</td>
           <td>HAP infrastructure team</td>
           <td>30 days rolling</td>
