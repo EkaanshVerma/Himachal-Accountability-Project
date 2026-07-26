@@ -13,6 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css"/>
 <style>
 * {
   box-sizing: border-box;
@@ -2381,6 +2382,25 @@ document.getElementById("neglect-list").innerHTML=CONSTITUENCY_NEGLECT.map(m=>{
     });
   }
 })();
+</script>
+
+<!-- Lenis Premium Inertia Smooth Scroll Library -->
+<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+<script>
+  // Initialize Lenis Luxurious Slow Inertia Scroll
+  const lenis = new Lenis({
+    duration: 1.5,           // Slow, weighted luxury deceleration
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Silky exponential curve
+    smoothWheel: true,
+    wheelMultiplier: 0.85,    // Weighted scroll momentum
+    touchMultiplier: 1.4,
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
 </script>
 
 </body>
