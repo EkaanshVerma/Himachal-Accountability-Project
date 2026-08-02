@@ -205,7 +205,7 @@ body {
   overflow: hidden; margin-bottom: 0;
 }
 .step-head {
-  padding: 10px 14px 10px; border-bottom: 1px solid var(--border2);
+  padding: 16px 20px 14px; border-bottom: 1px solid var(--border2);
   display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap;
 }
 .step-title {
@@ -225,7 +225,7 @@ body {
 @keyframes pulse-border { 0%,100%{opacity:1} 50%{opacity:0.5} }
 .badge-flag { color: var(--amber); border-color: var(--amber-mid); background: var(--amber-bg); }
 .badge-archive { color: var(--text3); border-color: var(--border2); }
-.step-content { padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
+.step-content { padding: 18px 20px; display: flex; flex-direction: column; gap: 14px; }
 .step-desc { font-size: 13.5px; color: var(--text2); line-height: 1.75; }
 .step-detail-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
 @media(max-width:600px){ .step-detail-grid{ grid-template-columns:1fr; } }
@@ -247,13 +247,13 @@ body {
 }
 .field-row:last-child { border-bottom: none; }
 .field-name {
-  padding: 5px 8px; font-family: 'IBM Plex Mono', monospace;
+  padding: 9px 12px; font-family: 'IBM Plex Mono', monospace;
   font-size: 10px; font-weight: 600; color: var(--text);
   background: var(--bg3); border-right: 1px solid var(--border2);
 }
-.field-desc { padding: 5px 8px; color: var(--text2); line-height: 1.3; font-size: 11px; }
+.field-desc { padding: 9px 12px; color: var(--text2); line-height: 1.4; }
 .field-req {
-  padding: 5px 8px; font-family: 'IBM Plex Mono', monospace;
+  padding: 9px 12px; font-family: 'IBM Plex Mono', monospace;
   font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
   text-align: center; border-left: 1px solid var(--border2);
 }
@@ -699,6 +699,7 @@ code {
     <div class="masthead-right">
       <div class="masthead-links">
         <a class="btn-ghost " id="nav-home" href="index.html">Home</a>
+        <a class="btn-ghost " id="nav-about" href="about.html">About Us</a>
         <a class="btn-ghost " id="nav-dashboard" href="dashboard.html">Dashboard</a>
         <a class="btn-ghost " id="nav-perception" href="mla_perception.html">MLA Perception</a>
         <a class="btn-ghost " id="nav-join" href="join.html">Join Us</a>
@@ -707,6 +708,7 @@ code {
       
       <div class="mobile-dropdown" id="mobile-menu" style="display: none;">
         <a class="dropdown-link " href="index.html">Home</a>
+        <a class="dropdown-link " href="about.html">About Us</a>
         <a class="dropdown-link " href="dashboard.html">Dashboard</a>
         <a class="dropdown-link " href="mla_perception.html">MLA Perception</a>
         <a class="dropdown-link " href="join.html">Join Us</a>
@@ -787,9 +789,9 @@ code {
             </div>
             <div class="step-fields">
               <div class="field-row" style="background:var(--bg3);font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text3)">
-                <div style="padding:4px 8px">Question / Field Name</div>
-                <div style="padding:4px 8px;border-left:1px solid var(--border2)">What is collected / Description</div>
-                <div style="padding:4px 8px;border-left:1px solid var(--border2);text-align:center">Required</div>
+                <div style="padding:8px 12px">Question / Field Name</div>
+                <div style="padding:8px 12px;border-left:1px solid var(--border2)">What is collected / Description</div>
+                <div style="padding:8px 12px;border-left:1px solid var(--border2);text-align:center">Required</div>
               </div>
               <div class="field-row">
                 <div class="field-name" style="font-size: 11px;">1. Biggest Area Issue (Ignored by Administration)<br><small style="color: var(--text3); display: block; margin-top: 3px; font-weight: normal;">Aapke kshetra ki aisi sabse badi samasya kya hai...</small></div>
