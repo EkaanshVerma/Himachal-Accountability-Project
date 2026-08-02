@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://thehap.vercel.app/</loc>
+    <loc>https://himachal-accountability-project.vercel.app/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://thehap.vercel.app/dashboard.html</loc>
+    <loc>https://himachal-accountability-project.vercel.app/dashboard.html</loc>
     <changefreq>hourly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://thehap.vercel.app/report-issue.html</loc>
+    <loc>https://himachal-accountability-project.vercel.app/report-issue.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://thehap.vercel.app/about.html</loc>
+    <loc>https://himachal-accountability-project.vercel.app/about.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://thehap.vercel.app/mla_perception.html</loc>
+    <loc>https://himachal-accountability-project.vercel.app/mla_perception.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://thehap.vercel.app/donate.html</loc>
+    <loc>https://himachal-accountability-project.vercel.app/donate.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://thehap.vercel.app/join.html</loc>
+    <loc>https://himachal-accountability-project.vercel.app/join.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://thehap.vercel.app/contact.html</loc>
+    <loc>https://himachal-accountability-project.vercel.app/contact.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://thehap.vercel.app/data-methodology.html</loc>
+    <loc>https://himachal-accountability-project.vercel.app/data-methodology.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
