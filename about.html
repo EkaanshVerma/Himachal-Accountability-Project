@@ -160,8 +160,8 @@
     .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
 
     /* ── MISSION DARK BAND ── */
-    .band-dark{background:#283740;color:#F3F1E6}
-    [data-theme="dark"] .band-dark{background:#111D24;color:#D8E4D0}
+    .band-dark{background:rgba(40,55,64,0.65);color:#F3F1E6;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+    [data-theme="dark"] .band-dark{background:rgba(17,29,36,0.65);color:#D8E4D0;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
     .band-dark .eyebrow{color:#B7C9A8}
     .band-dark .eyebrow::before{background:#B7C9A8}
     .band-dark h2{color:#F3F1E6}
@@ -294,7 +294,7 @@
     }
 
     /* ── FOOTER ── */
-    footer{background:var(--ink);color:var(--cream-soft);padding:52px 0 30px}
+    footer{background:rgba(30,42,34,0.7);color:var(--cream-soft);padding:52px 0 30px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
     .footer-top{
       display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:24px;
       padding-bottom:28px;border-bottom:1px solid rgba(243,241,230,0.16);
@@ -479,7 +479,7 @@
         </div>
         <div class="mission-stats reveal">
           <div class="ms-cell">
-            <div class="ms-num">11<span>/12</span></div>
+            <div class="ms-num">12<span>/12</span></div>
             <div class="ms-label">Districts active</div>
           </div>
           <div class="ms-cell">
