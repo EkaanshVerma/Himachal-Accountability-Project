@@ -730,7 +730,9 @@
 .masthead {
   padding: 16px var(--pad, 24px);
   border-bottom: 1px solid var(--border);
-  background: var(--bg2);
+  background: var(--header-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -903,7 +905,9 @@
     position: absolute;
     top: calc(100% - 10px);
     right: 24px;
-    background: var(--bg2, var(--cream, #F3F1E6)) !important;
+    background: var(--header-bg) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
     border: 1px solid var(--border, var(--paper-line, rgba(30,42,34,0.14)));
     box-shadow: 0 8px 30px rgba(0,0,0,0.3);
     flex-direction: column;

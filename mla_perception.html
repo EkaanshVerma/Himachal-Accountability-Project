@@ -137,7 +137,9 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; }
 
 /* Masthead */
 .masthead {
-  background: var(--bg2);
+  background: var(--header-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
   padding: 16px 24px;
   position: sticky;
@@ -596,7 +598,9 @@ footer {
 .masthead {
   padding: 16px var(--pad, 24px);
   border-bottom: 1px solid var(--border);
-  background: var(--bg2);
+  background: var(--header-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   position: sticky;
   top: 0;
   z-index: 1000;
