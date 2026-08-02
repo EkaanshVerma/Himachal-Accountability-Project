@@ -195,6 +195,29 @@
     [data-theme="dark"] .team-card { background:rgba(30,42,34,0.85); }
     .team-card.lead {
       grid-column: 1 / -1;
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+    .team-lead-img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 3px solid var(--paper-line);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 2;
+    }
+    .team-lead-content {
+      flex-grow: 1;
+      position: relative;
+      z-index: 2;
+    }
+    @media (max-width: 720px) {
+      .team-card.lead { flex-direction: column; align-items: flex-start; gap: 24px; }
+      .team-lead-img { width: 120px; height: 120px; }
     }
     .team-card::after{
       content:attr(data-initial);position:absolute;bottom:-16px;right:12px;
@@ -490,30 +513,33 @@
 
         <!-- EKAANSH -->
         <div class="team-card lead reveal" data-initial="E">
-          <div class="team-role">Founder &amp; Project Lead</div>
-          <div class="team-name">Ekaansh Verma</div>
-          <div class="team-location">&#x1F4CD; Shimla, Himachal Pradesh</div>
-          <p class="team-bio">Ekaansh founded HAP as a long-term civic infrastructure play — building the platform from scratch while running Verma Digital and Stride simultaneously. He oversees product, strategy, institutional partnerships, and public communications. He is also the author of <em>Tenets to Govern By</em>, a work on governance and administrative philosophy that informs how HAP's methodology is designed.</p>
-          <div class="team-tags">
-            <span class="tag">Product</span>
-            <span class="tag">Strategy</span>
-            <span class="tag">Civic Tech</span>
-            <span class="tag">Partnerships</span>
-            <span class="tag">Author</span>
-          </div>
-          <div class="team-links">
-            <a class="team-link" href="https://ekaanshverma.framer.website/" target="_blank">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              Portfolio
-            </a>
-            <a class="team-link" href="https://www.linkedin.com/in/ekaansh-verma" target="_blank">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-              LinkedIn
-            </a>
-            <a class="team-link" href="https://www.crunchbase.com/person/ekaansh-verma-01b0" target="_blank">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              Crunchbase
-            </a>
+          <img src="ekaansh.jpg" alt="Ekaansh Verma" class="team-lead-img">
+          <div class="team-lead-content">
+            <div class="team-role">Founder &amp; Project Lead</div>
+            <div class="team-name">Ekaansh Verma</div>
+            <div class="team-location">&#x1F4CD; Shimla, Himachal Pradesh</div>
+            <p class="team-bio">Ekaansh founded HAP as a long-term civic infrastructure play — building the platform from scratch while running Verma Digital and Stride simultaneously. He oversees product, strategy, institutional partnerships, and public communications. He is also the author of <em>Tenets to Govern By</em>, a work on governance and administrative philosophy that informs how HAP's methodology is designed.</p>
+            <div class="team-tags">
+              <span class="tag">Product</span>
+              <span class="tag">Strategy</span>
+              <span class="tag">Civic Tech</span>
+              <span class="tag">Partnerships</span>
+              <span class="tag">Author</span>
+            </div>
+            <div class="team-links">
+              <a class="team-link" href="https://ekaanshverma.framer.website/" target="_blank">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Portfolio
+              </a>
+              <a class="team-link" href="https://www.linkedin.com/in/ekaansh-verma" target="_blank">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                LinkedIn
+              </a>
+              <a class="team-link" href="https://www.crunchbase.com/person/ekaansh-verma-01b0" target="_blank">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Crunchbase
+              </a>
+            </div>
           </div>
         </div>
 
