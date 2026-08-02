@@ -146,45 +146,162 @@
 
     /* ── PAGE HERO ── */
     .page-hero{
-      padding:clamp(56px,8vw,96px) 0 clamp(40px,6vw,72px);
-      border-bottom:1px solid var(--paper-line);
+      padding:clamp(100px, 15vw, 180px) 0 clamp(80px, 10vw, 120px);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 75vh;
+      border-bottom: none;
+    }
+    .page-hero .eyebrow {
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    .page-hero .eyebrow::before {
+      display: none;
     }
     .page-hero h1{
-      font-size:clamp(2.2rem,5vw,4rem);line-height:1.06;letter-spacing:-0.03em;
-      margin-bottom:18px;max-width:700px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+      margin-bottom: 24px;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
     }
-    .page-hero h1 em{font-style:normal;color:var(--amber)}
+    .page-hero h1 em{font-style:italic;color:var(--amber)}
     .page-hero .hero-sub{
-      font-size:1.06rem;color:var(--ink-soft);line-height:1.7;max-width:52ch;margin-bottom:32px;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color:var(--ink-soft);
+      line-height: 1.6;
+      max-width: 60ch;
+      margin: 0 auto;
     }
-    .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+    .hero-command-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px;
+      background: rgba(243,241,230,0.65);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      box-shadow: 0 24px 48px rgba(0,0,0,0.08);
+      position: sticky;
+      bottom: 24px;
+      z-index: 100;
+      margin: -24px auto 60px auto;
+    }
+    [data-theme="dark"] .hero-command-bar {
+      background: rgba(30,42,34,0.65);
+      box-shadow: 0 24px 48px rgba(0,0,0,0.4);
+    }
+    .hero-command-bar .btn {
+      border-radius: 100px;
+      border: none;
+      padding: 14px 28px;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+    }
+    .hero-command-bar .btn-secondary {
+      background: transparent;
+      color: var(--ink);
+    }
+    .hero-command-bar .btn-secondary:hover {
+      background: rgba(0,0,0,0.05);
+    }
+    [data-theme="dark"] .hero-command-bar .btn-secondary:hover {
+      background: rgba(255,255,255,0.05);
+    }
 
-    /* ── MISSION DARK BAND ── */
-    .band-dark{background:#283740;color:#F3F1E6}
-    [data-theme="dark"] .band-dark{background:#111D24;color:#D8E4D0}
-    .band-dark .eyebrow{color:#B7C9A8}
-    .band-dark .eyebrow::before{background:#B7C9A8}
-    .band-dark h2{color:#F3F1E6}
-    [data-theme="dark"] .band-dark h2{color:#D8E4D0}
-    .band-dark .section-head p{color:rgba(243,241,230,0.72)}
-    [data-theme="dark"] .band-dark .section-head p{color:rgba(216,228,208,0.68)}
-    .mission-grid{
-      display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,64px);align-items:start;
+    /* ── MISSION BENTO ── */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: var(--section-pad);
     }
-    .mission-stats{
-      display:grid;grid-template-columns:1fr 1fr;gap:1px;
-      background:rgba(255,255,255,0.08);
+    .bento-card {
+      background: rgba(243,241,230,0.65);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--border);
+      padding: clamp(32px, 4vw, 48px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      position: relative;
     }
-    [data-theme="dark"] .mission-stats{background:rgba(216,228,208,0.08)}
-    .ms-cell{background:rgba(255,255,255,0.04);padding:24px 20px}
-    [data-theme="dark"] .ms-cell{background:rgba(216,228,208,0.04)}
-    .ms-num{
-      font-family:'IBM Plex Mono',monospace;font-size:32px;font-weight:700;
-      color:#F3F1E6;letter-spacing:-0.02em;line-height:1;margin-bottom:4px;
+    [data-theme="dark"] .bento-card {
+      background: rgba(30,42,34,0.65);
     }
-    [data-theme="dark"] .ms-num{color:#D8E4D0}
-    .ms-num span{font-size:16px;font-weight:400;color:#B7C9A8}
-    .ms-label{font-size:11px;color:#B7C9A8;text-transform:uppercase;letter-spacing:0.08em;font-weight:600}
+    .bento-card.text-card {
+      grid-column: span 4;
+      padding: clamp(48px, 6vw, 80px);
+      text-align: center;
+      align-items: center;
+    }
+    .bento-card.text-card h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.1;
+      max-width: 900px;
+      margin: 16px auto;
+      letter-spacing: -0.02em;
+    }
+    .bento-card.text-card p {
+      font-size: 1.1rem;
+      color: var(--ink-soft);
+      max-width: 60ch;
+      line-height: 1.6;
+    }
+    .bento-card.stat-large {
+      grid-column: span 2;
+      grid-row: span 2;
+      background: var(--ink);
+      color: var(--cream);
+      border-color: var(--ink);
+    }
+    [data-theme="dark"] .bento-card.stat-large {
+      background: var(--cream);
+      color: var(--ink);
+      border-color: var(--cream);
+    }
+    .bento-card.stat-large .ms-num { color: var(--cream); font-size: clamp(4rem, 8vw, 8rem); margin-bottom: 0; }
+    [data-theme="dark"] .bento-card.stat-large .ms-num { color: var(--ink); }
+    .bento-card.stat-large .ms-label { color: rgba(255,255,255,0.7); font-size: 14px; }
+    [data-theme="dark"] .bento-card.stat-large .ms-label { color: rgba(0,0,0,0.6); }
+
+    .bento-card.stat-wide { grid-column: span 2; }
+    .bento-card.stat-square { grid-column: span 1; }
+    
+    .ms-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    [data-theme="dark"] .ms-num { color: var(--cream); }
+    .ms-num span { font-size: 0.5em; font-weight: 400; opacity: 0.5; }
+    .ms-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+    @media (max-width: 820px) {
+      .bento-grid { grid-template-columns: 1fr; }
+      .bento-card.stat-large, .bento-card.stat-wide, .bento-card.stat-square { grid-column: span 1; grid-row: auto; }
+    }
 
     /* ── TEAM CARDS ── */
     .team-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--paper-line)}
@@ -248,49 +365,233 @@
     .team-link:hover{border-color:var(--stamp);color:var(--stamp)}
     .team-link svg{width:10px;height:10px}
 
-    /* ── VALUES ── */
-    .pillars-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--paper-line);border:1px solid var(--paper-line)}
-    .pillar{background:var(--paper);padding:clamp(26px,4vw,38px);display:flex;flex-direction:column;gap:16px}
-    .pillar-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
-    .pillar-num{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--ink-faint);letter-spacing:0.08em}
-    .pillar-icon{width:40px;height:40px;border:1px solid var(--paper-line);display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--paper-deep)}
-    .pillar-icon svg{width:22px;height:22px;color:var(--ink)}
-    .pillar h3{font-size:1.15rem}
-    .pillar p{color:var(--ink-soft);font-size:0.94rem;margin:0}
+    /* ── STICKY PILLARS ── */
+    .pillars-container {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding-bottom: 120px;
+    }
+    .pillar-card {
+      position: sticky;
+      top: 100px;
+      background: rgba(243,241,230,0.9);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: clamp(32px, 5vw, 64px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+      display: flex;
+      gap: clamp(24px, 5vw, 64px);
+      align-items: center;
+      transition: transform 0.3s;
+    }
+    [data-theme="dark"] .pillar-card {
+      background: rgba(30,42,34,0.9);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    .pillar-card:nth-child(1) { top: 100px; z-index: 10; }
+    .pillar-card:nth-child(2) { top: 120px; z-index: 11; }
+    .pillar-card:nth-child(3) { top: 140px; z-index: 12; }
+    .pillar-card:nth-child(4) { top: 160px; z-index: 13; }
+    
+    .pillar-left {
+      flex-shrink: 0;
+      width: clamp(80px, 15vw, 160px);
+      height: clamp(80px, 15vw, 160px);
+      background: var(--ink);
+      color: var(--cream);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    [data-theme="dark"] .pillar-left {
+      background: var(--cream);
+      color: var(--ink);
+    }
+    .pillar-left svg {
+      width: 40%;
+      height: 40%;
+    }
+    .pillar-right {
+      flex-grow: 1;
+    }
+    .pillar-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--sage);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: block;
+      font-weight: 600;
+    }
+    .pillar-right h3 {
+      font-size: clamp(1.5rem, 3vw, 2.4rem);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .pillar-right p {
+      font-size: 1.1rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      max-width: 60ch;
+      margin: 0;
+    }
+    @media (max-width: 820px) {
+      .pillar-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+      }
+    }
 
-    /* ── GET INVOLVED ── */
-    .band-paper-deep{background:var(--paper-deep)}
-    .involve-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--paper-line)}
-    .involve-card{
-      background:var(--paper);border:1px solid var(--ink);
-      padding:clamp(26px,4vw,36px);display:flex;flex-direction:column;height:100%;
+    /* ── GET INVOLVED (HIGH CONTRAST) ── */
+    .band-high-contrast {
+      background: var(--ink);
+      color: var(--cream);
+      padding: clamp(100px, 12vw, 140px) 0;
     }
-    .involve-card .card-tag{
-      font-family:'IBM Plex Mono',monospace;font-size:0.7rem;text-transform:uppercase;
-      letter-spacing:0.1em;color:var(--sage);margin-bottom:14px;
+    .band-high-contrast .eyebrow {
+      color: var(--amber);
     }
-    .involve-card h3{font-size:1.2rem;margin-bottom:10px}
-    .involve-card p{color:var(--ink-soft);margin:0 0 22px;flex-grow:1;font-size:0.95rem;line-height:1.65}
+    .band-high-contrast .eyebrow::before {
+      background: var(--amber);
+    }
+    .band-high-contrast .section-head h2 {
+      color: var(--cream);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      letter-spacing: -0.03em;
+    }
+    .band-high-contrast .section-head p {
+      color: rgba(243,241,230,0.7);
+      font-size: 1.1rem;
+    }
+    .involve-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .involve-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: clamp(32px, 5vw, 48px);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .involve-card:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.2);
+    }
+    .involve-card .card-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--amber);
+      margin-bottom: 20px;
+    }
+    .involve-card h3 {
+      font-size: clamp(1.4rem, 2vw, 1.8rem);
+      margin-bottom: 12px;
+      color: var(--cream);
+      letter-spacing: -0.02em;
+    }
+    .involve-card p {
+      color: rgba(243,241,230,0.6);
+      margin: 0 0 32px;
+      flex-grow: 1;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+    .involve-card .btn {
+      align-self: flex-start;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--cream);
+      background: transparent;
+      border-radius: 100px;
+      padding: 12px 24px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .involve-card .btn:hover {
+      background: var(--cream);
+      color: var(--ink);
+    }
+    @media (max-width: 820px) {
+      .involve-grid { grid-template-columns: 1fr; }
+    }
 
-    /* ── PITCH CARD ── */
-    .pitch-card{
-      background:var(--cream);border:1px solid var(--ink);
-      padding:clamp(28px,5vw,48px);position:relative;max-width:780px;
+    /* ── THE LINE WE HOLD (EDITORIAL BLOCKQUOTE) ── */
+    .editorial-quote-section {
+      padding: clamp(80px, 10vw, 140px) 0;
+      position: relative;
+      text-align: center;
+      background: var(--paper-deep);
+      overflow: hidden;
     }
-    .pitch-stamp{
-      position:absolute;top:22px;right:24px;width:76px;height:76px;
-      border:1.5px solid var(--stamp);border-radius:50%;color:var(--stamp);
-      display:flex;align-items:center;justify-content:center;text-align:center;
-      transform:rotate(-8deg);font-family:'IBM Plex Mono',monospace;
-      font-size:0.58rem;letter-spacing:0.06em;text-transform:uppercase;line-height:1.25;padding:6px;
+    .editorial-quote-section::before {
+      content: "“";
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(12rem, 25vw, 24rem);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: rgba(216,228,208,0.25);
+      z-index: 0;
+      line-height: 1;
+      pointer-events: none;
     }
-    .pitch-card blockquote{margin:0;font-size:1.06rem;line-height:1.7;color:var(--ink);padding-right:60px}
-    .pitch-card blockquote p{margin:0 0 14px}
-    .pitch-card blockquote p:last-child{margin-bottom:0}
-    .pitch-foot{
-      margin-top:22px;padding-top:16px;border-top:1px solid var(--paper-line);
-      font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--ink-faint);
-      text-transform:uppercase;letter-spacing:0.08em;
+    [data-theme="dark"] .editorial-quote-section::before {
+      color: rgba(30,42,34,0.3);
+    }
+    .editorial-quote-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .editorial-quote-content blockquote {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.4rem, 3.5vw, 2.4rem);
+      line-height: 1.3;
+      color: var(--ink);
+      margin: 0 0 40px 0;
+      letter-spacing: -0.02em;
+    }
+    .editorial-quote-content blockquote p {
+      margin: 0 0 24px 0;
+    }
+    .editorial-quote-content blockquote p:last-child {
+      margin-bottom: 0;
+    }
+    .editorial-quote-author {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+    }
+    .editorial-quote-author::before {
+      content: "";
+      width: 40px;
+      height: 1.5px;
+      background: var(--ink-soft);
+      display: block;
+      margin: 0 auto 16px auto;
     }
 
     /* ── FOOTER ── */
@@ -457,44 +758,50 @@
 
   <!-- HERO -->
   <section class="section page-hero">
-    <div class="wrap">
-      <div class="eyebrow red reveal">Who we are</div>
+    <div class="wrap" style="display:flex;flex-direction:column;align-items:center;">
+      <div class="eyebrow reveal" style="color:var(--amber)">Who we are</div>
       <h1 class="reveal">Born in HP.<br><em>Built for HP.</em></h1>
       <p class="hero-sub reveal">The Himachal Accountability Project is a citizen-run civic infrastructure initiative — built by people who live here, vote here, and use the same broken roads everyone else is reporting. No Delhi office. No corporate hierarchy. No political backing.</p>
-      <div class="hero-ctas reveal">
-        <a href="dashboard.html" class="btn btn-primary">View live dashboard</a>
-        <a href="report-issue.html" class="btn" style="border-color:var(--amber);color:var(--amber)">Report an issue</a>
-      </div>
     </div>
   </section>
 
-  <!-- MISSION DARK BAND -->
-  <section class="section band-dark">
+  <!-- FLOATING COMMAND BAR -->
+  <div class="hero-command-bar reveal">
+    <a href="dashboard.html" class="btn btn-primary">View live dashboard</a>
+    <a href="report-issue.html" class="btn btn-secondary">Report an issue</a>
+  </div>
+
+  <!-- MISSION BENTO GRID -->
+  <section class="section">
     <div class="wrap">
-      <div class="mission-grid">
-        <div>
-          <div class="eyebrow on-dark reveal">Why this exists</div>
-          <h2 class="reveal" style="color:#F3F1E6;font-size:clamp(1.6rem,3.2vw,2.2rem);margin-bottom:16px">Himachal's administrative failures are documented everywhere except one place — a single, public, searchable record.</h2>
-          <p class="reveal" style="color:rgba(243,241,230,0.72);font-size:1rem;line-height:1.7;max-width:48ch">Social media posts disappear. RTI replies sit in inboxes. News coverage moves on. HAP exists to make sure every logged grievance accumulates — ward by ward, month by month — into a dataset that can't be ignored, dismissed, or buried.</p>
+      <div class="bento-grid">
+        
+        <div class="bento-card text-card reveal">
+          <div class="eyebrow" style="color:var(--ink-soft)">Why this exists</div>
+          <h2>Himachal's administrative failures are documented everywhere except one place — a single, public, searchable record.</h2>
+          <p>Social media posts disappear. RTI replies sit in inboxes. News coverage moves on. HAP exists to make sure every logged grievance accumulates — ward by ward, month by month — into a dataset that can't be ignored, dismissed, or buried.</p>
         </div>
-        <div class="mission-stats reveal">
-          <div class="ms-cell">
-            <div class="ms-num">11<span>/12</span></div>
-            <div class="ms-label">Districts active</div>
-          </div>
-          <div class="ms-cell">
-            <div class="ms-num">68</div>
-            <div class="ms-label">Constituencies mapped</div>
-          </div>
-          <div class="ms-cell">
-            <div class="ms-num">0</div>
-            <div class="ms-label">Political backers</div>
-          </div>
-          <div class="ms-cell">
-            <div class="ms-num">69<span>%</span></div>
-            <div class="ms-label">Unresolved rate</div>
-          </div>
+
+        <div class="bento-card stat-large reveal">
+          <div class="ms-label">Districts Active</div>
+          <div class="ms-num" style="margin-top:auto">11<span>/12</span></div>
         </div>
+
+        <div class="bento-card stat-wide reveal">
+          <div class="ms-label">Constituencies Mapped</div>
+          <div class="ms-num" style="margin-top:auto">68</div>
+        </div>
+
+        <div class="bento-card stat-square reveal">
+          <div class="ms-label">Political Backers</div>
+          <div class="ms-num" style="margin-top:auto">0</div>
+        </div>
+
+        <div class="bento-card stat-square reveal">
+          <div class="ms-label">Unresolved Rate</div>
+          <div class="ms-num" style="margin-top:auto">69<span>%</span></div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -588,20 +895,14 @@
   </section>
 
   <!-- THE LINE WE HOLD -->
-  <section class="section" style="background:var(--paper-deep)">
+  <section class="section editorial-quote-section reveal">
     <div class="wrap">
-      <div class="section-head reveal">
-        <div class="eyebrow">When someone asks what this is</div>
-        <h2>The line we hold.</h2>
-        <p>This is the exact position given to a journalist, a politician, or a fellowship coordinator who asks what HAP actually is.</p>
-      </div>
-      <div class="pitch-card reveal">
-        <div class="pitch-stamp">On the<br>record</div>
+      <div class="editorial-quote-content">
         <blockquote>
           <p>We are a data-driven public utility. We do not support any political party, and we do not oppose any political party. We oppose bad roads, dry taps, and administrative delays.</p>
           <p>Our goal is to use modern technology to help the government see real-time ground realities so that public funds are spent efficiently. We are simply here to help the system work faster and better for the people of Himachal.</p>
         </blockquote>
-        <div class="pitch-foot">The Himachal Accountability Project — official position</div>
+        <div class="editorial-quote-author">The Himachal Accountability Project — Official Position</div>
       </div>
     </div>
   </section>
@@ -610,48 +911,61 @@
   <section class="section">
     <div class="wrap">
       <div class="section-head reveal">
-        <div class="eyebrow">How we operate</div>
+        <div class="eyebrow" style="color:var(--sage)">How we operate</div>
         <h2>Four things we don't compromise on.</h2>
       </div>
-      <div class="pillars-grid">
-        <div class="pillar reveal">
-          <div class="pillar-top">
-            <span class="pillar-num mono">PRINCIPLE — 01</span>
-            <span class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-4z"/></svg></span>
+      <div class="pillars-container">
+        
+        <div class="pillar-card reveal">
+          <div class="pillar-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-4z"/></svg>
           </div>
-          <h3>No political money, ever</h3>
-          <p>We decline contributions from political parties, candidates, elected officials, and their associates — BJP, Congress, AAP, or otherwise. This is structural, not aspirational. The data only means something if no one can buy what it says.</p>
-        </div>
-        <div class="pillar reveal">
-          <div class="pillar-top">
-            <span class="pillar-num mono">PRINCIPLE — 02</span>
-            <span class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8"/><path d="M12 4v3M12 17v3M4 12h3M17 12h3"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/></svg></span>
+          <div class="pillar-right">
+            <span class="pillar-num">PRINCIPLE — 01</span>
+            <h3>No political money, ever</h3>
+            <p>We decline contributions from political parties, candidates, elected officials, and their associates — BJP, Congress, AAP, or otherwise. This is structural, not aspirational. The data only means something if no one can buy what it says.</p>
           </div>
-          <h3>Both parties, equal scrutiny</h3>
-          <p>HAP maps failures under whoever is in power at any given time. If a road has been broken across two different governments, both entries go on the record. Selective accountability is just opposition research with a civic coat of paint.</p>
         </div>
-        <div class="pillar reveal">
-          <div class="pillar-top">
-            <span class="pillar-num mono">PRINCIPLE — 03</span>
-            <span class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V13M9.5 20V9M15 20V5M20.5 20v-7"/></svg></span>
+
+        <div class="pillar-card reveal">
+          <div class="pillar-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8"/><path d="M12 4v3M12 17v3M4 12h3M17 12h3"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/></svg>
           </div>
-          <h3>Data before claims</h3>
-          <p>Every post, reel, and dossier we publish is traceable to a verified entry in the grievance database — pin code, location, duration, citizen quote. We don't publish what we can't source. The map is only as credible as its sourcing discipline.</p>
-        </div>
-        <div class="pillar reveal">
-          <div class="pillar-top">
-            <span class="pillar-num mono">PRINCIPLE — 04</span>
-            <span class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="2.2"/><circle cx="17" cy="7" r="2.2"/><circle cx="12" cy="17" r="2.2"/><path d="M8.6 8.4 10.4 15.2M15.4 8.4 13.6 15.2M9 7h6"/></svg></span>
+          <div class="pillar-right">
+            <span class="pillar-num">PRINCIPLE — 02</span>
+            <h3>Both parties, equal scrutiny</h3>
+            <p>HAP maps failures under whoever is in power at any given time. If a road has been broken across two different governments, both entries go on the record. Selective accountability is just opposition research with a civic coat of paint.</p>
           </div>
-          <h3>Open books, always</h3>
-          <p>We publish quarterly transparency reports covering every rupee received and spent. The grievance database is publicly accessible. There is no private layer to this project that contradicts the public one.</p>
         </div>
+
+        <div class="pillar-card reveal">
+          <div class="pillar-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V13M9.5 20V9M15 20V5M20.5 20v-7"/></svg>
+          </div>
+          <div class="pillar-right">
+            <span class="pillar-num">PRINCIPLE — 03</span>
+            <h3>Data before claims</h3>
+            <p>Every post, reel, and dossier we publish is traceable to a verified entry in the grievance database — pin code, location, duration, citizen quote. We don't publish what we can't source. The map is only as credible as its sourcing discipline.</p>
+          </div>
+        </div>
+
+        <div class="pillar-card reveal">
+          <div class="pillar-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="2.2"/><circle cx="17" cy="7" r="2.2"/><circle cx="12" cy="17" r="2.2"/><path d="M8.6 8.4 10.4 15.2M15.4 8.4 13.6 15.2M9 7h6"/></svg>
+          </div>
+          <div class="pillar-right">
+            <span class="pillar-num">PRINCIPLE — 04</span>
+            <h3>Open books, always</h3>
+            <p>We publish quarterly transparency reports covering every rupee received and spent. The grievance database is publicly accessible. There is no private layer to this project that contradicts the public one.</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- GET INVOLVED -->
-  <section class="section band-paper-deep">
+  <!-- GET INVOLVED (HIGH CONTRAST) -->
+  <section class="section band-high-contrast">
     <div class="wrap">
       <div class="section-head reveal">
         <div class="eyebrow">Get involved</div>
@@ -663,13 +977,13 @@
           <span class="card-tag mono">For residents</span>
           <h3>Report from your ward</h3>
           <p>Have a broken streetlight, a collapsed drain, or a dry handpump? Submit your ward, pin code, and a photo — it goes directly onto the public map. No login, no app, no email draft.</p>
-          <a class="btn btn-ghost" href="report-issue.html" style="border:1.5px solid var(--ink)">Log your report <span style="font-size:0.72em;opacity:0.7">(60 sec, no login)</span></a>
+          <a class="btn" href="report-issue.html">Log your report</a>
         </div>
         <div class="involve-card reveal">
           <span class="card-tag mono">For volunteers &amp; journalists</span>
           <h3>Verify, map, and distribute</h3>
           <p>Field researchers, district correspondents, and media partners do the work that turns raw grievance data into public pressure. No experience required — just a phone, a location, and a willingness to document what's broken.</p>
-          <a class="btn btn-ghost" href="join.html" style="border:1.5px solid var(--ink)">Join the team</a>
+          <a class="btn" href="join.html">Join the team</a>
         </div>
       </div>
     </div>
