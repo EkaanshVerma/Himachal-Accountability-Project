@@ -196,28 +196,28 @@
     .team-card.lead {
       grid-column: 1 / -1;
       display: flex;
-      gap: 32px;
-      align-items: center;
-    }
-    .team-lead-img {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      object-fit: cover;
-      flex-shrink: 0;
-      border: 3px solid var(--paper-line);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      position: relative;
-      z-index: 2;
+      min-height: 340px;
     }
     .team-lead-content {
-      flex-grow: 1;
       position: relative;
       z-index: 2;
+      max-width: 65%;
     }
-    @media (max-width: 720px) {
-      .team-card.lead { flex-direction: column; align-items: flex-start; gap: 24px; }
-      .team-lead-img { width: 120px; height: 120px; }
+    .team-lead-img {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      height: 95%;
+      max-height: 420px;
+      width: 45%;
+      object-fit: contain;
+      object-position: bottom right;
+      z-index: 1;
+    }
+    @media (max-width: 820px) {
+      .team-card.lead { flex-direction: column; }
+      .team-lead-content { max-width: 100%; position: relative; z-index: 2; }
+      .team-lead-img { position: relative; height: 320px; width: 100%; object-position: bottom center; margin-bottom: calc(-1 * clamp(26px, 4vw, 38px)); margin-top: 24px; }
     }
     .team-card::after{
       content:attr(data-initial);position:absolute;bottom:-16px;right:12px;
@@ -513,7 +513,6 @@
 
         <!-- EKAANSH -->
         <div class="team-card lead reveal" data-initial="E">
-          <img src="ekaansh.jpg" alt="Ekaansh Verma" class="team-lead-img">
           <div class="team-lead-content">
             <div class="team-role">Founder &amp; Project Lead</div>
             <div class="team-name">Ekaansh Verma</div>
@@ -541,6 +540,7 @@
               </a>
             </div>
           </div>
+          <img src="ekaansh-cutout.png" alt="Ekaansh Verma" class="team-lead-img">
         </div>
 
         <!-- ANKESH -->
