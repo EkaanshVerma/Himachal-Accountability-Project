@@ -160,8 +160,8 @@
     .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
 
     /* ── MISSION DARK BAND ── */
-    .band-dark{background:rgba(40,55,64,0.65);color:#F3F1E6;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
-    [data-theme="dark"] .band-dark{background:rgba(17,29,36,0.65);color:#D8E4D0;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+    .band-dark{background:transparent;color:#F3F1E6;}
+    [data-theme="dark"] .band-dark{background:transparent;color:#D8E4D0;}
     .band-dark .eyebrow{color:#B7C9A8}
     .band-dark .eyebrow::before{background:#B7C9A8}
     .band-dark h2{color:#F3F1E6}
@@ -399,6 +399,7 @@
       *{transition-duration:0.01ms !important;animation-duration:0.01ms !important}
     }
   </style>
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css"/>
 </head>
 <body>
 
@@ -828,5 +829,24 @@
   })();
 </script>
 
+
+<!-- Lenis Premium Inertia Smooth Scroll Library -->
+<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+<script>
+  // Initialize Lenis Luxurious Slow Inertia Scroll
+  const lenis = new Lenis({
+    duration: 1.5,           // Slow, weighted luxury deceleration
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Silky exponential curve
+    smoothWheel: true,
+    wheelMultiplier: 0.85,    // Weighted scroll momentum
+    touchMultiplier: 1.4,
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+</script>
 </body>
 </html>

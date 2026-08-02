@@ -1533,6 +1533,7 @@ body {
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css"/>
 </head>
 <body>
 
@@ -2239,6 +2240,7 @@ window.generateRTI = function(id) {
   const win = window.open("", "_blank");
   win.document.write(`
     <html><head><title>RTI Draft</title><style>body{font-family:serif; padding:40px; line-height:1.6; max-width:800px; margin:auto;}</style>
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css"/>
 </head><body>
     <h2>Right to Information Act, 2005</h2>
     <p><b>To:</b> Public Information Officer, ${item.dept || 'Relevant Department'}, District ${item.district}, Himachal Pradesh</p>
@@ -2252,7 +2254,26 @@ window.generateRTI = function(id) {
     <p><b>Date:</b> ${new Date().toLocaleDateString()}</p>
     <p><b>Applicant Signature:</b> ___________________</p>
     <button onclick="window.print()" style="margin-top:40px; padding:10px; cursor:pointer;">Print RTI Application</button>
-    </body></html>
+    
+<!-- Lenis Premium Inertia Smooth Scroll Library -->
+<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+<script>
+  // Initialize Lenis Luxurious Slow Inertia Scroll
+  const lenis = new Lenis({
+    duration: 1.5,           // Slow, weighted luxury deceleration
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Silky exponential curve
+    smoothWheel: true,
+    wheelMultiplier: 0.85,    // Weighted scroll momentum
+    touchMultiplier: 1.4,
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+</script>
+</body></html>
   `);
 };
 
@@ -2363,6 +2384,25 @@ document.getElementById("neglect-list").innerHTML=CONSTITUENCY_NEGLECT.map(m=>{
 })();
 </script>
 
+
+<!-- Lenis Premium Inertia Smooth Scroll Library -->
+<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+<script>
+  // Initialize Lenis Luxurious Slow Inertia Scroll
+  const lenis = new Lenis({
+    duration: 1.5,           // Slow, weighted luxury deceleration
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Silky exponential curve
+    smoothWheel: true,
+    wheelMultiplier: 0.85,    // Weighted scroll momentum
+    touchMultiplier: 1.4,
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+</script>
 </body>
 </html>
 
@@ -2387,5 +2427,24 @@ document.getElementById("neglect-list").innerHTML=CONSTITUENCY_NEGLECT.map(m=>{
 })();
 </script>
 
+
+<!-- Lenis Premium Inertia Smooth Scroll Library -->
+<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+<script>
+  // Initialize Lenis Luxurious Slow Inertia Scroll
+  const lenis = new Lenis({
+    duration: 1.5,           // Slow, weighted luxury deceleration
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Silky exponential curve
+    smoothWheel: true,
+    wheelMultiplier: 0.85,    // Weighted scroll momentum
+    touchMultiplier: 1.4,
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+</script>
 </body>
 </html>
