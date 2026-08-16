@@ -961,6 +961,14 @@
   }
 }
 
+  .form-container {
+    padding: 40px;
+  }
+  @media (max-width: 768px) {
+    .form-container {
+      padding: 16px;
+    }
+  }
 </style>
 
     <!-- THEME MANAGER -->
@@ -1012,7 +1020,7 @@
         <a class="btn-ghost active" id="nav-home" href="index.html">Home</a>
         <a class="btn-ghost " id="nav-about" href="about.html">About Us</a>
         <a class="btn-ghost " id="nav-dashboard" href="dashboard.html">Dashboard</a>
-        <a class="btn-ghost " id="nav-perception" href="mla_perception.html">MLA Perception</a>
+<!--         <a class="btn-ghost " id="nav-perception" href="mla_perception.html">MLA Perception</a> -->
         <a class="btn-ghost " id="nav-join" href="join.html">Join Us</a>
         <a class="btn-ghost " id="nav-contact" href="contact.html">Contact Us</a>
       </div>
@@ -1021,7 +1029,7 @@
         <a class="dropdown-link active" href="index.html">Home</a>
         <a class="dropdown-link " href="about.html">About Us</a>
         <a class="dropdown-link " href="dashboard.html">Dashboard</a>
-        <a class="dropdown-link " href="mla_perception.html">MLA Perception</a>
+<!--         <a class="dropdown-link " href="mla_perception.html">MLA Perception</a> -->
         <a class="dropdown-link " href="join.html">Join Us</a>
         <a class="dropdown-link " href="contact.html">Contact Us</a>
       </div>
@@ -1042,8 +1050,8 @@
 </div>
 
 <main id="top">
-    <section style="padding: 120px 24px; min-height: 80vh; display:flex; justify-content:center; align-items:flex-start; background: transparent;">
-      <div style="max-width: 640px; width:100%; margin: 0 auto; background: var(--paper-deep); padding: 40px; border: 1px solid var(--paper-line);">
+    <section style="padding: var(--section-pad) 16px; min-height: 80vh; display:flex; justify-content:center; align-items:flex-start; background: transparent;">
+      <div class="form-container" style="max-width: 640px; width:100%; margin: 0 auto; background: var(--paper-deep); border: 1px solid var(--paper-line);">
         
         <div style="margin-bottom: 32px; text-align:center;">
           <h1 style="font-family:'IBM Plex Serif',serif; font-size:2rem; font-weight:400; color:var(--ink); margin:0 0 12px; letter-spacing:-0.02em;">Report an Issue</h1>
