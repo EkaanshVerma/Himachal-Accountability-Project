@@ -1670,7 +1670,7 @@ body {
         <div class="neg-list" id="neglect-list"></div>
       </div>
 
-      <div class="card">
+      <div class="card" style="display:none;">
         <div class="card-hd">
           <div class="card-ttl">MLA Public Perception Index</div>
           <div class="card-meta"><span id="perception-count">0</span> survey reports</div>
@@ -1731,8 +1731,8 @@ body {
     document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
     if(window._mapTileLayer && window._map){
       window._mapTileLayer.setUrl(dark
-        ? "https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png"
-        : "https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png"
+        ? "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}"
+        : "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}"
       );
     }
   });
@@ -1861,9 +1861,9 @@ const PARTY_COL={"INC":"#3b82f6","BJP":"#f59e0b","IND":"#a855f7","Independent":"
 const isDark = document.documentElement.getAttribute("data-theme") === "dark";
 const map = L.map("map",{center:[31.8,77.2],zoom:7,zoomControl:true,attributionControl:true});
 const tileLayer = L.tileLayer(isDark
-  ? "https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png"
-  : "https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png",{
-  attribution:"&copy; CartoDB &copy; OSM",maxZoom:19,subdomains:"abcd"
+  ? "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}"
+  : "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}",{
+  attribution:"Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ",maxZoom:16
 }).addTo(map);
 window._map = map;
 window._mapTileLayer = tileLayer;
