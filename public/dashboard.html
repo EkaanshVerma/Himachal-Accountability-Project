@@ -2255,7 +2255,8 @@ window.generateRTI = function(id) {
     <p><b>Date:</b> ${new Date().toLocaleDateString()}</p>
     <p><b>Applicant Signature:</b> ___________________</p>
     <button onclick="window.print()" style="margin-top:40px; padding:10px; cursor:pointer;">Print RTI Application</button>
-    </body></html>
+    <script src="translate-widget.js"></script>
+</body></html>
   `);
 };
 
@@ -2366,6 +2367,7 @@ document.getElementById("neglect-list").innerHTML=CONSTITUENCY_NEGLECT.map(m=>{
 })();
 </script>
 
+<script src="translate-widget.js"></script>
 </body>
 </html>
 
@@ -2409,5 +2411,6 @@ document.getElementById("neglect-list").innerHTML=CONSTITUENCY_NEGLECT.map(m=>{
   requestAnimationFrame(raf);
 </script>
 
+<script src="translate-widget.js"></script>
 </body>
 </html>
