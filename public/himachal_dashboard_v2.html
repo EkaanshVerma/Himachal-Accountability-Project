@@ -1827,25 +1827,25 @@ const PARL_CENTERS={
   "Kangra":[32.10,76.10],"Mandi":[31.90,77.10],"Hamirpur":[31.56,76.38],"Shimla (SC)":[31.15,77.55]
 };
 
-// Assembly 2022 results
+// Assembly constituencies (Current — post-2024 by-elections)
 const ASM_RESULTS={
   1:{w:"BJP",mla:"Hansraj"},2:{w:"BJP",mla:"Janak Raj"},3:{w:"INC",mla:"Neeraj Nayar"},
   4:{w:"BJP",mla:"Dhavinder Singh"},5:{w:"INC",mla:"Kuldeep Singh Pathania"},6:{w:"BJP",mla:"Ranbir Singh"},
   7:{w:"INC",mla:"Malender Rajan"},8:{w:"INC",mla:"Bhawani Singh Pathania"},9:{w:"INC",mla:"Chander Kumar"},
-  10:{w:"IND",mla:"Hoshyar Singh"},11:{w:"BJP",mla:"Bikram Singh"},12:{w:"INC",mla:"Sanjay Rattan"},
+  10:{w:"INC",mla:"Kamlesh Thakur"},11:{w:"BJP",mla:"Bikram Singh"},12:{w:"INC",mla:"Sanjay Rattan"},
   13:{w:"INC",mla:"Yadvinder Goma"},14:{w:"BJP",mla:"Vipin S. Parmar"},15:{w:"INC",mla:"R.S. Bali"},
-  16:{w:"BJP",mla:"Pawan K. Kajal"},17:{w:"INC",mla:"Kewal Singh"},18:{w:"INC",mla:"Sudhir Sharma"},
-  19:{w:"INC",mla:"Ashish Butail"},20:{w:"INC",mla:"Kishori Lal"},21:{w:"INC",mla:"Ravi Thakur"},
+  16:{w:"BJP",mla:"Pawan K. Kajal"},17:{w:"INC",mla:"Kewal Singh"},18:{w:"BJP",mla:"Sudhir Sharma"},
+  19:{w:"INC",mla:"Ashish Butail"},20:{w:"INC",mla:"Kishori Lal"},21:{w:"INC",mla:"Anuradha Rana"},
   22:{w:"INC",mla:"Bhuvneshwar Gaur"},23:{w:"INC",mla:"Sunder Singh Thakur"},24:{w:"BJP",mla:"Surender Shourie"},
   25:{w:"BJP",mla:"Lokender Kumar"},26:{w:"BJP",mla:"Deep Raj"},27:{w:"BJP",mla:"Rakesh Kumar"},
   28:{w:"BJP",mla:"Vinod Kumar"},29:{w:"BJP",mla:"Jairam Thakur"},30:{w:"BJP",mla:"Puran Chand"},
   31:{w:"BJP",mla:"Prakash Prem Kumar"},32:{w:"INC",mla:"Chander Shekhar"},33:{w:"BJP",mla:"Anil Sharma"},
   34:{w:"BJP",mla:"Inder Singh"},35:{w:"BJP",mla:"Dalip Thakur"},36:{w:"INC",mla:"Suresh Kumar"},
-  37:{w:"INC",mla:"Rajinder Singh"},38:{w:"IND",mla:"Ashish Sharma"},39:{w:"INC",mla:"Inder Dutt Lakhanpal"},
-  40:{w:"INC",mla:"Sukhvinder Singh Sukhu"},41:{w:"INC",mla:"Neeraj Nayar"},42:{w:"INC",mla:"Chaitanya Sharma"},
-  43:{w:"INC",mla:"Mukesh Agnihotri"},44:{w:"BJP",mla:"Satpal Singh Satti"},45:{w:"INC",mla:"Davinder Kumar"},
+  37:{w:"INC",mla:"Capt. Ranjit Singh"},38:{w:"BJP",mla:"Ashish Sharma"},39:{w:"BJP",mla:"Inder Dutt Lakhanpal"},
+  40:{w:"INC",mla:"Sukhvinder Singh Sukhu"},41:{w:"INC",mla:"Sudarshan Singh Babloo"},42:{w:"INC",mla:"Rakesh Kalia"},
+  43:{w:"INC",mla:"Mukesh Agnihotri"},44:{w:"BJP",mla:"Satpal Singh Satti"},45:{w:"INC",mla:"Vivek Sharma"},
   46:{w:"BJP",mla:"Jeet Ram Katwal"},47:{w:"INC",mla:"Rajesh Dharmani"},48:{w:"BJP",mla:"Trilok Jamwal"},
-  49:{w:"BJP",mla:"Randhir Sharma"},50:{w:"INC",mla:"Sanjay Awasthy"},51:{w:"IND",mla:"K.L. Thakur"},
+  49:{w:"BJP",mla:"Randhir Sharma"},50:{w:"INC",mla:"Sanjay Awasthy"},51:{w:"INC",mla:"Hardeep Singh Bawa"},
   52:{w:"INC",mla:"Ram Kumar"},53:{w:"INC",mla:"Dhani Ram Shandil"},54:{w:"INC",mla:"Vinod Sultanpuri"},
   55:{w:"BJP",mla:"Reena Kashyap"},56:{w:"INC",mla:"Ajay Solanki"},57:{w:"INC",mla:"Vinay Kumar"},
   58:{w:"BJP",mla:"Sukh Ram Chaudhary"},59:{w:"INC",mla:"Harshwardhan Chauhan"},60:{w:"BJP",mla:"Balbir Singh Verma"},
@@ -1998,7 +1998,7 @@ function updateDistrictLegend(){
 // ---- ASSEMBLY ----
 function renderAssembly(){
   clearLayers();
-  document.getElementById("map-title").textContent="Vidhan Sabha constituencies — 68 seats (2022 results)";
+  document.getElementById("map-title").textContent="Vidhan Sabha constituencies — 68 seats";
   document.getElementById("map-controls").style.display="none";
   labelGroup=L.layerGroup().addTo(map);
 
@@ -2018,7 +2018,7 @@ function renderAssembly(){
     const bc=res.w==="INC"?"b-inc":"b-bjp";
     m.bindTooltip(
       `<div class="popup-name">${a.no}. ${a.name} <span class="pbadge ${bc}">${res.w}</span></div>`+
-      `<div class="popup-row"><span class="popup-key">MLA (2022)</span><span class="popup-val">${res.mla}</span></div>`+
+      `<div class="popup-row"><span class="popup-key">MLA</span><span class="popup-val">${res.mla}</span></div>`+
       `<div class="popup-row"><span class="popup-key">District</span><span class="popup-val">${a.district}</span></div>`+
       `<div class="popup-row"><span class="popup-key">Lok Sabha</span><span class="popup-val">${a.ls}</span></div>`,
       {sticky:false,direction:"top",className:""}
@@ -2030,8 +2030,7 @@ function renderAssembly(){
 
   document.getElementById("map-legend").innerHTML=
     `<div class="leg-row"><div class="leg-circle" style="background:#3b82f6"></div>INC (40)</div>`+
-    `<div class="leg-row"><div class="leg-circle" style="background:#f59e0b"></div>BJP (25)</div>`+
-    `<div class="leg-row"><div class="leg-circle" style="background:#a855f7"></div>Independent (3)</div>`+
+    `<div class="leg-row"><div class="leg-circle" style="background:#f59e0b"></div>BJP (28)</div>`+
     `<div style="margin-left:auto;font-size:11px;color:var(--text3)">* = SC reserved &nbsp; † = ST reserved</div>`;
 }
 
