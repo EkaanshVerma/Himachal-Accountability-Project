@@ -2255,8 +2255,7 @@ window.generateRTI = function(id) {
     <p><b>Date:</b> ${new Date().toLocaleDateString()}</p>
     <p><b>Applicant Signature:</b> ___________________</p>
     <button onclick="window.print()" style="margin-top:40px; padding:10px; cursor:pointer;">Print RTI Application</button>
-    <script src="translate-widget.js"></script>
-</body></html>
+<` + `/body><` + `/html>
   `);
 };
 
@@ -2345,32 +2344,6 @@ document.getElementById("neglect-list").innerHTML=CONSTITUENCY_NEGLECT.map(m=>{
 
 } // end initDashboard
 </script>
-
-
-<!-- Mobile menu dropdown toggle helper -->
-<script>
-(function(){
-  const menuToggle = document.getElementById('menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-  if (menuToggle && mobileMenu) {
-    menuToggle.addEventListener('click', function(e) {
-      e.stopPropagation();
-      const isVisible = mobileMenu.style.display === 'flex';
-      mobileMenu.style.display = isVisible ? 'none' : 'flex';
-    });
-    document.addEventListener('click', function(e) {
-      if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-        mobileMenu.style.display = 'none';
-      }
-    });
-  }
-})();
-</script>
-
-<script src="translate-widget.js"></script>
-</body>
-</html>
-
 
 <!-- Mobile menu dropdown toggle helper -->
 <script>
