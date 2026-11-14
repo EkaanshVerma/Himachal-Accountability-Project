@@ -666,6 +666,133 @@
     letter-spacing: 0.03em;
   }
 
+  /* ---------- form typography ---------- */
+  .form-container {
+    padding: clamp(28px, 5vw, 48px);
+  }
+  .form-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.6rem, 3vw, 2rem);
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0 0 10px;
+    letter-spacing: -0.02em;
+  }
+  .form-subtitle {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin: 0 0 32px;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .form-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: 0.01em;
+    line-height: 1.4;
+  }
+  .form-label .required {
+    color: var(--stamp);
+    margin-left: 2px;
+  }
+  .form-hint {
+    display: block;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 400;
+    color: var(--ink-soft);
+    margin-top: 3px;
+    line-height: 1.5;
+  }
+  .form-input,
+  .form-textarea {
+    width: 100%;
+    padding: 12px 14px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--paper-line);
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.15s;
+  }
+  .form-input:focus,
+  .form-textarea:focus {
+    border-color: var(--sage);
+  }
+  .form-textarea { resize: vertical; }
+  .form-upload-area {
+    border: 1px dashed var(--paper-line);
+    padding: 24px;
+    text-align: center;
+    cursor: pointer;
+    background: var(--paper);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .form-upload-area:hover { border-color: var(--sage); background: var(--paper-deep); }
+  .form-upload-label {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.88rem;
+    color: var(--ink);
+  }
+  .form-upload-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--ink-soft);
+    margin-top: 6px;
+  }
+  .form-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .form-row .form-group { flex: 1; min-width: 180px; }
+  .form-submit {
+    width: 100%;
+    padding: 15px;
+    margin-top: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background: var(--ink);
+    color: var(--cream);
+    border: 1px solid var(--ink);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .form-submit:not(:disabled):hover {
+    background: transparent;
+    color: var(--ink);
+  }
+  .form-error {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.88rem;
+    color: var(--stamp);
+  }
+  .form-success h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0 0 10px;
+  }
+  .form-success p {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
   /* ---------- responsive ---------- */
   @media (max-width: 980px){
     .hero-grid{ grid-template-columns: 1fr; }
@@ -1053,122 +1180,112 @@
     <section style="padding: var(--section-pad) 16px; min-height: 80vh; display:flex; justify-content:center; align-items:flex-start; background: transparent;">
       <div class="form-container" style="max-width: 640px; width:100%; margin: 0 auto; background: var(--paper-deep); border: 1px solid var(--paper-line);">
         
-        <div style="margin-bottom: 32px; text-align:center;">
-          <h1 style="font-family:'IBM Plex Serif',serif; font-size:2rem; font-weight:400; color:var(--ink); margin:0 0 12px; letter-spacing:-0.02em;">Report an Issue</h1>
-          <p style="font-family:'IBM Plex Sans',sans-serif; font-size:1rem; color:var(--ink-soft); line-height:1.6; margin:0;">
-            Help us track what's broken so we can hold the administration accountable. Please provide as much detail as possible.
-          </p>
+        <div style="margin-bottom:32px; text-align:center;">
+          <h1 class="form-title">Report an Issue</h1>
+          <p class="form-subtitle">Help us track what's broken so we can hold the administration accountable. Please provide as much detail as possible.</p>
         </div>
-        
-        <form id="detailed-report-form" style="display:flex; flex-direction:column; gap:24px;">
-          
+
+        <form id="detailed-report-form" style="display:flex; flex-direction:column; gap:28px;">
+
           <!-- Q1 -->
-          <div>
-            <label style="display:block; font-family:'IBM Plex Sans',sans-serif; font-size:0.95rem; font-weight:600; color:var(--ink); margin-bottom:8px;">
-              Aapke kshetra ki aisi sabse badi samasya kya hai jise sthaniya prashasan puri tarah se najarandaz kar raha hai?<span style="color:var(--stamp)">*</span><br>
-              <span style="font-weight:400; font-size:0.85rem; color:var(--ink-soft);">(What is the biggest issue in your area that the local administration is completely ignoring?)</span>
+          <div class="form-group">
+            <label class="form-label">
+              Aapke kshetra ki aisi sabse badi samasya kya hai jise sthaniya prashasan puri tarah se najarandaz kar raha hai?<span class="required">*</span>
+              <span class="form-hint">(What is the biggest issue in your area that the local administration is completely ignoring?)</span>
             </label>
-            <textarea id="q1-issue" required placeholder="Tuti sadkon, pani ki kami, ya ruke hue projects ke baare mein batayein. Kripya puri jankari dein." style="width:100%; min-height:100px; padding:12px; font-family:'IBM Plex Sans',sans-serif; font-size:0.9rem; background:var(--paper); border:1px solid var(--paper-line); color:var(--ink); outline:none; box-sizing:border-box; resize:vertical;"></textarea>
+            <textarea id="q1-issue" required class="form-textarea" style="min-height:100px;" placeholder="Tuti sadkon, pani ki kami, ya ruke hue projects ke baare mein batayein. Kripya puri jankari dein."></textarea>
           </div>
 
           <!-- Q2 -->
-          <div>
-            <label style="display:block; font-family:'IBM Plex Sans',sans-serif; font-size:0.95rem; font-weight:600; color:var(--ink); margin-bottom:8px;">
+          <div class="form-group">
+            <label class="form-label">
               Photo ya Video isse related <span style="font-weight:400; color:var(--ink-soft);">(Optional)</span>
             </label>
-            <div id="q2-upload-area" style="border: 1px dashed var(--paper-line); padding: 24px; text-align: center; cursor: pointer; background: var(--paper); transition: background 0.2s;">
+            <div id="q2-upload-area" class="form-upload-area">
               <input type="file" id="q2-file" accept="image/*,video/*" style="display:none;">
               <svg viewBox="0 0 24 24" fill="none" stroke="var(--ink-soft)" stroke-width="1.5" style="width:28px;height:28px; margin-bottom:8px;">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
               </svg>
-              <div style="font-family:'IBM Plex Sans',sans-serif; font-size:0.9rem; color:var(--ink);">Click to choose a file or drag here</div>
-              <div style="font-family:'IBM Plex Mono',monospace; font-size:0.7rem; color:var(--ink-soft); margin-top:6px;" id="q2-file-name">Size limit: 10 MB</div>
+              <div class="form-upload-label">Click to choose a file or drag here</div>
+              <div class="form-upload-meta" id="q2-file-name">Size limit: 10 MB</div>
             </div>
             <img id="q2-preview" style="max-width:100%; max-height:200px; display:none; margin-top:12px; border:1px solid var(--paper-line);">
           </div>
 
           <!-- Q3 -->
-          <div>
-            <label style="display:block; font-family:'IBM Plex Sans',sans-serif; font-size:0.95rem; font-weight:600; color:var(--ink); margin-bottom:8px;">
-              Pure Himachal ke vikas ke liye agli sarkar ki sabse pehli prathmikta kya honi chahiye?<span style="color:var(--stamp)">*</span><br>
-              <span style="font-weight:400; font-size:0.85rem; color:var(--ink-soft);">(What should be the #1 priority for Himachal's overall development?)</span>
+          <div class="form-group">
+            <label class="form-label">
+              Pure Himachal ke vikas ke liye agli sarkar ki sabse pehli prathmikta kya honi chahiye?<span class="required">*</span>
+              <span class="form-hint">(What should be the #1 priority for Himachal's overall development?)</span>
             </label>
-            <textarea id="q3-priority" required placeholder="Tell us your thoughts..." style="width:100%; min-height:80px; padding:12px; font-family:'IBM Plex Sans',sans-serif; font-size:0.9rem; background:var(--paper); border:1px solid var(--paper-line); color:var(--ink); outline:none; box-sizing:border-box; resize:vertical;"></textarea>
+            <textarea id="q3-priority" required class="form-textarea" style="min-height:80px;" placeholder="Tell us your thoughts..."></textarea>
           </div>
 
           <!-- Q4 -->
-          <div>
-            <label style="display:block; font-family:'IBM Plex Sans',sans-serif; font-size:0.95rem; font-weight:600; color:var(--ink); margin-bottom:8px;">
+          <div class="form-group">
+            <label class="form-label">
               Photo ya Video isse related <span style="font-weight:400; color:var(--ink-soft);">(Optional)</span>
             </label>
-            <div id="q4-upload-area" style="border: 1px dashed var(--paper-line); padding: 24px; text-align: center; cursor: pointer; background: var(--paper); transition: background 0.2s;">
+            <div id="q4-upload-area" class="form-upload-area">
               <input type="file" id="q4-file" accept="image/*,video/*" style="display:none;">
               <svg viewBox="0 0 24 24" fill="none" stroke="var(--ink-soft)" stroke-width="1.5" style="width:28px;height:28px; margin-bottom:8px;">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
               </svg>
-              <div style="font-family:'IBM Plex Sans',sans-serif; font-size:0.9rem; color:var(--ink);">Click to choose a file or drag here</div>
-              <div style="font-family:'IBM Plex Mono',monospace; font-size:0.7rem; color:var(--ink-soft); margin-top:6px;" id="q4-file-name">Size limit: 10 MB</div>
+              <div class="form-upload-label">Click to choose a file or drag here</div>
+              <div class="form-upload-meta" id="q4-file-name">Size limit: 10 MB</div>
             </div>
             <img id="q4-preview" style="max-width:100%; max-height:200px; display:none; margin-top:12px; border:1px solid var(--paper-line);">
           </div>
 
           <!-- Q5 -->
-          <div>
-            <label style="display:block; font-family:'IBM Plex Sans',sans-serif; font-size:0.95rem; font-weight:600; color:var(--ink); margin-bottom:8px;">
-              Kya aapko lagta hai ki aapke vartaman MLA yuvaon aur pure samaj ki zarooraton ko samajhte hain? Kya aap unhe dobara vote denge?<span style="color:var(--stamp)">*</span><br>
-              <span style="font-weight:400; font-size:0.85rem; color:var(--ink-soft);">(Do you feel your current MLA understands the needs of the youth, and the wider society as a whole? Would you vote for him/her again?)</span>
+          <div class="form-group">
+            <label class="form-label">
+              Kya aapko lagta hai ki aapke vartaman MLA yuvaon aur pure samaj ki zarooraton ko samajhte hain? Kya aap unhe dobara vote denge?<span class="required">*</span>
+              <span class="form-hint">(Do you feel your current MLA understands the needs of the youth, and the wider society as a whole? Would you vote for him/her again?)</span>
             </label>
-            <textarea id="q5-mla" required placeholder="Kripya khul kar batayein. Aap chahein toh vyakti ka naam lene chodh sakte hain." style="width:100%; min-height:100px; padding:12px; font-family:'IBM Plex Sans',sans-serif; font-size:0.9rem; background:var(--paper); border:1px solid var(--paper-line); color:var(--ink); outline:none; box-sizing:border-box; resize:vertical;"></textarea>
+            <textarea id="q5-mla" required class="form-textarea" style="min-height:100px;" placeholder="Kripya khul kar batayein. Aap chahein toh vyakti ka naam lene chodh sakte hain."></textarea>
           </div>
 
           <!-- Q6 -->
-          <div>
-            <label style="display:block; font-family:'IBM Plex Sans',sans-serif; font-size:0.95rem; font-weight:600; color:var(--ink); margin-bottom:8px;">
-              Ek behtar kal ke liye, Himachal ko abhi sabse zyada kis tarah ki leadership ki zaroorat hai?<span style="color:var(--stamp)">*</span><br>
-              <span style="font-weight:400; font-size:0.85rem; color:var(--ink-soft);">(For a better tomorrow, what kind of leadership does Himachal need most right now?)</span>
+          <div class="form-group">
+            <label class="form-label">
+              Ek behtar kal ke liye, Himachal ko abhi sabse zyada kis tarah ki leadership ki zaroorat hai?<span class="required">*</span>
+              <span class="form-hint">(For a better tomorrow, what kind of leadership does Himachal need most right now?)</span>
             </label>
-            <textarea id="q6-leadership" required placeholder="Ek paramparik neta, ek yuva aur tech-focused prashasnik neta, ya kuch aur?" style="width:100%; min-height:80px; padding:12px; font-family:'IBM Plex Sans',sans-serif; font-size:0.9rem; background:var(--paper); border:1px solid var(--paper-line); color:var(--ink); outline:none; box-sizing:border-box; resize:vertical;"></textarea>
+            <textarea id="q6-leadership" required class="form-textarea" style="min-height:80px;" placeholder="Ek paramparik neta, ek yuva aur tech-focused prashasnik neta, ya kuch aur?"></textarea>
           </div>
 
-          <div style="display:flex; gap:24px; flex-wrap:wrap;">
+          <div class="form-row">
             <!-- Q7 -->
-            <div style="flex:1; min-width:200px;">
-              <label style="display:block; font-family:'IBM Plex Sans',sans-serif; font-size:0.95rem; font-weight:600; color:var(--ink); margin-bottom:8px;">
-                Aapka Pin Code kya hai?<span style="color:var(--stamp)">*</span><br>
-                <span style="font-weight:400; font-size:0.85rem; color:var(--ink-soft);">(What is your Pin Code?)</span>
+            <div class="form-group">
+              <label class="form-label">
+                Aapka Pin Code kya hai?<span class="required">*</span>
+                <span class="form-hint">(What is your Pin Code?)</span>
               </label>
-              <input type="text" id="q7-pincode" required placeholder="Example: 171009" style="width:100%; padding:12px; font-family:'IBM Plex Sans',sans-serif; font-size:0.9rem; background:var(--paper); border:1px solid var(--paper-line); color:var(--ink); outline:none; box-sizing:border-box;">
+              <input type="text" id="q7-pincode" required class="form-input" placeholder="Example: 171009">
             </div>
 
             <!-- Q8 -->
-            <div style="flex:1; min-width:200px;">
-              <label style="display:block; font-family:'IBM Plex Sans',sans-serif; font-size:0.95rem; font-weight:600; color:var(--ink); margin-bottom:8px;">
-                WhatsApp Number <span style="font-weight:400; color:var(--ink-soft);">(Optional)</span><br>
-                <span style="font-weight:400; font-size:0.85rem; color:var(--ink-soft);">(To receive the compiled grievance report)</span>
+            <div class="form-group">
+              <label class="form-label">
+                WhatsApp Number <span style="font-weight:400; color:var(--ink-soft);">(Optional)</span>
+                <span class="form-hint">(To receive the compiled grievance report)</span>
               </label>
-              <input type="tel" id="q8-whatsapp" placeholder="+91" style="width:100%; padding:12px; font-family:'IBM Plex Sans',sans-serif; font-size:0.9rem; background:var(--paper); border:1px solid var(--paper-line); color:var(--ink); outline:none; box-sizing:border-box;">
+              <input type="tel" id="q8-whatsapp" class="form-input" placeholder="+91">
             </div>
           </div>
 
-          <div id="form-error" style="display:none; color:var(--stamp); font-family:'IBM Plex Sans',sans-serif; font-size:0.9rem;"></div>
-          
-          <button type="submit" id="submit-btn" style="
-            width:100%; padding:16px; margin-top:12px;
-            font-family:'IBM Plex Mono', monospace; font-size:0.9rem;
-            font-weight:600; text-transform:uppercase; letter-spacing:0.08em;
-            background: var(--ink); color: var(--cream); border:1px solid var(--ink);
-            cursor:pointer; transition: opacity 0.2s;
-          ">Submit Report →</button>
+          <div id="form-error" class="form-error" style="display:none;"></div>
+
+          <button type="submit" id="submit-btn" class="form-submit">Submit Report →</button>
         </form>
 
-        <div id="success-msg" style="display:none; text-align:center; padding:40px 0;">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.5" style="width:48px;height:48px; margin-bottom:16px; margin:0 auto 16px;">
+        <div id="success-msg" class="form-success" style="display:none; text-align:center; padding:40px 0;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.5" style="width:48px;height:48px; margin:0 auto 16px; display:block;">
             <path d="M20 6L9 17l-5-5"/>
           </svg>
-          <h2 style="font-family:'IBM Plex Serif',serif; font-size:1.8rem; font-weight:400; color:var(--ink); margin:0 0 12px;">Submitted successfully</h2>
-          <p style="font-family:'IBM Plex Sans',sans-serif; font-size:1rem; color:var(--ink-soft); line-height:1.6;">
-            Thank you for your input. We'll verify this information and reach back accordingly.
-          </p>
+          <h2>Submitted successfully</h2>
+          <p>Thank you for your input. We'll verify this information and reach back accordingly.</p>
           <a href="/" class="btn btn-primary" style="display:inline-block; margin-top:24px;">Return Home</a>
         </div>
 
