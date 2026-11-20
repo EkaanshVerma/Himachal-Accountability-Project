@@ -44,7 +44,8 @@ const HAP_DISTRICTS = {
     "ls": "Mandi",
     "summary": "Lowest unresolved rate (50%) in Himachal. Rapid seasonal snow clearance and high administrative responsiveness.",
     "incSeats": 1,
-    "bjpSeats": 0
+    "bjpSeats": 0,
+    "name": "Lahaul & Spiti"
   },
   "Kinnaur": {
     "score": 71.2,
@@ -70,7 +71,8 @@ const HAP_DISTRICTS = {
     "ls": "Mandi",
     "summary": "Strong performance in Jal Shakti water supply; hydropower transmission disruptions remain primary civic concern.",
     "incSeats": 1,
-    "bjpSeats": 0
+    "bjpSeats": 0,
+    "name": "Kinnaur"
   },
   "Kullu": {
     "score": 67.5,
@@ -100,7 +102,8 @@ const HAP_DISTRICTS = {
     "ls": "Mandi",
     "summary": "Tourism corridor connectivity recovery ongoing. Moderate grievance resolution with NH-3 and link roads leading complaints.",
     "incSeats": 2,
-    "bjpSeats": 2
+    "bjpSeats": 2,
+    "name": "Kullu"
   },
   "Chamba": {
     "score": 63.8,
@@ -132,7 +135,8 @@ const HAP_DISTRICTS = {
     "ls": "Kangra / Mandi",
     "summary": "Tribal corridor NH-154A connectivity at Dharwala and remote valley healthcare access are key unaddressed issues.",
     "incSeats": 2,
-    "bjpSeats": 3
+    "bjpSeats": 3,
+    "name": "Chamba"
   },
   "Hamirpur": {
     "score": 61.2,
@@ -163,7 +167,8 @@ const HAP_DISTRICTS = {
     "ls": "Hamirpur",
     "summary": "High literacy district with notable youth unemployment reports and delayed PWD link road execution.",
     "incSeats": 3,
-    "bjpSeats": 2
+    "bjpSeats": 2,
+    "name": "Hamirpur"
   },
   "Mandi": {
     "score": 58.6,
@@ -201,7 +206,8 @@ const HAP_DISTRICTS = {
     "ls": "Mandi",
     "summary": "Major geographic hub with 10 assembly seats. Highway widening delays and rural healthcare staffing drive grievances.",
     "incSeats": 1,
-    "bjpSeats": 9
+    "bjpSeats": 9,
+    "name": "Mandi"
   },
   "Bilaspur": {
     "score": 56.4,
@@ -230,7 +236,8 @@ const HAP_DISTRICTS = {
     "ls": "Hamirpur",
     "summary": "AIIMS Kothipura operational benefits offset by Kiratpur-Nerchowk bypass rehabilitation and water distribution disputes.",
     "incSeats": 1,
-    "bjpSeats": 3
+    "bjpSeats": 3,
+    "name": "Bilaspur"
   },
   "Kangra": {
     "score": 53.8,
@@ -274,7 +281,8 @@ const HAP_DISTRICTS = {
     "ls": "Kangra",
     "summary": "Largest district with 15 assembly constituencies. High volume of unaddressed revenue road disputes and youth unemployment.",
     "incSeats": 10,
-    "bjpSeats": 5
+    "bjpSeats": 5,
+    "name": "Kangra"
   },
   "Sirmaur": {
     "score": 51.0,
@@ -306,7 +314,8 @@ const HAP_DISTRICTS = {
     "ls": "Shimla",
     "summary": "Trans-Giri remote belts face acute healthcare doctor vacancies and unpaved arterial corridors.",
     "incSeats": 3,
-    "bjpSeats": 2
+    "bjpSeats": 2,
+    "name": "Sirmaur"
   },
   "Solan": {
     "score": 48.5,
@@ -338,7 +347,8 @@ const HAP_DISTRICTS = {
     "ls": "Shimla",
     "summary": "Baddi-Barotiwala-Nalagarh industrial belt reports severe effluent pollution, cratered truck corridors, and water contamination.",
     "incSeats": 5,
-    "bjpSeats": 0
+    "bjpSeats": 0,
+    "name": "Solan"
   },
   "Shimla": {
     "score": 45.2,
@@ -374,7 +384,8 @@ const HAP_DISTRICTS = {
     "ls": "Shimla",
     "summary": "State capital paradox: despite administrative proximity, 73% unresolved rate across apple-belt link roads and hospital queues.",
     "incSeats": 7,
-    "bjpSeats": 1
+    "bjpSeats": 1,
+    "name": "Shimla"
   },
   "Una": {
     "score": 41.8,
@@ -405,7 +416,8 @@ const HAP_DISTRICTS = {
     "ls": "Hamirpur",
     "summary": "Highest unresolved grievance rate (74%). Stalled Civil Hospital works and rampant mining riverbed damages.",
     "incSeats": 4,
-    "bjpSeats": 1
+    "bjpSeats": 1,
+    "name": "Una"
   }
 };
 

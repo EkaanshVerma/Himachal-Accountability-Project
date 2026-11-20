@@ -2012,9 +2012,7 @@ body {
       <button class="view-nav-btn" data-view="scores" onclick="switchDashboardView('scores', true)">
         <span class="vbtn-icon">🏆</span> District Scores (0–100)
       </button>
-      <button class="view-nav-btn" data-view="compare" onclick="switchDashboardView('compare', true)">
-        <span class="vbtn-icon">⚖️</span> Compare Districts
-      </button>
+
       <button class="view-nav-btn" data-view="mlas" onclick="switchDashboardView('mlas', true)">
         <span class="vbtn-icon">🏛️</span> Find Your MLA (68)
       </button>
@@ -2159,56 +2157,6 @@ body {
   </div>
 </div><!-- end view-pane-scores -->
 
-<!-- PANE 3: SIDE-BY-SIDE DISTRICT COMPARISON -->
-<div id="view-pane-compare" class="dash-pane">
-  <div class="scores-hero-panel">
-    <div class="scores-panel-top">
-      <div>
-        <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:700; color:var(--amber); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:4px;">SIDE BY SIDE</div>
-        <div class="scores-heading">Compare Two Districts</div>
-        <p class="scores-lede">Set two districts against each other across the 5 public accountability pillars to evaluate the gap in administrative response and elected representative representation.</p>
-      </div>
-      <div>
-        <a href="compare.html" target="_blank" class="btn-ghost-sm" title="Open full dedicated page in new tab">
-          Dedicated View &nearr;
-        </a>
-      </div>
-    </div>
-
-    <!-- Embedded Selectors -->
-    <div style="display:grid; grid-template-columns:1fr auto 1fr; gap:16px; align-items:center; background:var(--bg); border:1.5px solid var(--border3); padding:16px 20px; margin-top:14px;">
-      <div>
-        <label style="display:block; font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:700; text-transform:uppercase; color:var(--text3); margin-bottom:6px;">Select District 1</label>
-        <select id="dash-cmp-d1" class="filter-select" style="width:100%; font-size:15px; font-weight:700;" onchange="onDashCompareChange()"></select>
-      </div>
-      <div style="font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:12px; background:var(--text); color:var(--bg); padding:8px 12px; border:1px solid var(--border3);">VS</div>
-      <div>
-        <label style="display:block; font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:700; text-transform:uppercase; color:var(--text3); margin-bottom:6px;">Select District 2</label>
-        <select id="dash-cmp-d2" class="filter-select" style="width:100%; font-size:15px; font-weight:700;" onchange="onDashCompareChange()"></select>
-      </div>
-    </div>
-  </div>
-
-  <div id="dash-cmp-gap-callout" style="background:var(--bg3); border-left:4px solid var(--amber); border:1px solid var(--border); padding:14px 18px; margin-bottom:24px; font-size:14px;"></div>
-
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:32px;" id="dash-cmp-cards-grid">
-    <div class="dist-score-card" id="dash-cmp-card-1"></div>
-    <div class="dist-score-card" id="dash-cmp-card-2"></div>
-  </div>
-
-  <div class="scores-hero-panel" style="margin-bottom:24px;">
-    <div style="font-family:'Space Grotesk',sans-serif; font-size:20px; font-weight:700; margin-bottom:16px;">The 5 Accountability Pillars Comparison</div>
-    <div id="dash-cmp-pillars-container" style="display:flex; flex-direction:column; gap:14px;"></div>
-  </div>
-
-  <div style="display:flex; gap:12px; flex-wrap:wrap; background:var(--bg2); border:1.5px solid var(--border3); padding:16px 20px; margin-bottom:32px;">
-    <a id="dash-cmp-wa-btn" href="#" target="_blank" rel="noopener" class="btn-primary" style="background:#25D366; color:#111; border-color:#1ba851;">
-      Share Comparison on WhatsApp
-    </a>
-    <button class="btn-ghost-sm" onclick="HAP_CIVIC_HELPERS.exportCivicCSV()">Export Dataset CSV</button>
-  </div>
-</div><!-- end view-pane-compare -->
-
 <!-- PANE 4: FIND YOUR MLA DIRECTORY -->
 <div id="view-pane-mlas" class="dash-pane">
   <div class="scores-hero-panel">
@@ -2318,8 +2266,7 @@ body {
       }
     } else if (viewName === "scores") {
       renderScoresView();
-    } else if (viewName === "compare") {
-      renderDashCompare();
+
     } else if (viewName === "mlas") {
       renderDashMlas();
     }
@@ -2453,134 +2400,11 @@ body {
 
   // 2. Compare Pane
   window.startCompare = function(distName) {
-    dashCmpD1 = distName;
-    const names = Object.keys(HAP_DISTRICTS);
-    dashCmpD2 = names.find(n => n !== distName) || "Shimla";
-    switchDashboardView("compare", true);
+    window.location.href = 'compare.html?d1=' + encodeURIComponent(distName);
   };
 
-  window.onDashCompareChange = function() {
-    const s1 = document.getElementById("dash-cmp-d1").value;
-    const s2 = document.getElementById("dash-cmp-d2").value;
-    if (s1 === s2) {
-      alert("Please select two distinct districts to compare.");
-      return;
-    }
-    dashCmpD1 = s1;
-    dashCmpD2 = s2;
-    renderDashCompare();
-  };
-
-  window.renderDashCompare = function() {
-    if (typeof HAP_DISTRICTS === "undefined") return;
-    const sel1 = document.getElementById("dash-cmp-d1");
-    const sel2 = document.getElementById("dash-cmp-d2");
-    if (!sel1 || !sel2) return;
-
-    const names = Object.keys(HAP_DISTRICTS);
-    if (!sel1.options.length) {
-      names.forEach(n => {
-        sel1.add(new Option(n + " (#" + HAP_DISTRICTS[n].rank + " · " + HAP_DISTRICTS[n].score + ")", n));
-        sel2.add(new Option(n + " (#" + HAP_DISTRICTS[n].rank + " · " + HAP_DISTRICTS[n].score + ")", n));
-      });
-    }
-    sel1.value = dashCmpD1;
-    sel2.value = dashCmpD2;
-
-    const d1 = HAP_DISTRICTS[dashCmpD1];
-    const d2 = HAP_DISTRICTS[dashCmpD2];
-    if (!d1 || !d2) return;
-
-    // Callout
-    const diff = (d1.score - d2.score).toFixed(1);
-    const absDiff = Math.abs(diff);
-    const leader = d1.score >= d2.score ? dashCmpD1 : dashCmpD2;
-    const follower = d1.score >= d2.score ? dashCmpD2 : dashCmpD1;
-    document.getElementById("dash-cmp-gap-callout").innerHTML = 
-      `<strong>${leader} leads ${follower} by +${absDiff} points</strong> in overall accountability score. ` +
-      `Unresolved rate is ${d1.neglect}% in ${dashCmpD1} vs ${d2.neglect}% in ${dashCmpD2}.`;
-
-    // Cards
-    renderDashCmpCard("dash-cmp-card-1", d1);
-    renderDashCmpCard("dash-cmp-card-2", d2);
-
-    // Pillars
-    const pillarsCont = document.getElementById("dash-cmp-pillars-container");
-    const pKeys = [
-      { k: "pwd", name: "Roads & Connectivity", icon: "🛣️" },
-      { k: "water", name: "Water & Jal Shakti", icon: "💧" },
-      { k: "health", name: "Healthcare & Hospitals", icon: "🏥" },
-      { k: "power", name: "Power & Electricity", icon: "⚡" },
-      { k: "youth", name: "Youth & Employment", icon: "🎓" }
-    ];
-
-    pillarsCont.innerHTML = pKeys.map(p => {
-      const v1 = d1[p.k] || 50;
-      const v2 = d2[p.k] || 50;
-      const dDiff = v1 - v2;
-      const leadNote = dDiff > 0 ? `${dashCmpD1} +${dDiff} pts` : (dDiff < 0 ? `${dashCmpD2} +${Math.abs(dDiff)} pts` : "Equal");
-      return `
-        <div style="background:var(--bg); border:1px solid var(--border); padding:12px 16px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-            <span style="font-weight:700; font-size:14px;">${p.icon} ${p.name}</span>
-            <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:700; padding:2px 6px; background:var(--bg2); border:1px solid var(--border);">${leadNote}</span>
-          </div>
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
-            <div>
-              <div style="display:flex; justify-content:space-between; font-size:11px; font-family:'IBM Plex Mono',monospace;">
-                <span>${dashCmpD1}</span>
-                <span>${v1} / 100</span>
-              </div>
-              <div class="dp-track" style="margin-top:4px;"><div class="dp-fill ${v1>=v2?'lead':''}" style="width:${v1}%;"></div></div>
-            </div>
-            <div>
-              <div style="display:flex; justify-content:space-between; font-size:11px; font-family:'IBM Plex Mono',monospace;">
-                <span>${dashCmpD2}</span>
-                <span>${v2} / 100</span>
-              </div>
-              <div class="dp-track" style="margin-top:4px;"><div class="dp-fill ${v2>=v1?'lead':''}" style="width:${v2}%;"></div></div>
-            </div>
-          </div>
-        </div>
-      `;
-    }).join("");
-
-    // WhatsApp
-    const waBtn = document.getElementById("dash-cmp-wa-btn");
-    waBtn.href = HAP_CIVIC_HELPERS.getWhatsAppCompareLink(dashCmpD1, dashCmpD2);
-  };
-
-  function renderDashCmpCard(id, d) {
-    const el = document.getElementById(id);
-    const tierClass = d.score >= 70 ? "tier-high" : (d.score >= 50 ? "tier-mid" : "tier-low");
-    el.innerHTML = `
-      <div class="dsc-top">
-        <div>
-          <div class="dsc-name">${d.name}</div>
-          <span class="tier-badge ${tierClass}" style="margin-top:4px;">${d.tier}</span>
-        </div>
-        <div class="dsc-rank">Rank #${d.rank}</div>
-      </div>
-      <div class="dsc-score-row" style="margin-top:10px;">
-        <div class="dsc-score-big">${d.score}</div>
-        <div class="dsc-score-label">/ 100<br>COMPOSITE SCORE</div>
-      </div>
-      <div class="dsc-metrics-row" style="margin-top:10px;">
-        <div><div class="dsc-sub-k">Unresolved</div><div class="dsc-sub-v hot">${d.neglect}%</div></div>
-        <div><div class="dsc-sub-k">Reports</div><div class="dsc-sub-v">${d.count}</div></div>
-        <div><div class="dsc-sub-k">Seats</div><div class="dsc-sub-v">${d.seats.length}</div></div>
-      </div>
-      <p style="font-size:12px; color:var(--text2); margin-top:10px;">${d.summary}</p>
-    `;
-  }
-
-  // 3. MLA View
-  window.viewDistrictMlas = function(distName) {
-    switchDashboardView("mlas", true);
-    const distSel = document.getElementById("dash-mla-dist");
-    if (distSel) distSel.value = distName;
-    filterDashMlas();
-  };
+  
+  
 
   window.setDashPartyFilter = function(party) {
     activeDashParty = party;
@@ -2764,10 +2588,7 @@ body {
       const s = document.getElementById("dash-mla-search");
       if (s) { s.value = qMla; filterDashMlas(); }
     }, 100);
-  } else if (qD1 && qD2) {
-    dashCmpD1 = qD1;
-    dashCmpD2 = qD2;
-    switchDashboardView("compare", false);
+
   } else if (hash === "scores" || hash === "compare" || hash === "mlas") {
     switchDashboardView(hash, false);
   }
@@ -2793,10 +2614,7 @@ document.addEventListener("DOMContentLoaded", function() {
       const s = document.getElementById("dash-mla-search");
       if (s) { s.value = qMla; filterDashMlas(); }
     }, 100);
-  } else if (qD1 && qD2) {
-    dashCmpD1 = qD1;
-    dashCmpD2 = qD2;
-    switchDashboardView("compare", false);
+
   } else if (hash === "scores" || hash === "compare" || hash === "mlas") {
     switchDashboardView(hash, false);
   } else {
