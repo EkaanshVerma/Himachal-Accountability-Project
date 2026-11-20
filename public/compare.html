@@ -32,6 +32,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
     :root {
+      /* Landing Page Color System - Light (default) */
       --paper: #ECEEDF;
       --paper-deep: #DFE2CE;
       --paper-line: rgba(30,42,34,0.14);
@@ -43,28 +44,59 @@
       --cream: #F3F1E6;
       --cream-soft: rgba(243,241,230,0.72);
       --cream-faint: rgba(243,241,230,0.46);
-      --amber: #D98C3D;
-      --amber-deep: #B96B27;
+      --amber-val: #D98C3D;
+      --amber-deep-val: #B96B27;
       --stamp: #A23B2E;
       --sage: #5C7A52;
       --line: #8FA083;
-      --header-bg: rgba(236,238,223,0.85);
 
+      /* Dashboard variables mappings */
       --bg: var(--paper);
       --bg2: var(--cream);
       --bg3: var(--paper-deep);
+      --bg4: rgba(30, 42, 34, 0.06);
+      --bg5: rgba(30, 42, 34, 0.12);
+      
       --border: var(--paper-line);
       --border2: rgba(30, 42, 34, 0.22);
       --border3: var(--ink);
+      
       --text: var(--ink);
       --text2: var(--ink-soft);
       --text3: var(--ink-faint);
+      --text4: var(--ink-faint);
+      
+      --red: var(--stamp);
+      --red2: #8a3025;
+      --red-bg: rgba(162, 59, 46, 0.1);
+      --red-mid: rgba(162, 59, 46, 0.25);
+      
+      --blue: var(--slate);
+      --blue2: var(--slate-deep);
+      --blue-bg: rgba(40, 55, 64, 0.1);
+      --blue-mid: rgba(40, 55, 64, 0.25);
+      
+      --green: var(--sage);
+      --green2: #486140;
+      --green-bg: rgba(92, 122, 82, 0.1);
+      --green-mid: rgba(92, 122, 82, 0.25);
+      
+      --amber: var(--amber-val);
+      --amber2: var(--amber-deep-val);
+      --amber-bg: rgba(217, 140, 61, 0.1);
+      --amber-mid: rgba(217, 140, 61, 0.25);
+      
+      --glass-bg: rgba(243, 241, 230, 0.85);
+      --glass-blur: blur(6px);
+      --transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+      --card-radius: 0px;
 
       --party-inc: #2563EB;
       --party-bjp: #D97706;
     }
 
     [data-theme="dark"] {
+      /* Landing Page Color System - Dark */
       --paper: #111914;
       --paper-deep: #182018;
       --paper-line: rgba(180,200,170,0.12);
@@ -76,29 +108,57 @@
       --cream: #1E2A22;
       --cream-soft: rgba(30,42,34,0.80);
       --cream-faint: rgba(30,42,34,0.50);
-      --amber: #E09B50;
-      --amber-deep: #C87A30;
+      --amber-val: #E09B50;
+      --amber-deep-val: #C87A30;
       --stamp: #C4584A;
       --sage: #7A9E6E;
       --line: #5C7A52;
-      --header-bg: rgba(17,25,20,0.85);
 
       --bg: var(--paper);
       --bg2: var(--cream);
       --bg3: var(--paper-deep);
+      --bg4: rgba(216, 228, 208, 0.08);
+      --bg5: rgba(216, 228, 208, 0.15);
+      
       --border: var(--paper-line);
       --border2: rgba(216, 228, 208, 0.22);
       --border3: var(--ink);
+      
       --text: var(--ink);
       --text2: var(--ink-soft);
       --text3: var(--ink-faint);
+      --text4: var(--ink-faint);
+      
+      --red: var(--stamp);
+      --red2: #A23B2E;
+      --red-bg: rgba(196, 88, 74, 0.15);
+      --red-mid: rgba(196, 88, 74, 0.3);
+      
+      --blue: #3A4E5A;
+      --blue2: #283740;
+      --blue-bg: rgba(58, 78, 90, 0.2);
+      --blue-mid: rgba(58, 78, 90, 0.35);
+      
+      --green: var(--sage);
+      --green2: #5C7A52;
+      --green-bg: rgba(122, 158, 110, 0.15);
+      --green-mid: rgba(122, 158, 110, 0.3);
+      
+      --amber: var(--amber-val);
+      --amber2: var(--amber-deep-val);
+      --amber-bg: rgba(224, 155, 80, 0.15);
+      --amber-mid: rgba(224, 155, 80, 0.3);
+      
+      --glass-bg: rgba(24, 32, 24, 0.85);
+      --glass-blur: blur(6px);
 
       --party-inc: #3B82F6;
       --party-bjp: #F59E0B;
     }
 
     body {
-      background: var(--bg);
+      background: linear-gradient(rgba(17, 25, 20, 0.85), rgba(17, 25, 20, 0.85)), url('images/bg5.jpg') no-repeat center center fixed !important;
+      background-size: cover !important;
       color: var(--text);
       font-family: 'IBM Plex Sans', -apple-system, sans-serif;
       font-size: 15px;
@@ -108,55 +168,50 @@
       position: relative;
     }
 
-    /* Fixed Atmospheric Background Photography */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      z-index: -1;
-      background-image: url('images/himachal_landing_bg.jpg');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.08;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
-    }
-    [data-theme="dark"] body::before {
-      opacity: 0.14;
-    }
-
-    /* Announcement Bar */
+    /* ─── ANNOUNCEMENT BAR (Identical to Dashboard) ─── */
     .ann-bar {
-      background: var(--bg3);
-      border-bottom: 1px solid var(--border);
-      padding: 6px 16px;
-      text-align: center;
-      font-size: 11px;
+      background: var(--red-bg);
+      border-bottom: 1px solid var(--red-mid);
+      padding: 8px 24px;
       font-family: 'IBM Plex Mono', monospace;
-      color: var(--text2);
-      letter-spacing: 0.04em;
+      font-size: 11px;
+      color: var(--text3);
+      text-align: center;
+      letter-spacing: 0.03em;
+      transition: var(--transition);
+    }
+    .ann-bar b {
+      color: var(--text);
+      font-weight: 600;
     }
 
-    /* Masthead */
+    /* ─── MASTHEAD (Identical to Dashboard) ─── */
     .masthead {
-      background: var(--header-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1.5px solid var(--border3);
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
       position: sticky;
       top: 0;
       z-index: 1000;
+      transition: var(--transition);
     }
     .masthead-inner {
       max-width: 1380px;
       margin: 0 auto;
-      padding: 12px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 24px;
+      flex-wrap: wrap;
     }
-    .masthead-left { display: flex; align-items: center; gap: 14px; }
+    .masthead-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
     .brand {
       display: flex;
       align-items: center;
@@ -164,70 +219,90 @@
       text-decoration: none;
       color: var(--text);
     }
-    .brand-logo { width: 34px; height: 34px; object-fit: contain; }
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1.5px solid var(--ink);
+      object-fit: cover;
+      flex-shrink: 0;
+    }
     .brand-text {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: -0.01em;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
       display: flex;
       flex-direction: column;
       line-height: 1.15;
     }
     .brand-text small {
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 10px;
       font-weight: 400;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
       color: var(--text3);
-      letter-spacing: 0.06em;
       text-transform: uppercase;
       margin-top: 2px;
     }
 
-    .masthead-right { display: flex; align-items: center; gap: 8px; }
-    .masthead-links { display: flex; align-items: center; gap: 4px; }
+    .masthead-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .masthead-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
     
     .btn-ghost {
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
+      font-size: 0.78rem;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       color: var(--text2);
       text-decoration: none;
-      padding: 7px 12px;
+      padding: 8px 14px;
       border: 1px solid transparent;
-      transition: all 0.2s ease;
+      transition: var(--transition);
+      white-space: nowrap;
       cursor: pointer;
       background: transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
     .btn-ghost:hover {
+      background: var(--bg4);
       color: var(--text);
-      background: var(--bg3);
-      border-color: var(--border);
     }
     .btn-ghost.active {
+      border-color: var(--text);
+      background: var(--bg5);
       color: var(--text);
-      border-color: var(--border3);
-      background: var(--bg2);
     }
     
     .btn-primary {
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
+      font-size: 0.78rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       color: var(--bg);
       background: var(--text);
-      padding: 7px 14px;
-      border: 1.5px solid var(--border3);
+      padding: 8px 18px;
+      border: 1px solid var(--text);
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      transition: all 0.2s ease;
+      transition: var(--transition);
       cursor: pointer;
+      white-space: nowrap;
     }
     .btn-primary:hover {
       background: var(--amber);
@@ -236,20 +311,20 @@
     }
 
     .theme-toggle-btn, .menu-toggle-btn {
-      width: 34px;
-      height: 34px;
+      width: 36px;
+      height: 36px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid var(--border);
-      background: var(--bg2);
+      border: 1.5px solid var(--border3);
+      background: transparent;
       color: var(--text);
       cursor: pointer;
-      transition: all 0.2s;
+      transition: var(--transition);
     }
     .theme-toggle-btn:hover, .menu-toggle-btn:hover {
-      background: var(--bg3);
-      border-color: var(--border3);
+      background: var(--text);
+      color: var(--bg2);
     }
     .theme-toggle-btn svg, .menu-toggle-btn svg { width: 16px; height: 16px; }
     .icon-sun { display: none; }
@@ -282,77 +357,45 @@
     }
     .dropdown-link.active { color: var(--amber); }
 
-    /* Hero Section with Mountain Photo Overlay */
-    .page-hero {
-      position: relative;
-      padding: clamp(48px, 6vw, 72px) 0 clamp(32px, 4vw, 48px);
-      border-bottom: 1.5px solid var(--border3);
-      background: var(--bg2);
-      overflow: hidden;
-    }
-    .page-hero::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      z-index: 0;
-      background-image: url('images/bg8.jpg');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.20;
-      pointer-events: none;
-    }
-    [data-theme="dark"] .page-hero::before {
-      opacity: 0.14;
-    }
-    .page-hero-inner {
-      position: relative;
-      z-index: 1;
-      max-width: 1380px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    .eyebrow {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.76rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--amber);
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-    .eyebrow::before {
-      content: "";
-      width: 20px;
-      height: 1.5px;
-      background: var(--amber);
-    }
-
-    .page-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.2rem, 4vw, 3.4rem);
-      font-weight: 700;
-      line-height: 1.08;
-      letter-spacing: -0.025em;
-      color: var(--text);
-      margin-bottom: 14px;
-    }
-    .page-lede {
-      font-family: 'IBM Plex Sans', sans-serif;
-      font-size: 1.05rem;
-      color: var(--text2);
-      max-width: 68ch;
-      line-height: 1.65;
-    }
-
-    /* Content Wrap */
+    /* Layout Wrap */
     .page-wrap {
       max-width: 1380px;
       margin: 0 auto;
       padding: 32px 24px 80px;
+    }
+
+    /* Page Header */
+    .page-header {
+      margin-bottom: 28px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+    }
+    .page-kicker {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--amber);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .page-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .page-lede {
+      font-size: 16px;
+      color: var(--text2);
+      max-width: 780px;
+      line-height: 1.6;
     }
 
     /* Quick Compare Chips */
@@ -807,7 +850,6 @@
       flex-wrap: wrap;
     }
     
-    /* Native HAP Action Button with WhatsApp Dot */
     .btn-wa-native {
       font-family: 'IBM Plex Mono', monospace;
       font-size: 11px;
@@ -931,11 +973,11 @@
         <a class="dropdown-link" href="contact.html">Contact Us</a>
       </div>
 
-      <a class="btn-ghost" href="donate.html">Support Us</a>
+      <a class="btn-ghost" id="nav-donate" href="donate.html">Support Us</a>
       <a class="btn-primary" href="report-issue.html">&#x270E;&nbsp; Report Issue</a>
       
       <button class="menu-toggle-btn" id="menu-toggle" aria-label="Toggle navigation menu">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="width:18px; height:18px; display:block;"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
       </button>
 
       <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle theme">
@@ -946,16 +988,13 @@
   </div>
 </header>
 
-<!-- Atmospheric Hero Header Section -->
-<section class="page-hero">
-  <div class="page-hero-inner">
-    <div class="eyebrow">Side by Side &middot; Accountability Scorecards</div>
+<main class="page-wrap">
+
+  <div class="page-header">
+    <div class="page-kicker">Side by Side &middot; Accountability Scorecards</div>
     <h1 class="page-title">Compare Two Districts</h1>
     <p class="page-lede">Set two districts against each other across the five public accountability pillars, then inspect the granular civic indicators and elected representative performance driving the gap.</p>
   </div>
-</section>
-
-<main class="page-wrap">
 
   <!-- Quick comparison chips -->
   <div class="quick-chips-strip">
@@ -1032,7 +1071,7 @@
         <span>Export CSV</span>
       </button>
     </div>
-    <a href="dashboard.html" class="btn-ghost" style="border:1px solid var(--border)">
+    <a href="dashboard.html" class="btn-ghost" style="border:1.5px solid var(--border3)">
       &larr; Back to Full Dashboard &amp; Map
     </a>
   </div>

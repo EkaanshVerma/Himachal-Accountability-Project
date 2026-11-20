@@ -98,7 +98,8 @@
     }
 
     body {
-      background: var(--bg);
+      background: linear-gradient(rgba(17, 25, 20, 0.85), rgba(17, 25, 20, 0.85)), url('images/bg6.jpg') no-repeat center center fixed !important;
+      background-size: cover !important;
       color: var(--text);
       font-family: 'IBM Plex Sans', -apple-system, sans-serif;
       font-size: 15px;
@@ -108,126 +109,136 @@
       position: relative;
     }
 
-    /* Fixed Atmospheric Background Photography */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      z-index: -1;
-      background-image: url('images/himachal_landing_bg.jpg');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.08;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
-    }
-    [data-theme="dark"] body::before {
-      opacity: 0.14;
-    }
-
-    /* Announcement Bar */
+    /* ─── ANNOUNCEMENT BAR (Identical to Dashboard) ─── */
     .ann-bar {
-      background: var(--bg3);
-      border-bottom: 1px solid var(--border);
-      padding: 6px 16px;
-      text-align: center;
-      font-size: 11px;
+      background: var(--red-bg);
+      border-bottom: 1px solid var(--red-mid);
+      padding: 8px 24px;
       font-family: 'IBM Plex Mono', monospace;
-      color: var(--text2);
-      letter-spacing: 0.04em;
+      font-size: 11px;
+      color: var(--text3);
+      text-align: center;
+      letter-spacing: 0.03em;
+      transition: var(--transition);
+    }
+    .ann-bar b {
+      color: var(--text);
+      font-weight: 600;
     }
 
-    /* Masthead */
+    /* ─── MASTHEAD (Identical to Dashboard) ─── */
     .masthead {
-      background: var(--header-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1.5px solid var(--border3);
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
       position: sticky;
       top: 0;
       z-index: 1000;
+      transition: var(--transition);
     }
     .masthead-inner {
       max-width: 1380px;
       margin: 0 auto;
-      padding: 12px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 24px;
+      flex-wrap: wrap;
     }
-    .masthead-left { display: flex; align-items: center; gap: 14px; }
+    .masthead-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
     .brand {
       display: flex;
       align-items: center;
       gap: 12px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.01em;
       text-decoration: none;
       color: var(--text);
     }
-    .brand-logo { width: 34px; height: 34px; object-fit: contain; }
-    .brand-text {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      display: flex;
-      flex-direction: column;
-      line-height: 1.15;
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1.5px solid var(--ink);
+      object-fit: cover;
+      flex-shrink: 0;
     }
+    .brand-text { display: flex; flex-direction: column; line-height: 1.15; }
     .brand-text small {
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 10px;
       font-weight: 400;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
       color: var(--text3);
-      letter-spacing: 0.06em;
       text-transform: uppercase;
-      margin-top: 2px;
     }
 
-    .masthead-right { display: flex; align-items: center; gap: 8px; }
-    .masthead-links { display: flex; align-items: center; gap: 4px; }
+    .masthead-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .masthead-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
     
     .btn-ghost {
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
+      font-size: 0.78rem;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       color: var(--text2);
       text-decoration: none;
-      padding: 7px 12px;
+      padding: 8px 14px;
       border: 1px solid transparent;
-      transition: all 0.2s ease;
+      transition: var(--transition);
+      white-space: nowrap;
       cursor: pointer;
       background: transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
     .btn-ghost:hover {
+      background: var(--bg4);
       color: var(--text);
-      background: var(--bg3);
-      border-color: var(--border);
     }
     .btn-ghost.active {
+      border-color: var(--text);
+      background: var(--bg5);
       color: var(--text);
-      border-color: var(--border3);
-      background: var(--bg2);
     }
     
     .btn-primary {
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
+      font-size: 0.78rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       color: var(--bg);
       background: var(--text);
-      padding: 7px 14px;
-      border: 1.5px solid var(--border3);
+      padding: 8px 18px;
+      border: 1px solid var(--text);
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      transition: all 0.2s ease;
+      transition: var(--transition);
       cursor: pointer;
+      white-space: nowrap;
     }
     .btn-primary:hover {
       background: var(--amber);
@@ -236,20 +247,20 @@
     }
 
     .theme-toggle-btn, .menu-toggle-btn {
-      width: 34px;
-      height: 34px;
+      width: 36px;
+      height: 36px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid var(--border);
-      background: var(--bg2);
+      border: 1.5px solid var(--border3);
+      background: transparent;
       color: var(--text);
       cursor: pointer;
-      transition: all 0.2s;
+      transition: var(--transition);
     }
     .theme-toggle-btn:hover, .menu-toggle-btn:hover {
-      background: var(--bg3);
-      border-color: var(--border3);
+      background: var(--text);
+      color: var(--bg2);
     }
     .theme-toggle-btn svg, .menu-toggle-btn svg { width: 16px; height: 16px; }
     .icon-sun { display: none; }
@@ -282,70 +293,45 @@
     }
     .dropdown-link.active { color: var(--amber); }
 
-    /* Hero Section with Mountain Photo Overlay */
-    .page-hero {
-      position: relative;
-      padding: clamp(48px, 6vw, 72px) 0 clamp(32px, 4vw, 48px);
-      border-bottom: 1.5px solid var(--border3);
-      background: var(--bg2);
-      overflow: hidden;
+    /* Page Header */
+    .page-header {
+      margin-bottom: 28px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
     }
-    .page-hero::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      z-index: 0;
-      background-image: url('images/bg4.jpg');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.22;
-      pointer-events: none;
-    }
-    [data-theme="dark"] .page-hero::before {
-      opacity: 0.16;
-    }
-    .page-hero-inner {
-      position: relative;
-      z-index: 1;
-      max-width: 1380px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    .eyebrow {
+    .page-kicker {
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.76rem;
-      font-weight: 600;
+      font-size: 11px;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.12em;
       color: var(--amber);
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 14px;
+      gap: 8px;
+      margin-bottom: 12px;
     }
-    .eyebrow::before {
+    .page-kicker::before {
       content: "";
-      width: 20px;
-      height: 1.5px;
+      width: 18px;
+      height: 2px;
       background: var(--amber);
     }
-
     .page-title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      font-size: clamp(2rem, 3.8vw, 3.2rem);
       font-weight: 700;
-      line-height: 1.08;
+      line-height: 1.1;
       letter-spacing: -0.025em;
       color: var(--text);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
     .page-lede {
       font-family: 'IBM Plex Sans', sans-serif;
       font-size: 1.05rem;
       color: var(--text2);
-      max-width: 72ch;
-      line-height: 1.65;
+      max-width: 760px;
+      line-height: 1.6;
     }
 
     /* Content Wrap */
@@ -724,16 +710,13 @@
   </div>
 </header>
 
-<!-- Atmospheric Hero Header Section -->
-<section class="page-hero">
-  <div class="page-hero-inner">
-    <div class="eyebrow">Elected Representatives &middot; Vidhan Sabha Accountability</div>
+<main class="page-wrap">
+
+  <div class="page-header">
+    <div class="page-kicker">Elected Representatives &middot; Vidhan Sabha Accountability</div>
     <h1 class="page-title">Find Your MLA &amp; Demand Action</h1>
     <p class="page-lede">Search across all 68 assembly constituencies of Himachal Pradesh. Check verified grievance reports, track unaddressed neglect rates, and send pre-filled civic petitions directly to your MLA via WhatsApp or Email.</p>
   </div>
-</section>
-
-<main class="page-wrap">
 
   <!-- Search & Filter Controls -->
   <div class="filter-panel">
