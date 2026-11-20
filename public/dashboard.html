@@ -1505,6 +1505,393 @@ body {
 .btn-upvote:hover { background: #283740; }
 .btn-rti { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; padding: 6px; border-radius: 4px; cursor: pointer; font-weight:600;}
 .btn-rti:hover { background: #fde68a; }
+
+/* ─── YOUTHPOWER VIEW SWITCHER STRIP ─── */
+.view-switcher-bar {
+  background: var(--bg2);
+  border-bottom: 1.5px solid var(--border3);
+  position: sticky;
+  top: 59px;
+  z-index: 990;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.view-switcher-inner {
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 8px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.view-nav-tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.view-nav-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 8px 14px;
+  background: transparent;
+  color: var(--text2);
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+.view-nav-btn:hover {
+  color: var(--text);
+  background: var(--bg3);
+  border-color: var(--border);
+}
+.view-nav-btn.active {
+  color: var(--text);
+  background: var(--bg);
+  border: 1.5px solid var(--border3);
+  box-shadow: 1px 1px 0 var(--border3);
+}
+.vbtn-icon { font-size: 13px; }
+
+.btn-ghost-sm {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border3);
+  padding: 6px 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+.btn-ghost-sm:hover {
+  background: var(--bg3);
+}
+
+/* ─── PANE TRANSITIONS ─── */
+.dash-pane {
+  display: none;
+}
+.dash-pane.active {
+  display: block;
+}
+
+/* ─── DISTRICT SCORES VIEW ─── */
+.scores-hero-panel {
+  background: var(--bg2);
+  border: 1.5px solid var(--border3);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+.scores-panel-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.scores-heading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.1;
+}
+.scores-lede {
+  color: var(--text2);
+  font-size: 14px;
+  max-width: 800px;
+  margin-top: 6px;
+}
+.scores-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+.tier-chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.tier-chip-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 11px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text2);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.tier-chip-btn:hover {
+  border-color: var(--border3);
+  color: var(--text);
+}
+.tier-chip-btn.active {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+
+/* 12 District Cards Grid */
+.districts-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 20px;
+  margin-bottom: 32px;
+}
+.dist-score-card {
+  background: var(--bg2);
+  border: 1.5px solid var(--border3);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.dist-score-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+.dsc-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+.dsc-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+}
+.dsc-rank {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border: 1px solid var(--border3);
+  background: var(--bg);
+  color: var(--text);
+}
+.dsc-score-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.dsc-score-big {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--text);
+}
+.dsc-score-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--text3);
+}
+
+.tier-badge {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  width: fit-content;
+}
+.tier-high {
+  background: rgba(92, 122, 82, 0.15);
+  color: var(--sage);
+  border: 1px solid var(--sage);
+}
+.tier-mid {
+  background: rgba(217, 140, 61, 0.15);
+  color: var(--amber);
+  border: 1px solid var(--amber);
+}
+.tier-low {
+  background: rgba(162, 59, 46, 0.15);
+  color: var(--stamp);
+  border: 1px solid var(--stamp);
+}
+
+.dsc-metrics-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 8px 10px;
+}
+.dsc-sub-k {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  color: var(--text3);
+  text-transform: uppercase;
+}
+.dsc-sub-v {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+.dsc-sub-v.hot { color: var(--stamp); }
+
+/* Pillars Mini Bars */
+.dsc-pillars-box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+}
+.dp-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 34px;
+  gap: 8px;
+  align-items: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--text2);
+}
+.dp-track {
+  height: 6px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.dp-fill {
+  height: 100%;
+  background: var(--text);
+}
+.dp-fill.lead {
+  background: var(--amber);
+}
+
+.dsc-actions {
+  display: flex;
+  gap: 6px;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+.dsc-btn {
+  flex: 1;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 6px 8px;
+  background: var(--bg);
+  border: 1px solid var(--border3);
+  color: var(--text);
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.dsc-btn:hover {
+  background: var(--bg3);
+}
+
+/* Leaderboard Table */
+.leaderboard-table-wrap {
+  background: var(--bg2);
+  border: 1.5px solid var(--border3);
+  padding: 20px;
+  overflow-x: auto;
+}
+.lb-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+}
+.lb-table th {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text3);
+  padding: 10px 14px;
+  border-bottom: 2px solid var(--border3);
+}
+.lb-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+.lb-table tr:hover td {
+  background: var(--bg3);
+  cursor: pointer;
+}
+
+/* ─── MODAL STYLES ─── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+}
+.modal-dialog {
+  background: var(--bg2);
+  border: 2px solid var(--border3);
+  box-shadow: 4px 4px 0 var(--border3);
+  max-width: 680px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 28px;
+  position: relative;
+}
+.modal-close-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 32px;
+  height: 32px;
+  background: var(--bg);
+  border: 1px solid var(--border3);
+  color: var(--text);
+  font-size: 16px;
+  font-family: 'IBM Plex Mono', monospace;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-close-btn:hover {
+  background: var(--stamp);
+  color: #fff;
+}
+
 </style>
 
     <!-- THEME MANAGER -->
@@ -1559,8 +1946,9 @@ body {
         <a class="btn-ghost " id="nav-home" href="index.html">Home</a>
         <a class="btn-ghost " id="nav-about" href="about.html">About Us</a>
         <a class="btn-ghost active" id="nav-dashboard" href="dashboard.html">Dashboard</a>
-<!--         <a class="btn-ghost " id="nav-perception" href="mla_perception.html">MLA Perception</a> -->
-        <a class="btn-ghost " id="nav-join" href="join.html">Join Us</a>
+        <a class="btn-ghost" id="nav-compare" href="compare.html">Compare</a>
+        <a class="btn-ghost" id="nav-mlas" href="mlas.html">Find MLA</a>
+        <a class="btn-ghost" id="nav-join" href="join.html">Join Us</a>
         <a class="btn-ghost " id="nav-contact" href="contact.html">Contact Us</a>
       </div>
       
@@ -1568,8 +1956,9 @@ body {
         <a class="dropdown-link " href="index.html">Home</a>
         <a class="dropdown-link " href="about.html">About Us</a>
         <a class="dropdown-link active" href="dashboard.html">Dashboard</a>
-<!--         <a class="dropdown-link " href="mla_perception.html">MLA Perception</a> -->
-        <a class="dropdown-link " href="join.html">Join Us</a>
+        <a class="dropdown-link" href="compare.html">Compare Districts</a>
+        <a class="dropdown-link" href="mlas.html">Find Your MLA</a>
+        <a class="dropdown-link" href="join.html">Join Us</a>
         <a class="dropdown-link " href="contact.html">Contact Us</a>
       </div>
 
@@ -1613,7 +2002,34 @@ body {
   </div>
 </div>
 
+
+<div class="view-switcher-bar">
+  <div class="view-switcher-inner">
+    <div class="view-nav-tabs" id="dash-view-tabs">
+      <button class="view-nav-btn active" data-view="map" onclick="switchDashboardView('map', true)">
+        <span class="vbtn-icon">🗺️</span> Explore &amp; Map
+      </button>
+      <button class="view-nav-btn" data-view="scores" onclick="switchDashboardView('scores', true)">
+        <span class="vbtn-icon">🏆</span> District Scores (0–100)
+      </button>
+      <button class="view-nav-btn" data-view="compare" onclick="switchDashboardView('compare', true)">
+        <span class="vbtn-icon">⚖️</span> Compare Districts
+      </button>
+      <button class="view-nav-btn" data-view="mlas" onclick="switchDashboardView('mlas', true)">
+        <span class="vbtn-icon">🏛️</span> Find Your MLA (68)
+      </button>
+    </div>
+    <div class="view-actions">
+      <button class="btn-ghost-sm" onclick="HAP_CIVIC_HELPERS.exportCivicCSV()" title="Download full dataset as CSV">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        <span>Export CSV</span>
+      </button>
+    </div>
+  </div>
+</div>
+
 <div class="body-wrap">
+  <div id="view-pane-map" class="dash-pane active">
   <div class="body-grid">
 
     <div class="map-section">
@@ -1681,6 +2097,169 @@ body {
 
     </div>
   </div>
+</div><!-- end view-pane-map -->
+
+<!-- PANE 2: DISTRICT SCORES (0-100) LEADERBOARD -->
+<div id="view-pane-scores" class="dash-pane">
+  <div class="scores-hero-panel">
+    <div class="scores-panel-top">
+      <div>
+        <div class="scores-heading">District Public Accountability Scores</div>
+        <p class="scores-lede">Composite 0–100 index tracking administrative grievance responsiveness across 5 core pillars: Roads, Water, Healthcare, Power, and Youth Opportunity. Standardised state ranking #1 to #12.</p>
+      </div>
+      <div>
+        <select id="score-sort-select" class="filter-select" onchange="renderScoresView()">
+          <option value="rank-asc">Rank / Score (High &rarr; Low)</option>
+          <option value="neglect-desc">Unresolved Rate (High &rarr; Low)</option>
+          <option value="reports-desc">Most Field Reports</option>
+          <option value="name-asc">District Name (A &rarr; Z)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="scores-filter-bar">
+      <div class="tier-chips">
+        <button class="tier-chip-btn active" data-tier="all" onclick="filterScoresByTier('all')">All (12)</button>
+        <button class="tier-chip-btn" data-tier="High Responsiveness" onclick="filterScoresByTier('High Responsiveness')">High (2)</button>
+        <button class="tier-chip-btn" data-tier="Moderate Action" onclick="filterScoresByTier('Moderate Action')">Moderate (7)</button>
+        <button class="tier-chip-btn" data-tier="Severe Neglect" onclick="filterScoresByTier('Severe Neglect')">Severe Neglect (3)</button>
+      </div>
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text3);">
+        Click any district card or table row for full snapshot
+      </div>
+    </div>
+  </div>
+
+  <div class="districts-cards-grid" id="district-cards-container"></div>
+
+  <div class="leaderboard-table-wrap">
+    <div style="font-family:'Space Grotesk',sans-serif; font-size:18px; font-weight:700; margin-bottom:12px;">
+      Statewide District Leaderboard
+    </div>
+    <table class="lb-table">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>District</th>
+          <th>Score</th>
+          <th>Status</th>
+          <th>Unresolved %</th>
+          <th>Reports</th>
+          <th>Roads</th>
+          <th>Water</th>
+          <th>Health</th>
+          <th>Power</th>
+          <th>Youth</th>
+          <th>MLAs</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="lb-table-body"></tbody>
+    </table>
+  </div>
+</div><!-- end view-pane-scores -->
+
+<!-- PANE 3: SIDE-BY-SIDE DISTRICT COMPARISON -->
+<div id="view-pane-compare" class="dash-pane">
+  <div class="scores-hero-panel">
+    <div class="scores-panel-top">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:700; color:var(--amber); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:4px;">SIDE BY SIDE</div>
+        <div class="scores-heading">Compare Two Districts</div>
+        <p class="scores-lede">Set two districts against each other across the 5 public accountability pillars to evaluate the gap in administrative response and elected representative representation.</p>
+      </div>
+      <div>
+        <a href="compare.html" target="_blank" class="btn-ghost-sm" title="Open full dedicated page in new tab">
+          Dedicated View &nearr;
+        </a>
+      </div>
+    </div>
+
+    <!-- Embedded Selectors -->
+    <div style="display:grid; grid-template-columns:1fr auto 1fr; gap:16px; align-items:center; background:var(--bg); border:1.5px solid var(--border3); padding:16px 20px; margin-top:14px;">
+      <div>
+        <label style="display:block; font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:700; text-transform:uppercase; color:var(--text3); margin-bottom:6px;">Select District 1</label>
+        <select id="dash-cmp-d1" class="filter-select" style="width:100%; font-size:15px; font-weight:700;" onchange="onDashCompareChange()"></select>
+      </div>
+      <div style="font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:12px; background:var(--text); color:var(--bg); padding:8px 12px; border:1px solid var(--border3);">VS</div>
+      <div>
+        <label style="display:block; font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:700; text-transform:uppercase; color:var(--text3); margin-bottom:6px;">Select District 2</label>
+        <select id="dash-cmp-d2" class="filter-select" style="width:100%; font-size:15px; font-weight:700;" onchange="onDashCompareChange()"></select>
+      </div>
+    </div>
+  </div>
+
+  <div id="dash-cmp-gap-callout" style="background:var(--bg3); border-left:4px solid var(--amber); border:1px solid var(--border); padding:14px 18px; margin-bottom:24px; font-size:14px;"></div>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:32px;" id="dash-cmp-cards-grid">
+    <div class="dist-score-card" id="dash-cmp-card-1"></div>
+    <div class="dist-score-card" id="dash-cmp-card-2"></div>
+  </div>
+
+  <div class="scores-hero-panel" style="margin-bottom:24px;">
+    <div style="font-family:'Space Grotesk',sans-serif; font-size:20px; font-weight:700; margin-bottom:16px;">The 5 Accountability Pillars Comparison</div>
+    <div id="dash-cmp-pillars-container" style="display:flex; flex-direction:column; gap:14px;"></div>
+  </div>
+
+  <div style="display:flex; gap:12px; flex-wrap:wrap; background:var(--bg2); border:1.5px solid var(--border3); padding:16px 20px; margin-bottom:32px;">
+    <a id="dash-cmp-wa-btn" href="#" target="_blank" rel="noopener" class="btn-primary" style="background:#25D366; color:#111; border-color:#1ba851;">
+      Share Comparison on WhatsApp
+    </a>
+    <button class="btn-ghost-sm" onclick="HAP_CIVIC_HELPERS.exportCivicCSV()">Export Dataset CSV</button>
+  </div>
+</div><!-- end view-pane-compare -->
+
+<!-- PANE 4: FIND YOUR MLA DIRECTORY -->
+<div id="view-pane-mlas" class="dash-pane">
+  <div class="scores-hero-panel">
+    <div class="scores-panel-top">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:700; color:var(--amber); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:4px;">ELECTED REPRESENTATIVES</div>
+        <div class="scores-heading">Find Your MLA &amp; Demand Action</div>
+        <p class="scores-lede">Search all 68 Vidhan Sabha assembly constituencies. View verified unaddressed grievance rates and send pre-filled civic messages directly to your MLA via WhatsApp or Email.</p>
+      </div>
+      <div>
+        <a href="mlas.html" target="_blank" class="btn-ghost-sm" title="Open full dedicated page in new tab">
+          Dedicated View &nearr;
+        </a>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr auto auto; gap:12px; align-items:center; margin-top:14px;">
+      <input type="text" id="dash-mla-search" class="search-input" placeholder="Search by MLA name, constituency, district, or pin code..." oninput="filterDashMlas()" style="width:100%; padding:10px 14px; background:var(--bg); border:1.5px solid var(--border3); color:var(--text); font-family:'IBM Plex Sans',sans-serif; outline:none;">
+      
+      <select id="dash-mla-dist" class="filter-select" onchange="filterDashMlas()">
+        <option value="all">All 12 Districts</option>
+        <option value="Bilaspur">Bilaspur</option>
+        <option value="Chamba">Chamba</option>
+        <option value="Hamirpur">Hamirpur</option>
+        <option value="Kangra">Kangra</option>
+        <option value="Kinnaur">Kinnaur</option>
+        <option value="Kullu">Kullu</option>
+        <option value="Lahaul & Spiti">Lahaul &amp; Spiti</option>
+        <option value="Mandi">Mandi</option>
+        <option value="Shimla">Shimla</option>
+        <option value="Sirmaur">Sirmaur</option>
+        <option value="Solan">Solan</option>
+        <option value="Una">Una</option>
+      </select>
+
+      <div class="tier-chips">
+        <button class="tier-chip-btn active" data-party="all" onclick="setDashPartyFilter('all')">All (68)</button>
+        <button class="tier-chip-btn" data-party="INC" onclick="setDashPartyFilter('INC')" style="color:#2563EB;">INC (40)</button>
+        <button class="tier-chip-btn" data-party="BJP" onclick="setDashPartyFilter('BJP')" style="color:#D97706;">BJP (28)</button>
+      </div>
+    </div>
+    
+    <div style="display:flex; justify-content:space-between; margin-top:12px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text3);">
+      <span id="dash-mla-count">Showing 68 of 68 MLAs</span>
+      <span>Direct 1-Click WhatsApp Civic Action enabled</span>
+    </div>
+  </div>
+
+  <div class="districts-cards-grid" id="dash-mlas-grid"></div>
+</div><!-- end view-pane-mlas -->
+
 
   <div class="cta-block">
     <div>
@@ -1705,6 +2284,526 @@ body {
 
 </div>
 
+<script src="hap-civic-data.js"></script>
+<script>
+// ─── YOUTHPOWER DASHBOARD MECHANISMS ───
+
+  let activeTierFilter = "all";
+  let activeDashParty = "all";
+  let dashCmpD1 = "Mandi";
+  let dashCmpD2 = "Shimla";
+
+  window.switchDashboardView = function(viewName, updateHash) {
+    document.querySelectorAll(".view-nav-btn").forEach(b => {
+      b.classList.toggle("active", b.dataset.view === viewName);
+    });
+    document.querySelectorAll(".dash-pane").forEach(p => {
+      p.style.display = "none";
+      p.classList.remove("active");
+    });
+
+    const targetPane = document.getElementById("view-pane-" + viewName);
+    if (targetPane) {
+      targetPane.style.display = "block";
+      targetPane.classList.add("active");
+    }
+
+    if (updateHash) {
+      window.location.hash = "#" + viewName;
+    }
+
+    if (viewName === "map") {
+      if (window._leafletMap) {
+        setTimeout(() => { window._leafletMap.invalidateSize(); }, 50);
+      }
+    } else if (viewName === "scores") {
+      renderScoresView();
+    } else if (viewName === "compare") {
+      renderDashCompare();
+    } else if (viewName === "mlas") {
+      renderDashMlas();
+    }
+  };
+
+  // 1. Scores View
+  window.filterScoresByTier = function(tier) {
+    activeTierFilter = tier;
+    document.querySelectorAll(".tier-chip-btn[data-tier]").forEach(b => {
+      b.classList.toggle("active", b.dataset.tier === tier);
+    });
+    renderScoresView();
+  };
+
+  window.renderScoresView = function() {
+    if (typeof HAP_DISTRICTS === "undefined") return;
+    const sort = document.getElementById("score-sort-select") ? document.getElementById("score-sort-select").value : "rank-asc";
+    
+    let list = Object.entries(HAP_DISTRICTS).map(([k, v]) => ({ name: k, ...v }));
+    if (activeTierFilter !== "all") {
+      list = list.filter(d => d.tier === activeTierFilter);
+    }
+
+    if (sort === "rank-asc") list.sort((a,b) => a.rank - b.rank);
+    else if (sort === "neglect-desc") list.sort((a,b) => b.neglect - a.neglect);
+    else if (sort === "reports-desc") list.sort((a,b) => b.count - a.count);
+    else if (sort === "name-asc") list.sort((a,b) => a.name.localeCompare(b.name));
+
+    // Render Cards
+    const cardsContainer = document.getElementById("district-cards-container");
+    if (cardsContainer) {
+      cardsContainer.innerHTML = list.map(d => {
+        const tierClass = d.score >= 70 ? "tier-high" : (d.score >= 50 ? "tier-mid" : "tier-low");
+        return `
+          <div class="dist-score-card">
+            <div>
+              <div class="dsc-top">
+                <div>
+                  <div class="dsc-name">${d.name}</div>
+                  <span class="tier-badge ${tierClass}" style="margin-top:4px;">${d.tier}</span>
+                </div>
+                <div class="dsc-rank">Rank #${d.rank}</div>
+              </div>
+
+              <div class="dsc-score-row" style="margin-top:12px;">
+                <div class="dsc-score-big">${d.score}</div>
+                <div class="dsc-score-label">/ 100<br>COMPOSITE SCORE</div>
+              </div>
+
+              <div class="dsc-metrics-row" style="margin-top:10px;">
+                <div>
+                  <div class="dsc-sub-k">Unresolved</div>
+                  <div class="dsc-sub-v hot">${d.neglect}%</div>
+                </div>
+                <div>
+                  <div class="dsc-sub-k">Reports</div>
+                  <div class="dsc-sub-v">${d.count}</div>
+                </div>
+                <div>
+                  <div class="dsc-sub-k">Primary</div>
+                  <div class="dsc-sub-v" style="font-size:13px;">${d.top}</div>
+                </div>
+              </div>
+
+              <div class="dsc-pillars-box">
+                <div class="dp-row">
+                  <span>🛣️ Roads</span>
+                  <div class="dp-track"><div class="dp-fill ${d.pwd>=60?'lead':''}" style="width:${d.pwd}%;"></div></div>
+                  <span>${d.pwd}</span>
+                </div>
+                <div class="dp-row">
+                  <span>💧 Water</span>
+                  <div class="dp-track"><div class="dp-fill ${d.water>=60?'lead':''}" style="width:${d.water}%;"></div></div>
+                  <span>${d.water}</span>
+                </div>
+                <div class="dp-row">
+                  <span>🏥 Health</span>
+                  <div class="dp-track"><div class="dp-fill ${d.health>=60?'lead':''}" style="width:${d.health}%;"></div></div>
+                  <span>${d.health}</span>
+                </div>
+                <div class="dp-row">
+                  <span>⚡ Power</span>
+                  <div class="dp-track"><div class="dp-fill ${d.power>=60?'lead':''}" style="width:${d.power}%;"></div></div>
+                  <span>${d.power}</span>
+                </div>
+                <div class="dp-row">
+                  <span>🎓 Youth</span>
+                  <div class="dp-track"><div class="dp-fill ${d.youth>=60?'lead':''}" style="width:${d.youth}%;"></div></div>
+                  <span>${d.youth}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="dsc-actions">
+              <button class="dsc-btn" onclick="openDistrictModal('${d.name}')">Snapshot</button>
+              <button class="dsc-btn" onclick="startCompare('${d.name}')">Compare</button>
+              <button class="dsc-btn" onclick="viewDistrictMlas('${d.name}')">MLAs (${d.seats.length})</button>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    // Render Table
+    const tbody = document.getElementById("lb-table-body");
+    if (tbody) {
+      tbody.innerHTML = list.map(d => {
+        const tierClass = d.score >= 70 ? "tier-high" : (d.score >= 50 ? "tier-mid" : "tier-low");
+        return `
+          <tr onclick="openDistrictModal('${d.name}')">
+            <td style="font-family:'IBM Plex Mono',monospace; font-weight:700;">#${d.rank}</td>
+            <td style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px;">${d.name}</td>
+            <td style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:16px; color:var(--text);">${d.score}</td>
+            <td><span class="tier-badge ${tierClass}">${d.tier}</span></td>
+            <td style="font-family:'IBM Plex Mono',monospace; font-weight:700; color:var(--stamp);">${d.neglect}%</td>
+            <td style="font-family:'IBM Plex Mono',monospace;">${d.count}</td>
+            <td>${d.pwd}</td>
+            <td>${d.water}</td>
+            <td>${d.health}</td>
+            <td>${d.power}</td>
+            <td>${d.youth}</td>
+            <td style="font-family:'IBM Plex Mono',monospace;">${d.seats.length} Seats</td>
+            <td>
+              <button class="btn-ghost-sm" onclick="event.stopPropagation(); startCompare('${d.name}')" style="padding:4px 8px; font-size:10px;">Compare</button>
+            </td>
+          </tr>
+        `;
+      }).join("");
+    }
+  };
+
+  // 2. Compare Pane
+  window.startCompare = function(distName) {
+    dashCmpD1 = distName;
+    const names = Object.keys(HAP_DISTRICTS);
+    dashCmpD2 = names.find(n => n !== distName) || "Shimla";
+    switchDashboardView("compare", true);
+  };
+
+  window.onDashCompareChange = function() {
+    const s1 = document.getElementById("dash-cmp-d1").value;
+    const s2 = document.getElementById("dash-cmp-d2").value;
+    if (s1 === s2) {
+      alert("Please select two distinct districts to compare.");
+      return;
+    }
+    dashCmpD1 = s1;
+    dashCmpD2 = s2;
+    renderDashCompare();
+  };
+
+  window.renderDashCompare = function() {
+    if (typeof HAP_DISTRICTS === "undefined") return;
+    const sel1 = document.getElementById("dash-cmp-d1");
+    const sel2 = document.getElementById("dash-cmp-d2");
+    if (!sel1 || !sel2) return;
+
+    const names = Object.keys(HAP_DISTRICTS);
+    if (!sel1.options.length) {
+      names.forEach(n => {
+        sel1.add(new Option(n + " (#" + HAP_DISTRICTS[n].rank + " · " + HAP_DISTRICTS[n].score + ")", n));
+        sel2.add(new Option(n + " (#" + HAP_DISTRICTS[n].rank + " · " + HAP_DISTRICTS[n].score + ")", n));
+      });
+    }
+    sel1.value = dashCmpD1;
+    sel2.value = dashCmpD2;
+
+    const d1 = HAP_DISTRICTS[dashCmpD1];
+    const d2 = HAP_DISTRICTS[dashCmpD2];
+    if (!d1 || !d2) return;
+
+    // Callout
+    const diff = (d1.score - d2.score).toFixed(1);
+    const absDiff = Math.abs(diff);
+    const leader = d1.score >= d2.score ? dashCmpD1 : dashCmpD2;
+    const follower = d1.score >= d2.score ? dashCmpD2 : dashCmpD1;
+    document.getElementById("dash-cmp-gap-callout").innerHTML = 
+      `<strong>${leader} leads ${follower} by +${absDiff} points</strong> in overall accountability score. ` +
+      `Unresolved rate is ${d1.neglect}% in ${dashCmpD1} vs ${d2.neglect}% in ${dashCmpD2}.`;
+
+    // Cards
+    renderDashCmpCard("dash-cmp-card-1", d1);
+    renderDashCmpCard("dash-cmp-card-2", d2);
+
+    // Pillars
+    const pillarsCont = document.getElementById("dash-cmp-pillars-container");
+    const pKeys = [
+      { k: "pwd", name: "Roads & Connectivity", icon: "🛣️" },
+      { k: "water", name: "Water & Jal Shakti", icon: "💧" },
+      { k: "health", name: "Healthcare & Hospitals", icon: "🏥" },
+      { k: "power", name: "Power & Electricity", icon: "⚡" },
+      { k: "youth", name: "Youth & Employment", icon: "🎓" }
+    ];
+
+    pillarsCont.innerHTML = pKeys.map(p => {
+      const v1 = d1[p.k] || 50;
+      const v2 = d2[p.k] || 50;
+      const dDiff = v1 - v2;
+      const leadNote = dDiff > 0 ? `${dashCmpD1} +${dDiff} pts` : (dDiff < 0 ? `${dashCmpD2} +${Math.abs(dDiff)} pts` : "Equal");
+      return `
+        <div style="background:var(--bg); border:1px solid var(--border); padding:12px 16px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <span style="font-weight:700; font-size:14px;">${p.icon} ${p.name}</span>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:700; padding:2px 6px; background:var(--bg2); border:1px solid var(--border);">${leadNote}</span>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:11px; font-family:'IBM Plex Mono',monospace;">
+                <span>${dashCmpD1}</span>
+                <span>${v1} / 100</span>
+              </div>
+              <div class="dp-track" style="margin-top:4px;"><div class="dp-fill ${v1>=v2?'lead':''}" style="width:${v1}%;"></div></div>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:11px; font-family:'IBM Plex Mono',monospace;">
+                <span>${dashCmpD2}</span>
+                <span>${v2} / 100</span>
+              </div>
+              <div class="dp-track" style="margin-top:4px;"><div class="dp-fill ${v2>=v1?'lead':''}" style="width:${v2}%;"></div></div>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join("");
+
+    // WhatsApp
+    const waBtn = document.getElementById("dash-cmp-wa-btn");
+    waBtn.href = HAP_CIVIC_HELPERS.getWhatsAppCompareLink(dashCmpD1, dashCmpD2);
+  };
+
+  function renderDashCmpCard(id, d) {
+    const el = document.getElementById(id);
+    const tierClass = d.score >= 70 ? "tier-high" : (d.score >= 50 ? "tier-mid" : "tier-low");
+    el.innerHTML = `
+      <div class="dsc-top">
+        <div>
+          <div class="dsc-name">${d.name}</div>
+          <span class="tier-badge ${tierClass}" style="margin-top:4px;">${d.tier}</span>
+        </div>
+        <div class="dsc-rank">Rank #${d.rank}</div>
+      </div>
+      <div class="dsc-score-row" style="margin-top:10px;">
+        <div class="dsc-score-big">${d.score}</div>
+        <div class="dsc-score-label">/ 100<br>COMPOSITE SCORE</div>
+      </div>
+      <div class="dsc-metrics-row" style="margin-top:10px;">
+        <div><div class="dsc-sub-k">Unresolved</div><div class="dsc-sub-v hot">${d.neglect}%</div></div>
+        <div><div class="dsc-sub-k">Reports</div><div class="dsc-sub-v">${d.count}</div></div>
+        <div><div class="dsc-sub-k">Seats</div><div class="dsc-sub-v">${d.seats.length}</div></div>
+      </div>
+      <p style="font-size:12px; color:var(--text2); margin-top:10px;">${d.summary}</p>
+    `;
+  }
+
+  // 3. MLA View
+  window.viewDistrictMlas = function(distName) {
+    switchDashboardView("mlas", true);
+    const distSel = document.getElementById("dash-mla-dist");
+    if (distSel) distSel.value = distName;
+    filterDashMlas();
+  };
+
+  window.setDashPartyFilter = function(party) {
+    activeDashParty = party;
+    document.querySelectorAll(".tier-chip-btn[data-party]").forEach(b => {
+      b.classList.toggle("active", b.dataset.party === party);
+    });
+    filterDashMlas();
+  };
+
+  window.filterDashMlas = function() {
+    renderDashMlas();
+  };
+
+  window.renderDashMlas = function() {
+    if (typeof HAP_MLAS === "undefined") return;
+    const query = (document.getElementById("dash-mla-search") ? document.getElementById("dash-mla-search").value : "").toLowerCase().trim();
+    const district = document.getElementById("dash-mla-dist") ? document.getElementById("dash-mla-dist").value : "all";
+
+    let list = HAP_MLAS.filter(m => {
+      if (activeDashParty !== "all" && m.party !== activeDashParty) return false;
+      if (district !== "all" && m.district !== district) return false;
+      if (query) {
+        const m1 = m.mla.toLowerCase().includes(query);
+        const m2 = m.constituency.toLowerCase().includes(query);
+        const m3 = m.district.toLowerCase().includes(query);
+        const m4 = m.pincode && m.pincode.includes(query);
+        const m5 = m.no.toString() === query;
+        if (!m1 && !m2 && !m3 && !m4 && !m5) return false;
+      }
+      return true;
+    });
+
+    const countEl = document.getElementById("dash-mla-count");
+    if (countEl) countEl.textContent = `Showing ${list.length} of 68 MLAs`;
+
+    const grid = document.getElementById("dash-mlas-grid");
+    if (grid) {
+      grid.innerHTML = list.map(m => {
+        const waLink = HAP_CIVIC_HELPERS.getWhatsAppMLALink(m);
+        const emailLink = HAP_CIVIC_HELPERS.getEmailMLALink(m);
+        const partyLower = m.party.toLowerCase();
+        const initials = m.mla.split(" ").map(w => w[0]).filter(Boolean).slice(0, 2).join("").toUpperCase();
+
+        return `
+          <div class="dist-score-card">
+            <div>
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:8px;">
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <div style="width:36px; height:36px; background:var(--bg3); border:1px solid var(--border3); display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:13px;">${initials}</div>
+                  <div>
+                    <div style="font-family:'Space Grotesk',sans-serif; font-size:17px; font-weight:700;">${m.mla}</div>
+                    <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text3);">#${m.no} ${m.constituency} &middot; ${m.district}</div>
+                  </div>
+                </div>
+                <span class="mla-party-tag ${partyLower}" style="font-size:10px; padding:2px 6px;">${m.party}</span>
+              </div>
+
+              <div class="dsc-metrics-row" style="margin-top:12px;">
+                <div>
+                  <div class="dsc-sub-k">Unresolved</div>
+                  <div class="dsc-sub-v hot">${m.neglect}%</div>
+                </div>
+                <div>
+                  <div class="dsc-sub-k">Reports</div>
+                  <div class="dsc-sub-v">${m.reports}</div>
+                </div>
+                <div>
+                  <div class="dsc-sub-k">Sector</div>
+                  <div class="dsc-sub-v" style="font-size:12px;">${m.dominantIssue}</div>
+                </div>
+              </div>
+
+              <p style="font-size:12px; color:var(--text2); margin-top:10px; line-height:1.4;">
+                ${m.problem}
+              </p>
+            </div>
+
+            <div style="display:flex; gap:8px; border-top:1px solid var(--border); padding-top:10px;">
+              <a href="${waLink}" target="_blank" rel="noopener" class="dsc-btn" style="background:#25D366; color:#111; border-color:#1ba851; flex:2;">
+                Write to MLA
+              </a>
+              <a href="${emailLink}" class="dsc-btn" style="flex:1;">Email</a>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+  };
+
+  // 4. District Snapshot Modal
+  window.openDistrictModal = function(name) {
+    if (typeof HAP_DISTRICTS === "undefined" || !HAP_DISTRICTS[name]) return;
+    const d = HAP_DISTRICTS[name];
+    const tierClass = d.score >= 70 ? "tier-high" : (d.score >= 50 ? "tier-mid" : "tier-low");
+    const dMlas = HAP_MLAS.filter(m => d.seats.includes(m.no));
+    const waCompare = HAP_CIVIC_HELPERS.getWhatsAppCompareLink(name, name === "Shimla" ? "Mandi" : "Shimla");
+
+    const modal = document.getElementById("district-modal");
+    const content = document.getElementById("district-modal-content");
+    if (!modal || !content) return;
+
+    let mlasList = dMlas.map(m => `
+      <div style="display:flex; justify-content:space-between; align-items:center; background:var(--bg); border:1px solid var(--border); padding:6px 10px; font-size:12px; margin-bottom:6px;">
+        <div>
+          <span style="font-weight:700;">${m.mla}</span>
+          <span style="font-family:'IBM Plex Mono',monospace; color:var(--text3); font-size:10px;"> (#${m.no} ${m.constituency})</span>
+        </div>
+        <div style="display:flex; gap:6px; align-items:center;">
+          <span class="mla-party-tag ${m.party.toLowerCase()}" style="font-size:9px; padding:1px 5px;">${m.party}</span>
+          <a href="${HAP_CIVIC_HELPERS.getWhatsAppMLALink(m)}" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:700; background:#25D366; color:#111; padding:2px 6px; text-decoration:none;">WhatsApp</a>
+        </div>
+      </div>
+    `).join("");
+
+    content.innerHTML = `
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px;">
+        <div>
+          <div style="font-family:'Space Grotesk',sans-serif; font-size:28px; font-weight:700;">${d.name}</div>
+          <span class="tier-badge ${tierClass}" style="margin-top:6px;">${d.tier}</span>
+        </div>
+        <div class="dsc-rank" style="font-size:14px; padding:6px 12px;">Rank #${d.rank} of 12</div>
+      </div>
+
+      <div class="dsc-score-row" style="margin-bottom:16px;">
+        <div class="dsc-score-big" style="font-size:52px;">${d.score}</div>
+        <div class="dsc-score-label">/ 100<br>COMPOSITE ACCOUNTABILITY SCORE</div>
+      </div>
+
+      <div class="dsc-metrics-row" style="margin-bottom:18px;">
+        <div><div class="dsc-sub-k">Unresolved</div><div class="dsc-sub-v hot">${d.neglect}%</div></div>
+        <div><div class="dsc-sub-k">Field Reports</div><div class="dsc-sub-v">${d.count}</div></div>
+        <div><div class="dsc-sub-k">Primary Concern</div><div class="dsc-sub-v">${d.top}</div></div>
+      </div>
+
+      <p style="font-size:14px; color:var(--text2); line-height:1.5; margin-bottom:18px;">${d.summary}</p>
+
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:700; text-transform:uppercase; color:var(--text3); margin-bottom:8px;">The 5 Pillars:</div>
+      <div class="dsc-pillars-box" style="margin-bottom:20px;">
+        <div class="dp-row"><span>🛣️ Roads</span><div class="dp-track"><div class="dp-fill lead" style="width:${d.pwd}%;"></div></div><span>${d.pwd}</span></div>
+        <div class="dp-row"><span>💧 Water</span><div class="dp-track"><div class="dp-fill lead" style="width:${d.water}%;"></div></div><span>${d.water}</span></div>
+        <div class="dp-row"><span>🏥 Health</span><div class="dp-track"><div class="dp-fill lead" style="width:${d.health}%;"></div></div><span>${d.health}</span></div>
+        <div class="dp-row"><span>⚡ Power</span><div class="dp-track"><div class="dp-fill lead" style="width:${d.power}%;"></div></div><span>${d.power}</span></div>
+        <div class="dp-row"><span>🎓 Youth</span><div class="dp-track"><div class="dp-fill lead" style="width:${d.youth}%;"></div></div><span>${d.youth}</span></div>
+      </div>
+
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:700; text-transform:uppercase; color:var(--text3); margin-bottom:8px;">Assembly Constituencies (${d.seats.length} Seats):</div>
+      <div style="max-height:160px; overflow-y:auto; margin-bottom:20px;">
+        ${mlasList}
+      </div>
+
+      <div style="display:flex; gap:8px; flex-wrap:wrap; border-top:1.5px solid var(--border3); padding-top:16px;">
+        <button class="btn-primary" onclick="closeDistrictModal(); startCompare('${d.name}')">Compare This District</button>
+        <button class="btn-ghost-sm" onclick="closeDistrictModal(); viewDistrictMlas('${d.name}')">View MLAs</button>
+        <a href="${waCompare}" target="_blank" rel="noopener" class="btn-ghost-sm" style="background:#25D366; color:#111; border-color:#1ba851;">Share Report Card</a>
+      </div>
+    `;
+
+    modal.style.display = "flex";
+  };
+
+  window.closeDistrictModal = function(e) {
+    const modal = document.getElementById("district-modal");
+    if (modal) modal.style.display = "none";
+  };
+
+  // Close modal on Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeDistrictModal();
+  });
+
+  // Routing on init
+  const hash = window.location.hash.replace("#", "");
+  const urlParams = new URLSearchParams(window.location.search);
+  const qMla = urlParams.get("mla");
+  const qD1 = urlParams.get("d1");
+  const qD2 = urlParams.get("d2");
+
+  if (qMla) {
+    switchDashboardView("mlas", false);
+    setTimeout(() => {
+      const s = document.getElementById("dash-mla-search");
+      if (s) { s.value = qMla; filterDashMlas(); }
+    }, 100);
+  } else if (qD1 && qD2) {
+    dashCmpD1 = qD1;
+    dashCmpD2 = qD2;
+    switchDashboardView("compare", false);
+  } else if (hash === "scores" || hash === "compare" || hash === "mlas") {
+    switchDashboardView(hash, false);
+  }
+
+  window.addEventListener("hashchange", () => {
+    const h = window.location.hash.replace("#", "");
+    if (["map", "scores", "compare", "mlas"].includes(h)) {
+      switchDashboardView(h, false);
+    }
+  });
+
+// Initialize on DOM ready
+document.addEventListener("DOMContentLoaded", function() {
+  const hash = window.location.hash.replace("#", "");
+  const urlParams = new URLSearchParams(window.location.search);
+  const qMla = urlParams.get("mla");
+  const qD1 = urlParams.get("d1");
+  const qD2 = urlParams.get("d2");
+
+  if (qMla) {
+    switchDashboardView("mlas", false);
+    setTimeout(function() {
+      const s = document.getElementById("dash-mla-search");
+      if (s) { s.value = qMla; filterDashMlas(); }
+    }, 100);
+  } else if (qD1 && qD2) {
+    dashCmpD1 = qD1;
+    dashCmpD2 = qD2;
+    switchDashboardView("compare", false);
+  } else if (hash === "scores" || hash === "compare" || hash === "mlas") {
+    switchDashboardView(hash, false);
+  } else {
+    switchDashboardView("map", false);
+  }
+});
+</script>
 <script>
 (function(){
   var s=document.createElement("script");
@@ -1859,7 +2958,7 @@ const PARTY_COL={"INC":"#3b82f6","BJP":"#f59e0b","IND":"#a855f7","Independent":"
 
 // ---- MAP INIT ----
 const isDark = document.documentElement.getAttribute("data-theme") === "dark";
-const map = L.map("map",{center:[31.8,77.2],zoom:7,zoomControl:true,attributionControl:true});
+const map = window._leafletMap = L.map("map",{center:[31.8,77.2],zoom:7,zoomControl:true,attributionControl:true});
 const tileLayer = L.tileLayer(isDark
   ? "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}"
   : "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}",{
@@ -1978,14 +3077,18 @@ function onEachDistrict(feature,layer){
 
 function distPopupHTML(name,d,tot){
   const pct=tot&&d.count?Math.round((d.count/tot)*100):0;
+  const pScore = (typeof HAP_DISTRICTS !== "undefined" && HAP_DISTRICTS[name]) ? HAP_DISTRICTS[name].score : null;
+  const rank = (typeof HAP_DISTRICTS !== "undefined" && HAP_DISTRICTS[name]) ? HAP_DISTRICTS[name].rank : null;
   return `<div class="popup-name">${name}</div>`+
+    (pScore !== null ? `<div class="popup-row"><span class="popup-key">Score / Rank</span><span class="popup-val" style="font-weight:700;color:var(--amber);">${pScore} (Rank #${rank})</span></div>` : "")+
     `<div class="popup-row"><span class="popup-key">Reports filed</span><span class="popup-val hot">${d.count}</span></div>`+
     (tot?`<div class="popup-row"><span class="popup-key">State share</span><span class="popup-val">${pct}%</span></div>`:"")+
     `<div class="popup-row"><span class="popup-key">Top issue</span><span class="popup-val">${d.top||"—"}</span></div>`+
     `<div class="popup-row"><span class="popup-key">Unresolved</span><span class="popup-val hot">${d.neglect||"—"}%</span></div>`+
     `<div class="popup-row"><span class="popup-key">Roads</span><span class="popup-val">${d.cats?d.cats.roads:0}</span></div>`+
     `<div class="popup-row"><span class="popup-key">Water</span><span class="popup-val">${d.cats?d.cats.water:0}</span></div>`+
-    `<div class="popup-row"><span class="popup-key">Health</span><span class="popup-val">${d.cats?d.cats.health:0}</span></div>`;
+    `<div class="popup-row"><span class="popup-key">Health</span><span class="popup-val">${d.cats?d.cats.health:0}</span></div>`+
+    `<button class="btn-ghost" style="width:100%;margin-top:10px;border:1.5px solid var(--border3);background:var(--bg2);color:var(--text);font-size:10px;font-weight:700;padding:6px 8px;cursor:pointer;" onclick="openDistrictModal('${name}')">View Full District Snapshot &rarr;</button>`;
 }
 
 function updateDistrictLegend(){
@@ -2240,7 +3343,394 @@ window.generateRTI = function(id) {
   const item = FEED_ITEMS.find(i => i.id === id);
   const win = window.open("", "_blank");
   win.document.write(`
-    <html><head><title>RTI Draft</title><style>body{font-family:serif; padding:40px; line-height:1.6; max-width:800px; margin:auto;}</style>
+    <html><head><title>RTI Draft</title><style>body{font-family:serif; padding:40px; line-height:1.6; max-width:800px; margin:auto;}
+/* ─── YOUTHPOWER VIEW SWITCHER STRIP ─── */
+.view-switcher-bar {
+  background: var(--bg2);
+  border-bottom: 1.5px solid var(--border3);
+  position: sticky;
+  top: 59px;
+  z-index: 990;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.view-switcher-inner {
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 8px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.view-nav-tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.view-nav-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 8px 14px;
+  background: transparent;
+  color: var(--text2);
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+.view-nav-btn:hover {
+  color: var(--text);
+  background: var(--bg3);
+  border-color: var(--border);
+}
+.view-nav-btn.active {
+  color: var(--text);
+  background: var(--bg);
+  border: 1.5px solid var(--border3);
+  box-shadow: 1px 1px 0 var(--border3);
+}
+.vbtn-icon { font-size: 13px; }
+
+.btn-ghost-sm {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border3);
+  padding: 6px 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+.btn-ghost-sm:hover {
+  background: var(--bg3);
+}
+
+/* ─── PANE TRANSITIONS ─── */
+.dash-pane {
+  display: none;
+}
+.dash-pane.active {
+  display: block;
+}
+
+/* ─── DISTRICT SCORES VIEW ─── */
+.scores-hero-panel {
+  background: var(--bg2);
+  border: 1.5px solid var(--border3);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+.scores-panel-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.scores-heading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.1;
+}
+.scores-lede {
+  color: var(--text2);
+  font-size: 14px;
+  max-width: 800px;
+  margin-top: 6px;
+}
+.scores-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+.tier-chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.tier-chip-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 11px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text2);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.tier-chip-btn:hover {
+  border-color: var(--border3);
+  color: var(--text);
+}
+.tier-chip-btn.active {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+
+/* 12 District Cards Grid */
+.districts-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 20px;
+  margin-bottom: 32px;
+}
+.dist-score-card {
+  background: var(--bg2);
+  border: 1.5px solid var(--border3);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.dist-score-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+.dsc-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+.dsc-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+}
+.dsc-rank {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border: 1px solid var(--border3);
+  background: var(--bg);
+  color: var(--text);
+}
+.dsc-score-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.dsc-score-big {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--text);
+}
+.dsc-score-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--text3);
+}
+
+.tier-badge {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  width: fit-content;
+}
+.tier-high {
+  background: rgba(92, 122, 82, 0.15);
+  color: var(--sage);
+  border: 1px solid var(--sage);
+}
+.tier-mid {
+  background: rgba(217, 140, 61, 0.15);
+  color: var(--amber);
+  border: 1px solid var(--amber);
+}
+.tier-low {
+  background: rgba(162, 59, 46, 0.15);
+  color: var(--stamp);
+  border: 1px solid var(--stamp);
+}
+
+.dsc-metrics-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 8px 10px;
+}
+.dsc-sub-k {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  color: var(--text3);
+  text-transform: uppercase;
+}
+.dsc-sub-v {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+.dsc-sub-v.hot { color: var(--stamp); }
+
+/* Pillars Mini Bars */
+.dsc-pillars-box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+}
+.dp-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 34px;
+  gap: 8px;
+  align-items: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--text2);
+}
+.dp-track {
+  height: 6px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.dp-fill {
+  height: 100%;
+  background: var(--text);
+}
+.dp-fill.lead {
+  background: var(--amber);
+}
+
+.dsc-actions {
+  display: flex;
+  gap: 6px;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+.dsc-btn {
+  flex: 1;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 6px 8px;
+  background: var(--bg);
+  border: 1px solid var(--border3);
+  color: var(--text);
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.dsc-btn:hover {
+  background: var(--bg3);
+}
+
+/* Leaderboard Table */
+.leaderboard-table-wrap {
+  background: var(--bg2);
+  border: 1.5px solid var(--border3);
+  padding: 20px;
+  overflow-x: auto;
+}
+.lb-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+}
+.lb-table th {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text3);
+  padding: 10px 14px;
+  border-bottom: 2px solid var(--border3);
+}
+.lb-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+.lb-table tr:hover td {
+  background: var(--bg3);
+  cursor: pointer;
+}
+
+/* ─── MODAL STYLES ─── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+}
+.modal-dialog {
+  background: var(--bg2);
+  border: 2px solid var(--border3);
+  box-shadow: 4px 4px 0 var(--border3);
+  max-width: 680px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 28px;
+  position: relative;
+}
+.modal-close-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 32px;
+  height: 32px;
+  background: var(--bg);
+  border: 1px solid var(--border3);
+  color: var(--text);
+  font-size: 16px;
+  font-family: 'IBM Plex Mono', monospace;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-close-btn:hover {
+  background: var(--stamp);
+  color: #fff;
+}
+
+</style>
 </head><body>
     <h2>Right to Information Act, 2005</h2>
     <p><b>To:</b> Public Information Officer, ${item.dept || 'Relevant Department'}, District ${item.district}, Himachal Pradesh</p>
@@ -2341,6 +3831,8 @@ document.getElementById("neglect-list").innerHTML=CONSTITUENCY_NEGLECT.map(m=>{
     </div>`;
   }).join("");
 
+
+  
 } // end initDashboard
 </script>
 
@@ -2384,5 +3876,14 @@ document.getElementById("neglect-list").innerHTML=CONSTITUENCY_NEGLECT.map(m=>{
 </script>
 
 <script src="translate-widget.js"></script>
+
+<!-- DISTRICT SNAPSHOT MODAL -->
+<div id="district-modal" class="modal-overlay" style="display:none;" onclick="closeDistrictModal(event)">
+  <div class="modal-dialog" onclick="event.stopPropagation()">
+    <button class="modal-close-btn" onclick="closeDistrictModal()" aria-label="Close modal">&times;</button>
+    <div id="district-modal-content"></div>
+  </div>
+</div>
+
 </body>
 </html>
