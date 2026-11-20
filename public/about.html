@@ -5,10 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Us — Himachal Accountability Project</title>
-  <meta name="description" content="The team and mission behind the Himachal Accountability Project — an independent, citizen-run civic grievance tracker mapping administrative neglect across HP.">
+  <meta name="description" content="Making Himachal's democracy work for every citizen. The team, mission, and independent civic data infrastructure behind the Himachal Accountability Project.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- THEME MANAGER -->
   <script>
@@ -28,375 +28,914 @@
   </script>
 
   <style>
-    :root{
-      --paper:#ECEEDF;--paper-deep:#DFE2CE;--paper-line:rgba(30,42,34,0.14);
-      --ink:#1E2A22;--ink-soft:rgba(30,42,34,0.68);--ink-faint:rgba(30,42,34,0.42);
-      --slate:#283740;--slate-deep:#1F2B32;
-      --cream:#F3F1E6;--cream-soft:rgba(243,241,230,0.72);--cream-faint:rgba(243,241,230,0.46);
-      --amber:#D98C3D;--amber-deep:#B96B27;
-      --stamp:#A23B2E;--sage:#5C7A52;--line:#8FA083;
-      --header-bg: rgba(236,238,223,0.7);
-      --maxw:1180px;--pad:clamp(24px,6vw,64px);--section-pad:clamp(64px,10vw,120px);
+    :root {
+      --paper: #ECEEDF;
+      --paper-deep: #DFE2CE;
+      --paper-line: rgba(30, 42, 34, 0.14);
+      --ink: #1E2A22;
+      --ink-soft: rgba(30, 42, 34, 0.68);
+      --ink-faint: rgba(30, 42, 34, 0.42);
+      --slate: #283740;
+      --slate-deep: #1F2B32;
+      --cream: #F3F1E6;
+      --cream-soft: rgba(243, 241, 230, 0.72);
+      --cream-faint: rgba(243, 241, 230, 0.46);
+      --amber: #D98C3D;
+      --amber-deep: #B96B27;
+      --stamp: #A23B2E;
+      --sage: #5C7A52;
+      --line: #8FA083;
+      --header-bg: rgba(236, 238, 223, 0.85);
+      --glass-bg: rgba(243, 241, 230, 0.85);
+      --glass-blur: blur(12px);
+      --border: rgba(30, 42, 34, 0.12);
+      --border2: rgba(30, 42, 34, 0.22);
+      --border3: rgba(30, 42, 34, 0.35);
+      --bg: #ECEEDF;
+      --bg2: #DFE2CE;
+      --bg3: #D4D7C2;
+      --bg4: #E4E7D6;
+      --bg5: #ECEEDF;
+      --text: #1E2A22;
+      --text2: rgba(30, 42, 34, 0.72);
+      --text3: rgba(30, 42, 34, 0.50);
+      --card-radius: 4px;
+      --transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+      --red-bg: rgba(162, 59, 46, 0.08);
+      --red-mid: rgba(162, 59, 46, 0.25);
     }
-    [data-theme="dark"]{
-      --paper:#111914;--paper-deep:#182018;--paper-line:rgba(180,200,170,0.12);
-      --ink:#D8E4D0;--ink-soft:rgba(216,228,208,0.68);--ink-faint:rgba(216,228,208,0.38);
-      --slate:#1A2830;--slate-deep:#111D24;
-      --cream:#1E2A22;--cream-soft:rgba(30,42,34,0.80);--cream-faint:rgba(30,42,34,0.50);
-      --amber:#E09B50;--amber-deep:#C87A30;
-      --stamp:#C4584A;--sage:#7A9E6E;--line:#5C7A52;
-      --header-bg: rgba(17,25,20,0.7);
-    }
-    body,.site-header,.masthead,.team-card,.value-cell,.involve-card,footer{
-      transition:background-color 0.25s ease,color 0.25s ease,border-color 0.25s ease;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;background:var(--paper);color:var(--ink);
-      font-family:'IBM Plex Sans',sans-serif;font-size:16px;line-height:1.6;
-      -webkit-font-smoothing:antialiased;position:relative;
-    }
-    body::before{
-      content:"";position:fixed;top:0;left:0;right:0;bottom:0;z-index:-1;
-      background-image:url('images/bg8.jpg');background-size:cover;background-position:center;
-      opacity:0.15;pointer-events:none;transition:opacity 0.25s ease;
-    }
-    [data-theme="dark"] body::before{opacity:0.045}
-    img,svg{display:block;max-width:100%}
-    a{color:inherit;text-decoration:none}
-    h1,h2,h3{font-family:'Space Grotesk',sans-serif;font-weight:600;margin:0;letter-spacing:-0.01em}
-    .mono{font-family:'IBM Plex Mono',monospace}
-    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
-    :focus-visible{outline:2px solid var(--amber);outline-offset:3px}
 
-    /* ── ANN BAR ── */
-    .ann-bar{
-      background:#D8E4D0;color:#1E2A22;
-      font-family:'IBM Plex Mono',monospace;font-size:0.72rem;letter-spacing:0.05em;
-      padding:8px 20px;text-align:center;
+    [data-theme="dark"] {
+      --paper: #111914;
+      --paper-deep: #182018;
+      --paper-line: rgba(180, 200, 170, 0.12);
+      --ink: #D8E4D0;
+      --ink-soft: rgba(216, 228, 208, 0.68);
+      --ink-faint: rgba(216, 228, 208, 0.38);
+      --slate: #1A2830;
+      --slate-deep: #111D24;
+      --cream: #1E2A22;
+      --cream-soft: rgba(30, 42, 34, 0.80);
+      --cream-faint: rgba(30, 42, 34, 0.50);
+      --amber: #E09B50;
+      --amber-deep: #C87A30;
+      --stamp: #C4584A;
+      --sage: #7A9E6E;
+      --line: #5C7A52;
+      --header-bg: rgba(17, 25, 20, 0.85);
+      --glass-bg: rgba(30, 42, 34, 0.85);
+      --glass-blur: blur(12px);
+      --border: rgba(180, 200, 170, 0.12);
+      --border2: rgba(180, 200, 170, 0.22);
+      --border3: rgba(180, 200, 170, 0.35);
+      --bg: #111914;
+      --bg2: #182018;
+      --bg3: #1E2A22;
+      --bg4: #243228;
+      --bg5: #1A241C;
+      --text: #D8E4D0;
+      --text2: rgba(216, 228, 208, 0.72);
+      --text3: rgba(216, 228, 208, 0.45);
+      --red-bg: rgba(196, 88, 74, 0.12);
+      --red-mid: rgba(196, 88, 74, 0.35);
     }
-    [data-theme="dark"] .ann-bar{background:#1a2a1a;color:rgba(216,228,208,0.72)}
-    .ann-bar b{font-weight:600;color:#C87A30}
 
-    /* ── MASTHEAD ── */
-    .masthead{
-      padding:16px var(--pad);border-bottom:1px solid var(--paper-line);
-      background:var(--header-bg);backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-      position:sticky;top:0;z-index:50;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; min-height: 100%; }
+    
+    body {
+      background: linear-gradient(rgba(17, 25, 20, 0.85), rgba(17, 25, 20, 0.85)), url('images/bg8.jpg') no-repeat center center fixed !important;
+      background-size: cover !important;
+      color: var(--text);
+      font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      position: relative;
+      transition: var(--transition);
     }
-    .masthead-inner{
-      max-width:var(--maxw);margin:0 auto;
-      display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;position:relative;
-    }
-    .masthead-left{display:flex;align-items:center;gap:12px;min-width:0}
-    .brand{display:flex;align-items:center;gap:12px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.95rem;letter-spacing:0.01em}
-    .brand-logo{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--ink);object-fit:cover;flex-shrink:0}
-    .brand-text{display:flex;flex-direction:column;line-height:1.15}
-    .brand-text small{font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:0.62rem;letter-spacing:0.1em;color:var(--ink-faint);text-transform:uppercase}
-    .masthead-right{display:flex;align-items:center;gap:12px;flex:1;justify-content:flex-end}
-    .masthead-links{display:flex;align-items:center;gap:12px;flex:1;justify-content:space-evenly}
-    .btn{
-      font-family:'IBM Plex Mono',monospace;font-size:0.78rem;letter-spacing:0.04em;text-transform:uppercase;
-      border:1.5px solid var(--ink);padding:11px 18px;display:inline-flex;align-items:center;gap:8px;
-      white-space:nowrap;transition:background-color .15s ease,color .15s ease,transform .15s ease;cursor:pointer;background:transparent;
-    }
-    .btn-primary{background:var(--ink);color:var(--cream)}
-    .btn-primary:hover{background:var(--slate);transform:translateY(-1px)}
-    .btn-ghost{
-      font-family:'IBM Plex Mono',monospace;font-size:0.78rem;font-weight:600;
-      text-transform:uppercase;letter-spacing:0.08em;padding:8px 14px;
-      background:transparent;border:1px solid transparent;
-      transition:all 0.15s;white-space:nowrap;color:var(--ink-soft);cursor:pointer;
-    }
-    .btn-ghost:hover{background:var(--paper-deep);color:var(--ink)}
-    .btn-ghost.active{border-color:var(--ink);background:var(--paper-deep);color:var(--ink)}
-    .theme-toggle-btn,.menu-toggle-btn{
-      background:transparent;border:1px solid var(--paper-line);
-      width:36px;height:36px;display:flex;align-items:center;justify-content:center;
-      cursor:pointer;color:var(--ink);transition:all 0.15s;
-    }
-    .theme-toggle-btn:hover,.menu-toggle-btn:hover{background:var(--paper-deep)}
-    .theme-toggle-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8}
-    .icon-sun{display:none}.icon-moon{display:block}
-    [data-theme="dark"] .icon-sun{display:block}[data-theme="dark"] .icon-moon{display:none}
-    .menu-toggle-btn{display:none}
-    .mobile-dropdown{display:none}
 
-    /* ── EYEBROW ── */
-    .eyebrow{
-      font-family:'IBM Plex Mono',monospace;font-size:0.72rem;letter-spacing:0.16em;
-      text-transform:uppercase;color:var(--sage);display:flex;align-items:center;gap:10px;margin-bottom:16px;
-    }
-    .eyebrow::before{content:"";width:18px;height:1px;background:var(--sage);display:inline-block}
-    .eyebrow.on-dark{color:#B7C9A8}
-    .eyebrow.on-dark::before{background:#B7C9A8}
-    .eyebrow.red{color:var(--stamp)}
-    .eyebrow.red::before{background:var(--stamp)}
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-spacing: -0.015em; line-height: 1.2; color: var(--text); }
+    .mono { font-family: 'IBM Plex Mono', monospace; }
 
-    /* ── REVEAL ── */
-    .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
-    .reveal.is-visible{opacity:1;transform:translateY(0)}
+    /* ─── ANNOUNCEMENT BAR (Identical to Dashboard) ─── */
+    .ann-bar {
+      background: var(--red-bg);
+      border-bottom: 1px solid var(--red-mid);
+      padding: 8px 24px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--text3);
+      text-align: center;
+      letter-spacing: 0.03em;
+      transition: var(--transition);
+    }
+    .ann-bar b {
+      color: var(--text);
+      font-weight: 600;
+    }
 
-    /* ── SECTION ── */
-    .section{padding:var(--section-pad) 0}
-    .section-head{max-width:640px;margin-bottom:clamp(40px,6vw,64px)}
-    .section-head h2{font-size:clamp(1.7rem,3.6vw,2.5rem)}
-    .section-head p{margin-top:14px;color:var(--ink-soft);font-size:1rem;max-width:52ch}
-
-    /* ── PAGE HERO ── */
-    .page-hero{
-      padding:clamp(56px,8vw,96px) 0 clamp(40px,6vw,72px);
-      border-bottom:1px solid var(--paper-line);
+    /* ─── MASTHEAD (Identical to Dashboard) ─── */
+    .masthead {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: var(--transition);
     }
-    .page-hero h1{
-      font-size:clamp(2.2rem,5vw,4rem);line-height:1.06;letter-spacing:-0.03em;
-      margin-bottom:18px;max-width:700px;
-    }
-    .page-hero h1 em{font-style:normal;color:var(--amber)}
-    .page-hero .hero-sub{
-      font-size:1.06rem;color:var(--ink-soft);line-height:1.7;max-width:52ch;margin-bottom:32px;
-    }
-    .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
-
-    /* ── MISSION DARK BAND ── */
-    .band-dark{background:transparent;color:#F3F1E6;}
-    [data-theme="dark"] .band-dark{background:transparent;color:#D8E4D0;}
-    .band-dark .eyebrow{color:#B7C9A8}
-    .band-dark .eyebrow::before{background:#B7C9A8}
-    .band-dark h2{color:#F3F1E6}
-    [data-theme="dark"] .band-dark h2{color:#D8E4D0}
-    .band-dark .section-head p{color:rgba(243,241,230,0.72)}
-    [data-theme="dark"] .band-dark .section-head p{color:rgba(216,228,208,0.68)}
-    .mission-grid{
-      display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,64px);align-items:start;
-    }
-    .mission-stats{
-      display:grid;grid-template-columns:1fr 1fr;gap:1px;
-      background:rgba(255,255,255,0.08);
-    }
-    [data-theme="dark"] .mission-stats{background:rgba(216,228,208,0.08)}
-    .ms-cell{background:rgba(255,255,255,0.04);padding:24px 20px}
-    [data-theme="dark"] .ms-cell{background:rgba(216,228,208,0.04)}
-    .ms-num{
-      font-family:'IBM Plex Mono',monospace;font-size:32px;font-weight:700;
-      color:#F3F1E6;letter-spacing:-0.02em;line-height:1;margin-bottom:4px;
-    }
-    [data-theme="dark"] .ms-num{color:#D8E4D0}
-    .ms-num span{font-size:16px;font-weight:400;color:#B7C9A8}
-    .ms-label{font-size:11px;color:#B7C9A8;text-transform:uppercase;letter-spacing:0.08em;font-weight:600}
-
-    /* ── TEAM CARDS ── */
-    .team-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--paper-line)}
-    .team-card{
-      background:rgba(243,241,230,0.85);backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);padding:clamp(26px,4vw,38px);
-      position:relative;overflow:hidden;
-    }
-    [data-theme="dark"] .team-card { background:rgba(30,42,34,0.85); }
-    .team-card.lead {
-      grid-column: 1 / -1;
+    .masthead-inner {
+      max-width: 1380px;
+      margin: 0 auto;
       display: flex;
-      padding: 0;
-      min-height: 380px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
     }
-    .team-lead-img {
-      width: 40%;
-      height: auto;
+    .masthead-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1.5px solid var(--ink);
       object-fit: cover;
       flex-shrink: 0;
+    }
+    .brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+    .brand-text small {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 400;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      color: var(--text3);
+      text-transform: uppercase;
+    }
+
+    .masthead-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .masthead-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .btn-ghost {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text2);
+      text-decoration: none;
+      padding: 8px 14px;
+      border: 1px solid transparent;
+      transition: var(--transition);
+      white-space: nowrap;
+      cursor: pointer;
+      background: transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-ghost:hover {
+      background: var(--bg4);
+      color: var(--text);
+    }
+    .btn-ghost.active {
+      border-color: var(--text);
+      background: var(--bg5);
+      color: var(--text);
+    }
+    
+    .btn-primary {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--bg);
+      background: var(--text);
+      padding: 8px 18px;
+      border: 1px solid var(--text);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-primary:hover {
+      background: var(--amber);
+      color: #111914;
+      border-color: var(--amber-deep);
+    }
+
+    .theme-toggle-btn, .menu-toggle-btn {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid var(--border3);
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .theme-toggle-btn:hover, .menu-toggle-btn:hover {
+      background: var(--text);
+      color: var(--bg2);
+    }
+    .theme-toggle-btn svg, .menu-toggle-btn svg { width: 16px; height: 16px; }
+    .icon-sun { display: none; }
+    .icon-moon { display: block; }
+    [data-theme="dark"] .icon-sun { display: block; }
+    [data-theme="dark"] .icon-moon { display: none; }
+    .menu-toggle-btn { display: none; }
+
+    .mobile-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--bg);
+      border-bottom: 2px solid var(--border3);
+      padding: 12px 24px;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .dropdown-link {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--text2);
+      text-decoration: none;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .dropdown-link.active { color: var(--amber); }
+
+    /* ─── ABOUT PAGE WRAP & HERO ─── */
+    .about-wrap {
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 36px 24px 80px;
+    }
+
+    .about-kicker {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--amber);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .kicker-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      background: var(--amber);
+      border-radius: 50%;
+    }
+
+    .about-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.1rem, 4.2vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      max-width: 980px;
+      margin-bottom: 28px;
+    }
+
+    /* ─── SUB-NAVIGATION TABS (Identical to YouthPOWER) ─── */
+    .about-tabs-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1.5px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 40px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .about-tab {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text2);
+      background: transparent;
+      border: 1px solid transparent;
+      padding: 9px 18px;
+      border-radius: var(--card-radius);
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    .about-tab:hover {
+      color: var(--text);
+      background: var(--bg4);
+    }
+    .about-tab.active {
+      color: var(--text);
+      background: var(--bg3);
+      border-color: var(--border3);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    /* ─── TAB CONTENT PANES ─── */
+    .tab-pane {
+      display: none;
+      animation: fadeIn 0.25s ease forwards;
+    }
+    .tab-pane.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── TWO-COLUMN WORK SECTION (Identical to YouthPOWER) ─── */
+    .about-a-cols {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .about-main-col h2 {
+      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+    .about-prose p {
+      font-size: 1.05rem;
+      line-height: 1.72;
+      color: var(--text2);
+      margin-bottom: 20px;
+    }
+    .about-prose p strong, .about-prose p b {
+      color: var(--text);
+      font-weight: 600;
+    }
+    .about-prose a {
+      color: var(--amber);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      transition: var(--transition);
+    }
+    .about-prose a:hover {
+      color: var(--text);
+    }
+
+    .action-links-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin: 32px 0 44px;
+    }
+    .action-btn-outline {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 10px 18px;
+      border: 1.5px solid var(--border3);
+      background: var(--bg2);
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: var(--card-radius);
+      transition: var(--transition);
+    }
+    .action-btn-outline:hover {
+      border-color: var(--amber);
+      color: var(--amber);
+      background: var(--bg3);
+      transform: translateY(-1px);
+    }
+
+    /* Official Position / Line We Hold Quote Box */
+    .quote-box {
+      background: var(--bg2);
+      border-left: 3px solid var(--amber);
+      border: 1px solid var(--border);
+      border-left-width: 4px;
+      padding: 24px 28px;
+      margin: 36px 0;
+      border-radius: var(--card-radius);
+    }
+    .quote-box .quote-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--amber);
+      margin-bottom: 12px;
+    }
+    .quote-box blockquote {
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: var(--text);
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+    .quote-box .quote-foot {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--text3);
+    }
+
+    /* Core Principles 4-Grid */
+    .principles-head {
+      margin-top: 48px;
+      margin-bottom: 20px;
+    }
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+    }
+    .principle-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      padding: 22px;
+      border-radius: var(--card-radius);
+      transition: var(--transition);
+    }
+    .principle-card:hover {
+      border-color: var(--border3);
+    }
+    .principle-card .p-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--amber);
+      letter-spacing: 0.12em;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .principle-card h4 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+    .principle-card p {
+      font-size: 0.92rem;
+      color: var(--text2);
+      line-height: 1.6;
+    }
+
+    /* ─── SIDEBAR COLUMN (In numbers & Join cards) ─── */
+    .about-sidebar-col {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      position: sticky;
+      top: 96px;
+    }
+
+    .sidebar-card {
+      background: var(--bg2);
+      border: 1px solid var(--border2);
+      border-radius: var(--card-radius);
+      padding: 24px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+    .sidebar-card-head {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--amber);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Numbers Rows */
+    .stat-list {
+      display: flex;
+      flex-direction: column;
+    }
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 10px 0;
+      border-bottom: 1px dashed var(--border);
+      font-size: 13px;
+    }
+    .stat-row:last-child {
+      border-bottom: none;
+    }
+    .stat-row-label {
+      color: var(--text2);
+      font-family: 'IBM Plex Sans', sans-serif;
+    }
+    .stat-row-val {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text);
+    }
+    .stat-row-val.highlight {
+      color: var(--amber);
+    }
+
+    /* Join CTA card in sidebar */
+    .sidebar-cta-card {
+      background: var(--bg3);
+      border: 1px solid var(--border3);
+      border-radius: var(--card-radius);
+      padding: 24px;
+    }
+    .sidebar-cta-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    .sidebar-cta-card p {
+      font-size: 0.92rem;
+      color: var(--text2);
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+    .sidebar-cta-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 10px 14px;
+      background: var(--text);
+      color: var(--bg);
+      border-radius: var(--card-radius);
+      transition: var(--transition);
+    }
+    .sidebar-cta-btn:hover {
+      background: var(--amber);
+      color: #111914;
+    }
+
+    /* ─── PEOPLE TAB ─── */
+    .people-section {
+      max-width: 1100px;
+    }
+    .founder-spotlight {
+      background: var(--bg2);
+      border: 1.5px solid var(--border2);
+      border-radius: var(--card-radius);
+      padding: 36px;
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 36px;
+      align-items: start;
+      margin-bottom: 48px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .founder-media {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+    .founder-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      object-position: top center;
+      border: 1.5px solid var(--border3);
+      border-radius: var(--card-radius);
+    }
+    .founder-content h3 {
+      font-size: 1.8rem;
+      margin-bottom: 4px;
+    }
+    .founder-role {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--amber);
+      margin-bottom: 4px;
+    }
+    .founder-loc {
+      font-size: 0.9rem;
+      color: var(--text3);
+      margin-bottom: 16px;
+    }
+    .founder-bio {
+      font-size: 1.02rem;
+      line-height: 1.7;
+      color: var(--text2);
+      margin-bottom: 20px;
+    }
+    .founder-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .f-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      color: var(--text2);
+    }
+    .founder-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .f-link {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 7px 14px;
+      border: 1px solid var(--border3);
+      color: var(--text);
+      background: var(--bg3);
+      border-radius: var(--card-radius);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+    }
+    .f-link:hover {
+      border-color: var(--amber);
+      color: var(--amber);
+    }
+    .f-link svg { width: 14px; height: 14px; }
+
+    /* Team Grid */
+    .contributors-head {
+      margin-bottom: 24px;
+    }
+    .team-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+    .member-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--card-radius);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--transition);
+    }
+    .member-card:hover {
+      border-color: var(--border3);
+      transform: translateY(-2px);
+    }
+    .member-role {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--amber);
+      margin-bottom: 6px;
+    }
+    .member-name {
+      font-size: 1.35rem;
+      margin-bottom: 4px;
+    }
+    .member-loc {
+      font-size: 0.85rem;
+      color: var(--text3);
+      margin-bottom: 14px;
+    }
+    .member-bio {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--text2);
+      margin-bottom: 18px;
+    }
+    .member-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+    .member-card .f-link {
+      align-self: flex-start;
+    }
+
+    /* ─── SUPPORT US TAB ─── */
+    .support-section {
+      max-width: 980px;
+    }
+    .support-card-main {
+      background: var(--bg2);
+      border: 1.5px solid var(--border2);
+      border-radius: var(--card-radius);
+      padding: 36px;
+      margin-bottom: 36px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .support-card-main h2 {
+      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+    .support-prose p {
+      font-size: 1.05rem;
+      line-height: 1.72;
+      color: var(--text2);
+      margin-bottom: 18px;
+    }
+    .support-cta-box {
+      margin: 28px 0;
+      padding: 24px;
+      background: var(--bg3);
+      border: 1px solid var(--border3);
+      border-radius: var(--card-radius);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .support-cta-box h3 {
+      font-size: 1.25rem;
+      margin-bottom: 4px;
+    }
+    .support-cta-box p {
+      font-size: 0.92rem;
+      color: var(--text2);
+      margin: 0;
+    }
+
+    /* Terms List (YouthPOWER style) */
+    .support-terms {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--card-radius);
+      padding: 28px;
+    }
+    .terms-head {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--amber);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .terms-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .terms-list li {
       position: relative;
-      z-index: 1;
+      padding-left: 24px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--text2);
     }
-    .team-lead-content {
-      flex-grow: 1;
-      padding: clamp(26px, 4vw, 38px);
-      position: relative;
-      z-index: 2;
-    }
-    @media (max-width: 820px) {
-      .team-card.lead { flex-direction: column; }
-      .team-lead-img { width: 100%; height: 320px; object-position: center 15%; }
-    }
-    .team-card::after{
-      content:attr(data-initial);position:absolute;bottom:-16px;right:12px;
-      font-family:'Space Grotesk',sans-serif;font-size:96px;font-weight:700;
-      color:var(--paper-line);line-height:1;pointer-events:none;letter-spacing:-0.04em;
-    }
-    .team-role{
-      font-family:'IBM Plex Mono',monospace;font-size:0.68rem;font-weight:600;
-      text-transform:uppercase;letter-spacing:0.14em;color:var(--stamp);
-      margin-bottom:14px;display:flex;align-items:center;gap:7px;
-    }
-    .team-role::before{content:'';width:14px;height:1px;background:var(--stamp)}
-    .team-name{font-family:'Space Grotesk',sans-serif;font-size:1.35rem;font-weight:700;letter-spacing:-0.02em;color:var(--ink);margin-bottom:3px}
-    .team-location{font-family:'IBM Plex Mono',monospace;font-size:0.68rem;color:var(--ink-faint);margin-bottom:18px;letter-spacing:0.04em}
-    .team-bio{font-size:0.9rem;color:var(--ink-soft);line-height:1.7;margin-bottom:18px}
-    .team-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
-    .tag{
-      font-family:'IBM Plex Mono',monospace;font-size:0.66rem;font-weight:600;
-      text-transform:uppercase;letter-spacing:0.06em;
-      padding:3px 9px;background:var(--paper-deep);color:var(--ink-faint);
-      border:1px solid var(--paper-line);
-    }
-    .team-links{display:flex;gap:8px;flex-wrap:wrap}
-    .team-link{
-      font-family:'IBM Plex Mono',monospace;font-size:0.66rem;font-weight:700;
-      text-transform:uppercase;letter-spacing:0.08em;
-      color:var(--ink-faint);border:1.5px solid var(--paper-line);padding:5px 11px;
-      transition:all 0.15s;display:inline-flex;align-items:center;gap:5px;
-    }
-    .team-link:hover{border-color:var(--stamp);color:var(--stamp)}
-    .team-link svg{width:10px;height:10px}
-
-    /* ── VALUES ── */
-    .pillars-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--paper-line);border:1px solid var(--paper-line)}
-    .pillar{background:var(--paper);padding:clamp(26px,4vw,38px);display:flex;flex-direction:column;gap:16px}
-    .pillar-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
-    .pillar-num{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--ink-faint);letter-spacing:0.08em}
-    .pillar-icon{width:40px;height:40px;border:1px solid var(--paper-line);display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--paper-deep)}
-    .pillar-icon svg{width:22px;height:22px;color:var(--ink)}
-    .pillar h3{font-size:1.15rem}
-    .pillar p{color:var(--ink-soft);font-size:0.94rem;margin:0}
-
-    /* ── GET INVOLVED ── */
-    .band-paper-deep{background:var(--paper-deep)}
-    .involve-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--paper-line)}
-    .involve-card{
-      background:var(--paper);border:1px solid var(--ink);
-      padding:clamp(26px,4vw,36px);display:flex;flex-direction:column;height:100%;
-    }
-    .involve-card .card-tag{
-      font-family:'IBM Plex Mono',monospace;font-size:0.7rem;text-transform:uppercase;
-      letter-spacing:0.1em;color:var(--sage);margin-bottom:14px;
-    }
-    .involve-card h3{font-size:1.2rem;margin-bottom:10px}
-    .involve-card p{color:var(--ink-soft);margin:0 0 22px;flex-grow:1;font-size:0.95rem;line-height:1.65}
-
-    /* ── PITCH CARD ── */
-    .pitch-card{
-      background:var(--cream);border:1px solid var(--ink);
-      padding:clamp(28px,5vw,48px);position:relative;max-width:780px;
-    }
-    .pitch-stamp{
-      position:absolute;top:22px;right:24px;width:76px;height:76px;
-      border:1.5px solid var(--stamp);border-radius:50%;color:var(--stamp);
-      display:flex;align-items:center;justify-content:center;text-align:center;
-      transform:rotate(-8deg);font-family:'IBM Plex Mono',monospace;
-      font-size:0.58rem;letter-spacing:0.06em;text-transform:uppercase;line-height:1.25;padding:6px;
-    }
-    .pitch-card blockquote{margin:0;font-size:1.06rem;line-height:1.7;color:var(--ink);padding-right:60px}
-    .pitch-card blockquote p{margin:0 0 14px}
-    .pitch-card blockquote p:last-child{margin-bottom:0}
-    .pitch-foot{
-      margin-top:22px;padding-top:16px;border-top:1px solid var(--paper-line);
-      font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--ink-faint);
-      text-transform:uppercase;letter-spacing:0.08em;
+    .terms-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--sage);
+      font-weight: 700;
     }
 
-    /* ── FOOTER ── */
-    footer{background:rgba(30,42,34,0.7);color:var(--cream-soft);padding:52px 0 30px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
-    .footer-top{
-      display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:24px;
-      padding-bottom:28px;border-bottom:1px solid rgba(243,241,230,0.16);
+    /* ─── FOOTER ─── */
+    footer, .footer {
+      background-color: #1E2A22 !important;
+      color: rgba(243, 241, 230, 0.72) !important;
+      border-top: 1px solid rgba(255,255,255,0.08) !important;
+      padding: 64px 24px 36px;
     }
-    .footer-brand{max-width:360px;flex:1 1 300px}
-    .footer-brand .brand{color:var(--cream);margin-bottom:12px}
-    .footer-brand .brand-logo{border-color:var(--cream)}
-    .footer-brand p{font-size:0.9rem;color:var(--cream-faint)}
-    .footer-socials{display:flex;gap:16px;align-items:center;margin-top:12px}
-    .footer-socials a{color:rgba(243,241,230,0.72);transition:color 0.3s,transform 0.3s;display:flex}
-    .footer-socials a:hover{color:#F3F1E6;transform:translateY(-2px)}
-    .footer-socials svg{width:20px;height:20px;fill:currentColor}
-    .footer-bottom{
-      display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:22px;
-      font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--cream-faint);letter-spacing:0.03em;
+    .footer-inner {
+      max-width: 1380px;
+      margin: 0 auto;
     }
-    .footer-bottom a{color:var(--cream-faint)}
-    .footer-bottom a:hover{color:var(--cream-soft)}
-    .verma-logo{height:16px;width:auto;filter:brightness(0) invert(1) opacity(0.7);transition:filter 0.3s}
-    .verma-logo:hover{filter:brightness(0) invert(1) opacity(1)}
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 32px;
+      flex-wrap: wrap;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-brand .brand {
+      color: #F3F1E6;
+      margin-bottom: 12px;
+    }
+    .footer-brand p {
+      max-width: 460px;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: rgba(243, 241, 230, 0.55);
+    }
+    .footer-socials {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    .footer-socials a {
+      color: rgba(243, 241, 230, 0.72);
+      transition: color 0.25s, transform 0.25s;
+    }
+    .footer-socials a:hover {
+      color: #F3F1E6;
+      transform: translateY(-2px);
+    }
+    .footer-socials svg { width: 22px; height: 22px; fill: currentColor; }
+    
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 24px;
+      font-size: 13px;
+      color: rgba(243, 241, 230, 0.46);
+    }
+    .verma-logo {
+      height: 18px !important;
+      width: auto !important;
+      filter: brightness(0) invert(1) opacity(0.8) !important;
+      transition: filter 0.3s !important;
+    }
+    .verma-logo:hover { filter: brightness(0) invert(1) opacity(1) !important; }
 
-    /* ── NEW SECTIONS ── */
-    .pitch-card{
-      background:rgba(243,241,230,0.85);backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);border:1px solid var(--border);padding:clamp(32px,5vw,48px);
-      position:relative;margin-top:32px;border-radius:4px;
-    }
-    [data-theme="dark"] .pitch-card { background:rgba(30,42,34,0.85); }
-    .pitch-stamp{
-      font-family:'IBM Plex Mono',monospace;font-size:0.75rem;font-weight:600;
-      text-transform:uppercase;letter-spacing:0.1em;color:var(--amber);margin-bottom:24px;
-      display:inline-block;border:1px solid var(--amber);padding:6px 12px;border-radius:40px;
-    }
-    .pitch-card blockquote{
-      font-family:'Space Grotesk',sans-serif;font-size:clamp(18px,2.5vw,24px);line-height:1.5;
-      color:var(--ink);font-weight:500;border-left:3px solid var(--ink);padding-left:24px;margin-bottom:24px;
-    }
-    .pitch-card blockquote p{margin-bottom:16px;color:var(--ink)}
-    .pitch-card blockquote p:last-child{margin-bottom:0}
-    .pitch-foot{font-family:'IBM Plex Sans',sans-serif;font-size:0.9rem;color:var(--ink-soft);font-weight:500}
-
-    .pillars-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;margin-top:48px}
-    .pillar{
-      background:rgba(236,238,223,0.85);backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);border:1px solid var(--border);padding:32px;border-radius:4px;
-      transition:var(--transition);
-    }
-    [data-theme="dark"] .pillar { background:rgba(30,42,34,0.85); }
-    .pillar:hover{background:var(--bg2);border-color:var(--border3)}
-    .pillar-top{
-      display:flex;justify-content:space-between;align-items:center;
-      margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--border);
-    }
-    .pillar-num{font-size:0.75rem;color:var(--ink-faint)}
-    .pillar-icon svg{width:24px;height:24px;color:var(--ink)}
-    .pillar h3{font-family:'Space Grotesk',sans-serif;font-size:1.4rem;margin-bottom:12px;color:var(--ink)}
-    .pillar p{font-size:0.95rem;color:var(--ink-soft);line-height:1.6}
-
-    .involve-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;margin-top:48px}
-    .involve-card{
-      background:rgba(236,238,223,0.85);backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);border:1px solid var(--border);padding:40px;border-radius:4px;
-      display:flex;flex-direction:column;align-items:flex-start;transition:var(--transition);
-    }
-    [data-theme="dark"] .involve-card { background:rgba(30,42,34,0.85); }
-    .involve-card:hover{box-shadow:0 12px 30px rgba(0,0,0,0.05);transform:translateY(-4px)}
-    .card-tag{
-      font-size:0.75rem;font-weight:600;color:var(--amber);margin-bottom:16px;display:inline-block;
-      padding:4px 0;
-    }
-    .involve-card h3{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;margin-bottom:16px;color:var(--ink)}
-    .involve-card p{font-size:1rem;color:var(--ink-soft);line-height:1.6;margin-bottom:32px;flex-grow:1}
-
-    /* ── RESPONSIVE ── */
-    @media(max-width:980px){
-      .mission-grid{grid-template-columns:1fr}
-      .team-grid{grid-template-columns:1fr}
-      .pillars-grid{grid-template-columns:1fr}
-      .involve-grid{grid-template-columns:1fr}
-    }
-    @media(max-width:768px){
-      .masthead-links{display:none}
-      .menu-toggle-btn{display:flex}
-      .mobile-dropdown{
-        position:absolute;top:calc(100% + 4px);right:0;
-        background:var(--cream);border:1px solid var(--paper-line);
-        box-shadow:0 8px 30px rgba(0,0,0,0.2);
-        flex-direction:column;padding:8px 0;min-width:180px;z-index:1001;
-      }
-      .dropdown-link{
-        padding:10px 18px;font-size:0.82rem;font-family:'Space Grotesk',sans-serif;
-        font-weight:500;color:var(--ink);display:block;
-        border-bottom:1px solid var(--paper-line);transition:all 0.15s;
-      }
-      .dropdown-link:last-child{border-bottom:none}
-      .dropdown-link:hover{background:var(--paper-deep)}
-      .dropdown-link.active{font-weight:700}
-      .pitch-stamp{position:static;transform:none;margin-bottom:18px;width:64px;height:64px}
-      .pitch-card blockquote{padding-right:0}
-    }
-    @media(max-width:540px){
-      .brand-text small{display:none}
-    }
-    @media(prefers-reduced-motion:reduce){
-      *{transition-duration:0.01ms !important;animation-duration:0.01ms !important}
+    /* Responsive */
+    @media (max-width: 960px) {
+      .about-a-cols { grid-template-columns: 1fr; }
+      .about-sidebar-col { position: static; }
+      .founder-spotlight { grid-template-columns: 1fr; }
+      .founder-media { max-width: 240px; }
+      .masthead-links { display: none; }
+      .menu-toggle-btn { display: flex; }
     }
   </style>
   <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css"/>
@@ -404,10 +943,10 @@
 <body>
 
 <div class="ann-bar">
-  <b>Independent civic record.</b> &nbsp;Not affiliated with any political party or government body. &nbsp;Data from community field reports.
+  <b>Independent civic record.</b> &nbsp;Not affiliated with any political party or government body. &nbsp;Data from community field reports. &nbsp;Not a government website.
 </div>
 
-<div class="masthead">
+<header class="masthead">
   <div class="masthead-inner">
     <div class="masthead-left">
       <a href="index.html" class="brand">
@@ -419,30 +958,28 @@
       </a>
     </div>
     <div class="masthead-right">
-      <div class="masthead-links">
-        <a class="btn-ghost " id="nav-home" href="index.html">Home</a>
+      <nav class="masthead-links" aria-label="Main Navigation">
+        <a class="btn-ghost" id="nav-home" href="index.html">Home</a>
         <a class="btn-ghost active" id="nav-about" href="about.html">About Us</a>
-        <a class="btn-ghost " id="nav-dashboard" href="dashboard.html">Dashboard</a>
+        <a class="btn-ghost" id="nav-dashboard" href="dashboard.html">Dashboard</a>
         <a class="btn-ghost" id="nav-compare" href="compare.html">Compare</a>
         <a class="btn-ghost" id="nav-mlas" href="mlas.html">Find MLA</a>
-<!--         <a class="btn-ghost " id="nav-perception" href="mla_perception.html">MLA Perception</a> -->
-        <a class="btn-ghost " id="nav-join" href="join.html">Join Us</a>
-        <a class="btn-ghost " id="nav-contact" href="contact.html">Contact Us</a>
-      </div>
+        <a class="btn-ghost" id="nav-join" href="join.html">Join Us</a>
+        <a class="btn-ghost" id="nav-contact" href="contact.html">Contact Us</a>
+      </nav>
 
       <div class="mobile-dropdown" id="mobile-menu" style="display:none">
-        <a class="dropdown-link " href="index.html">Home</a>
+        <a class="dropdown-link" href="index.html">Home</a>
         <a class="dropdown-link active" href="about.html">About Us</a>
-        <a class="dropdown-link " href="dashboard.html">Dashboard</a>
+        <a class="dropdown-link" href="dashboard.html">Dashboard</a>
         <a class="dropdown-link" href="compare.html">Compare Districts</a>
         <a class="dropdown-link" href="mlas.html">Find Your MLA</a>
-<!--         <a class="dropdown-link " href="mla_perception.html">MLA Perception</a> -->
-        <a class="dropdown-link " href="join.html">Join Us</a>
-        <a class="dropdown-link " href="contact.html">Contact Us</a>
+        <a class="dropdown-link" href="join.html">Join Us</a>
+        <a class="dropdown-link" href="contact.html">Contact Us</a>
       </div>
 
       <a class="btn-ghost" href="donate.html">Support Us</a>
-      <a class="btn btn-primary" href="report-issue.html">&#x270E;&nbsp; Report Issue</a>
+      <a class="btn-primary" href="report-issue.html">&#x270E;&nbsp; Report Issue</a>
 
       <button class="menu-toggle-btn" id="menu-toggle" aria-label="Toggle navigation menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;display:block">
@@ -456,334 +993,348 @@
       </button>
     </div>
   </div>
-</div>
+</header>
 
-<main>
+<main class="about-wrap">
 
-  <!-- HERO -->
-  <section class="section page-hero">
-    <div class="wrap">
-      <div class="eyebrow red reveal">Who we are</div>
-      <h1 class="reveal">Born in Himachal.<br><em>Built in Himachal.</em></h1>
-      <p class="hero-sub reveal">The Himachal Accountability Project is a citizen-run civic infrastructure initiative — built by people who live here, vote here, and use the same broken roads everyone else is reporting. No Delhi office. No corporate hierarchy. No political backing.</p>
-      <div class="hero-ctas reveal">
-        <a href="dashboard.html" class="btn btn-primary">View live dashboard</a>
-        <a href="report-issue.html" class="btn" style="border-color:var(--amber);color:var(--amber)">Report an issue</a>
-      </div>
-    </div>
-  </section>
+  <!-- Header Eyebrow & Hero Title -->
+  <div class="about-kicker">
+    <span class="kicker-dot"></span>
+    <span>About The Project</span>
+  </div>
+  <h1 class="about-title">Making Himachal's democracy work for every citizen, constituency, and ward</h1>
 
-  <!-- MISSION DARK BAND -->
-  <section class="section band-dark">
-    <div class="wrap">
-      <div class="mission-grid">
-        <div>
-          <div class="eyebrow on-dark reveal">Why this exists</div>
-          <h2 class="reveal" style="color:#F3F1E6;font-size:clamp(1.6rem,3.2vw,2.2rem);margin-bottom:16px">Himachal's administrative failures are documented everywhere except one place — a single, public, searchable record.</h2>
-          <p class="reveal" style="color:rgba(243,241,230,0.72);font-size:1rem;line-height:1.7;max-width:48ch">Social media posts disappear. RTI replies sit in inboxes. News coverage moves on. HAP exists to make sure every logged grievance accumulates — ward by ward, month by month — into a dataset that can't be ignored, dismissed, or buried.</p>
+  <!-- Sub-Navigation Tabs Row (YouthPOWER Mechanism) -->
+  <div class="about-tabs-row" role="tablist">
+    <button class="about-tab active" id="tab-btn-mission" onclick="switchAboutTab('mission')" role="tab" aria-selected="true">Our Mission</button>
+    <button class="about-tab" id="tab-btn-people" onclick="switchAboutTab('people')" role="tab" aria-selected="false">People</button>
+    <button class="about-tab" id="tab-btn-support" onclick="switchAboutTab('support')" role="tab" aria-selected="false">Support Us</button>
+  </div>
+
+  <!-- ═════════════════════════════════════════════════════════
+       TAB 1: OUR MISSION / OUR WORK
+       ═════════════════════════════════════════════════════════ -->
+  <div class="tab-pane active" id="tab-pane-mission" role="tabpanel">
+    <div class="about-a-cols">
+      
+      <!-- Main Content Column -->
+      <div class="about-main-col">
+        <h2>Our Work</h2>
+        
+        <div class="about-prose">
+          <p>Himachal Pradesh spans 12 districts, 68 assembly constituencies, and over 7.5 million citizens. Most families live in the mountain towns and rural panchayats of their birth. Their future—and the state's prosperity—is decided district by district, road by road, and pipeline by pipeline.</p>
+          
+          <p>Yet for decades, Himachal has lacked a transparent, continuous, and verifiable record of how well each district and elected representative delivers essential public services. RTI replies sit in private inboxes. Social media posts get buried. News coverage moves on. <strong>The Himachal Accountability Project (HAP) fills that gap.</strong></p>
+          
+          <p>We systematically monitor public delivery across all 12 districts, drawing from community field verifications, official assembly records, and municipal reports. Every district is evaluated across five fundamental public accountability pillars: <strong>Roads &amp; Transit</strong>, <strong>Drinking Water</strong>, <strong>Healthcare Access</strong>, <strong>Power Supply</strong>, and <strong>Youth Opportunity</strong>.</p>
+          
+          <p>The composite scores serve as a non-partisan diagnostic: they celebrate district administrative achievements, pinpoint systemic failure points, and track remediation progress over time.</p>
+          
+          <p>Currently, <strong>69% of verified citizen grievances in Himachal Pradesh remain unaddressed</strong> by local administrations. From collapsed retaining walls on NH-154A to dry irrigation channels in Kangra, HAP documents the exact duration and administrative pendency of every issue.</p>
+          
+          <p>For <strong>all 68 MLAs and 4 Lok Sabha MPs</strong>, we track assembly constituency neglect rates, unaddressed reports, and provide one-click civic outreach tools allowing citizens to petition their elected representatives directly via WhatsApp or Email.</p>
+          
+          <p>The intent is to bridge verified ground data with democratic action so that public resources reach the communities that need them most, and every elected representative is held accountable for the fundamental quality of life in their constituency.</p>
         </div>
-        <div class="mission-stats reveal">
-          <div class="ms-cell">
-            <div class="ms-num">12<span>/12</span></div>
-            <div class="ms-label">Districts active</div>
+
+        <!-- Action Links -->
+        <div class="action-links-row">
+          <a href="dashboard.html" class="action-btn-outline">📊 View Live Dashboard &rarr;</a>
+          <a href="compare.html" class="action-btn-outline">⚖️ Compare Two Districts &rarr;</a>
+          <a href="mlas.html" class="action-btn-outline">🏛️ Find Your MLA &rarr;</a>
+          <a href="data-methodology.html" class="action-btn-outline">📐 Read Methodology &rarr;</a>
+        </div>
+
+        <!-- Official Position Quote Box -->
+        <div class="quote-box">
+          <div class="quote-tag">Official Position &middot; The Line We Hold</div>
+          <blockquote>
+            &ldquo;We are an independent, data-driven public utility. We do not support any political party, and we do not oppose any political party. We oppose broken roads, dry taps, and administrative delays. Our goal is to make ground realities transparent so that public administration works faster and better for the people of Himachal.&rdquo;
+          </blockquote>
+          <div class="quote-foot">Himachal Accountability Project &mdash; Non-Partisan Civic Charter</div>
+        </div>
+
+        <!-- 4 Core Operating Principles -->
+        <div class="principles-head">
+          <div class="about-kicker" style="font-size:11px; margin-bottom:8px">
+            <span class="kicker-dot"></span>
+            <span>Operating Principles</span>
           </div>
-          <div class="ms-cell">
-            <div class="ms-num">68</div>
-            <div class="ms-label">Constituencies mapped</div>
+          <h3>Four commitments we never compromise on</h3>
+        </div>
+
+        <div class="principles-grid">
+          <div class="principle-card">
+            <span class="p-num">PRINCIPLE &mdash; 01</span>
+            <h4>Zero Political Funding</h4>
+            <p>We decline contributions from political parties, candidates, elected officials, and their affiliates—BJP, Congress, AAP, or otherwise. Independence is structural: the data only matters if no one can buy what it says.</p>
           </div>
-          <div class="ms-cell">
-            <div class="ms-num">0</div>
-            <div class="ms-label">Political backers</div>
+          <div class="principle-card">
+            <span class="p-num">PRINCIPLE &mdash; 02</span>
+            <h4>Equal Scrutiny Across Parties</h4>
+            <p>HAP documents administrative neglect regardless of who is in power. If a road has been damaged across multiple tenures, all records remain on the ledger. Selective scrutiny is just opposition research with a civic veneer.</p>
           </div>
-          <div class="ms-cell">
-            <div class="ms-num">69<span>%</span></div>
-            <div class="ms-label">Unresolved rate</div>
+          <div class="principle-card">
+            <span class="p-num">PRINCIPLE &mdash; 03</span>
+            <h4>Data Precedes Claims</h4>
+            <p>Every report, score, and civic petition is anchored in verified ground evidence: GPS location, constituency, pin code, duration, and photographic proof. We do not publish unverified allegations.</p>
+          </div>
+          <div class="principle-card">
+            <span class="p-num">PRINCIPLE &mdash; 04</span>
+            <h4>Open Public Ledger</h4>
+            <p>Our records and methodology are fully open to the public. There is no private tier that contradicts the public ledger. Transparency is the only currency that builds long-term institutional trust.</p>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- TEAM -->
-  <section class="section">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <div class="eyebrow">The founding team</div>
-        <h2>The people behind the map.</h2>
-        <p>Everyone on this team is from Himachal, knows its geography, and has a personal stake in whether this works. HAP is designed to grow — in contributors, in districts covered, in institutional weight.</p>
       </div>
-      <div class="team-grid">
 
-        <!-- EKAANSH -->
-        <div class="team-card lead reveal" data-initial="E">
-          <img src="images/ekaansh.jpg" alt="Ekaansh Verma" class="team-lead-img">
-          <div class="team-lead-content">
-            <div class="team-role">Founder &amp; Project Lead</div>
-            <div class="team-name">Ekaansh Verma</div>
-            <div class="team-location">Shimla, Himachal Pradesh</div>
-            <p class="team-bio">Ekaansh founded HAP as a long-term civic infrastructure play — building the platform from scratch while running Verma Digital and Stride simultaneously. He oversees product, strategy, institutional partnerships, and public communications. He is also the author of <em>Tenets to Govern By</em>, a work on governance and administrative philosophy that informs how HAP's methodology is designed.</p>
-            <div class="team-tags">
-              <span class="tag">Product</span>
-              <span class="tag">Strategy</span>
-              <span class="tag">Civic Tech</span>
-              <span class="tag">Partnerships</span>
-              <span class="tag">Author</span>
+      <!-- Sidebar Column (YouthPOWER Style) -->
+      <aside class="about-sidebar-col">
+        
+        <!-- Scorecard Card: In Numbers -->
+        <div class="sidebar-card">
+          <div class="sidebar-card-head">
+            <span class="kicker-dot"></span>
+            <span>In Numbers</span>
+          </div>
+          <div class="stat-list">
+            <div class="stat-row">
+              <span class="stat-row-label">Districts Covered</span>
+              <span class="stat-row-val">12 / 12</span>
             </div>
-            <div class="team-links">
-              <a class="team-link" href="https://ekaanshverma.framer.website/" target="_blank">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                Portfolio
-              </a>
-              <a class="team-link" href="https://www.linkedin.com/in/ekaansh-verma" target="_blank">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                LinkedIn
-              </a>
-              <a class="team-link" href="https://www.crunchbase.com/person/ekaansh-verma-01b0" target="_blank">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                Crunchbase
-              </a>
+            <div class="stat-row">
+              <span class="stat-row-label">Assembly Constituencies</span>
+              <span class="stat-row-val">68</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-row-label">Parliamentary Seats</span>
+              <span class="stat-row-val">4</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-row-label">Accountability Pillars</span>
+              <span class="stat-row-val">5</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-row-label">Verified Field Reports</span>
+              <span class="stat-row-val">462+</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-row-label">Dominant Civic Issue</span>
+              <span class="stat-row-val highlight">Roads (38%)</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-row-label">Unaddressed Rate</span>
+              <span class="stat-row-val highlight">69%</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-row-label">Political Affiliation</span>
+              <span class="stat-row-val">0 (None)</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-row-label">Refresh Cadence</span>
+              <span class="stat-row-val">Continuous</span>
             </div>
           </div>
         </div>
 
-        <!-- ANKESH -->
-        <div class="team-card reveal" data-initial="A">
-          <div class="team-role">Research &amp; Distribution</div>
-          <div class="team-name">Ankesh Kumar</div>
-          <div class="team-location">Ghumarwin, Himachal Pradesh</div>
-          <p class="team-bio">Ankesh holds an MBA in Rural Development from HP University and has done community-level field work in Mandi and Kullu through the Society for Technology and Development. He brings an academic grounding in CSR, social impact, and rural livelihoods to HAP's research function — sourcing evidence, analysing grievance data, writing campaign copy, and building the distribution pipeline that gets HAP's content to journalists and partners.</p>
-          <div class="team-tags">
-            <span class="tag">Research</span>
-            <span class="tag">Data Analysis</span>
-            <span class="tag">Copywriting</span>
-            <span class="tag">Distribution</span>
-            <span class="tag">Field Work</span>
+        <!-- Join CTA Card -->
+        <div class="sidebar-cta-card">
+          <h3>Join The Ledger</h3>
+          <p>HAP is a platform, not a closed organisation. We welcome citizen observers, RTI activists, student volunteers, and district correspondents.</p>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <a href="report-issue.html" class="sidebar-cta-btn">&#x270E; Log a Report (60 sec)</a>
+            <a href="join.html" class="action-btn-outline" style="justify-content:center; padding:9px 12px; font-size:0.75rem;">Join as Contributor</a>
           </div>
-          <div class="team-links">
-            <a class="team-link" href="https://www.linkedin.com/in/ankesh-kumar" target="_blank">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-11h4v1.765C14.396 5.623 20 5.432 20 10.476V21"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </div>
+
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- ═════════════════════════════════════════════════════════
+       TAB 2: PEOPLE
+       ═════════════════════════════════════════════════════════ -->
+  <div class="tab-pane" id="tab-pane-people" role="tabpanel">
+    <div class="people-section">
+      
+      <!-- Founder Spotlight -->
+      <div class="founder-spotlight">
+        <div class="founder-media">
+          <img src="images/ekaansh.jpg" alt="Ekaansh Verma" class="founder-img" onerror="this.src='images/hap_logo.png'">
+        </div>
+        <div class="founder-content">
+          <div class="founder-role">Founder &amp; Project Lead</div>
+          <h3 class="founder-name">Ekaansh Verma</h3>
+          <div class="founder-loc">Shimla, Himachal Pradesh</div>
+          <p class="founder-bio">Ekaansh founded HAP as a long-term civic infrastructure initiative—designing and building the platform from scratch to bring systemic accountability, data transparency, and grassroots responsiveness to Himachal Pradesh. He directs product architecture, diagnostic methodology, institutional communications, and field research pipelines.</p>
+          <p class="founder-bio">Leading Verma Digital and Stride simultaneously, he is also the author of <em>Tenets to Govern By</em>, a treatise on administrative philosophy and governance architecture that directly informs how HAP's public ledger, diagnostic metrics, and verification benchmarks are constructed.</p>
+          
+          <div class="founder-tags">
+            <span class="f-tag">Product Lead</span>
+            <span class="f-tag">Civic Tech</span>
+            <span class="f-tag">Governance</span>
+            <span class="f-tag">Author</span>
+            <span class="f-tag">Public Policy</span>
+          </div>
+
+          <div class="founder-links">
+            <a href="https://ekaanshverma.framer.website/" target="_blank" rel="noopener noreferrer" class="f-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Portfolio
+            </a>
+            <a href="https://www.linkedin.com/in/ekaansh-verma" target="_blank" rel="noopener noreferrer" class="f-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
               LinkedIn
+            </a>
+            <a href="https://www.crunchbase.com/person/ekaansh-verma-01b0" target="_blank" rel="noopener noreferrer" class="f-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Crunchbase
+            </a>
+            <a href="mailto:ekaansh@himachalaccountability.org" class="f-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              Email
             </a>
           </div>
         </div>
+      </div>
 
-        <!-- HARSH -->
-        <div class="team-card reveal" data-initial="H">
-          <div class="team-role">Content &amp; Visual Production</div>
-          <div class="team-name">Harsh Panwar</div>
-          <div class="team-location">Shimla, Himachal Pradesh</div>
-          <p class="team-bio">Harsh handles everything you see — the reels, carousel posters, exposure dossiers, and visual design of HAP's social output. A B.Com student at HP University with a background in psychology and philosophy, he brings a persuasion-first lens to content: what makes someone stop scrolling, read, share, and act. He edits raw footage, builds visual campaign assets from grievance data, and ensures HAP's output looks authoritative enough to matter.</p>
-          <div class="team-tags">
-            <span class="tag">Video Editing</span>
-            <span class="tag">Visual Design</span>
-            <span class="tag">Copywriting</span>
-            <span class="tag">Social Media</span>
-            <span class="tag">Campaigns</span>
+      <!-- Core Contributors Heading -->
+      <div class="contributors-head">
+        <div class="about-kicker" style="font-size:11px; margin-bottom:8px">
+          <span class="kicker-dot"></span>
+          <span>Core Team</span>
+        </div>
+        <h2>The team behind the ledger</h2>
+        <p style="color:var(--text2); margin-top:6px; max-width:680px;">Everyone on this team has roots in Himachal, understands its steep geography and administrative hurdles, and holds a personal stake in making public institutions work.</p>
+      </div>
+
+      <div class="team-cards-grid">
+        
+        <!-- Member 1: Ankesh -->
+        <div class="member-card">
+          <div>
+            <div class="member-role">Research &amp; Distribution</div>
+            <h3 class="member-name">Ankesh Kumar</h3>
+            <div class="member-loc">Ghumarwin, Himachal Pradesh</div>
+            <p class="member-bio">Ankesh holds an MBA in Rural Development from HP University and has conducted ground-level field surveys across Mandi and Kullu through the Society for Technology and Development. He brings an academic grounding in CSR, social impact, and rural livelihoods to HAP—analyzing field grievances, verifying administrative timelines, and building civic distribution pipelines with regional journalists and partners.</p>
+            <div class="member-tags">
+              <span class="f-tag">Rural Development</span>
+              <span class="f-tag">Field Surveys</span>
+              <span class="f-tag">Data Analysis</span>
+              <span class="f-tag">Media Distribution</span>
+            </div>
           </div>
-          <div class="team-links">
-            <a class="team-link" href="https://www.linkedin.com/in/harsh-panwar" target="_blank">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-11h4v1.765C14.396 5.623 20 5.432 20 10.476V21"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-              LinkedIn
-            </a>
+          <a href="https://www.linkedin.com/in/ankesh-kumar" target="_blank" rel="noopener noreferrer" class="f-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn Profile
+          </a>
+        </div>
+
+        <!-- Member 2: Harsh -->
+        <div class="member-card">
+          <div>
+            <div class="member-role">Content &amp; Visual Production</div>
+            <h3 class="member-name">Harsh Panwar</h3>
+            <div class="member-loc">Shimla, Himachal Pradesh</div>
+            <p class="member-bio">Harsh manages HAP's visual storytelling—converting raw spreadsheet logs into high-impact visual exposure dossiers, reels, and data graphics. With an academic background in psychology, philosophy, and commerce at HP University, he ensures HAP's findings cut through digital noise and communicate accountability clearly to ordinary citizens.</p>
+            <div class="member-tags">
+              <span class="f-tag">Visual Storytelling</span>
+              <span class="f-tag">Dossier Design</span>
+              <span class="f-tag">Campaigns</span>
+              <span class="f-tag">Public Attention</span>
+            </div>
           </div>
+          <a href="https://www.linkedin.com/in/harsh-panwar" target="_blank" rel="noopener noreferrer" class="f-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn Profile
+          </a>
         </div>
 
       </div>
+
     </div>
-  </section>
+  </div>
 
-  <!-- THE LINE WE HOLD -->
-  <section class="section" style="background:var(--paper-deep)">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <div class="eyebrow">When someone asks what this is</div>
-        <h2>The line we hold.</h2>
-        <p>This is the exact position given to a journalist, a politician, or a fellowship coordinator who asks what HAP actually is.</p>
-      </div>
-      <div class="pitch-card reveal">
-        <div class="pitch-stamp">On the<br>record</div>
-        <blockquote>
-          <p>We are a data-driven public utility. We do not support any political party, and we do not oppose any political party. We oppose bad roads, dry taps, and administrative delays.</p>
-          <p>Our goal is to use modern technology to help the government see real-time ground realities so that public funds are spent efficiently. We are simply here to help the system work faster and better for the people of Himachal.</p>
-        </blockquote>
-        <div class="pitch-foot">The Himachal Accountability Project — official position</div>
-      </div>
-    </div>
-  </section>
+  <!-- ═════════════════════════════════════════════════════════
+       TAB 3: SUPPORT US
+       ═════════════════════════════════════════════════════════ -->
+  <div class="tab-pane" id="tab-pane-support" role="tabpanel">
+    <div class="support-section">
+      
+      <div class="support-card-main">
+        <div class="about-kicker" style="font-size:11px; margin-bottom:8px">
+          <span class="kicker-dot"></span>
+          <span>Independent Civic Funding</span>
+        </div>
+        <h2>This work exists because citizens and independent supporters fund it.</h2>
+        
+        <div class="support-prose">
+          <p>The Himachal Accountability Project began as an entirely self-funded citizen initiative. The foundational proof of concept, live mapping software, data pipelines, and field verification networks were built through the personal resources of its founder.</p>
+          
+          <p>We decline all contributions from political parties, election candidates, and sitting government representatives—BJP, Congress, AAP, or otherwise. That independence is foundational: <strong>our ledger only has authority if no political entity can alter what it displays.</strong></p>
+          
+          <p>If you believe Himachal Pradesh deserves transparent, non-partisan, and uncompromised civic accountability, we invite you to support our operations. Your contribution directly funds ongoing cloud infrastructure, ground verification travel to remote panchayats, and RTI filing fees.</p>
+        </div>
 
-  <!-- VALUES / PILLARS -->
-  <section class="section">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <div class="eyebrow">How we operate</div>
-        <h2>Four things we don't compromise on.</h2>
-      </div>
-      <div class="pillars-grid">
-        <div class="pillar reveal">
-          <div class="pillar-top">
-            <span class="pillar-num mono">PRINCIPLE — 01</span>
-            <span class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-4z"/></svg></span>
+        <div class="support-cta-box">
+          <div>
+            <h3>Support Public Civic Infrastructure</h3>
+            <p>Every contribution preserves uncompromised public accountability for Himachal.</p>
           </div>
-          <h3>No political money, ever</h3>
-          <p>We decline contributions from political parties, candidates, elected officials, and their associates — BJP, Congress, AAP, or otherwise. This is structural, not aspirational. The data only means something if no one can buy what it says.</p>
+          <a href="donate.html" class="btn-primary" style="padding:12px 24px; font-size:0.88rem;">Support HAP Online &rarr;</a>
         </div>
-        <div class="pillar reveal">
-          <div class="pillar-top">
-            <span class="pillar-num mono">PRINCIPLE — 02</span>
-            <span class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8"/><path d="M12 4v3M12 17v3M4 12h3M17 12h3"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/></svg></span>
-          </div>
-          <h3>Both parties, equal scrutiny</h3>
-          <p>HAP maps failures under whoever is in power at any given time. If a road has been broken across two different governments, both entries go on the record. Selective accountability is just opposition research with a civic coat of paint.</p>
-        </div>
-        <div class="pillar reveal">
-          <div class="pillar-top">
-            <span class="pillar-num mono">PRINCIPLE — 03</span>
-            <span class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V13M9.5 20V9M15 20V5M20.5 20v-7"/></svg></span>
-          </div>
-          <h3>Data before claims</h3>
-          <p>Every post, reel, and dossier we publish is traceable to a verified entry in the grievance database — pin code, location, duration, citizen quote. We don't publish what we can't source. The map is only as credible as its sourcing discipline.</p>
-        </div>
-        <div class="pillar reveal">
-          <div class="pillar-top">
-            <span class="pillar-num mono">PRINCIPLE — 04</span>
-            <span class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="2.2"/><circle cx="17" cy="7" r="2.2"/><circle cx="12" cy="17" r="2.2"/><path d="M8.6 8.4 10.4 15.2M15.4 8.4 13.6 15.2M9 7h6"/></svg></span>
-          </div>
-          <h3>Open books, always</h3>
-          <p>We publish quarterly transparency reports covering every rupee received and spent. The grievance database is publicly accessible. There is no private layer to this project that contradicts the public one.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- GET INVOLVED -->
-  <section class="section band-paper-deep">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <div class="eyebrow">Get involved</div>
-        <h2>HAP is a platform, not a closed team.</h2>
-        <p>HAP is built to grow through contributors — field researchers, journalists, student volunteers, and district correspondents across HP. If you're based in a district we haven't fully covered, we especially want to hear from you.</p>
+        <p style="font-size:0.92rem; color:var(--text3); margin-top:16px;">For institutional partnerships or direct bank transfer details, please email our finance team at <a href="mailto:contact@himachalaccountability.org" style="color:var(--amber); text-decoration:underline;">contact@himachalaccountability.org</a>.</p>
       </div>
-      <div class="involve-grid">
-        <div class="involve-card reveal">
-          <span class="card-tag mono">For residents</span>
-          <h3>Report from your ward</h3>
-          <p>Have a broken streetlight, a collapsed drain, or a dry handpump? Submit your ward, pin code, and a photo — it goes directly onto the public map. No login, no app, no email draft.</p>
-          <a class="btn btn-ghost" href="report-issue.html" style="border:1.5px solid var(--ink)">Log your report <span style="font-size:0.72em;opacity:0.7">(60 sec, no login)</span></a>
+
+      <!-- Online Donation Terms (YouthPOWER Style) -->
+      <div class="support-terms">
+        <div class="terms-head">
+          <span class="kicker-dot"></span>
+          <span>Donation Principles &amp; Governance Terms</span>
         </div>
-        <div class="involve-card reveal">
-          <span class="card-tag mono">For volunteers &amp; journalists</span>
-          <h3>Verify, map, and distribute</h3>
-          <p>Field researchers, district correspondents, and media partners do the work that turns raw grievance data into public pressure. No experience required — just a phone, a location, and a willingness to document what's broken.</p>
-          <a class="btn btn-ghost" href="join.html" style="border:1.5px solid var(--ink)">Join the team</a>
-        </div>
+        <ul class="terms-list">
+          <li>We strictly accept contributions from Indian citizens and non-partisan civil society partners.</li>
+          <li>We accept zero funding from political parties, partisan political trusts, or sitting candidates.</li>
+          <li>Contributions do not entitle any donor to editorial control, report suppression, or preferential score adjustments.</li>
+          <li>We publish regular transparency summaries detailing operational expenditures, server costs, and field verification allocations.</li>
+          <li>All supporter information is held securely and never sold, leased, or shared with commercial entities.</li>
+        </ul>
       </div>
+
     </div>
-  </section>
+  </div>
 
 </main>
 
+<!-- ─── FOOTER ─── -->
 <footer>
-  <div class="wrap">
+  <div class="footer-inner">
     <div class="footer-top">
       <div class="footer-brand">
-        <a href="#top" class="brand">
+        <a href="index.html" class="brand">
           <img src="images/hap_logo.png" alt="HAP Logo" class="brand-logo">
           Himachal Accountability Project
         </a>
-        <p>We oppose bad roads, dry taps, and administrative delays — and nothing else. An independent citizen initiative, not affiliated with any political party or candidate.</p>
+        <p>An independent, citizen-run public utility tracking administrative responsiveness, public works neglect, and MLA accountability across all 12 districts of Himachal Pradesh.</p>
       </div>
 
       <div class="footer-socials">
-        <style>
-          .footer-socials {
-            display: flex;
-            gap: 16px;
-            align-items: center;
-            margin-top: 12px;
-          }
-          .footer-socials a {
-            color: rgba(243, 241, 230, 0.72) !important;
-            transition: color 0.3s, transform 0.3s;
-            display: flex;
-          }
-          .footer-socials a:hover {
-            color: #F3F1E6 !important;
-            transform: translateY(-2px);
-          }
-          .footer-socials svg {
-            width: 22px;
-            height: 22px;
-            fill: currentColor;
-          }
-          /* Adjust layout for large screens so it sits on the right */
-          .footer-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 24px;
-          }
-          .footer-brand {
-            flex: 1 1 300px;
-            max-width: 400px;
-          }
-        </style>
-        <a href="https://www.linkedin.com/company/thehap" aria-label="LinkedIn" target="_blank" class="social-icon">
-          <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-        </a>
-        <a href="#" aria-label="Facebook" class="social-icon">
-          <svg viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
-        </a>
-        <a href="https://www.instagram.com/thehapofficial/" aria-label="Instagram" target="_blank" class="social-icon">
+        <a href="https://instagram.com/himachalaccountability" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
         </a>
-        <a href="https://x.com/TheHAPofficial" aria-label="X (Twitter)" target="_blank" class="social-icon">
+        <a href="https://x.com/TheHAPofficial" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         </a>
       </div>
-
     </div>
+    
     <div class="footer-bottom">
-      <span>© <span id="year"></span> Himachal Accountability Project &middot; Himachal Pradesh</span>
-      <div class="footer-credit" style="display: flex; align-items: center; gap: 8px;">
-        <style>
-          /* Force dark footer globally */
-          footer, .footer {
-            background-color: #1E2A22 !important;
-            color: rgba(243, 241, 230, 0.72) !important;
-            border-top: 1px solid rgba(255,255,255,0.05) !important;
-          }
-          footer *, .footer * {
-            border-color: rgba(255,255,255,0.1) !important;
-          }
-          footer .brand {
-            color: #F3F1E6 !important;
-          }
-          footer p, .footer p, footer .footer-note, .footer .footer-note, footer .field-meta dt {
-            color: rgba(243, 241, 230, 0.46) !important;
-          }
-          footer a, .footer a {
-            color: rgba(243, 241, 230, 0.72) !important;
-          }
-          footer a:hover, .footer a:hover {
-            color: #F3F1E6 !important;
-          }
-          .footer-bottom {
-            color: rgba(243, 241, 230, 0.46) !important;
-          }
-          /* Logo styling */
-          .verma-logo { 
-            height: 18px !important; 
-            width: auto !important; 
-            filter: brightness(0) invert(1) opacity(0.8) !important; 
-            transition: filter 0.3s !important;
-          }
-          .verma-logo:hover { 
-            filter: brightness(0) invert(1) opacity(1) !important; 
-          }
-        </style>
+      <span>&copy; <span id="year"></span> Himachal Accountability Project &middot; Non-Partisan Public Utility</span>
+      <div style="display:flex; align-items:center; gap:8px;">
         <span>Designed by</span>
-        <a href="https://vermadigital.in/" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center;">
+        <a href="https://vermadigital.in/" target="_blank" rel="noopener noreferrer" style="display:flex; align-items:center;">
           <img src="images/verma_digital_logo.png" alt="Verma Digital" class="verma-logo">
         </a>
       </div>
@@ -791,58 +1342,83 @@
   </div>
 </footer>
 
+<!-- TAB SWITCHING SCRIPT -->
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+  function switchAboutTab(tabId) {
+    const tabs = ['mission', 'people', 'support'];
+    tabs.forEach(function(t) {
+      const btn = document.getElementById('tab-btn-' + t);
+      const pane = document.getElementById('tab-pane-' + t);
+      if (btn && pane) {
+        if (t === tabId) {
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+          pane.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+          btn.setAttribute('aria-selected', 'false');
+          pane.classList.remove('active');
+        }
+      }
+    });
 
-  // scroll reveal
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-  var revealEls = document.querySelectorAll('.reveal');
-  if('IntersectionObserver' in window && !reduceMotion){
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); } });
-    },{ threshold:0.12 });
-    revealEls.forEach(function(el){ io.observe(el); });
-  } else {
-    revealEls.forEach(function(el){ el.classList.add('is-visible'); });
+    // Update URL hash without jumping
+    if (history.replaceState) {
+      history.replaceState(null, '', '#' + tabId);
+    }
   }
 
-  // theme toggle
-  (function(){
-    var toggle = document.getElementById('theme-toggle');
-    var root = document.documentElement;
-    if(toggle) toggle.addEventListener('click',function(){
-      root.setAttribute('data-theme', root.getAttribute('data-theme')==='dark' ? 'light' : 'dark');
-    });
-  })();
+  // Handle URL hash or tab query param on load
+  window.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-  // mobile menu
+    const hash = window.location.hash.replace('#', '');
+    const params = new URLSearchParams(window.location.search);
+    const tabParam = params.get('tab') || hash;
+    if (tabParam && ['mission', 'people', 'support'].indexOf(tabParam) !== -1) {
+      switchAboutTab(tabParam);
+    }
+  });
+
+  // Mobile menu toggle
   (function(){
     var menuToggle = document.getElementById('menu-toggle');
     var mobileMenu = document.getElementById('mobile-menu');
     if(menuToggle && mobileMenu){
-      menuToggle.addEventListener('click',function(e){
+      menuToggle.addEventListener('click', function(e){
         e.stopPropagation();
-        mobileMenu.style.display = mobileMenu.style.display==='flex' ? 'none' : 'flex';
+        mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
       });
-      document.addEventListener('click',function(e){
+      document.addEventListener('click', function(e){
         if(!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)){
-          mobileMenu.style.display='none';
+          mobileMenu.style.display = 'none';
         }
+      });
+    }
+  })();
+
+  // Theme toggle
+  (function(){
+    var toggle = document.getElementById('theme-toggle');
+    var root = document.documentElement;
+    if(toggle){
+      toggle.addEventListener('click', function(){
+        var current = root.getAttribute('data-theme') || 'dark';
+        var next = current === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
       });
     }
   })();
 </script>
 
-
 <!-- Lenis Premium Inertia Smooth Scroll Library -->
 <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 <script>
-  // Initialize Lenis Luxurious Slow Inertia Scroll
   const lenis = new Lenis({
-    duration: 1.5,           // Slow, weighted luxury deceleration
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Silky exponential curve
+    duration: 1.5,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smoothWheel: true,
-    wheelMultiplier: 0.85,    // Weighted scroll momentum
+    wheelMultiplier: 0.85,
     touchMultiplier: 1.4,
   });
 
