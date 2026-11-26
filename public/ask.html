@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <link rel="icon" type="image/png" href="images/hap_logo.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ask HAP (पूछें) — Himachal Accountability Project</title>
+  <meta name="description" content="Ask in English, Hindi, or Punjabi about Himachal Pradesh districts, MLAs, civic grievances, and accountability scores — grounded directly in HAP's public ledger.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Gurmukhi:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/universal-navbar.css">
+  <link rel="stylesheet" href="css/universal-footer.css">
+  <style>
+    :root {
+      --bg: #ECEEDF;
+      --bg2: #F4F5EB;
+      --bg3: #E2E5D3;
+      --bg4: rgba(28, 36, 29, 0.06);
+      --bg5: rgba(28, 36, 29, 0.09);
+      --ink: #1C241D;
+      --text: #1C241D;
+      --text2: rgba(28, 36, 29, 0.78);
+      --text3: rgba(28, 36, 29, 0.56);
+      --cream: #F4F5EB;
+      --header-bg: rgba(236, 238, 223, 0.78);
+      --border: rgba(28, 36, 29, 0.14);
+      --border2: rgba(28, 36, 29, 0.24);
+      --coral: #D4654A;
+      --amber: #C87A30;
+      --green: #2F7D4C;
+      --red: #C94A38;
+      --card-bg: rgba(255, 255, 255, 0.72);
+      --pad: 24px;
+      --transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    [data-theme="dark"] {
+      --bg: #111914;
+      --bg2: #18231C;
+      --bg3: #1E2A22;
+      --bg4: rgba(240, 244, 238, 0.08);
+      --bg5: rgba(240, 244, 238, 0.12);
+      --ink: #F0F4EE;
+      --text: #F0F4EE;
+      --text2: rgba(240, 244, 238, 0.82);
+      --text3: rgba(240, 244, 238, 0.58);
+      --cream: #111914;
+      --header-bg: rgba(17, 25, 20, 0.72);
+      --border: rgba(240, 244, 238, 0.14);
+      --border2: rgba(240, 244, 238, 0.26);
+      --coral: #E07A5F;
+      --amber: #E29B4B;
+      --green: #6FCF97;
+      --red: #EB5757;
+      --card-bg: rgba(24, 35, 28, 0.84);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'IBM Plex Sans', 'Noto Sans Devanagari', 'Noto Sans Gurmukhi', sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+      padding: 64px 24px 88px;
+    }
+
+    .ask-container {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .ask-eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 16px;
+    }
+
+    .ask-title {
+      font-family: 'Space Grotesk', 'Noto Sans Devanagari', sans-serif;
+      font-size: clamp(2.1rem, 4.6vw, 3.25rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin: 0 0 20px 0;
+      color: var(--text);
+    }
+
+    .ask-title em {
+      font-style: italic;
+      color: var(--coral);
+    }
+
+    .ask-lede {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: var(--text2);
+      font-style: italic;
+      margin: 0 0 28px 0;
+      max-width: 650px;
+    }
+
+    .lang-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 16px;
+      margin-bottom: 8px;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      padding: 4px 2px;
+      font-family: 'IBM Plex Sans', 'Noto Sans Devanagari', 'Noto Sans Gurmukhi', sans-serif;
+      font-size: 0.98rem;
+      color: var(--text3);
+      cursor: pointer;
+      transition: var(--transition);
+      border-bottom: 2px solid transparent;
+    }
+
+    .lang-btn:hover {
+      color: var(--text);
+    }
+
+    .lang-btn.active {
+      color: var(--coral);
+      font-weight: 600;
+      border-bottom-color: var(--coral);
+    }
+
+    .lang-sep {
+      color: var(--text3);
+      opacity: 0.45;
+      user-select: none;
+    }
+
+    .lang-note {
+      font-size: 0.82rem;
+      color: var(--text3);
+      margin: 6px 0 26px 0;
+    }
+
+    .beta-box {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      padding: 18px 22px;
+      margin-bottom: 18px;
+    }
+
+    .beta-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 6px;
+    }
+
+    .beta-box p {
+      margin: 0;
+      font-size: 0.88rem;
+      color: var(--text2);
+      line-height: 1.55;
+    }
+
+    .browse-link {
+      display: inline-block;
+      font-size: 0.88rem;
+      color: var(--coral);
+      text-decoration: none;
+      border-bottom: 1px solid var(--coral);
+      padding-bottom: 2px;
+      margin-bottom: 24px;
+      transition: var(--transition);
+    }
+
+    .browse-link:hover {
+      opacity: 0.8;
+    }
+
+    .ask-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border2);
+      padding: 20px;
+    }
+
+    .ask-textarea {
+      width: 100%;
+      min-height: 82px;
+      background: transparent;
+      border: none;
+      color: var(--text);
+      font-family: 'IBM Plex Sans', 'Noto Sans Devanagari', 'Noto Sans Gurmukhi', sans-serif;
+      font-size: 1.05rem;
+      line-height: 1.5;
+      resize: vertical;
+      outline: none;
+    }
+
+    .ask-textarea::placeholder {
+      color: var(--text3);
+    }
+
+    .ask-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      margin-top: 10px;
+    }
+
+    .ask-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--text3);
+    }
+
+    .ask-submit-btn {
+      background: var(--coral);
+      color: #FFFFFF;
+      border: 1px solid var(--coral);
+      padding: 10px 22px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .ask-submit-btn:hover {
+      opacity: 0.9;
+    }
+
+    .suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .chip-btn {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      color: var(--text2);
+      padding: 7px 12px;
+      font-family: 'IBM Plex Sans', 'Noto Sans Devanagari', 'Noto Sans Gurmukhi', sans-serif;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .chip-btn:hover {
+      border-color: var(--coral);
+      color: var(--text);
+    }
+
+    .answer-panel {
+      margin-top: 32px;
+      background: var(--card-bg);
+      border: 1px solid var(--border2);
+      border-left: 3px solid var(--coral);
+      padding: 24px;
+      display: none;
+    }
+
+    .answer-panel.visible {
+      display: block;
+    }
+
+    .you-asked-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text3);
+    }
+
+    .you-asked-text {
+      font-size: 18px;
+      color: var(--text);
+      margin: 6px 0 22px 0;
+      line-height: 1.45;
+    }
+
+    .answer-body {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text);
+    }
+
+    .answer-body p {
+      margin: 0 0 12px 0;
+    }
+
+    .answer-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .answer-tag-pill {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid var(--border2);
+      padding: 3px 8px;
+      color: var(--text2);
+    }
+
+    .evidence-section {
+      margin-top: 24px;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+
+    .evidence-heading {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text3);
+      margin-bottom: 10px;
+    }
+
+    .evidence-card {
+      margin-bottom: 8px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+    }
+
+    .evidence-card summary {
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .evidence-card-body {
+      white-space: pre-wrap;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--text2);
+      margin-top: 8px;
+      line-height: 1.55;
+    }
+
+    .ask-another-btn {
+      margin-top: 24px;
+      background: none;
+      border: 0;
+      color: var(--text3);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .ask-another-btn:hover {
+      color: var(--coral);
+    }
+
+    .ask-submit-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .answer-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+
+    .answer-stat-box {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      padding: 12px 14px;
+    }
+
+    .answer-stat-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text3);
+      margin-bottom: 4px;
+    }
+
+    .answer-stat-val {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .answer-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .answer-link-btn {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 8px 14px;
+      border: 1px solid var(--border2);
+      color: var(--text);
+      text-decoration: none;
+      background: transparent;
+      transition: var(--transition);
+    }
+
+    .answer-link-btn:hover {
+      border-color: var(--coral);
+      color: var(--coral);
+    }
+
+    .answer-link-btn.primary {
+      background: var(--coral);
+      border-color: var(--coral);
+      color: #FFFFFF;
+    }
+  </style>
+</head>
+<body>
+
+<div class="ann-bar" style="background: #D8E4D0; color: #1E2A22; font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.05em; padding: 8px 20px; text-align: center;">
+  <b style="font-weight: 600; color: #C87A30;">Independent civic record.</b> &nbsp;Not affiliated with any political party or government body. &nbsp;Data from community field reports.
+</div>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-left">
+      <a href="index.html" class="brand">
+        <img src="images/hap_logo.png" alt="HAP Logo" class="brand-logo">
+        <span class="brand-text">
+          Himachal Accountability Project
+          <small>Public Ledger &middot; Himachal Pradesh</small>
+        </span>
+      </a>
+    </div>
+    <div class="masthead-right">
+      <nav class="masthead-links" aria-label="Main Navigation">
+        <a class="btn-ghost " id="nav-home" href="index.html">Home</a>
+        <a class="btn-ghost " id="nav-about" href="about.html">About Us</a>
+        <a class="btn-ghost " id="nav-dashboard" href="dashboard.html">Dashboard</a>
+        <a class="btn-ghost " id="nav-compare" href="compare.html">Compare</a>
+        <a class="btn-ghost " id="nav-mlas" href="mlas.html">Find MLA</a>
+        <a class="btn-ghost " id="nav-join" href="join.html">Join Us</a>
+        <a class="btn-ghost " id="nav-contact" href="contact.html">Contact Us</a>
+        <a class="btn-ghost active" id="nav-ask" href="ask.html" style="color: #E07A5F !important;">पूछें · Ask</a>
+      </nav>
+      
+      <div class="mobile-dropdown" id="mobile-menu" style="display: none;">
+        <a class="dropdown-link " href="index.html">Home</a>
+        <a class="dropdown-link " href="about.html">About Us</a>
+        <a class="dropdown-link " href="dashboard.html">Dashboard</a>
+        <a class="dropdown-link " href="compare.html">Compare Districts</a>
+        <a class="dropdown-link " href="mlas.html">Find Your MLA</a>
+        <a class="dropdown-link " href="join.html">Join Us</a>
+        <a class="dropdown-link " href="contact.html">Contact Us</a>
+        <a class="dropdown-link active" href="ask.html">पूछें · Ask</a>
+        <a class="dropdown-link " href="donate.html">Support Us</a>
+      </div>
+
+      <a class="btn-ghost " id="nav-donate" href="donate.html">Support Us</a>
+      <a class="btn-primary" href="report-issue.html">&#x270E;&nbsp; Report Issue</a>
+      
+      <button class="menu-toggle-btn" id="menu-toggle" aria-label="Toggle navigation menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="width:18px; height:18px; display:block;"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+
+      <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="ask-container">
+    <div class="ask-eyebrow" id="ui-eyebrow">HIMACHAL ACCOUNTABILITY PROJECT &middot; ASK &middot; BETA</div>
+    <h1 class="ask-title" id="ui-title">Ask about the issues that shape <em>accountability</em> in Himachal.</h1>
+    <p class="ask-lede" id="ui-lede">
+      Ask in your own language and get a plain answer about a district, a constituency, or an MLA. Not just the numbers, but what an issue means and what is being done about it. Every answer is grounded only in HAP's data; nothing is invented.
+    </p>
+
+    <div class="lang-strip" role="group" aria-label="Choose language">
+      <button class="lang-btn active" data-lang="en">English</button>
+      <span class="lang-sep">&middot;</span>
+      <button class="lang-btn" data-lang="hi">हिन्दी</button>
+      <span class="lang-sep">&middot;</span>
+      <button class="lang-btn" data-lang="pa">ਪੰਜਾਬੀ</button>
+    </div>
+    <p class="lang-note" id="ui-lang-note">Ask in any of these, and the answer comes back in the same language.</p>
+
+    <div class="beta-box">
+      <div class="beta-tag" id="ui-beta-tag">BETA</div>
+      <p id="ui-beta-text">
+        Ask is new and still learning. It may not understand every question, and it only answers from HAP's verified district, MLA, and grievance ledger data. To keep it free for everyone, each person can ask up to ten questions a day.
+      </p>
+    </div>
+
+    <a href="dashboard.html" class="browse-link" id="ui-browse-link">Or browse every district's scores &rarr;</a>
+
+    <form class="ask-card" id="ask-form">
+      <textarea id="ask-input" class="ask-textarea" rows="2" maxlength="500" placeholder="Which district has the highest unresolved rate in Himachal?"></textarea>
+      <div class="ask-card-footer">
+        <span class="ask-meta" id="ui-grounded-note">Answers come only from HAP data. &middot; 10/10 left today</span>
+        <button type="submit" class="ask-submit-btn" id="ui-submit-btn" disabled>Ask</button>
+      </div>
+    </form>
+
+    <div class="suggestions" id="suggestions-row"></div>
+
+    <div class="answer-panel" id="answer-panel" aria-live="polite">
+      <div class="you-asked-label">YOU ASKED</div>
+      <p class="you-asked-text" id="you-asked-text"></p>
+      <div class="answer-body" id="answer-body"></div>
+      <div class="answer-stats" id="answer-stats"></div>
+      <div class="answer-tags" id="answer-tags"></div>
+      <div class="evidence-section" id="evidence-section">
+        <div class="evidence-heading">Evidence</div>
+        <div id="evidence-list"></div>
+      </div>
+      <div class="answer-actions" id="answer-actions"></div>
+      <button type="button" class="ask-another-btn" id="ask-another-btn">&#x21BA; Ask another question</button>
+    </div>
+  </div>
+</main>
+
+<script src="hap-civic-data.js"></script>
+<script>
+(function() {
+  const root = document.documentElement;
+  const storedTheme = localStorage.getItem('hap-theme') || 'dark';
+  root.setAttribute('data-theme', storedTheme);
+
+  let currentLang = 'en';
+
+  const UI_COPY = {
+    en: {
+      eyebrow: 'HIMACHAL ACCOUNTABILITY PROJECT · ASK · BETA',
+      title: 'Ask about the issues that shape <em>accountability</em> in Himachal.',
+      lede: 'Ask in your own language and get a plain answer about a district, a constituency, or an MLA. Not just the numbers, but what an issue means and what is being done about it. Every answer is grounded only in HAP\'s data; nothing is invented.',
+      langNote: 'Ask in any of these, and the answer comes back in the same language.',
+      betaTag: 'BETA',
+      betaText: 'Ask is new and still learning. It may not understand every question, and it only answers from HAP\'s verified district, MLA, and grievance ledger data. To keep it free for everyone, each person can ask up to ten questions a day.',
+      browseLink: 'Or browse every district\'s scores →',
+      placeholder: 'Which district has the highest unresolved rate in Himachal?',
+      groundedNote: 'Grounded in 12 districts · 68 MLAs · live ledger',
+      submitBtn: 'Ask HAP →',
+      chips: [
+        'Which district has the worst unresolved rate?',
+        'How is Shimla performing?',
+        'Compare Mandi and Kangra',
+        'Who is the MLA for Dharamshala?',
+        'Which districts need the most attention on roads?'
+      ]
+    },
+    hi: {
+      eyebrow: 'हिमाचल जवाबदेही परियोजना · पूछें · बीटा',
+      title: 'हिमाचल में <em>जवाबदेही</em> तय करने वाले मुद्दों पर सवाल पूछें।',
+      lede: 'अपनी भाषा में किसी जिले, विधानसभा क्षेत्र या विधायक के बारे में सीधा जवाब पाएं। हर जवाब केवल HAP के सत्यापित सार्वजनिक डेटा पर आधारित है; कुछ भी गढ़ा नहीं गया है।',
+      langNote: 'इनमें से किसी भी भाषा में पूछें, जवाब उसी भाषा में मिलेगा।',
+      betaTag: 'बीटा',
+      betaText: 'Ask अभी नया है और केवल HAP के सत्यापित जिले, विधायक और शिकायत डेटा से ही उत्तर देता है।',
+      browseLink: 'या सभी जिलों के स्कोर देखें →',
+      placeholder: 'हिमाचल में किस जिले में अनसुलझी शिकायतों की दर सबसे अधिक है?',
+      groundedNote: '12 जिलों · 68 विधायकों के लाइव रिकॉर्ड पर आधारित',
+      submitBtn: 'जवाब पाएं →',
+      chips: [
+        'सबसे खराब स्थिति किस जिले की है?',
+        'शिमला जिले का प्रदर्शन कैसा है?',
+        'मंडी और कांगड़ा की तुलना करें',
+        'धर्मशाला के विधायक कौन हैं?',
+        'सड़क से जुड़ी समस्याएं कहां सबसे ज्यादा हैं?'
+      ]
+    },
+    pa: {
+      eyebrow: 'ਹਿਮਾਚਲ ਜਵਾਬਦੇਹੀ ਪ੍ਰੋਜੈਕਟ · ਪੁੱਛੋ · ਬੀਟਾ',
+      title: 'ਹਿਮਾਚਲ ਵਿੱਚ <em>ਜਵਾਬਦੇਹੀ</em> ਨਾਲ ਜੁੜੇ ਮੁੱਦਿਆਂ ਬਾਰੇ ਪੁੱਛੋ।',
+      lede: 'ਆਪਣੀ ਭਾਸ਼ਾ ਵਿੱਚ ਕਿਸੇ ਜ਼ਿਲ੍ਹੇ, ਹਲਕੇ ਜਾਂ ਵਿਧਾਇਕ ਬਾਰੇ ਸਿੱਧਾ ਜਵਾਬ ਪ੍ਰਾਪਤ ਕਰੋ। ਹਰ ਜਵਾਬ ਸਿਰਫ਼ HAP ਦੇ ਪ੍ਰਮਾਣਿਤ ਡੇਟਾ \'ਤੇ ਅਧਾਰਤ ਹੈ।',
+      langNote: 'ਇਹਨਾਂ ਵਿੱਚੋਂ ਕਿਸੇ ਵੀ ਭਾਸ਼ਾ ਵਿੱਚ ਪੁੱਛੋ, ਜਵਾਬ ਉਸੇ ਭਾਸ਼ਾ ਵਿੱਚ ਆਵੇਗਾ।',
+      betaTag: 'ਬੀਟਾ',
+      betaText: 'Ask ਨਵਾਂ ਹੈ ਅਤੇ ਸਿਰਫ਼ HAP ਦੇ ਪ੍ਰਮਾਣਿਤ ਜ਼ਿਲ੍ਹਾ, ਵਿਧਾਇਕ ਅਤੇ ਸ਼ਿਕਾਇਤ ਡੇਟਾ ਤੋਂ ਹੀ ਜਵਾਬ ਦਿੰਦਾ ਹੈ।',
+      browseLink: 'ਜਾਂ ਸਾਰੇ ਜ਼ਿਲ੍ਹਿਆਂ ਦੇ ਸਕੋਰ ਦੇਖੋ →',
+      placeholder: 'ਹਿਮਾਚਲ ਵਿੱਚ ਕਿਸ ਜ਼ਿਲ੍ਹੇ ਦੀ ਹਾਲਤ ਸਭ ਤੋਂ ਮਾੜੀ ਹੈ?',
+      groundedNote: '12 ਜ਼ਿਲ੍ਹਿਆਂ · 68 ਵਿਧਾਇਕਾਂ ਦੇ ਲਾਈਵ ਰਿਕਾਰਡ \'ਤੇ ਅਧਾਰਤ',
+      submitBtn: 'ਪੁੱਛੋ →',
+      chips: [
+        'ਸਭ ਤੋਂ ਵੱਧ ਅਣਸੁਲਝੀਆਂ ਸ਼ਿਕਾਇਤਾਂ ਕਿਸ ਜ਼ਿਲ੍ਹੇ ਵਿੱਚ ਹਨ?',
+        'ਸ਼ਿਮਲਾ ਜ਼ਿਲ੍ਹੇ ਦੀ ਕਾਰਗੁਜ਼ਾਰੀ ਕਿਵੇਂ ਹੈ?',
+        'ਮੰਡੀ ਅਤੇ ਕਾਂਗੜਾ ਦੀ ਤੁਲਨਾ ਕਰੋ',
+        'ਧਰਮਸ਼ਾਲਾ ਦੇ ਵਿਧਾਇਕ ਕੌਣ ਹਨ?'
+      ]
+    }
+  };
+
+  const DISTRICT_ALIASES = {
+    'shimla': 'Shimla', 'शिमला': 'Shimla', 'ਸ਼ਿਮਲਾ': 'Shimla',
+    'kangra': 'Kangra', 'कांगड़ा': 'Kangra', 'ਕਾਂਗੜਾ': 'Kangra',
+    'mandi': 'Mandi', 'मंडी': 'Mandi', 'ਮੰਡੀ': 'Mandi',
+    'kullu': 'Kullu', 'कुल्लू': 'Kullu', 'ਕੁੱਲੂ': 'Kullu',
+    'chamba': 'Chamba', 'चम्बा': 'Chamba', 'चंबा': 'Chamba', 'ਚੰਬਾ': 'Chamba',
+    'hamirpur': 'Hamirpur', 'हमीरपुर': 'Hamirpur', 'ਹਮੀਰਪੁਰ': 'Hamirpur',
+    'una': 'Una', 'ऊना': 'Una', 'ਊਨਾ': 'Una',
+    'bilaspur': 'Bilaspur', 'बिलासपुर': 'Bilaspur', 'ਬਿਲਾਸਪੁਰ': 'Bilaspur',
+    'solan': 'Solan', 'सोलन': 'Solan', 'ਸੋਲਨ': 'Solan',
+    'sirmaur': 'Sirmaur', 'सिरमौर': 'Sirmaur', 'ਸਿਰਮੌਰ': 'Sirmaur',
+    'kinnaur': 'Kinnaur', 'किन्नौर': 'Kinnaur', 'ਕਿੰਨੌਰ': 'Kinnaur',
+    'lahaul': 'Lahaul & Spiti', 'spiti': 'Lahaul & Spiti', 'लाहौल': 'Lahaul & Spiti', 'स्पीति': 'Lahaul & Spiti'
+  };
+
+  function setLang(lang) {
+    currentLang = lang;
+    const t = UI_COPY[lang] || UI_COPY.en;
+    document.querySelectorAll('.lang-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.lang === lang);
+    });
+    document.getElementById('ui-eyebrow').textContent = t.eyebrow;
+    document.getElementById('ui-title').innerHTML = t.title;
+    document.getElementById('ui-lede').textContent = t.lede;
+    document.getElementById('ui-lang-note').textContent = t.langNote;
+    document.getElementById('ui-beta-tag').textContent = t.betaTag;
+    document.getElementById('ui-beta-text').textContent = t.betaText;
+    document.getElementById('ui-browse-link').textContent = t.browseLink;
+    document.getElementById('ask-input').placeholder = t.placeholder;
+    document.getElementById('ui-grounded-note').textContent = t.groundedNote;
+    document.getElementById('ui-submit-btn').textContent = t.submitBtn;
+
+    const row = document.getElementById('suggestions-row');
+    row.innerHTML = t.chips.map(c => `<button type="button" class="chip-btn">${c}</button>`).join('');
+    row.querySelectorAll('.chip-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.getElementById('ask-input').value = btn.textContent;
+        answerQuestion(btn.textContent);
+      });
+    });
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.addEventListener('click', () => setLang(b.dataset.lang));
+  });
+
+  function detectLangFromText(q) {
+    if (/[\u0900-\u097F]/.test(q)) return 'hi';
+    if (/[\u0A00-\u0A7F]/.test(q)) return 'pa';
+    return currentLang;
+  }
+
+  function findMentionedDistricts(qLower) {
+    const found = [];
+    for (const [alias, canonical] of Object.entries(DISTRICT_ALIASES)) {
+      if (qLower.includes(alias) && !found.includes(canonical)) {
+        found.push(canonical);
+      }
+    }
+    return found;
+  }
+
+  function findMentionedMLA(qLower) {
+    if (typeof HAP_MLAS === 'undefined') return null;
+    for (const m of HAP_MLAS) {
+      const mlaLower = m.mla.toLowerCase();
+      const constLower = m.constituency.toLowerCase().replace(/\s*\(s[ct]\)/i, '').trim();
+      if (qLower.includes(mlaLower) || (constLower.length > 3 && qLower.includes(constLower))) {
+        return m;
+      }
+    }
+    return null;
+  }
+
+  let lastQuestion = '';
+
+  function renderAnswer(sourceTag, bodyHtml, stats, actions, evidenceItems) {
+    const panel = document.getElementById('answer-panel');
+    document.getElementById('you-asked-text').textContent = lastQuestion || document.getElementById('ask-input').value;
+    document.getElementById('answer-body').innerHTML = bodyHtml;
+
+    const tags = sourceTag.split('·').map(s => s.trim()).filter(Boolean);
+    document.getElementById('answer-tags').innerHTML = tags.map(t => `<span class="answer-tag-pill">${t}</span>`).join('');
+
+    const statsEl = document.getElementById('answer-stats');
+    statsEl.innerHTML = (stats || []).map(s => `
+      <div class="answer-stat-box">
+        <div class="answer-stat-label">${s.label}</div>
+        <div class="answer-stat-val">${s.value}</div>
+      </div>
+    `).join('');
+    statsEl.style.display = (stats && stats.length) ? 'grid' : 'none';
+
+    const evSec = document.getElementById('evidence-section');
+    const evList = document.getElementById('evidence-list');
+    const items = (evidenceItems && evidenceItems.length) ? evidenceItems : [
+      { title: sourceTag, detail: (stats || []).map(s => `${s.label}: ${s.value}`).join('\n') || 'Derived from HAP_DISTRICTS and HAP_MLAS public ledger.' }
+    ];
+    evList.innerHTML = items.map(it => `
+      <details class="evidence-card">
+        <summary>${it.title}</summary>
+        <div class="evidence-card-body">${it.detail}</div>
+      </details>
+    `).join('');
+    evSec.style.display = 'block';
+
+    const actEl = document.getElementById('answer-actions');
+    actEl.innerHTML = (actions || []).map(a => `
+      <a href="${a.href}" ${a.external ? 'target="_blank" rel="noopener"' : ''} class="answer-link-btn ${a.primary ? 'primary' : ''}">${a.label}</a>
+    `).join('');
+    actEl.style.display = (actions && actions.length) ? 'flex' : 'none';
+
+    panel.classList.add('visible');
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function answerQuestion(rawQuery) {
+    const q = rawQuery.trim();
+    if (!q) return;
+    lastQuestion = q;
+    const lang = detectLangFromText(q);
+    if (lang !== currentLang) setLang(lang);
+    const qLower = q.toLowerCase();
+
+    const districts = typeof HAP_DISTRICTS !== 'undefined' ? HAP_DISTRICTS : {};
+    const mlas = typeof HAP_MLAS !== 'undefined' ? HAP_MLAS : [];
+    const mentionedDistricts = findMentionedDistricts(qLower);
+    const mentionedMLA = findMentionedMLA(qLower);
+
+    // 1. Two-district comparison
+    if (mentionedDistricts.length >= 2) {
+      const d1Name = mentionedDistricts[0];
+      const d2Name = mentionedDistricts[1];
+      const d1 = districts[d1Name];
+      const d2 = districts[d2Name];
+      if (d1 && d2) {
+        const leader = d1.score >= d2.score ? d1Name : d2Name;
+        const diff = Math.abs(d1.score - d2.score).toFixed(1);
+        const body = lang === 'hi'
+          ? `<p><strong>${d1Name}</strong> (स्कोर ${d1.score}/100, रैंक #${d1.rank}) और <strong>${d2Name}</strong> (स्कोर ${d2.score}/100, रैंक #${d2.rank}) की तुलना में <strong>${leader}</strong> ${diff} अंकों से आगे है।</p><p>${d1Name} में अनसुलझी दर <strong>${d1.neglect}%</strong> (${d1.top} प्रमुख समस्या) और ${d2Name} में <strong>${d2.neglect}%</strong> (${d2.top} प्रमुख समस्या) है।</p>`
+          : lang === 'pa'
+          ? `<p><strong>${d1Name}</strong> (${d1.score}/100) ਅਤੇ <strong>${d2Name}</strong> (${d2.score}/100) ਦੀ ਤੁਲਨਾ ਵਿੱਚ <strong>${leader}</strong> ${diff} ਅੰਕਾਂ ਨਾਲ ਅੱਗੇ ਹੈ।</p>`
+          : `<p>Between <strong>${d1Name}</strong> (Score ${d1.score}/100, Rank #${d1.rank}) and <strong>${d2Name}</strong> (Score ${d2.score}/100, Rank #${d2.rank}), <strong>${leader}</strong> leads by <strong>${diff} points</strong>.</p><p>${d1Name} records a <strong>${d1.neglect}% unresolved rate</strong> across ${d1.count} field reports (top issue: ${d1.top}), while ${d2Name} records <strong>${d2.neglect}%</strong> across ${d2.count} reports (top issue: ${d2.top}).</p>`;
+
+        return renderAnswer(
+          `HAP LEDGER · ${d1Name.toUpperCase()} VS ${d2Name.toUpperCase()}`,
+          body,
+          [
+            { label: `${d1Name} Score`, value: `${d1.score} / 100` },
+            { label: `${d2Name} Score`, value: `${d2.score} / 100` },
+            { label: `${d1Name} Unresolved`, value: `${d1.neglect}%` },
+            { label: `${d2Name} Unresolved`, value: `${d2.neglect}%` }
+          ],
+          [
+            { label: 'Open Side-by-Side Compare →', href: `compare.html?d1=${encodeURIComponent(d1Name)}&d2=${encodeURIComponent(d2Name)}`, primary: true },
+            { label: 'View Dashboard', href: 'dashboard.html' }
+          ]
+        );
+      }
+    }
+
+    // 2. Specific MLA or Constituency
+    if (mentionedMLA) {
+      const m = mentionedMLA;
+      const waLink = typeof HAP_CIVIC_HELPERS !== 'undefined' ? HAP_CIVIC_HELPERS.getWhatsAppMLALink(m) : `https://api.whatsapp.com/send?text=`;
+      const body = lang === 'hi'
+        ? `<p><strong>${m.constituency}</strong> (${m.district} जिला, सीट #${m.no}) के विधायक <strong>${m.mla}</strong> (${m.party}) हैं।</p><p>HAP रिकॉर्ड के अनुसार इस क्षेत्र में अनसुलझी शिकायतों की दर <strong>${m.neglect}%</strong> है। मुख्य समस्या: <em>${m.problem}</em></p>`
+        : lang === 'pa'
+        ? `<p><strong>${m.constituency}</strong> (${m.district}) ਦੇ ਵਿਧਾਇਕ <strong>${m.mla}</strong> (${m.party}) ਹਨ। ਅਣਸੁਲਝੀ ਦਰ <strong>${m.neglect}%</strong> ਹੈ।</p>`
+        : `<p><strong>${m.mla}</strong> (${m.party}) represents <strong>${m.constituency}</strong> in <strong>${m.district}</strong> district (Assembly Seat #${m.no}).</p><p>HAP currently logs <strong>${m.reports} verified reports</strong> for this constituency with an unresolved rate of <strong>${m.neglect}%</strong> (dominant sector: ${m.dominantIssue}). ${m.problem}</p>`;
+
+      return renderAnswer(
+        `HAP MLA RECORD · SEAT #${m.no}`,
+        body,
+        [
+          { label: 'Representative', value: `${m.mla} (${m.party})` },
+          { label: 'Unresolved Rate', value: `${m.neglect}%` },
+          { label: 'Verified Reports', value: `${m.reports}` },
+          { label: 'Primary Issue', value: m.dominantIssue }
+        ],
+        [
+          { label: m.whatsapp ? 'Write to MLA on WhatsApp →' : 'Send WhatsApp Petition →', href: waLink, external: true, primary: true },
+          { label: 'View All 68 MLAs', href: `mlas.html?no=${m.no}` }
+        ]
+      );
+    }
+
+    // 3. Single District
+    if (mentionedDistricts.length === 1) {
+      const name = mentionedDistricts[0];
+      const d = districts[name];
+      if (d) {
+        const body = lang === 'hi'
+          ? `<p><strong>${name}</strong> जिला 12 जिलों में रैंक <strong>#${d.rank}</strong> पर है (स्कोर: <strong>${d.score}/100</strong>, श्रेणी: ${d.tier})।</p><p>यहाँ कुल ${d.count} सत्यापित रिपोर्ट दर्ज हैं जिनमें से <strong>${d.neglect}%</strong> अनसुलझी हैं। मुख्य मुद्दा <strong>${d.top}</strong> है।</p>`
+          : lang === 'pa'
+          ? `<p><strong>${name}</strong> ਜ਼ਿਲ੍ਹਾ 12 ਜ਼ਿਲ੍ਹਿਆਂ ਵਿੱਚ ਰੈਂਕ <strong>#${d.rank}</strong> \'ਤੇ ਹੈ (ਸਕੋਰ: <strong>${d.score}/100</strong>)। ਅਣਸੁਲਝੀ ਦਰ <strong>${d.neglect}%</strong> ਹੈ।</p>`
+          : `<p><strong>${name}</strong> ranks <strong>#${d.rank} of 12</strong> districts in Himachal Pradesh with a composite accountability score of <strong>${d.score}/100</strong> (${d.tier}).</p><p>HAP tracks <strong>${d.count} field reports</strong> in ${name} across ${d.seats.length} assembly constituencies, with an unresolved rate of <strong>${d.neglect}%</strong>. The most frequently reported concern is <strong>${d.top}</strong>.</p>`;
+
+        return renderAnswer(
+          `HAP DISTRICT SCORECARD · ${name.toUpperCase()}`,
+          body,
+          [
+            { label: 'District Rank', value: `#${d.rank} of 12` },
+            { label: 'Score', value: `${d.score} / 100` },
+            { label: 'Unresolved Rate', value: `${d.neglect}%` },
+            { label: 'Top Concern', value: d.top }
+          ],
+          [
+            { label: `Report an Issue in ${name} →`, href: `report-issue.html?district=${encodeURIComponent(name)}`, primary: true },
+            { label: 'Compare with Another District', href: `compare.html?d1=${encodeURIComponent(name)}` }
+          ]
+        );
+      }
+    }
+
+    // 4. Rankings / Worst / Best / Roads / Water / Health / Power
+    const sorted = Object.entries(districts).sort((a, b) => b[1].neglect - a[1].neglect);
+    if (qLower.includes('worst') || qLower.includes('highest') || qLower.includes('bad') || qLower.includes('खराब') || qLower.includes('अधिक') || qLower.includes('ਮਾੜੀ') || qLower.includes('ਅਣਸੁਲਝ')) {
+      const top3 = sorted.slice(0, 3);
+      const body = lang === 'hi'
+        ? `<p>अनसुलझी शिकायतों की दर के अनुसार सबसे अधिक प्रभावित जिले हैं: <strong>${top3[0][0]} (${top3[0][1].neglect}%)</strong>, <strong>${top3[1][0]} (${top3[1][1].neglect}%)</strong>, और <strong>${top3[2][0]} (${top3[2][1].neglect}%)</strong>।</p>`
+        : `<p>Based on HAP's district ledger, the three districts with the highest unresolved grievance rates are <strong>${top3[0][0]} (${top3[0][1].neglect}%)</strong>, <strong>${top3[1][0]} (${top3[1][1].neglect}%)</strong>, and <strong>${top3[2][0]} (${top3[2][1].neglect}%)</strong>.</p>`;
+
+      return renderAnswer(
+        'HAP STATEWIDE RANKING · HIGHEST UNRESOLVED',
+        body,
+        top3.map(([n, d]) => ({ label: n, value: `${d.neglect}% unresolved` })),
+        [
+          { label: 'Open Live Dashboard →', href: 'dashboard.html', primary: true },
+          { label: 'Compare Top Districts', href: `compare.html?d1=${encodeURIComponent(top3[0][0])}&d2=${encodeURIComponent(top3[1][0])}` }
+        ]
+      );
+    }
+
+    if (qLower.includes('road') || qLower.includes('सड़क') || qLower.includes('water') || qLower.includes('पानी') || qLower.includes('health') || qLower.includes('power')) {
+      const roadDistricts = sorted.filter(([_, d]) => d.top.toLowerCase() === 'roads');
+      const names = roadDistricts.map(([n]) => n).join(', ');
+      const body = lang === 'hi'
+        ? `<p>हिमाचल के 12 में से <strong>${roadDistricts.length} जिलों</strong> में सड़क और बुनियादी ढांचा सबसे बड़ी समस्या है: <strong>${names}</strong>।</p>`
+        : `<p><strong>Roads &amp; Infrastructure</strong> is the #1 dominant grievance sector in <strong>${roadDistricts.length} of 12</strong> districts (${names}), led by ${roadDistricts[0][0]} at <strong>${roadDistricts[0][1].neglect}% unresolved</strong>.</p>`;
+
+      return renderAnswer(
+        'HAP SECTOR ANALYSIS · ROADS & INFRASTRUCTURE',
+        body,
+        [
+          { label: 'Districts Affected', value: `${roadDistricts.length} / 12` },
+          { label: 'Highest Backlog', value: `${roadDistricts[0][0]} (${roadDistricts[0][1].neglect}%)` }
+        ],
+        [
+          { label: 'Explore Sector Map →', href: 'dashboard.html', primary: true },
+          { label: 'Report a Road Issue', href: 'report-issue.html' }
+        ]
+      );
+    }
+
+    // 5. Fallback grounded response
+    const totalReports = Object.values(districts).reduce((acc, d) => acc + d.count, 0);
+    const body = lang === 'hi'
+      ? `<p>क्षमा करें, यह प्रश्न HAP के वर्तमान जिले या विधायक डेटा से सीधे मेल नहीं खाता। वर्तमान में HAP में <strong>12 जिलों</strong>, <strong>68 विधानसभा क्षेत्रों</strong> और <strong>${totalReports} सत्यापित फील्ड रिपोर्ट</strong> का डेटा उपलब्ध है।</p><p>कृपया ऊपर दिए गए उदाहरण प्रश्नों में से कोई चुनें या किसी जिले/विधायक का नाम लिखें।</p>`
+      : `<p>That query isn't directly matched in HAP's current dataset — Ask only answers from verified ledger data and never invents figures. HAP currently tracks <strong>12 districts</strong>, <strong>68 MLAs</strong>, and <strong>${totalReports} district field entries</strong>.</p><p>Try asking about a specific district (e.g., Shimla, Kangra, Mandi), an MLA or constituency (e.g., Dharamshala, Seraj), or comparing two districts.</p>`;
+
+    renderAnswer(
+      'HAP LEDGER · DATA SCOPE NOTICE',
+      body,
+      [
+        { label: 'Districts Covered', value: '12 / 12' },
+        { label: 'Assembly Seats', value: '68' },
+        { label: 'Field Entries', value: `${totalReports}` }
+      ],
+      [
+        { label: 'Open Live Dashboard →', href: 'dashboard.html', primary: true },
+        { label: 'Find Your MLA', href: 'mlas.html' }
+      ]
+    );
+  }
+
+  function getRemainingQuestions() {
+    const today = new Date().toISOString().slice(0, 10);
+    try {
+      const saved = JSON.parse(localStorage.getItem('hap_ask_quota') || '{}');
+      if (saved.date === today) return Math.max(0, 10 - (saved.count || 0));
+    } catch (e) {}
+    return 10;
+  }
+
+  function recordQuestionUsed() {
+    const today = new Date().toISOString().slice(0, 10);
+    let count = 0;
+    try {
+      const saved = JSON.parse(localStorage.getItem('hap_ask_quota') || '{}');
+      if (saved.date === today) count = saved.count || 0;
+    } catch (e) {}
+    try {
+      localStorage.setItem('hap_ask_quota', JSON.stringify({ date: today, count: count + 1 }));
+    } catch (e) {}
+    updateQuotaLabel();
+  }
+
+  function updateQuotaLabel() {
+    const rem = getRemainingQuestions();
+    const t = UI_COPY[currentLang] || UI_COPY.en;
+    document.getElementById('ui-grounded-note').textContent = `${t.groundedNote} · ${rem}/10 left today`;
+  }
+
+  const askInput = document.getElementById('ask-input');
+  const submitBtn = document.getElementById('ui-submit-btn');
+
+  function syncAskButton() {
+    submitBtn.disabled = askInput.value.trim().length === 0;
+  }
+  askInput.addEventListener('input', syncAskButton);
+
+  // Cycling multilingual placeholder matching YouthPOWER Ask
+  const placeholders = [
+    'Which district has the highest unresolved rate in Himachal?',
+    'हिमाचल में किस जिले में अनसुलझी शिकायतों की दर सबसे अधिक है?',
+    'ਹਿਮਾਚਲ ਵਿੱਚ ਕਿਸ ਜ਼ਿਲ੍ਹੇ ਦੀ ਹਾਲਤ ਸਭ ਤੋਂ ਮਾੜੀ ਹੈ?'
+  ];
+  let phIdx = 0;
+  setInterval(() => {
+    if (document.activeElement !== askInput && !askInput.value) {
+      phIdx = (phIdx + 1) % placeholders.length;
+      askInput.placeholder = placeholders[phIdx];
+    }
+  }, 4200);
+
+  document.getElementById('ask-another-btn').addEventListener('click', () => {
+    document.getElementById('answer-panel').classList.remove('visible');
+    askInput.value = '';
+    syncAskButton();
+    askInput.focus();
+  });
+
+  document.getElementById('ask-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (getRemainingQuestions() <= 0) {
+      renderAnswer('HAP LEDGER · DAILY LIMIT', '<p>You have reached the 10-question daily limit for Ask Beta. Please browse the <a href="dashboard.html" style="color:var(--coral);">live dashboard</a> or come back tomorrow.</p>', [], []);
+      return;
+    }
+    const val = askInput.value;
+    if (val.trim()) {
+      recordQuestionUsed();
+      answerQuestion(val);
+    }
+  });
+
+  setLang('en');
+  updateQuotaLabel();
+  syncAskButton();
+})();
+</script>
+<script src="js/config.js"></script>
+<script src="js/shared-components.js"></script>
+<footer class="hap-universal-footer">
+  <div class="hap-footer-inner">
+    <div class="hap-footer-grid">
+      <div class="hap-footer-brand">
+        <a href="index.html" class="brand">
+          <img src="images/hap_logo.png" alt="HAP Logo" class="brand-logo">
+          Himachal Accountability Project
+        </a>
+        <div class="hap-footer-byline">Public Ledger &middot; Himachal Pradesh</div>
+        <p class="hap-footer-tagline">
+          An independent, citizen-run public utility tracking administrative responsiveness, public works neglect, and MLA accountability across all 12 districts of Himachal Pradesh.
+        </p>
+        <label class="hap-footer-notify-label" for="hap-footer-email">Get an email when we publish new district data or reports.</label>
+        <form class="hap-footer-notify-form" onsubmit="event.preventDefault(); var m=this.nextElementSibling; if(this.querySelector('input').value.trim()){ m.style.display='block'; this.reset(); }">
+          <input type="email" id="hap-footer-email" class="hap-footer-notify-input" placeholder="you@example.com" required>
+          <button type="submit" class="hap-footer-notify-btn">Notify Me</button>
+        </form>
+        <div class="hap-footer-notify-msg">Subscribed — we'll notify you when new district reports go live.</div>
+      </div>
+
+      <div>
+        <h3 class="hap-footer-col-title">The Ledger</h3>
+        <ul class="hap-footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="dashboard.html">Public Dashboard</a></li>
+          <li><a href="compare.html">Compare Districts</a></li>
+          <li><a href="mlas.html">Find Your MLA</a></li>
+          <li><a href="ask.html">Ask HAP (पूछें)</a></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="hap-footer-col-title">Using Our Work</h3>
+        <ul class="hap-footer-links">
+          <li><a href="data-methodology.html">Data Methodology</a></li>
+          <li><a href="report-issue.html">Report an Issue</a></li>
+          <li><a href="join.html">Join Us</a></li>
+          <li><a href="donate.html">Support Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hap-footer-cc-row">
+      <p class="hap-footer-cc-text">
+        All Himachal Accountability Project reports, charts and data are published under Creative Commons Attribution-ShareAlike 4.0. You are free to share and adapt, including republishing in print or online, as long as you credit Himachal Accountability Project and link back to the source.
+      </p>
+      <a href="data-methodology.html" class="hap-footer-cc-badge">CC BY-SA 4.0</a>
+    </div>
+
+    <div class="hap-footer-bottom">
+      <div class="hap-footer-bottom-left">
+        <span>&copy; <span id="year">2026</span> Himachal Accountability Project &middot; Non-Partisan Public Utility</span>
+      </div>
+      <div class="hap-footer-bottom-right">
+        <div class="hap-footer-socials">
+          <a href="https://instagram.com/thehapofficial" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://x.com/TheHAPofficial" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+        <div class="hap-footer-verma">
+          <span>Designed by</span>
+          <a href="https://vermadigital.in/" target="_blank" rel="noopener noreferrer" style="display:flex; align-items:center;">
+            <img src="images/verma_digital_logo.png" alt="Verma Digital" class="verma-logo">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

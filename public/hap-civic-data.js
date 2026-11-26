@@ -433,7 +433,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "Recurring roads maintenance delays and administrative pendency in Churah (SC).",
     "pincode": "176310",
-    "email": "hans.raj@hpvidhansabha.nic.in"
+    "email": "hans.raj@hpvidhansabha.nic.in",
+    "whatsapp": "919816035600"
   },
   {
     "no": 2,
@@ -459,7 +460,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "Recurring roads maintenance delays and administrative pendency in Chamba.",
     "pincode": "176310",
-    "email": "neeraj.nayar@hpvidhansabha.nic.in"
+    "email": "neeraj.nayar@hpvidhansabha.nic.in",
+    "whatsapp": "919817055335"
   },
   {
     "no": 4,
@@ -524,7 +526,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "Recurring roads maintenance delays and administrative pendency in Fatehpur.",
     "pincode": "176215",
-    "email": "bhawani.singh.pathania@hpvidhansabha.nic.in"
+    "email": "bhawani.singh.pathania@hpvidhansabha.nic.in",
+    "whatsapp": "919418056603"
   },
   {
     "no": 9,
@@ -537,7 +540,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "Recurring roads maintenance delays and administrative pendency in Jawali.",
     "pincode": "176215",
-    "email": "chander.kumar@hpvidhansabha.nic.in"
+    "email": "chander.kumar@hpvidhansabha.nic.in",
+    "whatsapp": "919418045009"
   },
   {
     "no": 10,
@@ -576,7 +580,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "Recurring roads maintenance delays and administrative pendency in Jawalamukhi.",
     "pincode": "176215",
-    "email": "sanjay.rattan@hpvidhansabha.nic.in"
+    "email": "sanjay.rattan@hpvidhansabha.nic.in",
+    "whatsapp": "919418000041"
   },
   {
     "no": 13,
@@ -589,7 +594,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "Recurring roads maintenance delays and administrative pendency in Jaisinghpur (SC).",
     "pincode": "176215",
-    "email": "yadvinder.goma@hpvidhansabha.nic.in"
+    "email": "yadvinder.goma@hpvidhansabha.nic.in",
+    "whatsapp": "919816616444"
   },
   {
     "no": 14,
@@ -602,7 +608,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "No meaningful engagement from MLA's office on revenue-record failures or blocked Panchayat roads.",
     "pincode": "176215",
-    "email": "vipin.singh.parmar@hpvidhansabha.nic.in"
+    "email": "vipin.singh.parmar@hpvidhansabha.nic.in",
+    "whatsapp": "919418035551"
   },
   {
     "no": 15,
@@ -628,7 +635,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "Recurring roads maintenance delays and administrative pendency in Kangra.",
     "pincode": "176215",
-    "email": "pawan.kumar.kajal@hpvidhansabha.nic.in"
+    "email": "pawan.kumar.kajal@hpvidhansabha.nic.in",
+    "whatsapp": "919418065000"
   },
   {
     "no": 17,
@@ -641,7 +649,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "Recurring roads maintenance delays and administrative pendency in Shahpur.",
     "pincode": "176215",
-    "email": "kewal.singh.pathania@hpvidhansabha.nic.in"
+    "email": "kewal.singh.pathania@hpvidhansabha.nic.in",
+    "whatsapp": "919816017001"
   },
   {
     "no": 18,
@@ -667,7 +676,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "Recurring roads maintenance delays and administrative pendency in Palampur.",
     "pincode": "176215",
-    "email": "ashish.butail@hpvidhansabha.nic.in"
+    "email": "ashish.butail@hpvidhansabha.nic.in",
+    "whatsapp": "919816303443"
   },
   {
     "no": 20,
@@ -680,7 +690,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "Recurring roads maintenance delays and administrative pendency in Baijnath (SC).",
     "pincode": "176215",
-    "email": "kishori.lal@hpvidhansabha.nic.in"
+    "email": "kishori.lal@hpvidhansabha.nic.in",
+    "whatsapp": "919816077722"
   },
   {
     "no": 21,
@@ -732,7 +743,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "Recurring roads maintenance delays and administrative pendency in Banjar.",
     "pincode": "175101",
-    "email": "surender.shourie@hpvidhansabha.nic.in"
+    "email": "surender.shourie@hpvidhansabha.nic.in",
+    "whatsapp": "919816679772"
   },
   {
     "no": 25,
@@ -784,7 +796,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "Recurring roads maintenance delays and administrative pendency in Nachan (SC).",
     "pincode": "175001",
-    "email": "vinod.kumar@hpvidhansabha.nic.in"
+    "email": "vinod.kumar@hpvidhansabha.nic.in",
+    "whatsapp": "919418032658"
   },
   {
     "no": 29,
@@ -823,7 +836,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "Recurring roads maintenance delays and administrative pendency in Jogindernagar.",
     "pincode": "175001",
-    "email": "prakash.rana@hpvidhansabha.nic.in"
+    "email": "prakash.rana@hpvidhansabha.nic.in",
+    "whatsapp": "919418094984"
   },
   {
     "no": 32,
@@ -836,7 +850,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "Recurring roads maintenance delays and administrative pendency in Dharampur.",
     "pincode": "175001",
-    "email": "chandershekhar@hpvidhansabha.nic.in"
+    "email": "chandershekhar@hpvidhansabha.nic.in",
+    "whatsapp": "919418019107"
   },
   {
     "no": 33,
@@ -862,7 +877,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "Sarkaghat/Bhangrotu roads unrepaired since 2023 monsoon floods.",
     "pincode": "175001",
-    "email": "inder.singh.gandhi@hpvidhansabha.nic.in"
+    "email": "inder.singh.gandhi@hpvidhansabha.nic.in",
+    "whatsapp": "919418307050"
   },
   {
     "no": 35,
@@ -888,7 +904,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "Recurring roads maintenance delays and administrative pendency in Bhoranj (SC).",
     "pincode": "177001",
-    "email": "suresh.kumar@hpvidhansabha.nic.in"
+    "email": "suresh.kumar@hpvidhansabha.nic.in",
+    "whatsapp": "919418120204"
   },
   {
     "no": 37,
@@ -966,7 +983,8 @@ const HAP_MLAS = [
     "dominantIssue": "Health",
     "problem": "Gagret Civil Hospital work on hold for 5-7 years despite construction due to land feuds.",
     "pincode": "174303",
-    "email": "chaitanya.sharma@hpvidhansabha.nic.in"
+    "email": "chaitanya.sharma@hpvidhansabha.nic.in",
+    "whatsapp": "919805808888"
   },
   {
     "no": 43,
@@ -979,7 +997,8 @@ const HAP_MLAS = [
     "dominantIssue": "Health",
     "problem": "Complete lack of footpaths, sidewalks, and dustbins in public market area.",
     "pincode": "174303",
-    "email": "mukesh.agnihotri@hpvidhansabha.nic.in"
+    "email": "mukesh.agnihotri@hpvidhansabha.nic.in",
+    "whatsapp": "919418021616"
   },
   {
     "no": 44,
@@ -992,7 +1011,8 @@ const HAP_MLAS = [
     "dominantIssue": "Health",
     "problem": "Recurring health maintenance delays and administrative pendency in Una.",
     "pincode": "174303",
-    "email": "satpal.singh.satti@hpvidhansabha.nic.in"
+    "email": "satpal.singh.satti@hpvidhansabha.nic.in",
+    "whatsapp": "919816655565"
   },
   {
     "no": 45,
@@ -1018,7 +1038,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "Recurring roads maintenance delays and administrative pendency in Jhanduta (SC).",
     "pincode": "174001",
-    "email": "jeet.ram.katwal@hpvidhansabha.nic.in"
+    "email": "jeet.ram.katwal@hpvidhansabha.nic.in",
+    "whatsapp": "919816004951"
   },
   {
     "no": 47,
@@ -1031,7 +1052,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "Recurring roads maintenance delays and administrative pendency in Ghumarwin.",
     "pincode": "174001",
-    "email": "rajesh.dharmani@hpvidhansabha.nic.in"
+    "email": "rajesh.dharmani@hpvidhansabha.nic.in",
+    "whatsapp": "919418001644"
   },
   {
     "no": 48,
@@ -1044,7 +1066,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "Recurring roads maintenance delays and administrative pendency in Bilaspur.",
     "pincode": "174001",
-    "email": "trilok.jamwal@hpvidhansabha.nic.in"
+    "email": "trilok.jamwal@hpvidhansabha.nic.in",
+    "whatsapp": "919418054777"
   },
   {
     "no": 49,
@@ -1057,7 +1080,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "Recurring roads maintenance delays and administrative pendency in Sri Naina Deviji.",
     "pincode": "174001",
-    "email": "randhir.sharma@hpvidhansabha.nic.in"
+    "email": "randhir.sharma@hpvidhansabha.nic.in",
+    "whatsapp": "919418022699"
   },
   {
     "no": 50,
@@ -1070,7 +1094,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "Recurring roads maintenance delays and administrative pendency in Arki.",
     "pincode": "173212",
-    "email": "sanjay.awasthy@hpvidhansabha.nic.in"
+    "email": "sanjay.awasthy@hpvidhansabha.nic.in",
+    "whatsapp": "919418015670"
   },
   {
     "no": 51,
@@ -1096,7 +1121,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "Recurring roads maintenance delays and administrative pendency in Doon.",
     "pincode": "173212",
-    "email": "ram.kumar.chaudhary@hpvidhansabha.nic.in"
+    "email": "ram.kumar.chaudhary@hpvidhansabha.nic.in",
+    "whatsapp": "919418020529"
   },
   {
     "no": 53,
@@ -1109,7 +1135,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "Recurring roads maintenance delays and administrative pendency in Solan (SC).",
     "pincode": "173212",
-    "email": "dhani.ram.shandil@hpvidhansabha.nic.in"
+    "email": "dhani.ram.shandil@hpvidhansabha.nic.in",
+    "whatsapp": "919418001979"
   },
   {
     "no": 54,
@@ -1161,7 +1188,8 @@ const HAP_MLAS = [
     "dominantIssue": "Health",
     "problem": "Recurring health maintenance delays and administrative pendency in Sri Renukaji (SC).",
     "pincode": "173001",
-    "email": "vinay.kumar@hpvidhansabha.nic.in"
+    "email": "vinay.kumar@hpvidhansabha.nic.in",
+    "whatsapp": "919418042224"
   },
   {
     "no": 58,
@@ -1174,7 +1202,8 @@ const HAP_MLAS = [
     "dominantIssue": "Health",
     "problem": "Recurring health maintenance delays and administrative pendency in Paonta Sahib.",
     "pincode": "173001",
-    "email": "sukh.ram.chaudhary@hpvidhansabha.nic.in"
+    "email": "sukh.ram.chaudhary@hpvidhansabha.nic.in",
+    "whatsapp": "919816050039"
   },
   {
     "no": 59,
@@ -1187,7 +1216,8 @@ const HAP_MLAS = [
     "dominantIssue": "Health",
     "problem": "Recurring health maintenance delays and administrative pendency in Shillai.",
     "pincode": "173001",
-    "email": "harshwardhan.chauhan@hpvidhansabha.nic.in"
+    "email": "harshwardhan.chauhan@hpvidhansabha.nic.in",
+    "whatsapp": "919418012321"
   },
   {
     "no": 60,
@@ -1213,7 +1243,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "Recurring roads maintenance delays and administrative pendency in Theog.",
     "pincode": "171001",
-    "email": "kuldeep.singh.rathore@hpvidhansabha.nic.in"
+    "email": "kuldeep.singh.rathore@hpvidhansabha.nic.in",
+    "whatsapp": "919418022000"
   },
   {
     "no": 62,
@@ -1226,7 +1257,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "Recurring roads maintenance delays and administrative pendency in Kasumpti.",
     "pincode": "171001",
-    "email": "anirudh.singh@hpvidhansabha.nic.in"
+    "email": "anirudh.singh@hpvidhansabha.nic.in",
+    "whatsapp": "919816051000"
   },
   {
     "no": 63,
@@ -1239,7 +1271,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "Token system broken at IGMC Eye OPD. Staff and department head unresponsive to citizen complaints.",
     "pincode": "171001",
-    "email": "harish.janartha@hpvidhansabha.nic.in"
+    "email": "harish.janartha@hpvidhansabha.nic.in",
+    "whatsapp": "919418020019"
   },
   {
     "no": 64,
@@ -1252,7 +1285,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "Recurring roads maintenance delays and administrative pendency in Shimla Rural.",
     "pincode": "171001",
-    "email": "vikramaditya.singh@hpvidhansabha.nic.in"
+    "email": "vikramaditya.singh@hpvidhansabha.nic.in",
+    "whatsapp": "919418065002"
   },
   {
     "no": 65,
@@ -1265,7 +1299,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "Recurring roads maintenance delays and administrative pendency in Jubbal-Kotkhai.",
     "pincode": "171001",
-    "email": "rohit.thakur@hpvidhansabha.nic.in"
+    "email": "rohit.thakur@hpvidhansabha.nic.in",
+    "whatsapp": "919459713485"
   },
   {
     "no": 66,
@@ -1278,7 +1313,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "Recurring roads maintenance delays and administrative pendency in Rampur (SC).",
     "pincode": "171001",
-    "email": "nand.lal@hpvidhansabha.nic.in"
+    "email": "nand.lal@hpvidhansabha.nic.in",
+    "whatsapp": "919418029977"
   },
   {
     "no": 67,
@@ -1291,7 +1327,8 @@ const HAP_MLAS = [
     "dominantIssue": "Roads",
     "problem": "Recurring roads maintenance delays and administrative pendency in Rohru (SC).",
     "pincode": "171001",
-    "email": "mohan.lal.brakta@hpvidhansabha.nic.in"
+    "email": "mohan.lal.brakta@hpvidhansabha.nic.in",
+    "whatsapp": "919418017977"
   },
   {
     "no": 68,
@@ -1304,12 +1341,13 @@ const HAP_MLAS = [
     "dominantIssue": "Power",
     "problem": "Recurring power maintenance delays and administrative pendency in Kinnaur (ST).",
     "pincode": "172107",
-    "email": "jagat.singh.negi@hpvidhansabha.nic.in"
+    "email": "jagat.singh.negi@hpvidhansabha.nic.in",
+    "whatsapp": "919418006002"
   }
 ];
 
 const HAP_CIVIC_HELPERS = {
-  // Format WhatsApp message for MLA
+  // Format WhatsApp message for MLA (redirects to MLA's WhatsApp number when available)
   getWhatsAppMLALink: function(mla) {
     const text = 'Jai Hind ' + mla.mla + ' ji,\n\n' +
       'As a constituent of ' + mla.constituency + ' (' + mla.district + ' district), I am writing regarding unaddressed civic issues on the Himachal Accountability Project public ledger.\n\n' +
@@ -1321,7 +1359,10 @@ const HAP_CIVIC_HELPERS = {
       'Kindly review this public record and coordinate with the administrative departments for prompt redressal.\n\n' +
       'Ledger details: https://himachalaccountability.org/mlas.html?no=' + mla.no + '\n\n' +
       '— Citizen of Himachal Pradesh (himachalaccountability.org)';
-    return 'https://api.whatsapp.com/send?text=' + encodeURIComponent(text);
+    const rawPhone = (mla.whatsapp || mla.phone || '').toString().replace(/[^0-9]/g, '');
+    const phone = rawPhone.length === 10 ? ('91' + rawPhone) : rawPhone;
+    const baseUrl = phone ? ('https://api.whatsapp.com/send?phone=' + phone + '&text=') : 'https://api.whatsapp.com/send?text=';
+    return baseUrl + encodeURIComponent(text);
   },
 
   // Format Email for MLA

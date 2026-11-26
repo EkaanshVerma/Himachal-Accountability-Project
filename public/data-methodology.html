@@ -681,14 +681,26 @@ code {
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css"/>
+  <link rel="stylesheet" href="css/universal-navbar.css">
+  <link rel="stylesheet" href="css/universal-footer.css">
+<style>
+body {
+  background: linear-gradient(rgba(17, 25, 20, 0.85), rgba(17, 25, 20, 0.85)), url('images/bg3.jpg') no-repeat center center fixed !important;
+  background-size: cover !important;
+}
+
+.hero, .page-hero, .where-it-goes, .faq-section, .section {
+  background: transparent !important;
+}
+</style>
 </head>
 <body>
 
-<div class="ann-bar">
-  This document is a living record. <b>Last reviewed: July 2025.</b> &nbsp;|&nbsp; All policy changes are committed to our public GitHub repository with a full diff history.
+<div class="ann-bar" style="background: #D8E4D0; color: #1E2A22; font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.05em; padding: 8px 20px; text-align: center;">
+  <b style="font-weight: 600; color: #C87A30;">Independent civic record.</b> &nbsp;Not affiliated with any political party or government body. &nbsp;Data from community field reports.
 </div>
 
-<div class="masthead">
+<header class="masthead">
   <div class="masthead-inner">
     <div class="masthead-left">
       <a href="index.html" class="brand">
@@ -700,26 +712,27 @@ code {
       </a>
     </div>
     <div class="masthead-right">
-      <div class="masthead-links">
+      <nav class="masthead-links" aria-label="Main Navigation">
         <a class="btn-ghost " id="nav-home" href="index.html">Home</a>
         <a class="btn-ghost " id="nav-about" href="about.html">About Us</a>
         <a class="btn-ghost " id="nav-dashboard" href="dashboard.html">Dashboard</a>
-        <a class="btn-ghost" id="nav-compare" href="compare.html">Compare</a>
-        <a class="btn-ghost" id="nav-mlas" href="mlas.html">Find MLA</a>
-<!--         <a class="btn-ghost " id="nav-perception" href="mla_perception.html">MLA Perception</a> -->
+        <a class="btn-ghost " id="nav-compare" href="compare.html">Compare</a>
+        <a class="btn-ghost " id="nav-mlas" href="mlas.html">Find MLA</a>
         <a class="btn-ghost " id="nav-join" href="join.html">Join Us</a>
         <a class="btn-ghost " id="nav-contact" href="contact.html">Contact Us</a>
-      </div>
+        <a class="btn-ghost " id="nav-ask" href="ask.html" style="color: #E07A5F !important;">पूछें · Ask</a>
+      </nav>
       
       <div class="mobile-dropdown" id="mobile-menu" style="display: none;">
         <a class="dropdown-link " href="index.html">Home</a>
         <a class="dropdown-link " href="about.html">About Us</a>
         <a class="dropdown-link " href="dashboard.html">Dashboard</a>
-        <a class="dropdown-link" href="compare.html">Compare Districts</a>
-        <a class="dropdown-link" href="mlas.html">Find Your MLA</a>
-<!--         <a class="dropdown-link " href="mla_perception.html">MLA Perception</a> -->
+        <a class="dropdown-link " href="compare.html">Compare Districts</a>
+        <a class="dropdown-link " href="mlas.html">Find Your MLA</a>
         <a class="dropdown-link " href="join.html">Join Us</a>
         <a class="dropdown-link " href="contact.html">Contact Us</a>
+        <a class="dropdown-link " href="ask.html">पूछें · Ask</a>
+        <a class="dropdown-link " href="donate.html">Support Us</a>
       </div>
 
       <a class="btn-ghost " id="nav-donate" href="donate.html">Support Us</a>
@@ -735,7 +748,7 @@ code {
       </button>
     </div>
   </div>
-</div>
+</header>
 
 <!-- HERO -->
 <section class="hero">
@@ -1483,64 +1496,78 @@ code {
 </main>
 
 <!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-inner" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
-    <div class="footer-note">
-      © 2025 Himachal Accountability Project &nbsp;·&nbsp; data@himachalaccountability.org &nbsp;·&nbsp; Not affiliated with any government body or political party
-    </div>
-    <div class="footer-credit" style="display: flex; align-items: center; gap: 8px;">
-        <style>
-          /* Force dark footer globally */
-          footer, .footer {
-            background-color: #1E2A22 !important;
-            color: rgba(243, 241, 230, 0.72) !important;
-            border-top: 1px solid rgba(255,255,255,0.05) !important;
-          }
-          footer *, .footer * {
-            border-color: rgba(255,255,255,0.1) !important;
-          }
-          footer .brand {
-            color: #F3F1E6 !important;
-          }
-          footer p, .footer p, footer .footer-note, .footer .footer-note, footer .field-meta dt {
-            color: rgba(243, 241, 230, 0.46) !important;
-          }
-          footer a, .footer a {
-            color: rgba(243, 241, 230, 0.72) !important;
-          }
-          footer a:hover, .footer a:hover {
-            color: #F3F1E6 !important;
-          }
-          .footer-bottom {
-            color: rgba(243, 241, 230, 0.46) !important;
-          }
-          /* Logo styling */
-          .verma-logo { 
-            height: 18px !important; 
-            width: auto !important; 
-            filter: brightness(0) invert(1) opacity(0.8) !important; 
-            transition: filter 0.3s !important;
-          }
-          .verma-logo:hover { 
-            filter: brightness(0) invert(1) opacity(1) !important; 
-          }
-        
-
-
-body {
-  background: linear-gradient(rgba(17, 25, 20, 0.85), rgba(17, 25, 20, 0.85)), url('images/bg3.jpg') no-repeat center center fixed !important;
-  background-size: cover !important;
-}
-
-.hero, .page-hero, .where-it-goes, .faq-section, .section {
-  background: transparent !important;
-}
-</style>
-        <span>Designed by</span>
-        <a href="https://vermadigital.in/" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center;">
-          <img src="images/verma_digital_logo.png" alt="Verma Digital" class="verma-logo">
+<footer class="hap-universal-footer">
+  <div class="hap-footer-inner">
+    <div class="hap-footer-grid">
+      <div class="hap-footer-brand">
+        <a href="index.html" class="brand">
+          <img src="images/hap_logo.png" alt="HAP Logo" class="brand-logo">
+          Himachal Accountability Project
         </a>
+        <div class="hap-footer-byline">Public Ledger &middot; Himachal Pradesh</div>
+        <p class="hap-footer-tagline">
+          An independent, citizen-run public utility tracking administrative responsiveness, public works neglect, and MLA accountability across all 12 districts of Himachal Pradesh.
+        </p>
+        <label class="hap-footer-notify-label" for="hap-footer-email">Get an email when we publish new district data or reports.</label>
+        <form class="hap-footer-notify-form" onsubmit="event.preventDefault(); var m=this.nextElementSibling; if(this.querySelector('input').value.trim()){ m.style.display='block'; this.reset(); }">
+          <input type="email" id="hap-footer-email" class="hap-footer-notify-input" placeholder="you@example.com" required>
+          <button type="submit" class="hap-footer-notify-btn">Notify Me</button>
+        </form>
+        <div class="hap-footer-notify-msg">Subscribed — we'll notify you when new district reports go live.</div>
       </div>
+
+      <div>
+        <h3 class="hap-footer-col-title">The Ledger</h3>
+        <ul class="hap-footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="dashboard.html">Public Dashboard</a></li>
+          <li><a href="compare.html">Compare Districts</a></li>
+          <li><a href="mlas.html">Find Your MLA</a></li>
+          <li><a href="ask.html">Ask HAP (पूछें)</a></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="hap-footer-col-title">Using Our Work</h3>
+        <ul class="hap-footer-links">
+          <li><a href="data-methodology.html">Data Methodology</a></li>
+          <li><a href="report-issue.html">Report an Issue</a></li>
+          <li><a href="join.html">Join Us</a></li>
+          <li><a href="donate.html">Support Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hap-footer-cc-row">
+      <p class="hap-footer-cc-text">
+        All Himachal Accountability Project reports, charts and data are published under Creative Commons Attribution-ShareAlike 4.0. You are free to share and adapt, including republishing in print or online, as long as you credit Himachal Accountability Project and link back to the source.
+      </p>
+      <a href="data-methodology.html" class="hap-footer-cc-badge">CC BY-SA 4.0</a>
+    </div>
+
+    <div class="hap-footer-bottom">
+      <div class="hap-footer-bottom-left">
+        <span>&copy; <span id="year">2026</span> Himachal Accountability Project &middot; Non-Partisan Public Utility</span>
+      </div>
+      <div class="hap-footer-bottom-right">
+        <div class="hap-footer-socials">
+          <a href="https://instagram.com/thehapofficial" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://x.com/TheHAPofficial" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+        <div class="hap-footer-verma">
+          <span>Designed by</span>
+          <a href="https://vermadigital.in/" target="_blank" rel="noopener noreferrer" style="display:flex; align-items:center;">
+            <img src="images/verma_digital_logo.png" alt="Verma Digital" class="verma-logo">
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </footer>
 
