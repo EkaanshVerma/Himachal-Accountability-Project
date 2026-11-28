@@ -98,14 +98,9 @@
   /* ── 3. Create floating button ──────────────────────────────────────── */
   const btn = document.createElement('button');
   btn.id = 'hap-translate-btn';
+  btn.className = 'notranslate';
   btn.setAttribute('aria-label', 'Toggle language between English and Hindi');
-  btn.innerHTML = `
-    <span class="hap-tr-icon">🌐</span>
-    <span class="hap-tr-label">
-      <span class="hap-tr-current" id="hap-tr-current-lang">Currently: EN</span>
-      <span class="hap-tr-next" id="hap-tr-next-lang">Switch to हिन्दी</span>
-    </span>
-  `;
+  btn.innerHTML = `<span class="hap-tr-next" id="hap-tr-next-lang">हिन्दी</span>`;
   document.body.appendChild(btn);
 
   /* ── 4. Language state helpers ──────────────────────────────────────── */
@@ -131,14 +126,9 @@
   }
 
   function updateButtonUI(lang) {
-    const currentEl = document.getElementById('hap-tr-current-lang');
-    const nextEl    = document.getElementById('hap-tr-next-lang');
-    if (lang === 'hi') {
-      currentEl.textContent = 'भाषा: हिन्दी';
-      nextEl.textContent    = 'Switch to English';
-    } else {
-      currentEl.textContent = 'Currently: EN';
-      nextEl.textContent    = 'Switch to हिन्दी';
+    const nextEl = document.getElementById('hap-tr-next-lang');
+    if (nextEl) {
+      nextEl.textContent = (lang === 'hi') ? 'English' : 'हिन्दी';
     }
   }
 
