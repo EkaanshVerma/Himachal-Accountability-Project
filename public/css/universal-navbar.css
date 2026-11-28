@@ -252,3 +252,125 @@
   }
 }
 
+
+/* ==========================================================================
+   SITE LOADING SPLASH OVERLAY
+   ========================================================================== */
+.hap-loader-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 99999 !important;
+  background: var(--bg, #111914) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 24px !important;
+  opacity: 1 !important;
+  transition: opacity 0.4s ease, visibility 0.4s ease !important;
+}
+
+.hap-loader-overlay.hap-loader-hide {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.hap-loader-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 460px;
+}
+
+.hap-loader-ring-wrap {
+  position: relative;
+  width: 156px;
+  height: 156px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.hap-loader-ring-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.hap-loader-ring-track {
+  fill: none;
+  stroke: rgba(200, 122, 48, 0.22);
+  stroke-width: 5;
+}
+
+.hap-loader-ring-arc {
+  fill: none;
+  stroke: #C87A30;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-dasharray: 465;
+  stroke-dashoffset: 330;
+  animation: hapLoaderSpin 1.2s cubic-bezier(0.55, 0.15, 0.45, 0.85) infinite;
+  transform-origin: 80px 80px;
+}
+
+.hap-loader-logo {
+  width: 122px;
+  height: 122px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+}
+
+.hap-loader-text {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 1.22rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--text, #F0F4EE);
+  margin: 0 0 18px 0;
+}
+
+.hap-loader-text span {
+  display: block;
+  margin-top: 4px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text3, rgba(240, 244, 238, 0.58));
+}
+
+.hap-loader-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.hap-loader-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text3, rgba(240, 244, 238, 0.45));
+  animation: hapLoaderDot 1.1s infinite ease-in-out;
+}
+
+.hap-loader-dots span:nth-child(1) { animation-delay: 0s; }
+.hap-loader-dots span:nth-child(2) { animation-delay: 0.18s; }
+.hap-loader-dots span:nth-child(3) { animation-delay: 0.36s; }
+
+@keyframes hapLoaderSpin {
+  0% { transform: rotate(-90deg); stroke-dashoffset: 360; }
+  50% { stroke-dashoffset: 140; }
+  100% { transform: rotate(270deg); stroke-dashoffset: 360; }
+}
+
+@keyframes hapLoaderDot {
+  0%, 80%, 100% { opacity: 0.35; transform: scale(0.85); }
+  40% { opacity: 1; transform: scale(1.15); background: #C87A30; }
+}
